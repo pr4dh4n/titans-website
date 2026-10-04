@@ -95,27 +95,23 @@
   const hdr = document.querySelector("[data-site-header]");
   if (hdr) {
     hdr.className = "hdr";
+    const navCur = k => (({ home: ["home"], servers: ["mc", "cs"], store: ["store"], about: ["community"], contact: ["support"] })[k].includes(page) ? ' aria-current="page"' : "");
     hdr.innerHTML = `<div class="hdr-bar"><div class="wrap">
-  <a class="brand" href="${L.home}" aria-label="TheTitansClan home"><img src="assets/ttc-icon.svg" alt="" width="26" height="32"><span>TheTitansClan</span></a>
+  <a class="brand" href="${L.home}" aria-label="The Titans Clan home"><img src="assets/ttc-icon.svg" alt="" width="47" height="58"><span class="wm"><small>THE</small><b>TITANS</b><small>CLAN</small></span></a>
   <nav class="nav" aria-label="Main">
-    <a href="${L.mc}"${cur("mc")}><i class="sq" style="background:var(--or)"></i>Minecraft</a>
-    <a href="${L.cs}"${cur("cs")}><i class="sq" style="background:var(--argent-2)"></i>CS2</a>
-    <a href="${L.store}"${cur("store")}><i class="sq" style="background:var(--on-sable)"></i>Store</a>
-    <a href="${L.mc}#vote">Vote</a><a href="${L.support}#rules"${cur("support")}>Rules</a><a href="${L.events}"${cur("events")}>Events</a><a href="${L.community}"${cur("community")}>Community</a>
+    <a href="${L.home}"${navCur("home")}>Home</a><a href="${L.home}#servers"${navCur("servers")}>Our servers</a><a href="${L.store}"${navCur("store")}>Store</a><a href="${L.community}"${navCur("about")}>About</a><a href="${L.support}#contact"${navCur("contact")}>Contact</a>
   </nav>
   <div class="hdr-right">
-    <span class="hdr-status" data-status="short"><i class="dot"></i><span>Checking…</span></span>
-    <a class="hdr-btn hdr-discord-sm" href="${L.discord}">Discord</a>
-    <button class="hdr-btn" type="button" data-open-cart aria-label="Open cart">Cart <span class="n cart-count" data-n="0"></span></button>
-    <a class="hdr-play" href="${L.join}">PLAY NOW</a>
+    <span class="hdr-players" data-status="players">${ic("users")}<span><b class="tnum">—</b><small>Players online</small></span></span>
+    <button class="hdr-cart" type="button" data-open-cart aria-label="Open cart">${ic("cart")}<span class="n cart-count" data-n="0"></span></button>
+    <a class="btn-crest hdr-discord" href="${L.discord}"><span class="bc-plate"><i class="bc-rim" aria-hidden="true"></i><svg viewBox="0 0 24 24" aria-hidden="true" class="bc-icon"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.028C.533 9.046-.32 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.1 14.1 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.011c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.099.246.198.373.292a.077.077 0 0 1-.007.128 12.3 12.3 0 0 1-1.873.891.077.077 0 0 0-.041.107c.36.698.772 1.363 1.225 1.993a.076.076 0 0 0 .084.029 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.029zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.332-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg><span class="bc-label">Join Discord</span><i class="bc-arrow"></i></span></a>
     <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu">${ic("menu")}</button>
   </div>
-</div></div>
-<nav class="realms" aria-label="Realms"><a class="r-mc" href="${L.mc}"${cur("mc")}>Minecraft</a><a class="r-store" href="${L.store}"${cur("store")}>Store</a><a class="r-cs" href="${L.cs}"${cur("cs")}>CS2</a></nav>`;
+</div></div>`;
     document.body.insertAdjacentHTML("beforeend", `<div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="Menu">
   <div class="scrim" data-close-menu></div>
   <div class="panel">
-    <div class="p-head"><a class="brand" href="${L.home}"><img src="assets/ttc-icon.svg" alt="" width="26" height="32"><span>TheTitansClan</span></a><button class="menu-btn" type="button" data-close-menu aria-label="Close menu">${ic("x")}</button></div>
+    <div class="p-head"><a class="brand" href="${L.home}" style="color:var(--on-sable)"><img src="assets/ttc-icon.svg" alt="" width="32" height="40"><span style="font:800 1.125rem/1 var(--f-caps);letter-spacing:.06em">THE TITANS CLAN</span></a><button class="menu-btn" type="button" data-close-menu aria-label="Close menu">${ic("x")}</button></div>
     <div class="p-body">
       <div class="p-realm"><a href="${L.mc}"><i style="background:var(--or)"></i>Minecraft</a><div class="p-links"><a href="${L.join}">How to join</a><a href="${L.mc}#modes">Game modes</a><a href="${L.ranks}">Ranks</a><a href="${L.mc}#vote">Vote</a><a href="${L.mc}#staff">Staff</a><a href="${L.news}">Updates</a></div></div>
       <div class="p-realm"><a href="${L.store}"><i style="background:var(--on-sable)"></i>Store</a><div class="p-links"><a href="${L.store}?tab=mc">Minecraft</a><a href="${L.store}?tab=cs">CS2</a><a href="${L.store}#parents">For parents</a></div></div>
@@ -129,16 +125,27 @@
   const ftr = document.querySelector("[data-site-footer]");
   if (ftr) {
     ftr.className = "ftr";
-    ftr.innerHTML = `<div class="wrap">
+    ftr.innerHTML = `<div class="ftr-crest">
+  <div class="fc-scene" aria-hidden="true"><img class="l" src="assets/img/citadel.webp" alt="" loading="lazy"><img class="r" src="assets/img/knight-palace.webp" alt="" loading="lazy"></div>
+  <div class="fc-banner l" aria-hidden="true"><span class="rod"></span><div class="cloth"><img src="assets/ttc-icon.svg" alt=""></div></div>
+  <div class="fc-banner r" aria-hidden="true"><span class="rod"></span><div class="cloth"><img src="assets/ttc-icon.svg" alt=""></div></div>
+  <div class="wrap">
+    <p class="fc-motto"><span>Loyalty</span><i>✦</i><span>Brotherhood</span><i>✦</i><span>Victory</span></p>
+    <div class="fc-rule" aria-hidden="true"></div>
+    <p class="fc-quote">“United by games. Driven by a higher standard.”<span>The Titans Clan</span></p>
+    <div class="fc-social"><a href="${L.discord}"><svg viewBox="0 0 24 24" aria-hidden="true" class=""><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.028C.533 9.046-.32 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.1 14.1 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.011c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.099.246.198.373.292a.077.077 0 0 1-.007.128 12.3 12.3 0 0 1-1.873.891.077.077 0 0 0-.041.107c.36.698.772 1.363 1.225 1.993a.076.076 0 0 0 .084.029 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.029zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.332-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg> Discord · invite coming soon</a></div>
+  </div>
+</div>
+<div class="wrap ftr-links">
   <div class="ftr-cols">
-    <div><h5>Minecraft</h5><a href="${L.mc}">Overview</a><a href="${L.join}">How to join</a><a href="${L.mc}#modes">Game modes</a><a href="${L.ranks}">Ranks</a><a href="${L.mc}#vote">Vote</a><a href="${L.news}">Updates</a></div>
+    <div><h5>Minecraft</h5><a href="${L.mc}">Overview</a><a href="${L.join}">How to join</a><a href="${L.ranks}">Ranks</a><a href="${L.mc}#vote">Vote</a></div>
     <div><h5>CS2</h5><a href="${L.cs}#tryouts">Tryouts</a><a href="${L.cs}#cup">Community Cup #4</a><a href="${L.cs}#servers">Servers (soon)</a></div>
     <div><h5>Store</h5><a href="${L.store}?tab=mc">Minecraft</a><a href="${L.store}?tab=cs">CS2</a><a href="${L.store}#parents">For parents</a><a href="${L.refunds}">Refunds</a></div>
-    <div><h5>Community</h5><a href="${L.discord}">Discord</a><a href="${L.news}">News</a><a href="${L.events}">Events</a><a href="${L.media}">Media</a><a href="${L.community}#apply">Apply for staff</a></div>
-    <div><h5>Support</h5><a href="${L.support}#rules">Rules</a><a href="${L.support}#appeal">Ban appeal</a><a href="${L.support}#report">Report a player</a><a href="${L.support}#faq">FAQ</a><a href="${L.support}#contact">Contact</a></div>
+    <div><h5>Community</h5><a href="${L.community}">About us</a><a href="${L.news}">News</a><a href="${L.events}">Events</a><a href="${L.media}">Media</a><a href="${L.community}#apply">Apply for staff</a></div>
+    <div><h5>Support</h5><a href="${L.support}#rules">Rules</a><a href="${L.support}#appeal">Ban appeal</a><a href="${L.support}#report">Report a player</a><a href="${L.support}#contact">Contact</a></div>
     <div><h5>Server owners</h5><a href="${L.owners}#customenchants">CustomEnchants</a><a href="${L.owners}#titansbans">TitansBans</a></div>
   </div>
-  <div class="ftr-bot"><span>© 2026 TheTitansClan · <a href="${L.terms}">Terms</a> · <a href="${L.privacy}">Privacy</a> · <a href="${L.refunds}">Refunds</a></span><span>Not affiliated with Mojang, Microsoft or Valve.</span></div>
+  <div class="ftr-bot"><span>© 2026 The Titans Clan · <a href="${L.terms}">Terms</a> · <a href="${L.privacy}">Privacy</a> · <a href="${L.refunds}">Refunds</a></span><span>Not affiliated with Mojang, Microsoft or Valve.</span></div>
 </div>`;
   }
   const mm = document.getElementById("mmenu");
@@ -355,6 +362,11 @@
       el.classList.toggle("is-off", srv.state === "off");
       const txt = el.querySelector("span") || el;
       if (kind === "short") txt.textContent = srv.state === "live" ? (pre || srv.online == null ? "Online" : `${srv.online} online`) : srv.state === "off" ? "Offline" : "Checking…";
+      if (kind === "players") {
+        const b = el.querySelector("b"), sm = el.querySelector("small");
+        if (b) b.textContent = srv.state === "live" && srv.online != null ? srv.online : "—";
+        if (sm) sm.textContent = srv.state === "off" ? "Server offline" : "Players online";
+      }
       if (kind === "line") {
         const s = el.querySelector(".s-txt");
         if (s) s.textContent = srv.state === "live" ? (pre ? "Server online" : `${srv.online} playing now`) : srv.state === "off" ? "Server offline · updates on Discord" : "Checking server…";
