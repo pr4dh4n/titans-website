@@ -285,35 +285,50 @@ button { cursor: pointer; }
 .btn-icon:hover { background: var(--parch-2); }
 .filter.f-mc { --fc: var(--or); } .filter.f-cs { --fc: var(--argent); } .filter.f-store { --fc: var(--sable); } .filter.f-clan { --fc: var(--plume); }
 
-/* ---------- Crest button: crimson plate in a gold frame with cut corners ----------
-   <a class="btn-crest" href="…"><svg class="bc-icon">…</svg><span>Join Discord</span><i class="bc-arrow"></i></a> */
-.btn-crest { --c: 9px; position: relative; display: inline-flex; align-items: stretch; min-height: 58px; padding: 2px; color: #FBEFD9; text-decoration: none;
-  background: linear-gradient(180deg, #F3D98C, #C4952F 45%, #8A6417);
-  clip-path: polygon(var(--c) 0, calc(100% - var(--c)) 0, 100% var(--c), 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, var(--c) 100%, 0 calc(100% - var(--c)), 0 var(--c));
-  filter: drop-shadow(0 6px 10px rgba(40,10,5,.35)); transition: filter .15s, transform .15s; -webkit-tap-highlight-color: transparent; }
-.btn-crest > .bc-plate { flex: 1; display: flex; align-items: center; gap: 16px; padding: 0 22px 0 20px;
-  clip-path: polygon(calc(var(--c) - 1px) 0, calc(100% - var(--c) + 1px) 0, 100% calc(var(--c) - 1px), 100% calc(100% - var(--c) + 1px), calc(100% - var(--c) + 1px) 100%, calc(var(--c) - 1px) 100%, 0 calc(100% - var(--c) + 1px), 0 calc(var(--c) - 1px));
-  background: radial-gradient(120% 140% at 50% 0%, #B32A24 0%, #8E1B18 55%, #6A1210 100%);
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,.45), inset 0 0 0 3px rgba(231,196,110,.55), inset 0 0 0 4px rgba(0,0,0,.25), inset 0 10px 18px -10px rgba(255,210,170,.35); }
-.btn-crest .bc-icon { width: 30px; height: 30px; flex: none; fill: #FBEFD9; filter: drop-shadow(0 1px 0 rgba(0,0,0,.35)); }
-.btn-crest .bc-label { flex: 1; font: 600 1.0625rem/1 var(--f-head); letter-spacing: .14em; text-transform: uppercase; text-shadow: 0 1px 0 rgba(0,0,0,.4); white-space: nowrap; }
-.btn-crest .bc-arrow { width: 9px; height: 9px; flex: none; border-top: 2px solid #E7C46E; border-right: 2px solid #E7C46E; transform: rotate(45deg); margin-left: 6px; transition: transform .15s; }
-.btn-crest::before, .btn-crest::after { content: ""; position: absolute; top: 50%; width: 6px; height: 6px; background: #F3D98C; transform: translateY(-50%) rotate(45deg); z-index: 1; }
-.btn-crest::before { left: 5px; } .btn-crest::after { right: 5px; }
-.btn-crest:hover { filter: drop-shadow(0 8px 14px rgba(40,10,5,.45)); }
+/* ---------- Crest button: crimson plate in a dark-gold frame with inward-curved corners ----------
+   <a class="btn-crest" href="…"><span class="bc-plate"><i class="bc-rim"></i><svg class="bc-icon">…</svg><span class="bc-label">Join Discord</span><i class="bc-arrow"></i></span></a>
+   Corners are cut with masks (concave quarter-circles). The frame is ::before; the plate sits inside it. */
+.btn-crest { --R: 11px; --b: 3px; position: relative; display: inline-flex; align-items: stretch; min-height: 58px; padding: var(--b); color: #FBEFD9; text-decoration: none; isolation: isolate;
+  filter: drop-shadow(0 6px 9px rgba(40,10,5,.32)); transition: filter .15s, transform .15s; -webkit-tap-highlight-color: transparent; }
+.btn-crest::before, .btn-crest > .bc-plate, .btn-crest .bc-rim {
+  -webkit-mask: var(--cm); mask: var(--cm); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
+.btn-crest::before { content: ""; position: absolute; inset: 0; z-index: -1;
+  --k: 0px; --r: var(--R);
+  --cm: radial-gradient(circle at var(--k) var(--k), #0000 var(--r), #000 calc(var(--r) + .6px)) top left / 51% 51%,
+        radial-gradient(circle at calc(100% - var(--k)) var(--k), #0000 var(--r), #000 calc(var(--r) + .6px)) top right / 51% 51%,
+        radial-gradient(circle at var(--k) calc(100% - var(--k)), #0000 var(--r), #000 calc(var(--r) + .6px)) bottom left / 51% 51%,
+        radial-gradient(circle at calc(100% - var(--k)) calc(100% - var(--k)), #0000 var(--r), #000 calc(var(--r) + .6px)) bottom right / 51% 51%;
+  background: linear-gradient(180deg, #C79A3E 0%, #8F6416 35%, #6B4A0F 70%, #4E360A 100%); }
+.btn-crest > .bc-plate { position: relative; flex: 1; display: flex; align-items: center; gap: 16px; padding: 0 24px 0 22px; overflow: hidden;
+  --k: calc(-1 * var(--b)); --r: calc(var(--R) + var(--b));
+  --cm: radial-gradient(circle at var(--k) var(--k), #0000 var(--r), #000 calc(var(--r) + .6px)) top left / 51% 51%,
+        radial-gradient(circle at calc(100% - var(--k)) var(--k), #0000 var(--r), #000 calc(var(--r) + .6px)) top right / 51% 51%,
+        radial-gradient(circle at var(--k) calc(100% - var(--k)), #0000 var(--r), #000 calc(var(--r) + .6px)) bottom left / 51% 51%,
+        radial-gradient(circle at calc(100% - var(--k)) calc(100% - var(--k)), #0000 var(--r), #000 calc(var(--r) + .6px)) bottom right / 51% 51%;
+  background: radial-gradient(120% 150% at 40% 0%, #A82722 0%, #861A17 50%, #5E100E 100%);
+  box-shadow: inset 0 12px 18px -12px rgba(255,205,170,.28); }
+/* Thin inner gold line that follows the shape (breaks at the curved corners, like an engraved plate) */
+.btn-crest .bc-rim { position: absolute; inset: 5px; z-index: 1; border: 1px solid rgba(214,170,84,.55); border-radius: 1px; pointer-events: none;
+  --k: -5px; --r: calc(var(--R) + 7px);
+  --cm: radial-gradient(circle at var(--k) var(--k), #0000 var(--r), #000 calc(var(--r) + .6px)) top left / 51% 51%,
+        radial-gradient(circle at calc(100% - var(--k)) var(--k), #0000 var(--r), #000 calc(var(--r) + .6px)) top right / 51% 51%,
+        radial-gradient(circle at var(--k) calc(100% - var(--k)), #0000 var(--r), #000 calc(var(--r) + .6px)) bottom left / 51% 51%,
+        radial-gradient(circle at calc(100% - var(--k)) calc(100% - var(--k)), #0000 var(--r), #000 calc(var(--r) + .6px)) bottom right / 51% 51%; }
+.btn-crest .bc-icon { position: relative; z-index: 2; width: 30px; height: 30px; flex: none; fill: #FBEFD9; filter: drop-shadow(0 1px 0 rgba(0,0,0,.3)); }
+.btn-crest .bc-label { position: relative; z-index: 2; flex: 1; font: 600 1.0625rem/1 var(--f-head); letter-spacing: .14em; text-transform: uppercase; text-shadow: 0 1px 0 rgba(0,0,0,.35); white-space: nowrap; }
+.btn-crest .bc-arrow { position: relative; z-index: 2; width: 9px; height: 9px; flex: none; border-top: 2px solid #E7C46E; border-right: 2px solid #E7C46E; transform: rotate(45deg); margin-left: 6px; transition: transform .15s; }
 /* Hover: the plate darkens and a slanted shine sweeps left to right */
-.btn-crest > .bc-plate { position: relative; overflow: hidden; }
-.btn-crest > .bc-plate > * { position: relative; z-index: 2; }
 .btn-crest > .bc-plate::before { content: ""; position: absolute; inset: 0; z-index: 1; background: rgba(30,4,3,.32); opacity: 0; transition: opacity .25s; }
 .btn-crest > .bc-plate::after { content: ""; position: absolute; top: -10%; bottom: -10%; left: -45%; width: 32%; z-index: 1; pointer-events: none;
   background: linear-gradient(90deg, rgba(255,236,200,0), rgba(255,236,200,.5) 50%, rgba(255,236,200,0)); transform: skewX(-22deg); opacity: 0; }
+.btn-crest:hover { filter: drop-shadow(0 8px 13px rgba(40,10,5,.42)); }
+.btn-crest:hover .bc-arrow { transform: translateX(3px) rotate(45deg); }
 .btn-crest:hover > .bc-plate::before, .btn-crest:focus-visible > .bc-plate::before { opacity: 1; }
 .btn-crest:hover > .bc-plate::after, .btn-crest:focus-visible > .bc-plate::after { animation: bc-shine .75s ease-out forwards; }
 @keyframes bc-shine { 0% { left: -45%; opacity: 1; } 100% { left: 125%; opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .btn-crest:hover > .bc-plate::after { animation: none; } }
-.btn-crest:hover .bc-arrow { transform: translateX(3px) rotate(45deg); }
 .btn-crest:active { transform: translateY(1px); }
 .btn-crest:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-.btn-crest.bc-sm { min-height: 46px; --c: 7px; }
+.btn-crest.bc-sm { min-height: 46px; --R: 9px; }
 .btn-crest.bc-sm .bc-icon { width: 24px; height: 24px; }
 .btn-crest.bc-sm .bc-label { font-size: .9375rem; }
