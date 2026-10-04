@@ -1,7 +1,7 @@
-/* TheTitansClan — shared prototype script.
-   Injects icons, header, footer; runs live-status widgets, copy buttons, tabs,
-   filters, forms, lightbox, mobile menu and the shared cart count.
-   Add ?state=offline | loading | error | live to any page URL to preview widget states. */
+/* TheTitansClan — shared script ("The shield is the map").
+   Builds the header (realm bar), phone menu and footer; runs copy buttons,
+   tabs, filters, forms, overlays, lightbox, cart count, and the server status
+   + Season I countdown. */
 (function () {
   "use strict";
 
@@ -75,26 +75,6 @@
   document.body.insertAdjacentHTML("afterbegin", sprite);
   const ic = window.TT_ICON;
 
-  /* ---------- Citadel skyline (generated, decorative) ---------- */
-  function skyline(towers, wall, H, W) {
-    const m = 9;
-    const battl = (x1, x2, y) => { let s = ""; for (let p = x1; p < x2; p += 22) { const a = Math.min(p + 11, x2), b = Math.min(p + 22, x2); s += ` L${p} ${y - m} L${a} ${y - m} L${a} ${y} L${b} ${y}`; } return s; };
-    let d = `M0 ${H} L0 ${wall}`, x = 0;
-    towers.forEach(([tx, w, top, spire]) => {
-      d += battl(x, tx, wall) + ` L${tx} ${wall} L${tx} ${top}`;
-      d += spire ? ` L${tx + w / 2} ${top - w * 0.75} L${tx + w} ${top}` : battl(tx, tx + w, top);
-      d += ` L${tx + w} ${top} L${tx + w} ${wall}`; x = tx + w;
-    });
-    return d + battl(x, W, wall) + ` L${W} ${wall} L${W} ${H} Z`;
-  }
-  document.querySelectorAll("svg.skyline").forEach(svg => {
-    const back = skyline([[120, 50, 110, 1], [400, 60, 90, 0], [700, 50, 60, 1], [930, 60, 85, 0], [1180, 54, 100, 1]], 150, 240, 1440);
-    const front = skyline([[40, 56, 120, 0], [250, 70, 95, 1], [560, 90, 80, 0], [650, 140, 50, 1], [790, 90, 80, 0], [1020, 76, 100, 1], [1250, 56, 122, 0], [1384, 40, 140, 0]], 190, 240, 1440);
-    svg.setAttribute("viewBox", "0 0 1440 240");
-    svg.setAttribute("preserveAspectRatio", "xMidYMax slice");
-    svg.innerHTML = `<path d="${back}" fill="#E7D9B9"/><path d="${front}" fill="currentColor"/>`;
-  });
-
   /* ---------- Shared data ---------- */
   const MC_ADDR = "mc.thetitansclan.com";
     // Real Discord invite goes here once it exists; until then Discord buttons open the Community page.
@@ -107,127 +87,72 @@
   };
   window.TT_LINKS = L;
 
-  /* ---------- Header ---------- */
+  /* ---------- Header, realm bar, phone menu, footer ---------- */
+  const page = document.body.dataset.page || "";
+  const realm = document.body.dataset.realm || "";
+  const cur = k => (k === page || k === realm ? ' aria-current="page"' : "");
+  L.join = "minecraft-join.html"; L.ranks = "minecraft-ranks.html";
   const hdr = document.querySelector("[data-site-header]");
-  const active = document.body.dataset.page || "";
-  const cur = k => (k === active ? ' aria-current="page"' : "");
   if (hdr) {
-    hdr.className = "site-header";
-    hdr.innerHTML = `
-<div class="wrap">
-  <a class="brand" href="${L.home}" aria-label="TheTitansClan home"><img src="assets/ttc-icon.svg" alt="" width="32" height="40"><span class="brand-word">The<b>Titans</b>Clan</span></a>
+    hdr.className = "hdr";
+    hdr.innerHTML = `<div class="hdr-bar"><div class="wrap">
+  <a class="brand" href="${L.home}" aria-label="TheTitansClan home"><img src="assets/ttc-icon.svg" alt="" width="26" height="32"><span>TheTitansClan</span></a>
   <nav class="nav" aria-label="Main">
-    <a href="${L.mc}"${cur("mc")}><i class="area-dot" style="background:var(--mc)"></i>Minecraft</a>
-    <a href="${L.cs}"${cur("cs")}><i class="area-dot" style="background:var(--cs)"></i>CS2</a>
-    <a href="${L.events}"${cur("events")}>Events</a>
-    <a href="${L.news}"${cur("news")}>News</a>
-    <a href="${L.community}"${cur("community")}>Community</a>
-    <div class="nav-more">
-      <button type="button" aria-expanded="false" aria-haspopup="true">More ${ic("down")}</button>
-      <div class="nav-menu" role="menu">
-        <a href="${L.media}" role="menuitem">Media<small>Builds, screenshots, clips</small></a>
-        <a href="${L.support}" role="menuitem">Rules &amp; Support<small>Rules, appeals, reports, FAQ</small></a>
-        <a href="${L.owners}" role="menuitem">For Server Owners<small>CustomEnchants, TitansBans</small></a>
-      </div>
-    </div>
+    <a href="${L.mc}"${cur("mc")}><i class="sq" style="background:var(--or)"></i>Minecraft</a>
+    <a href="${L.cs}"${cur("cs")}><i class="sq" style="background:var(--argent-2)"></i>CS2</a>
+    <a href="${L.store}"${cur("store")}><i class="sq" style="background:var(--on-sable)"></i>Store</a>
+    <a href="${L.mc}#vote">Vote</a><a href="${L.support}#rules"${cur("support")}>Rules</a><a href="${L.events}"${cur("events")}>Events</a><a href="${L.community}"${cur("community")}>Community</a>
   </nav>
-  <div class="header-actions">
-    <span class="status header-live" data-live="mc" data-live-variant="pill"></span>
-    <a class="btn btn-ghost header-discord" href="${L.discord}">${ic("chat")} Discord</a>
-    <a class="btn btn-primary btn-sm header-store" href="${L.store}">Store</a>
-    <button class="btn-icon" type="button" data-open-cart aria-label="Open cart">${ic("cart")}<span class="cart-count" data-n="0"></span></button>
-    <button class="btn-icon menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">${ic("menu")}</button>
+  <div class="hdr-right">
+    <span class="hdr-status" data-status="short"><i class="dot"></i><span>Checking…</span></span>
+    <a class="hdr-btn hdr-discord-sm" href="${L.discord}">Discord</a>
+    <button class="hdr-btn" type="button" data-open-cart aria-label="Open cart">Cart <span class="n cart-count" data-n="0"></span></button>
+    <a class="hdr-play" href="${L.join}">PLAY NOW</a>
+    <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu">${ic("menu")}</button>
   </div>
-</div>`;
-    document.body.insertAdjacentHTML("beforeend", `
-<div class="mobile-menu" id="mobile-menu" aria-modal="true" role="dialog" aria-label="Menu">
+</div></div>
+<nav class="realms" aria-label="Realms"><a class="r-mc" href="${L.mc}"${cur("mc")}>Minecraft</a><a class="r-store" href="${L.store}"${cur("store")}>Store</a><a class="r-cs" href="${L.cs}"${cur("cs")}>CS2</a></nav>`;
+    document.body.insertAdjacentHTML("beforeend", `<div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="Menu">
   <div class="scrim" data-close-menu></div>
   <div class="panel">
-    <div class="panel-head">
-      <a class="brand" href="${L.home}"><img src="assets/ttc-icon.svg" alt="" width="32" height="40"><span class="brand-word">The<b>Titans</b>Clan</span></a>
-      <button class="btn-icon" type="button" data-close-menu aria-label="Close menu">${ic("x")}</button>
-    </div>
-    <div class="panel-body">
-      <div class="row" style="gap:var(--s4)">
-        <span class="status" data-live="mc" data-live-variant="pill"></span>
-        <span class="status" data-live="cs" data-live-variant="pill"></span>
-      </div>
-      <div class="mm-group"><h6>Play</h6>
-        <a class="mm-link" href="${L.mc}"${cur("mc")}>${ic("cube")} Minecraft <small>Join the network</small></a>
-        <a class="mm-link" href="${L.cs}"${cur("cs")}>${ic("crosshair")} CS2 <small>Team &amp; server</small></a>
-        <a class="mm-link" href="${L.events}"${cur("events")}>${ic("trophy")} Events &amp; Tournaments</a>
-      </div>
-      <div class="mm-group"><h6>Shop</h6>
-        <a class="mm-link" href="${L.store}"${cur("store")}>${ic("cart")} Store <small>Minecraft · CS2</small></a>
-        <a class="mm-link" href="${L.owners}"${cur("owners")}>${ic("code")} For Server Owners</a>
-      </div>
-      <div class="mm-group"><h6>Clan</h6>
-        <a class="mm-link" href="${L.news}"${cur("news")}>${ic("book")} News</a>
-        <a class="mm-link" href="${L.community}"${cur("community")}>${ic("users")} Community</a>
-        <a class="mm-link" href="${L.media}"${cur("media")}>${ic("image")} Media</a>
-      </div>
-      <div class="mm-group"><h6>Help</h6>
-        <a class="mm-link" href="${L.support}"${cur("support")}>${ic("shield")} Rules &amp; Support</a>
-      </div>
-      <a class="btn btn-secondary btn-block" href="${L.discord}">${ic("chat")} Join our Discord</a>
-      <div class="mm-legal"><a href="${L.terms}">Terms</a><a href="${L.privacy}">Privacy</a><a href="${L.refunds}">Refund policy</a></div>
+    <div class="p-head"><a class="brand" href="${L.home}"><img src="assets/ttc-icon.svg" alt="" width="26" height="32"><span>TheTitansClan</span></a><button class="menu-btn" type="button" data-close-menu aria-label="Close menu">${ic("x")}</button></div>
+    <div class="p-body">
+      <div class="p-realm"><a href="${L.mc}"><i style="background:var(--or)"></i>Minecraft</a><div class="p-links"><a href="${L.join}">How to join</a><a href="${L.mc}#modes">Game modes</a><a href="${L.ranks}">Ranks</a><a href="${L.mc}#vote">Vote</a><a href="${L.mc}#staff">Staff</a><a href="${L.news}">Updates</a></div></div>
+      <div class="p-realm"><a href="${L.store}"><i style="background:var(--on-sable)"></i>Store</a><div class="p-links"><a href="${L.store}?tab=mc">Minecraft</a><a href="${L.store}?tab=cs">CS2</a><a href="${L.store}#parents">For parents</a></div></div>
+      <div class="p-realm"><a href="${L.cs}"><i style="background:var(--argent-2)"></i>CS2</a><div class="p-links"><a href="${L.cs}#tryouts">Tryouts</a><a href="${L.cs}#cup">Community Cup</a></div></div>
+      <div class="p-small"><a href="${L.events}">Events</a><a href="${L.news}">News</a><a href="${L.community}">Community</a><a href="${L.support}#rules">Rules</a><a href="${L.support}#appeal">Ban appeal</a><a href="${L.support}#report">Report</a><a href="${L.media}">Media</a><a href="${L.owners}">Plugins</a><a href="${L.discord}">Discord</a></div>
+      <div class="p-small" style="border:0;padding-top:0"><a href="${L.terms}">Terms</a><a href="${L.privacy}">Privacy</a><a href="${L.refunds}">Refunds</a></div>
     </div>
   </div>
 </div>`);
   }
-
-  /* ---------- Footer ---------- */
   const ftr = document.querySelector("[data-site-footer]");
   if (ftr) {
-    ftr.className = "site-footer";
-    ftr.innerHTML = `
-<div class="wrap">
-  <div class="footer-top">
-    <div class="footer-brand">
-      <a class="footer-logo" href="${L.home}" aria-label="TheTitansClan home"><img src="assets/ttc-logo.webp" alt="TheTitansClan" width="132" height="166"></a>
-      <p>One clan, two battlegrounds. A Minecraft network and a CS2 team, run by players for players.</p>
-      <div class="row mt-4"><a class="btn btn-secondary btn-sm" href="${L.discord}">${ic("chat", "icon-sm")} Discord</a><a class="btn btn-outline btn-sm" href="${L.store}">Store</a></div>
-    </div>
-    <div class="footer-cols">
-      <div><h6>Play</h6><a href="${L.mc}">Minecraft</a><a href="${L.cs}">CS2</a><a href="${L.events}">Events &amp; Tournaments</a></div>
-      <div><h6>Clan</h6><a href="${L.news}">News</a><a href="${L.community}">Community</a><a href="${L.media}">Media</a></div>
-      <div><h6>Shop</h6><a href="${L.store}">Store</a><a href="${L.owners}">For Server Owners</a><a href="${L.owners}">CustomEnchants</a><a href="${L.owners}">TitansBans</a></div>
-      <div><h6>Help</h6><a href="${L.support}">Rules &amp; Support</a><a href="${L.support}#appeal">Ban appeal</a><a href="${L.support}#report">Report a player</a><a href="${L.support}#contact">Contact</a></div>
-    </div>
+    ftr.className = "ftr";
+    ftr.innerHTML = `<div class="wrap">
+  <div class="ftr-cols">
+    <div><h5>Minecraft</h5><a href="${L.mc}">Overview</a><a href="${L.join}">How to join</a><a href="${L.mc}#modes">Game modes</a><a href="${L.ranks}">Ranks</a><a href="${L.mc}#vote">Vote</a><a href="${L.news}">Updates</a></div>
+    <div><h5>CS2</h5><a href="${L.cs}#tryouts">Tryouts</a><a href="${L.cs}#cup">Community Cup #4</a><a href="${L.cs}#servers">Servers (soon)</a></div>
+    <div><h5>Store</h5><a href="${L.store}?tab=mc">Minecraft</a><a href="${L.store}?tab=cs">CS2</a><a href="${L.store}#parents">For parents</a><a href="${L.refunds}">Refunds</a></div>
+    <div><h5>Community</h5><a href="${L.discord}">Discord</a><a href="${L.news}">News</a><a href="${L.events}">Events</a><a href="${L.media}">Media</a><a href="${L.community}#apply">Apply for staff</a></div>
+    <div><h5>Support</h5><a href="${L.support}#rules">Rules</a><a href="${L.support}#appeal">Ban appeal</a><a href="${L.support}#report">Report a player</a><a href="${L.support}#faq">FAQ</a><a href="${L.support}#contact">Contact</a></div>
+    <div><h5>Server owners</h5><a href="${L.owners}#customenchants">CustomEnchants</a><a href="${L.owners}#titansbans">TitansBans</a></div>
   </div>
-  <div class="footer-bottom">
-    <div>© 2026 TheTitansClan. Not affiliated with Mojang Studios, Microsoft or Valve. Minecraft and Counter-Strike are trademarks of their respective owners.</div>
-    <div class="footer-legal"><a href="${L.terms}">Terms</a><a href="${L.privacy}">Privacy</a><a href="${L.refunds}">Refund policy</a></div>
-  </div>
+  <div class="ftr-bot"><span>© 2026 TheTitansClan · <a href="${L.terms}">Terms</a> · <a href="${L.privacy}">Privacy</a> · <a href="${L.refunds}">Refunds</a></span><span>Not affiliated with Mojang, Microsoft or Valve.</span></div>
 </div>`;
   }
-
-  /* ---------- Menus ---------- */
-  const mm = document.getElementById("mobile-menu");
-  const toggle = document.querySelector(".menu-toggle");
+  const mm = document.getElementById("mmenu");
+  const toggle = document.querySelector(".hdr .menu-btn");
   function setMenu(open) {
     if (!mm) return;
     mm.classList.toggle("is-open", open);
-    document.body.classList.toggle("no-scroll", open);
+    document.body.style.overflow = open ? "hidden" : "";
     if (toggle) toggle.setAttribute("aria-expanded", String(open));
   }
   if (toggle) toggle.addEventListener("click", () => setMenu(true));
-  // Design-review shortcuts: ?menu=open opens the phone menu, ?more=open opens the desktop "More" dropdown
-  const q = new URLSearchParams(location.search);
-  if (q.get("menu") === "open") setMenu(true);
-  if (q.get("more") === "open") { const n = document.querySelector(".nav-more"); if (n) n.classList.add("is-open"); }
-  document.addEventListener("click", e => {
-    if (e.target.closest("[data-close-menu]")) setMenu(false);
-    const more = e.target.closest(".nav-more > button");
-    document.querySelectorAll(".nav-more").forEach(n => {
-      const open = more && n.contains(more) ? !n.classList.contains("is-open") : false;
-      n.classList.toggle("is-open", open);
-      n.querySelector("button").setAttribute("aria-expanded", String(open));
-    });
-  });
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape") { setMenu(false); closeOverlays(); }
-  });
+  if (new URLSearchParams(location.search).get("menu") === "open") setMenu(true);
+  document.addEventListener("click", e => { if (e.target.closest("[data-close-menu]")) setMenu(false); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") { setMenu(false); closeOverlays(); } });
 
   /* ---------- Toast ---------- */
   let toastT;
@@ -254,7 +179,7 @@
     copyText(b.dataset.copy).then(() => {
       const old = b.innerHTML;
       b.classList.add("is-done");
-      b.innerHTML = ic("check", "icon-sm") + " Copied";
+      if (!b.classList.contains("play")) b.innerHTML = ic("check", "icon-sm") + " Copied";
       window.TT_TOAST("Copied " + b.dataset.copy);
       setTimeout(() => { b.classList.remove("is-done"); b.innerHTML = old; }, 1600);
     });
@@ -412,78 +337,62 @@
     if (e.target.closest("[data-open-cart]") && !document.getElementById("cart")) location.href = L.store + "#cart";
   });
 
-  /* ---------- Live status widgets ----------
-     Minecraft: real numbers from the public mcsrvstat.us API (allows browser requests), refreshed every 60s.
-     CS2: no public server yet, so its widgets show "coming soon".
-     ?state=loading|offline|error on any page URL forces a state, for testing. */
-  const params = new URLSearchParams(location.search);
-  const forced = params.get("state");
+  /* ---------- Server status + Season I countdown ----------
+     Pre-launch: countdown to 9 Oct 19:00 UTC. After launch: real player count
+     from mcsrvstat.us. Never shows a number we don't have.
+     ?state=pre|live|off on any URL forces a state for testing. */
+  const LAUNCH = Date.parse("2026-10-09T19:00:00Z");
+  const forced = new URLSearchParams(location.search).get("state");
   const STATUS_API = "https://api.mcsrvstat.us/3/" + MC_ADDR;
-  let mc = null; // { online, max, motd }
-  const pill = text => `<i class="status-dot"></i><span class="status-label">${text}</span>`;
-  const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-  function render(el, state) {
-    const game = el.dataset.live, v = el.dataset.liveVariant || "card";
-    if (game === "cs") state = "soon";
-    if (v === "pill") {
-      el.classList.remove("is-live", "is-offline", "is-error", "is-loading", "is-soon");
-      el.classList.add("is-" + (state === "soon" ? "offline" : state));
-      el.innerHTML = game === "cs" ? pill("CS2 servers soon")
-        : state === "live" ? pill(`<span class="tnum">${mc.online}</span> playing`)
-        : state === "loading" ? pill('<span class="faint">Checking…</span>')
-        : state === "offline" ? pill("Server offline") : pill("Status unavailable");
-      return;
-    }
-    el.dataset.state = state;
-    const isMc = game === "mc";
-    const label = { live: "Online", offline: "Offline", error: "Unknown", soon: "Coming soon" }[state];
-    const head = `<div class="sc-top"><span class="sc-game">${ic(isMc ? "cube" : "crosshair", "icon-sm")} ${isMc ? "Minecraft" : "CS2 community servers"}</span>
-      <span class="status is-${state === "soon" ? "offline" : state}">${state === "loading" ? pill('<span class="faint">Checking…</span>') : pill(label)}</span></div>`;
-    const copy = `<div class="copy-row"><code>${MC_ADDR}</code><button type="button" class="copy-btn" data-copy="${MC_ADDR}">${ic("copy", "icon-sm")} Copy</button></div>`;
-    let body;
-    if (state === "soon") {
-      body = `<div class="sc-big">Coming soon</div>
-        <div class="sc-meta">Our CS2 community servers aren't open yet. Join the Discord to hear the moment they are.</div>
-        <a class="btn btn-secondary btn-sm" href="${L.discord}">${ic("chat", "icon-sm")} Join the Discord</a>`;
-    } else if (state === "loading") {
-      body = `<span class="skel" style="height:36px;width:60%"></span><span class="skel" style="height:4px"></span><span class="skel" style="height:44px"></span>`;
-    } else if (state === "live") {
-      const pct = mc.max ? Math.round(mc.online / mc.max * 100) : 0;
-      body = `<div class="sc-big tnum">${mc.online}<small>/ ${mc.max} playing</small></div>
-        <div class="sc-meter"><i style="--fill:${Math.max(pct, 2)}%"></i></div>${copy}
-        <div class="sc-meta">Java 1.21 – 26.3 · Bedrock${mc.motd ? ` · <i>${esc(mc.motd)}</i>` : ""}</div>`;
-    } else if (state === "offline") {
-      body = `<div class="sc-big">Server offline</div>
-        <div class="alert alert-offline">${ic("power", "icon-sm")}<div><strong>Back soon</strong>The server is offline right now, usually for a restart or an update. Updates go in #status on Discord.</div></div>${copy}`;
-    } else {
-      body = `<div class="sc-big">Status unavailable</div>
-        <div class="alert alert-error">${ic("alert", "icon-sm")}<div><strong>We couldn't check the server</strong>It may still be up. Try joining, or check again.</div></div>
-        ${copy}<button type="button" class="btn btn-secondary btn-sm" data-retry>${ic("refresh", "icon-sm")} Check again</button>`;
-    }
-    el.innerHTML = head + body;
+  let srv = { state: "checking", online: null, max: null };
+  const isPre = () => forced ? forced === "pre" : Date.now() < LAUNCH;
+  const pad = n => String(n).padStart(2, "0");
+  function renderStatus() {
+    const pre = isPre();
+    document.querySelectorAll("[data-status]").forEach(el => {
+      const kind = el.dataset.status;
+      el.classList.toggle("is-live", srv.state === "live");
+      el.classList.toggle("is-off", srv.state === "off");
+      const txt = el.querySelector("span") || el;
+      if (kind === "short") txt.textContent = srv.state === "live" ? (pre || srv.online == null ? "Online" : `${srv.online} online`) : srv.state === "off" ? "Offline" : "Checking…";
+      if (kind === "line") {
+        const s = el.querySelector(".s-txt");
+        if (s) s.textContent = srv.state === "live" ? (pre ? "Server online" : `${srv.online} playing now`) : srv.state === "off" ? "Server offline · updates on Discord" : "Checking server…";
+      }
+    });
+    document.querySelectorAll("[data-countdown]").forEach(el => {
+      const ms = LAUNCH - Date.now();
+      if (pre && ms > 0) {
+        const d = Math.floor(ms / 864e5), h = Math.floor(ms % 864e5 / 36e5), m = Math.floor(ms % 36e5 / 6e4), s = Math.floor(ms % 6e4 / 1e3);
+        el.innerHTML = `<div class="over">Season I opens · Fri 9 Oct, 19:00 UTC</div><div class="digits" aria-label="${d} days ${h} hours ${m} minutes"><div><span>${pad(d)}</span><small>d</small></div><div><span>${pad(h)}</span><small>h</small></div><div><span>${pad(m)}</span><small>m</small></div><div class="cd-s"><span>${pad(s)}</span><small>s</small></div></div>`;
+      } else if (srv.state === "live" && srv.online != null) {
+        el.innerHTML = `<span class="live-n tnum">${srv.online}</span><span style="font-weight:600;color:var(--ink-2)">playing Season I now</span>`;
+      } else if (srv.state === "off") {
+        el.innerHTML = `<span style="font-weight:700;color:var(--off)">Server offline</span><span class="muted">Usually a restart. Updates on Discord.</span>`;
+      } else {
+        el.innerHTML = `<span style="font-weight:700">Season I is live</span>`;
+      }
+    });
   }
-  const els = () => document.querySelectorAll("[data-live]");
-  function fetchStatus() {
-    const ctl = "AbortController" in window ? new AbortController() : null;
-    const t = setTimeout(() => ctl && ctl.abort(), 8000);
-    return fetch(STATUS_API, ctl ? { signal: ctl.signal } : {})
-      .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(d => {
-        clearTimeout(t);
-        if (!d.online) return "offline";
-        mc = { online: (d.players && d.players.online) || 0, max: (d.players && d.players.max) || 0,
-               motd: d.motd && d.motd.clean ? d.motd.clean.join(" ").replace(/\s+/g, " ").trim() : "" };
-        return "live";
-      })
-      .catch(() => { clearTimeout(t); return "error"; });
+  function checkServer() {
+    if (forced === "off") { srv = { state: "off" }; renderStatus(); return; }
+    if (forced === "live") { srv = { state: "live", online: 42, max: 200 }; renderStatus(); return; }
+    fetch(STATUS_API).then(r => r.json()).then(d => {
+      srv = d.online ? { state: "live", online: (d.players && d.players.online) || 0, max: (d.players && d.players.max) || 0 } : { state: "off" };
+    }).catch(() => { srv = { state: "unknown" }; }).then(renderStatus);
   }
-  function refresh(showLoading) {
-    if (showLoading) els().forEach(el => render(el, "loading"));
-    if (forced) { if (forced === "live") mc = { online: 2, max: 200, motd: "" }; if (forced !== "loading") els().forEach(el => render(el, forced)); return; }
-    fetchStatus().then(st => els().forEach(el => render(el, st)));
-  }
-  refresh(true);
-  if (!forced) setInterval(() => { if (!document.hidden) refresh(false); }, 60000);
-  document.addEventListener("click", e => { if (e.target.closest("[data-retry]")) refresh(true); });
-  window.TT_STATE = forced || "live";
+  renderStatus(); checkServer();
+  setInterval(renderStatus, 1000);
+  setInterval(() => { if (!document.hidden) checkServer(); }, 60000);
+
+  /* PLAY NOW toggles: any [data-toggle="id"] shows/hides that element */
+  document.addEventListener("click", e => {
+    const t = e.target.closest("[data-toggle]");
+    if (!t) return;
+    const el = document.getElementById(t.dataset.toggle);
+    if (!el) return;
+    el.hidden = !el.hidden;
+    t.setAttribute("aria-expanded", String(!el.hidden));
+  });
+  window.TT_STATE = forced || "";
 })();

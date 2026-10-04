@@ -4,157 +4,163 @@
 <meta charset="utf-8">
 <link rel="icon" type="image/svg+xml" href="assets/ttc-icon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>For Server Owners · TheTitansClan</title>
-<meta name="description" content="CustomEnchants and TitansBans: the plugins that run the Titans Minecraft network, coming soon for your server. Features, supported versions and how the offline licence works.">
-<meta name="theme-color" content="#F1E7D0">
+<title>For server owners · TheTitansClan</title>
+<meta name="description" content="CustomEnchants and TitansBans: the plugins that run the Titans network, coming to other Paper servers. Licences are checked offline.">
+<meta name="theme-color" content="#16120E">
+<meta property="og:title" content="For server owners · TheTitansClan">
+<meta property="og:description" content="CustomEnchants and TitansBans for Paper servers. Price announced at release.">
+<meta property="og:image" content="assets/ttc-logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600&family=UnifrakturMaguntia&display=swap">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@700&family=Grenze:wght@600;700&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@600&display=swap">
+<link rel="stylesheet" href="assets/titans.css">
 <style>
-  section[id] { scroll-margin-top: calc(var(--header-h) + 48px); }
+  /* ---- Page head ---- */
+  .pg-head { padding: 26px 0 22px; display: grid; gap: 22px; }
+  .pg-head .points { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 14px; font-size: .8125rem; font-weight: 600; color: var(--ink-2); }
+  .pg-head .points span { display: inline-flex; align-items: center; gap: 6px; }
+  .pg-head .points .icon { width: 15px; height: 15px; color: var(--live); }
+  .picks { border-top: 3px solid var(--or); }
+  .picks a { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 13px 0; border-bottom: 1px solid var(--rule); align-items: center; }
+  .picks b { font: 700 1.375rem/1.1 var(--f-head); }
+  .picks small { grid-column: 1; font-size: .8125rem; color: var(--ink-2); }
+  .picks .bill { grid-column: 2; grid-row: 1 / span 2; }
+  .picks a:hover b { color: var(--gold-ink); }
+  @media (min-width: 960px) { .pg-head { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 56px; align-items: end; padding: 56px 0 36px; } }
 
-  /* Hero */
-  .ow-hero-grid { display: grid; gap: var(--s6); align-items: center; }
-  @media (min-width: 900px) { .ow-hero-grid { grid-template-columns: 1fr 420px; gap: var(--s7); } }
-  .hero-points { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s5); margin-top: var(--s5); color: var(--text-2); font-size: var(--fs-sm); }
-  .hero-points span { display: inline-flex; align-items: center; gap: 8px; }
-  .hero-points .icon { width: 16px; height: 16px; color: var(--gold); }
-  .picks { display: grid; gap: var(--s3); }
-  .pick { display: grid; grid-template-columns: auto 1fr auto; gap: var(--s4); align-items: center; padding: var(--s4) var(--s5); }
-  .pick b { display: block; font: 700 1.1875rem/1.15 var(--font-display); }
-  .pick small { display: block; color: var(--text-2); font-size: var(--fs-sm); margin-top: 2px; }
-  .pick > .icon { color: var(--gold); width: 18px; height: 18px; }
-  .plaque { width: 48px; height: 48px; border-radius: 10px; flex: none; display: grid; place-items: center; background: var(--surface-2); border: 1px solid var(--gold-line); color: var(--gold); }
-  .plaque-lg { width: 64px; height: 64px; border-radius: 14px; background: var(--grad-gold); color: var(--gold-ink); border-color: var(--gold); box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 8px 18px -10px rgba(90,60,10,.6); }
-  .plaque-lg .icon { width: 30px; height: 30px; }
+  .owners-nav a { color: var(--or-ink); }
 
-  /* Plugin block */
-  .plug-head { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s4); align-items: start; margin-bottom: var(--s6); }
-  @media (min-width: 600px) { .plug-head { grid-template-columns: auto minmax(0, 1fr); } }
-  .plug-head h2 { font-size: clamp(2rem, 1.5rem + 2vw, 3rem); }
-  .plug-head .promise { font-size: 1.1875rem; color: var(--text-2); margin: var(--s2) 0 0; max-width: 52ch; }
-  .plug-head .row { margin-top: var(--s3); gap: var(--s2); }
-  .plug { display: grid; gap: var(--s6); grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 1000px) { .plug { grid-template-columns: minmax(0, 1fr) 360px; gap: var(--s6); align-items: start; } .plug-aside { position: sticky; top: calc(var(--header-h) + 64px); } }
-  .feats { display: grid; gap: var(--s3); grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 600px) { .feats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s4); } }
-  .feat { padding: var(--s5); display: grid; gap: var(--s2); align-content: start; }
-  .feat .icon-wrap { width: 40px; height: 40px; border-radius: 8px; display: grid; place-items: center; background: var(--gold-wash); color: var(--gold); margin-bottom: var(--s2); }
-  .feat h3 { font-size: 1.1875rem; }
-  .feat p { margin: 0; color: var(--text-2); font-size: var(--fs-sm); }
-  @media (max-width: 599px) { .feat { grid-template-columns: auto minmax(0, 1fr); column-gap: var(--s3); padding: var(--s4); } .feat .icon-wrap { grid-row: span 2; align-self: start; margin: 0; } }
-  .feat code, .steps code, .faq code, .lic code, .lic-step code { font: 500 .8125rem/1 var(--font-mono); color: var(--gold-hi); background: var(--surface-2); padding: 2px 5px; border-radius: 3px; }
+  /* ---- Plugin sections ---- */
+  .plug-head { display: grid; gap: 8px; margin-bottom: 22px; }
+  .plug-head h2 { font: 700 clamp(2.25rem, 1.6rem + 2.4vw, 3.25rem)/1 var(--f-black); }
+  .plug-head .promise { font-size: 1.125rem; color: var(--ink-2); margin: 0; max-width: 52ch; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .tags span { font: 600 .75rem/1 var(--f-mono); padding: 5px 8px; border: 1px solid var(--rule-2); border-radius: 3px; color: var(--ink-2); }
+  .plug { display: grid; gap: 28px; }
+  .plug > *, .lic > *, .faq-grid > * { min-width: 0; }
+  @media (min-width: 960px) { .plug { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 56px; align-items: start; } }
 
-  .sub-h { font: 700 .8125rem/1 var(--font-display); letter-spacing: .12em; text-transform: uppercase; color: var(--crimson); margin: var(--s6) 0 var(--s3); }
-  .codebox { margin: 0; padding: var(--s4) var(--s5); background: #2E2215; color: #EADBB8; border-radius: var(--r); border: 1px solid #5A4325; font: 500 .8125rem/1.65 var(--font-mono); overflow-x: auto; box-shadow: inset 0 0 0 3px #2E2215, inset 0 0 0 4px #4A3720; }
-  .codebox .k { color: #E2B85A; } .codebox .c { color: #A8956F; } .codebox .s { color: #B9D9A8; }
+  .feats { border-top: 3px solid var(--or); }
+  .feats > div { display: grid; gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+  .feats h3 { font: 600 1.1875rem/1.2 var(--f-head); }
+  .feats p { margin: 0; font-size: .9375rem; color: var(--ink-2); }
+  @media (min-width: 760px) { .feats > div { grid-template-columns: 220px 1fr; gap: 24px; } }
+  code { font: 600 .875em var(--f-mono); }
+  .feats code, .steps code, .acc code, .note code { background: var(--vellum); border: 1px solid var(--rule); border-radius: 3px; padding: 0 4px; }
+
+  .sub-h { font: 700 .6875rem/1.2 var(--f-text); letter-spacing: 1.2px; text-transform: uppercase; color: var(--gold-ink); margin: 28px 0 10px; }
+  .codebox { margin: 0; background: var(--sable); color: var(--on-sable); border-radius: var(--r); padding: 16px; font: 600 .8125rem/1.6 var(--f-mono); overflow-x: auto; }
+  .codebox .k { color: var(--or-hi); } .codebox .s { color: #A9D49A; } .codebox .c { color: var(--on-sable-3); }
+  .note { font-size: .8125rem; color: var(--ink-3); margin: 10px 0 0; }
+
+  /* Side panel */
+  .side { padding: 18px; display: grid; gap: 18px; }
+  .side h3 { font: 700 .6875rem/1.2 var(--f-text); letter-spacing: 1.2px; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+  .kv { margin: 0; display: grid; grid-template-columns: 84px 1fr; font-size: .875rem; }
+  .kv dt, .kv dd { margin: 0; padding: 7px 0; border-top: 1px solid var(--rule); }
+  .kv dt { font-weight: 700; }
+  .kv small { display: block; color: var(--ink-3); font-size: .75rem; }
+  .steps { list-style: none; margin: 0; padding: 0; counter-reset: s; display: grid; gap: 9px; font-size: .875rem; }
+  .steps li { counter-increment: s; display: flex; gap: 10px; line-height: 1.45; }
+  .steps li::before { content: counter(s); font: 600 1.125rem/1.1 var(--f-head); color: var(--gold-ink); width: 14px; flex: none; }
+  .price { display: grid; gap: 10px; padding-top: 16px; border-top: 1.5px solid var(--ink); }
+  .price .p { font: 700 1.375rem/1.1 var(--f-head); }
+  .price p { margin: 0; font-size: .8125rem; color: var(--ink-2); }
+
+  /* Built vs planned */
   .cmds { display: flex; flex-wrap: wrap; gap: 6px; }
-  .cmds code { font: 500 .8125rem/1 var(--font-mono); padding: 7px 9px; background: var(--surface); border: 1px solid var(--line); border-radius: 3px; color: var(--gold-hi); }
-  .planned { margin-top: var(--s5); padding: var(--s4) var(--s5); border: 1px dashed var(--line-2); border-radius: var(--r); background: var(--bg-2); display: grid; gap: var(--s3); }
-  .planned ul { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--s2); }
-  .planned li { display: flex; gap: var(--s2); font-size: var(--fs-sm); color: var(--text-2); }
-  .planned li .icon { width: 16px; height: 16px; color: var(--warn); margin-top: 3px; }
-  .planned b { color: var(--text); }
+  .cmds code { padding: 5px 8px; background: var(--vellum); border: 1px solid var(--rule-2); border-radius: 3px; font-size: .8125rem; }
+  .safe { display: flex; gap: 12px; align-items: flex-start; margin-top: 22px; padding: 14px 16px; }
+  .safe .icon { color: var(--live); margin-top: 2px; }
+  .safe p { margin: 0; font-size: .9375rem; }
+  .planned { margin-top: 22px; border-top: 1px dashed var(--rule-2); }
+  .planned li { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px dashed var(--rule-2); font-size: .9375rem; color: var(--ink-2); }
+  .planned ul { list-style: none; margin: 0; padding: 0; }
+  .planned .icon { color: var(--ink-3); margin-top: 3px; }
+  .planned .lbl { display: inline-block; margin: 14px 0 4px; }
 
-  /* Aside: specs, setup, price */
-  .plug-aside { padding: var(--s5); display: grid; gap: var(--s5); }
-  .plug-aside h3 { font: 700 .8125rem/1 var(--font-display); letter-spacing: .12em; text-transform: uppercase; color: var(--crimson); margin-bottom: var(--s3); }
-  .kv { display: grid; grid-template-columns: auto 1fr; gap: 8px var(--s4); font-size: var(--fs-sm); margin: 0; }
-  .kv dt { color: var(--text-3); }
-  .kv dd { margin: 0; color: var(--text); font-weight: 600; }
-  .kv dd small { display: block; font-weight: 400; color: var(--text-3); font-size: var(--fs-xs); }
-  .steps { list-style: none; counter-reset: s; margin: 0; padding: 0; display: grid; gap: var(--s3); font-size: var(--fs-sm); color: var(--text-2); }
-  .steps li { counter-increment: s; display: flex; gap: var(--s3); align-items: baseline; }
-  .steps li::before { content: counter(s); flex: none; width: 22px; height: 22px; border-radius: 6px; background: var(--surface-3); color: var(--gold); font: 700 .8125rem/22px var(--font-display); text-align: center; }
-  .steps b { color: var(--text); font-weight: 600; }
-  .price-box { display: grid; gap: var(--s3); padding: var(--s4); border-radius: var(--r); background: var(--bg-2); border: 1px solid var(--line-2); }
-  .price-box .price { font: 700 1.25rem/1.15 var(--font-display); color: var(--gold-hi); }
-  .price-box p { margin: 0; font-size: var(--fs-xs); color: var(--text-3); }
-  .price-box .btn { width: 100%; }
+  /* ---- Licence band ---- */
+  .band .wrap { padding-block: 44px; }
+  .band h2 { font: 700 clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem)/1.05 var(--f-head); }
+  .band .intro { color: var(--on-sable-2); max-width: 60ch; margin: 10px 0 0; }
+  .lsteps { list-style: none; margin: 26px 0 0; padding: 0; counter-reset: l; border-top: 3px solid var(--or); }
+  .lsteps li { counter-increment: l; display: grid; grid-template-columns: 34px 1fr; gap: 2px 12px; padding: 14px 0; border-bottom: 1px solid var(--sable-3); }
+  .lsteps li::before { content: counter(l); grid-row: span 3; font: 600 1.75rem/1 var(--f-head); color: var(--or); }
+  .lsteps .who { font: 700 .6875rem/1.2 var(--f-text); letter-spacing: 1.2px; text-transform: uppercase; color: var(--on-sable-3); }
+  .lsteps b { font: 600 1.1875rem/1.2 var(--f-head); }
+  .lsteps p { margin: 0; font-size: .875rem; color: var(--on-sable-2); }
+  .band code { color: var(--or-hi); }
+  @media (min-width: 960px) { .lsteps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 32px; } .lsteps li { border-bottom: 0; padding-top: 18px; } }
+  .lic { display: grid; gap: 28px; margin-top: 30px; }
+  .lic h3 { font: 600 1.25rem/1.2 var(--f-head); margin-bottom: 10px; }
+  .band .codebox { background: var(--sable-2); border: 1px solid var(--sable-3); }
+  .band .note { color: var(--on-sable-3); }
+  .fail > div { padding: 12px 0; border-bottom: 1px solid var(--sable-3); font-size: .875rem; color: var(--on-sable-2); }
+  .fail > div:first-child { border-top: 1px solid var(--sable-3); }
+  .fail strong { display: block; color: var(--on-sable); font-size: .9375rem; margin-bottom: 2px; }
+  .never { display: flex; gap: 10px; margin-top: 14px; padding: 12px 14px; border: 1.5px solid var(--or); border-radius: var(--r); font-size: .9375rem; color: var(--on-sable); }
+  .never .icon { color: var(--or); margin-top: 2px; }
+  @media (min-width: 960px) { .band .wrap { padding-block: 64px; } .lic { grid-template-columns: 1fr 1fr; gap: 56px; } }
 
-  /* Licence */
-  .lic-steps { display: grid; gap: var(--s4); grid-template-columns: minmax(0, 1fr); counter-reset: l; }
-  @media (min-width: 900px) { .lic-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s5); } }
-  .lic-step { padding: var(--s5); display: grid; gap: var(--s2); align-content: start; counter-increment: l; }
-  .lic-step::after { content: counter(l, upper-roman); position: absolute; top: var(--s4); right: var(--s5); font: 800 2rem/1 var(--font-display); color: rgba(118,85,19,.2); }
-  .lic-step h3 { font-size: 1.25rem; }
-  .lic-step p { margin: 0; color: var(--text-2); font-size: var(--fs-sm); }
-  .lic-step .who { font: 700 .6875rem/1 var(--font-display); letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
-  .lic { display: grid; gap: var(--s5); grid-template-columns: minmax(0, 1fr); margin-top: var(--s6); }
-  @media (min-width: 900px) { .lic { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s6); align-items: start; } }
-  .lic h3 { font-size: 1.375rem; margin-bottom: var(--s3); }
-  .lic .note { font-size: var(--fs-xs); color: var(--text-3); margin-top: var(--s2); }
-  .fail { display: grid; gap: var(--s3); }
-  .fail .alert { background: var(--surface); }
-  .fail .alert .icon { color: var(--gold); }
-  .never { display: flex; gap: var(--s3); align-items: flex-start; padding: var(--s3) var(--s4); border-left: 3px solid var(--crimson); background: rgba(142,27,36,.06); font-size: var(--fs-sm); color: var(--text); }
-  .never .icon { color: var(--crimson); margin-top: 2px; }
-
-  /* FAQ + support */
-  .faq-grid { display: grid; gap: var(--s6); grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 900px) { .faq-grid { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: var(--s7); align-items: start; } }
-  .faq a, .support-card a.inline { color: var(--gold); text-decoration: underline; text-underline-offset: 2px; }
-  .support-card { padding: var(--s5); display: grid; gap: var(--s4); justify-items: start; }
-  .support-card h2 { font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); }
-  .support-card p { margin: 0; color: var(--text-2); font-size: var(--fs-sm); }
-  .support-card ul { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--s2); font-size: var(--fs-sm); color: var(--text-2); }
-  .support-card li { display: flex; gap: var(--s2); }
-  .support-card li .icon { width: 16px; height: 16px; color: var(--gold); margin-top: 3px; }
+  /* ---- FAQ + support ---- */
+  .faq-grid { display: grid; gap: 32px; }
+  .acc summary { font-size: .9375rem; }
+  .acc .acc-body p { margin: 0 0 .6em; }
+  .support { padding: 20px; display: grid; gap: 12px; align-content: start; }
+  .support h2 { font: 700 1.625rem/1.1 var(--f-head); }
+  .support p { margin: 0; font-size: .9375rem; color: var(--ink-2); }
+  .support ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); font-size: .875rem; }
+  .support li { display: flex; gap: 8px; padding: 8px 0; border-bottom: 1px solid var(--rule); }
+  .support li .icon { color: var(--live); width: 16px; height: 16px; margin-top: 2px; }
+  .support .hint { font-size: .75rem; color: var(--ink-3); }
+  @media (min-width: 960px) { .faq-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 56px; align-items: start; } }
 </style>
 </head>
 <body data-page="owners">
 <header data-site-header></header>
 
 <main>
-  <!-- HERO -->
-  <section class="hero area-hero" aria-labelledby="ow-title">
-    <div class="wrap">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>For Server Owners</span></nav>
-      <div class="ow-hero-grid">
-        <div>
-          <span class="eyebrow">Plugins for Minecraft servers</span>
-          <h1 id="ow-title">For Server Owners</h1>
-          <p class="lede">The plugins that run our network, made for yours. We built CustomEnchants and TitansBans for the Titans network, and we're getting them ready for other servers too.</p>
-          <div class="hero-points">
-            <span><svg class="icon"><use href="#i-check"/></svg>Built for Paper</span>
-            <span><svg class="icon"><use href="#i-check"/></svg>Licence checked offline</span>
-            <span><svg class="icon"><use href="#i-check"/></svg>Support on Discord</span>
-          </div>
-        </div>
-        <div class="picks">
-          <a class="card card-link pick" href="#customenchants"><span class="plaque"><svg class="icon"><use href="#i-sparkle"/></svg></span><span><b>CustomEnchants</b><small>Custom enchantments in YAML</small></span><svg class="icon"><use href="#i-arrow"/></svg></a>
-          <a class="card card-link pick" href="#titansbans"><span class="plaque"><svg class="icon"><use href="#i-gavel"/></svg></span><span><b>TitansBans</b><small>Bans and mutes for your whole network</small></span><svg class="icon"><use href="#i-arrow"/></svg></a>
+  <div class="wrap">
+    <section class="pg-head" aria-labelledby="h1">
+      <div>
+        <div class="over">Plugins for Minecraft servers</div>
+        <h1 class="h1" id="h1" style="margin-top:8px">For server owners</h1>
+        <p class="lede" style="margin-top:12px">The plugins that run our network, made for yours. We built CustomEnchants and TitansBans for the Titans network, and we're getting them ready for other servers too.</p>
+        <div class="points">
+          <span><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Built for Paper</span>
+          <span><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Licence checked offline</span>
+          <span><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Support on Discord</span>
         </div>
       </div>
-    </div>
-  </section>
+      <nav class="picks" aria-label="The plugins">
+        <a href="#customenchants"><b>CustomEnchants</b><small>Custom enchantments in YAML</small><span class="bill bill-soon">Coming soon</span></a>
+        <a href="#titansbans"><b>TitansBans</b><small>Bans and mutes for your whole network</small><span class="bill bill-soon">Coming soon</span></a>
+      </nav>
+    </section>
+  </div>
 
-  <nav class="subnav" aria-label="On this page">
+  <nav class="subnav owners-nav" aria-label="On this page">
     <div class="wrap"><a href="#customenchants">CustomEnchants</a><a href="#titansbans">TitansBans</a><a href="#licence">Licence</a><a href="#faq">FAQ</a><a href="#support">Support</a></div>
   </nav>
 
   <!-- CUSTOMENCHANTS -->
-  <section class="section" id="customenchants" aria-labelledby="ce-title">
+  <section class="sec" id="customenchants" aria-labelledby="ce-title">
     <div class="wrap">
       <div class="plug-head">
-        <span class="plaque plaque-lg"><svg class="icon"><use href="#i-sparkle"/></svg></span>
-        <div>
-          <span class="eyebrow">Plugin one</span>
-          <h2 id="ce-title">CustomEnchants</h2>
-          <p class="promise">Design your own enchantments in simple YAML files. No coding needed.</p>
-          <div class="row"><span class="chip chip-mc">Paper 1.21.x</span><span class="chip">Paper 26.2 build</span><span class="chip chip-clan">Coming soon</span></div>
-        </div>
+        <div class="over">Plugin one</div>
+        <h2 id="ce-title">CustomEnchants</h2>
+        <p class="promise">Design your own enchantments in simple YAML files. No coding needed.</p>
+        <div class="tags"><span>Paper 1.21.x</span><span>Paper 26.2 build</span><span>Java 21</span></div>
       </div>
 
       <div class="plug">
         <div>
           <div class="feats">
-            <article class="card feat"><span class="icon-wrap"><svg class="icon"><use href="#i-book"/></svg></span><h3>Enchantments in YAML</h3><p>Each enchantment is a short entry: what items it goes on, when it fires and what it does. 14 starter enchantments are included.</p></article>
-            <article class="card feat"><span class="icon-wrap"><svg class="icon"><use href="#i-zap"/></svg></span><h3>Lots of triggers and effects</h3><p>Fire on attack, defence, mining, bow shots, kills, fishing, elytra flight and more. Effects go from potions and lifesteal to lightning, explosions and summons, with a chance and cooldown per level.</p></article>
-            <article class="card feat"><span class="icon-wrap"><svg class="icon"><use href="#i-flame"/></svg></span><h3>Souls system</h3><p>Weapons with a Soul Tracker collect souls on every kill. Any enchant level can cost souls to activate, so the strongest ones have to be earned.</p></article>
-            <article class="card feat"><span class="icon-wrap"><svg class="icon"><use href="#i-gift"/></svg></span><h3>Plugin items</h3><p>White and Black Scrolls, success dusts, slot increasers, rename tags, kill and block counters, Soul Gems, Transmog Scrolls and more, handed out with <code>/ce giveitem</code>.</p></article>
-            <article class="card feat"><span class="icon-wrap"><svg class="icon"><use href="#i-refresh"/></svg></span><h3>Enchanter, Tinkerer, Alchemist</h3><p>Players buy books with XP at the Enchanter, trade enchanted gear for XP at the Tinkerer, and merge two identical books into a higher level at the Alchemist.</p></article>
-            <article class="card feat"><span class="icon-wrap"><svg class="icon"><use href="#i-shield"/></svg></span><h3>Armour sets, kits, mob drops</h3><p>Full-set bonuses (Lava and Frost sets included), claimable kits with cooldowns and random enchant rolls, and enchant books that drop from mobs.</p></article>
+            <div><h3>Enchantments in YAML</h3><p>Each enchantment is a short entry: what items it goes on, when it fires and what it does. 14 starter enchantments are included.</p></div>
+            <div><h3>Lots of triggers and effects</h3><p>Fire on attack, defence, mining, bow shots, kills, fishing, elytra flight and more. Effects go from potions and lifesteal to lightning, explosions and summons, with a chance and cooldown per level.</p></div>
+            <div><h3>Souls system</h3><p>Weapons with a Soul Tracker collect souls on every kill. Any enchant level can cost souls to activate, so the strongest ones have to be earned.</p></div>
+            <div><h3>Plugin items</h3><p>White and Black Scrolls, success dusts, slot increasers, rename tags, kill and block counters, Soul Gems, Transmog Scrolls and more, handed out with <code>/ce giveitem</code>.</p></div>
+            <div><h3>Enchanter, Tinkerer, Alchemist</h3><p>Players buy books with XP at the Enchanter, trade enchanted gear for XP at the Tinkerer, and merge two identical books into a higher level at the Alchemist.</p></div>
+            <div><h3>Armour sets, kits, mob drops</h3><p>Full-set bonuses (Lava and Frost sets included), claimable kits with cooldowns and random enchant rolls, and enchant books that drop from mobs.</p></div>
           </div>
 
           <p class="sub-h">What an enchantment looks like</p>
@@ -171,10 +177,10 @@
       <span class="k">effects:</span>
         - <span class="s">'STEAL_HEALTH:1 @Victim'</span>
         - <span class="s">'PARTICLE:HEART:5 @Self'</span></pre>
-          <p class="hint mt-3">Books go on by drag and drop (rolls the book's success chance), in an anvil (costs XP, always works), or as a bonus from the vanilla enchanting table.</p>
+          <p class="note">Books go on by drag and drop (rolls the book's success chance), in an anvil (costs XP, always works), or as a bonus from the vanilla enchanting table.</p>
         </div>
 
-        <aside class="card plug-aside" aria-label="CustomEnchants details">
+        <aside class="panel side" aria-label="CustomEnchants details">
           <div>
             <h3>Works on</h3>
             <dl class="kv">
@@ -192,10 +198,10 @@
               <li><span>Put your <b>license.txt</b> in <code>plugins/CustomEnchants/</code>.</span></li>
             </ol>
           </div>
-          <div class="price-box">
-            <span class="price">Price announced at release</span>
-            <span class="btn btn-primary is-disabled" aria-disabled="true"><svg class="icon"><use href="#i-clock"/></svg> Coming soon</span>
-            <p>Want to know first? <a class="gold" href="#support">Ask us on Discord</a>.</p>
+          <div class="price">
+            <span class="p">Price announced at release</span>
+            <span class="btn btn-ink btn-block is-off" aria-disabled="true">Coming soon</span>
+            <p>Want to know first? <a class="link" href="#support">Ask us on Discord</a>.</p>
           </div>
         </aside>
       </div>
@@ -203,30 +209,27 @@
   </section>
 
   <!-- TITANSBANS -->
-  <section class="section" id="titansbans" aria-labelledby="tb-title">
+  <section class="sec" id="titansbans" aria-labelledby="tb-title" style="padding-top:0">
     <div class="wrap">
       <div class="plug-head">
-        <span class="plaque plaque-lg"><svg class="icon"><use href="#i-gavel"/></svg></span>
-        <div>
-          <span class="eyebrow">Plugin two</span>
-          <h2 id="tb-title">TitansBans</h2>
-          <p class="promise">Bans, mutes and warnings that follow a player across your whole network.</p>
-          <div class="row"><span class="chip chip-mc">Paper 1.20 – 26.x</span><span class="chip">Velocity 4.2.x proxy</span><span class="chip chip-clan">Coming soon</span></div>
-        </div>
+        <div class="over">Plugin two</div>
+        <h2 id="tb-title">TitansBans</h2>
+        <p class="promise">Bans, mutes and warnings that follow a player across your whole network.</p>
+        <div class="tags"><span>Paper 1.20 – 26.x</span><span>Velocity 4.2.x proxy</span><span>MySQL or SQLite</span></div>
       </div>
 
       <div class="plug">
         <div>
           <div class="feats">
-            <article class="card feat"><span class="icon-wrap"><svg class="icon"><use href="#i-server"/></svg></span><h3>One ban, every server</h3><p>All your servers share one MySQL database. A ban on any server applies everywhere, checked at the proxy and on every backend.</p></article>
-            <article class="card feat"><span class="icon-wrap"><svg class="icon"><use href="#i-user"/></svg></span><h3>Follows the player</h3><p>Punishments are tied to the player's account (UUID), so changing their name doesn't help. <code>/history</code> shows everything, and unbans stay on record.</p></article>
-            <article class="card feat"><span class="icon-wrap"><svg class="icon"><use href="#i-search"/></svg></span><h3>IP bans and alt alerts</h3><p>Every login saves the name and IP. <code>/dupeip</code> lists accounts on one IP, and staff get an alert when a banned player's IP-mate logs in.</p></article>
-            <article class="card feat"><span class="icon-wrap"><svg class="icon"><use href="#i-sliders"/></svg></span><h3>Templates and warn ladders</h3><p><code>/ban Steve #hacking</code> fills in a preset reason and length. Warnings add up: for example 3 warnings can mean a 1-hour mute, automatically.</p></article>
-            <article class="card feat"><span class="icon-wrap"><svg class="icon"><use href="#i-key"/></svg></span><h3>Staff limits, silent mode</h3><p>Cap how long junior staff can ban for. Add <code>-s</code> to any command so only staff see the punishment.</p></article>
-            <article class="card feat"><span class="icon-wrap"><svg class="icon"><use href="#i-chat"/></svg></span><h3>Discord webhooks</h3><p>Every punishment can post a message to a channel on your Discord, so your whole team sees what happened.</p></article>
+            <div><h3>One ban, every server</h3><p>All your servers share one MySQL database. A ban on any server applies everywhere, checked at the proxy and on every backend.</p></div>
+            <div><h3>Follows the player</h3><p>Punishments are tied to the player's account (UUID), so changing their name doesn't help. <code>/history</code> shows everything, and unbans stay on record.</p></div>
+            <div><h3>IP bans and alt alerts</h3><p>Every login saves the name and IP. <code>/dupeip</code> lists accounts on one IP, and staff get an alert when a banned player's IP-mate logs in.</p></div>
+            <div><h3>Templates and warn ladders</h3><p><code>/ban Steve #hacking</code> fills in a preset reason and length. Warnings add up: for example 3 warnings can mean a 1-hour mute, automatically.</p></div>
+            <div><h3>Staff limits, silent mode</h3><p>Cap how long junior staff can ban for. Add <code>-s</code> to any command so only staff see the punishment.</p></div>
+            <div><h3>Discord webhooks</h3><p>Every punishment can post a message to a channel on your Discord, so your whole team sees what happened.</p></div>
           </div>
 
-          <div class="alert mt-5"><svg class="icon" style="color:var(--gold)"><use href="#i-shieldcheck"/></svg><div><strong>Fails safe</strong>If the database can't be reached, TitansBans refuses to run rather than let banned players slip in.</div></div>
+          <div class="panel safe"><svg class="icon" aria-hidden="true"><use href="#i-shieldcheck"/></svg><p><b>Fails safe.</b> If the database can't be reached, TitansBans refuses to run rather than let banned players slip in.</p></div>
 
           <p class="sub-h">Commands</p>
           <div class="cmds" aria-label="TitansBans commands">
@@ -234,15 +237,15 @@
           </div>
 
           <div class="planned">
-            <span class="chip" style="justify-self:start">Planned, not built yet</span>
+            <span class="bill bill-once lbl">Planned, not built yet</span>
             <ul>
-              <li><svg class="icon"><use href="#i-clock"/></svg><span><b>/lockdown</b>: block everyone except staff from joining, for example during a raid.</span></li>
-              <li><svg class="icon"><use href="#i-clock"/></svg><span><b>One-server punishments</b>: for example, muted on Survival only.</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span><b>/lockdown</b>: block everyone except staff from joining, for example during a raid.</span></li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span><b>One-server punishments</b>: for example, muted on Survival only.</span></li>
             </ul>
           </div>
         </div>
 
-        <aside class="card plug-aside" aria-label="TitansBans details">
+        <aside class="panel side" aria-label="TitansBans details">
           <div>
             <h3>Works on</h3>
             <dl class="kv">
@@ -259,12 +262,12 @@
               <li><span>Create one MySQL database and use the same login in every server's config. Give each server its own <code>server-name</code>.</span></li>
               <li><span>Add your <b>license.txt</b> and restart.</span></li>
             </ol>
-            <p class="hint mt-3">Only one server? Leave MySQL off and it uses a local SQLite file by itself.</p>
+            <p class="note">Only one server? Leave MySQL off and it uses a local SQLite file by itself.</p>
           </div>
-          <div class="price-box">
-            <span class="price">Price announced at release</span>
-            <span class="btn btn-primary is-disabled" aria-disabled="true"><svg class="icon"><use href="#i-clock"/></svg> Coming soon</span>
-            <p>Want to know first? <a class="gold" href="#support">Ask us on Discord</a>.</p>
+          <div class="price">
+            <span class="p">Price announced at release</span>
+            <span class="btn btn-ink btn-block is-off" aria-disabled="true">Coming soon</span>
+            <p>Want to know first? <a class="link" href="#support">Ask us on Discord</a>.</p>
           </div>
         </aside>
       </div>
@@ -272,14 +275,17 @@
   </section>
 
   <!-- LICENCE -->
-  <section class="section" id="licence" aria-labelledby="lic-title">
+  <section class="band" id="licence" aria-labelledby="lic-title">
     <div class="wrap">
-      <div class="section-head"><div><span class="eyebrow">No phone-home</span><h2 id="lic-title">Licence delivery</h2><p>Your licence is a small signed text file. The plugin checks it on your server, with no internet connection and no licence server that can go down.</p></div></div>
-      <div class="lic-steps">
-        <article class="card lic-step"><span class="who">You buy</span><h3>We sign your licence</h3><p>We make a <code>license.txt</code> with your name and your server's address, and seal it with our private key.</p></article>
-        <article class="card lic-step"><span class="who">You install</span><h3>Drop it in</h3><p>You get your own copy of the plugin plus the licence file. Put <code>license.txt</code> in <code>plugins/&lt;PluginName&gt;/</code> and restart.</p></article>
-        <article class="card lic-step"><span class="who">The plugin</span><h3>It checks itself</h3><p>Every time the server starts, the plugin checks the seal on the file. All offline: nothing is sent anywhere.</p></article>
-      </div>
+      <div class="over on-dark">No phone-home</div>
+      <h2 id="lic-title" style="margin-top:8px">How your licence works</h2>
+      <p class="intro">Your licence is a small signed text file. The plugin checks it on your server, with no internet connection and no licence server that can go down.</p>
+
+      <ol class="lsteps">
+        <li><span class="who">You buy</span><b>We sign your licence</b><p>We make a <code>license.txt</code> with your name and your server's address, and seal it with our private key.</p></li>
+        <li><span class="who">You install</span><b>Drop it in</b><p>You get your own copy of the plugin plus the licence file. Put <code>license.txt</code> in <code>plugins/&lt;PluginName&gt;/</code> and restart.</p></li>
+        <li><span class="who">The plugin</span><b>It checks itself</b><p>Every time the server starts, the plugin checks the seal on the file. All offline: nothing is sent anywhere.</p></li>
+      </ol>
 
       <div class="lic">
         <div>
@@ -298,67 +304,64 @@
         <div>
           <h3>If the licence has a problem</h3>
           <div class="fail">
-            <div class="alert"><svg class="icon"><use href="#i-gavel"/></svg><div><strong>TitansBans</strong>Bans, mutes and the login check keep working. Only the extras switch off: Discord webhooks, templates and the warn ladder.</div></div>
-            <div class="alert"><svg class="icon"><use href="#i-sparkle"/></svg><div><strong>CustomEnchants</strong>Paid features switch off until the licence is fixed. Items already in players' inventories are left alone, and the server keeps running.</div></div>
-            <p class="never"><svg class="icon"><use href="#i-shieldcheck"/></svg><span>A licence problem never crashes your server, kicks players or deletes anything. And it never lets a banned player back in.</span></p>
+            <div><strong>TitansBans</strong>Bans, mutes and the login check keep working. Only the extras switch off: Discord webhooks, templates and the warn ladder.</div>
+            <div><strong>CustomEnchants</strong>Paid features switch off until the licence is fixed. Items already in players' inventories are left alone, and the server keeps running.</div>
           </div>
+          <p class="never"><svg class="icon" aria-hidden="true"><use href="#i-shieldcheck"/></svg><span>A licence problem never crashes your server, kicks players or deletes anything. And it never lets a banned player back in.</span></p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- FAQ + SUPPORT -->
-  <section class="section" id="faq" aria-labelledby="faq-title">
-    <div class="wrap">
-      <div class="faq-grid">
-        <div>
-          <div class="section-head"><div><span class="eyebrow">Before you buy</span><h2 id="faq-title">Questions</h2></div></div>
-          <div class="accordion faq">
-            <details open>
-              <summary>Which versions do the plugins support? <svg class="icon"><use href="#i-plus"/></svg></summary>
-              <div class="acc-body"><p><b>CustomEnchants:</b> Paper 1.21.x on Java 21 (tested on 1.21.4), plus a separate build for Paper 26.2.</p><p><b>TitansBans:</b> Paper 1.20 to 26.x on Java 17 or newer. The optional proxy plugin needs Velocity 4.2.x on Java 25.</p></div>
-            </details>
-            <details>
-              <summary>Do I need internet for the licence? <svg class="icon"><use href="#i-plus"/></svg></summary>
-              <div class="acc-body">No. The plugin checks the licence file on your own server when it starts. It never calls home, so there's no licence server that can go down and take your server with it.</div>
-            </details>
-            <details>
-              <summary>Can I move to a new server? <svg class="icon"><use href="#i-plus"/></svg></summary>
-              <div class="acc-body">Your licence names the server it was made for, and each licence is for one server. If you're moving, open a ticket on our Discord before you switch so we can sort out your licence.</div>
-            </details>
-            <details>
-              <summary>Do I need MySQL or a proxy for TitansBans? <svg class="icon"><use href="#i-plus"/></svg></summary>
-              <div class="acc-body">Only if you run more than one server. On a single server, leave MySQL off and TitansBans uses a local SQLite file by itself. For a network, every server points at the same MySQL database, and the Velocity plugin blocks banned players at the proxy.</div>
-            </details>
-            <details>
-              <summary>What if my licence stops working? <svg class="icon"><use href="#i-plus"/></svg></summary>
-              <div class="acc-body">Your server keeps running. TitansBans keeps enforcing bans and mutes and only switches off its extras. CustomEnchants switches off paid features but leaves players' items alone. Your server console shows a message saying what's wrong.</div>
-            </details>
-            <details>
-              <summary>Can I get a refund? <svg class="icon"><use href="#i-plus"/></svg></summary>
-              <div class="acc-body">Refunds follow our <a href="refunds.html">Refund policy</a>.</div>
-            </details>
-          </div>
+  <section class="sec" id="faq" aria-labelledby="faq-title">
+    <div class="wrap faq-grid">
+      <div>
+        <div class="sec-head"><h2 class="h2" id="faq-title">Questions</h2></div>
+        <div class="acc">
+          <details open>
+            <summary>Which versions do the plugins support?</summary>
+            <div class="acc-body"><p><b>CustomEnchants:</b> Paper 1.21.x on Java 21 (tested on 1.21.4), plus a separate build for Paper 26.2.</p><p><b>TitansBans:</b> Paper 1.20 to 26.x on Java 17 or newer. The optional proxy plugin needs Velocity 4.2.x on Java 25.</p></div>
+          </details>
+          <details>
+            <summary>Do I need internet for the licence?</summary>
+            <div class="acc-body">No. The plugin checks the licence file on your own server when it starts. It never calls home, so there's no licence server that can go down and take your server with it.</div>
+          </details>
+          <details>
+            <summary>Can I move to a new server?</summary>
+            <div class="acc-body">Your licence names the server it was made for, and each licence is for one server. If you're moving, open a ticket on our Discord before you switch so we can sort out your licence.</div>
+          </details>
+          <details>
+            <summary>Do I need MySQL or a proxy for TitansBans?</summary>
+            <div class="acc-body">Only if you run more than one server. On a single server, leave MySQL off and TitansBans uses a local SQLite file by itself. For a network, every server points at the same MySQL database, and the Velocity plugin blocks banned players at the proxy.</div>
+          </details>
+          <details>
+            <summary>What if my licence stops working?</summary>
+            <div class="acc-body">Your server keeps running. TitansBans keeps enforcing bans and mutes and only switches off its extras. CustomEnchants switches off paid features but leaves players' items alone. Your server console shows a message saying what's wrong.</div>
+          </details>
+          <details>
+            <summary>Can I get a refund?</summary>
+            <div class="acc-body">Refunds follow our <a class="link" href="refunds.html">Refund policy</a>.</div>
+          </details>
         </div>
-
-        <aside class="card card-feature support-card" id="support" aria-labelledby="support-title">
-          <span class="plaque"><svg class="icon"><use href="#i-headset"/></svg></span>
-          <h2 id="support-title">Support</h2>
-          <p>Plugin support happens on our Discord. Open a support ticket and tell us:</p>
-          <ul>
-            <li><svg class="icon"><use href="#i-check"/></svg>Which plugin and which version</li>
-            <li><svg class="icon"><use href="#i-check"/></svg>Your Paper (and Velocity) version</li>
-            <li><svg class="icon"><use href="#i-check"/></svg>What went wrong, with any console errors</li>
-          </ul>
-          <a class="btn btn-primary" href="community.html#discord"><svg class="icon"><use href="#i-chat"/></svg> Our Discord</a>
-          <p class="hint">The Discord invite link is coming soon. It will be posted on the Community page.</p>
-        </aside>
       </div>
+
+      <aside class="panel support" id="support" aria-labelledby="support-title">
+        <h2 id="support-title">Support</h2>
+        <p>Plugin support happens on our Discord. Open a support ticket and tell us:</p>
+        <ul>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Which plugin and which version</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Your Paper (and Velocity) version</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>What went wrong, with any console errors</li>
+        </ul>
+        <a class="btn btn-ink" href="community.html#discord">Our Discord</a>
+        <p class="hint">The Discord invite link goes up at launch. It will be posted on the Community page.</p>
+      </aside>
     </div>
   </section>
 </main>
 
 <footer data-site-footer></footer>
-<script src="assets/site.js"></script>
+<script src="assets/titans.js"></script>
 </body>
 </html>

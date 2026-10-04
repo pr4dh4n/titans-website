@@ -5,255 +5,270 @@
 <link rel="icon" type="image/svg+xml" href="assets/ttc-icon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Rules &amp; Support · TheTitansClan</title>
-<meta name="description" content="Server rules for Minecraft, PvP, CS2 and Discord, the punishment guide, ban appeals, player reports, FAQ and how to reach staff on Discord.">
-<meta name="theme-color" content="#F1E7D0">
+<meta name="description" content="Server rules for Minecraft, PvP, CS2 and Discord, the punishment guide, ban appeals, player reports, answers to common questions and how to reach staff on Discord.">
+<meta name="theme-color" content="#16120E">
+<meta property="og:title" content="Rules &amp; Support · TheTitansClan">
+<meta property="og:description" content="The rules, what happens if you break them, and how to get help.">
+<meta property="og:image" content="assets/img/citadel.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600&family=UnifrakturMaguntia&display=swap">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@700&family=Grenze:wght@600;700&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@600&display=swap">
+<link rel="stylesheet" href="assets/titans.css">
 <style>
-  main [id] { scroll-margin-top: calc(var(--header-h) + 60px); }
-
-  /* Hero quick-help row */
-  .help-row { margin-top: var(--s6); }
-  .help-card { display: grid; grid-template-columns: auto 1fr; gap: var(--s2) var(--s4); align-items: start; padding: var(--s4) var(--s5); }
-  .help-card .help-ico { grid-row: span 3; width: 48px; height: 48px; display: grid; place-items: center; border-radius: var(--r); background: var(--surface-2); border: 1px solid var(--gold-line); color: var(--crimson); }
-  .help-card h3 { font-size: 1.25rem; }
-  .help-card p { margin: 0; color: var(--text-2); font-size: var(--fs-sm); }
-
-  /* Rules tabs */
-  .rule-tabs { margin-bottom: var(--s5); }
-  .rule-tabs .tab { display: inline-flex; align-items: center; gap: 8px; }
-  .rule-tabs .tab .icon { width: 16px; height: 16px; }
-  @media (max-width: 599px) { .rule-tabs { gap: var(--s4); } .rule-tabs .tab .icon { display: none; } }
-  .panel-intro { color: var(--text-2); font-size: var(--fs-sm); margin-bottom: var(--s4); }
-  .rules { list-style: none; counter-reset: r; padding: 0; margin: 0; display: grid; gap: var(--s3); }
-  @media (min-width: 900px) { .rules { grid-template-columns: 1fr 1fr; } }
-  .rules li { counter-increment: r; display: flex; gap: var(--s4); padding: var(--s4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); }
-  .rules li::before { content: counter(r, decimal-leading-zero); font: 800 1.5rem/1 var(--font-display); color: var(--gold); flex: none; width: 32px; }
-  .rules b { display: block; margin-bottom: 2px; }
-  .rules span { color: var(--text-2); font-size: var(--fs-sm); }
-  .updated { display: inline-flex; align-items: center; gap: 6px; margin-top: var(--s4); font-size: var(--fs-xs); color: var(--text-3); }
-  .updated .icon { width: 14px; height: 14px; }
-
-  /* Punishment table (base .t-scroll / .t styles are not in site.css yet) */
-  .t-scroll { overflow-x: auto; border: 1px solid var(--line-2); border-radius: var(--r-lg); background: var(--surface); scrollbar-width: thin; scrollbar-color: var(--line-2) transparent; }
-  .t { width: 100%; min-width: 560px; border-collapse: collapse; font-size: var(--fs-sm); }
-  .t th, .t td { padding: 12px var(--s4); text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
-  .t thead th { font: 700 .8125rem/1.2 var(--font-display); letter-spacing: .08em; color: var(--text-2); background: var(--surface-2); border-bottom: 1px solid var(--line-2); }
-  .t tbody tr:last-child td { border-bottom: 0; }
-  .t td:first-child, .t th:first-child { position: sticky; left: 0; background: var(--surface); font-weight: 700; color: var(--text); min-width: 150px; }
-  .t thead th:first-child { background: var(--surface-2); }
-  .pen { display: inline-block; font-weight: 600; padding: 2px 8px; border-radius: 2px; white-space: nowrap; }
-  .pen-warn { background: var(--surface-3); color: var(--text-2); }
-  .pen-mute { background: var(--warn-wash); color: var(--warn); }
-  .pen-ban  { background: var(--danger-wash); color: var(--danger); }
-  .pen-perm { background: var(--crimson); color: var(--crimson-ink); }
-  .pen-none { color: var(--text-3); }
-  @media (max-width: 599px) {
-    .t-scroll { overflow: visible; border: 0; background: none; }
-    .t { min-width: 0; }
-    .t thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-    .t, .t tbody, .t tr, .t td { display: block; }
-    .t tbody { display: grid; gap: var(--s3); }
-    .t tr { background: var(--surface); border: 1px solid var(--line-2); border-radius: var(--r); overflow: hidden; }
-    .t td { display: flex; justify-content: space-between; align-items: center; gap: var(--s3); padding: 8px var(--s4); border-bottom: 1px solid var(--line); }
-    .t tbody tr td:last-child { border-bottom: 0; }
-    .t td:first-child { position: static; display: block; background: var(--surface-2); font: 700 1rem/1.25 var(--font-display); }
-    .t td[data-label]::before { content: attr(data-label); color: var(--text-3); font-size: var(--fs-xs); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+  /* ---- Page head ---- */
+  .pg-head { display: grid; gap: 22px; padding: 26px 0 28px; }
+  .pg-head .lede { margin-top: 10px; }
+  .quick { border-top: 3px solid var(--ink); }
+  .quick a { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--rule); font-size: .875rem; }
+  .quick .q { flex: 1; color: var(--ink-2); }
+  .quick b { font-weight: 700; color: var(--ink); white-space: nowrap; }
+  .quick .icon { width: 16px; height: 16px; color: var(--ink-3); }
+  .quick a:hover b { color: var(--plume); }
+  @media (min-width: 960px) {
+    .pg-head { grid-template-columns: minmax(0,7fr) minmax(0,5fr); gap: 64px; align-items: end; padding: 60px 0 44px; }
   }
 
-  /* Appeal / report: aside + form */
-  .split { display: grid; gap: var(--s6); }
-  @media (min-width: 900px) { .split { grid-template-columns: .8fr 1.2fr; gap: var(--s7); align-items: start; } }
-  .split-aside h2 { margin-bottom: var(--s3); }
-  .split-aside > p { color: var(--text-2); }
-  .how { list-style: none; counter-reset: s; margin: var(--s4) 0 0; padding: 0; display: grid; gap: var(--s3); font-size: var(--fs-sm); color: var(--text-2); }
-  .how li { counter-increment: s; display: flex; gap: var(--s3); align-items: baseline; }
-  .how li::before { content: counter(s); flex: none; width: 24px; height: 24px; border-radius: 4px; background: var(--crimson); color: var(--crimson-ink); font: 700 .8125rem/24px var(--font-display); text-align: center; }
-  .how b { color: var(--text); }
-  .tips { list-style: none; padding: 0; margin: var(--s4) 0 0; display: grid; gap: var(--s3); }
-  .tips li { display: flex; gap: var(--s3); color: var(--text-2); font-size: var(--fs-sm); }
-  .tips li .icon { color: var(--gold); flex: none; margin-top: 2px; }
-  .form .check span { line-height: 1.45; }
+  /* ---- On-page jump bar (neutral: support isn't a realm) ---- */
+  .subnav.sn-plain { --sn-bg: var(--vellum); --sn-ink: var(--ink); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
 
-  /* FAQ */
-  .faq-wrap { max-width: 820px; }
-  .accordion summary { font-size: 1.0625rem; }
-  .acc-body a { color: var(--gold); text-decoration: underline; text-underline-offset: 2px; }
-  .acc-body code { font: 600 .9em var(--font-mono); color: var(--gold-hi); background: var(--surface-2); padding: 1px 6px; border-radius: 3px; }
+  /* ---- Two-column section layout ---- */
+  .split { display: grid; gap: 22px; grid-template-columns: minmax(0,1fr); }
+  .split .side .lede { margin-top: 10px; }
+  @media (min-width: 960px) {
+    .split { grid-template-columns: minmax(0,4fr) minmax(0,7fr); gap: 64px; align-items: start; }
+    .split .side { position: sticky; top: calc(var(--head) + 70px); }
+  }
+  .updated { margin-top: 14px; font-size: .75rem; color: var(--ink-3); }
 
-  /* Contact */
-  .contact-grid { display: grid; gap: var(--s4); }
-  @media (min-width: 900px) { .contact-grid { grid-template-columns: 1.4fr 1fr; gap: var(--s5); } }
-  .ticket-card h3 { margin: var(--s3) 0 var(--s2); }
-  .ticket-types { list-style: none; padding: 0; margin: var(--s4) 0 var(--s5); display: grid; gap: var(--s2); }
-  .ticket-types li { display: grid; grid-template-columns: auto 1fr; gap: 2px var(--s3); padding: var(--s3); background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r); font-size: var(--fs-sm); color: var(--text-2); }
-  .ticket-types .icon { grid-row: span 2; color: var(--crimson); margin-top: 2px; }
-  .ticket-types b { font: 700 1rem/1.2 var(--font-display); color: var(--text); }
-  .policy-links { display: grid; gap: var(--s2); margin-top: var(--s4); }
-  .policy-links a { display: flex; align-items: center; gap: var(--s3); padding: var(--s3); border: 1px solid var(--line); border-radius: var(--r); background: var(--surface-2); font-weight: 600; }
-  .policy-links a:hover { border-color: var(--gold-line); }
-  .policy-links a .icon:first-child { color: var(--gold); }
-  .policy-links a .icon:last-child { margin-left: auto; width: 16px; height: 16px; color: var(--text-3); }
+  /* ---- Rules: tabs + numbered rows ---- */
+  .tabs { display: flex; border-bottom: 1.5px solid var(--ink); overflow-x: auto; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tabs [role="tab"] { flex: none; display: inline-flex; align-items: center; gap: 7px; border: 0; background: none; padding: 12px 11px 10px; margin-bottom: -1.5px; border-bottom: 3px solid transparent; font-size: .875rem; font-weight: 700; color: var(--ink-3); }
+  .tabs [role="tab"]:first-child { padding-left: 0; }
+  .tabs [role="tab"] i { width: 8px; height: 8px; background: var(--c); }
+  .tabs [role="tab"][aria-selected="true"] { color: var(--ink); border-bottom-color: var(--c); }
+  .tabpanel > p { margin: 14px 0 0; font-size: .875rem; color: var(--ink-2); }
+  .rules { list-style: none; margin: 12px 0 0; padding: 0; counter-reset: r; }
+  .rules li { counter-increment: r; display: grid; grid-template-columns: 34px 1fr; gap: 0 10px; padding: 14px 0; }
+  .rules li::before { content: counter(r, decimal-leading-zero); font: 600 1.25rem/1.1 var(--f-head); color: var(--gold-ink); }
+  .rules.cs li::before { color: var(--argent); }
+  .rules.dc li::before { color: var(--ink-3); }
+  .rules b { display: block; font-size: 1rem; line-height: 1.3; }
+  .rules span { display: block; font-size: .875rem; color: var(--ink-2); margin-top: 2px; }
+  .rules a { color: var(--gold-ink); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ---- Punishments: the sable band ---- */
+  .band .h2 { color: var(--on-sable); }
+  .band .lede { color: var(--on-sable-2); }
+  .pun-grid { display: grid; gap: 22px; }
+  @media (min-width: 960px) { .pun-grid { grid-template-columns: minmax(0,4fr) minmax(0,7fr); gap: 64px; } }
+  .pun { width: 100%; border-collapse: collapse; border-top: 3px solid var(--or); }
+  .pun th { text-align: left; font: 700 .6875rem/1.2 var(--f-text); letter-spacing: 1px; text-transform: uppercase; color: var(--on-sable-3); padding: 12px 12px 10px 0; border-bottom: 1px solid var(--sable-3); }
+  .pun td { padding: 14px 12px 14px 0; border-bottom: 1px solid var(--sable-3); font-size: .9375rem; color: var(--on-sable-2); vertical-align: top; }
+  .pun td:first-child { color: var(--on-sable); font-weight: 700; }
+  .pun .pb { color: var(--or-hi); font-weight: 700; }
+  .pun .na { color: var(--on-sable-3); }
+  .pun-note { margin-top: 14px; font-size: .8125rem; color: var(--on-sable-2); }
+  .pun-note a { color: var(--or-hi); text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 759px) {
+    .pun thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .pun, .pun tbody { display: block; }
+    .pun tr { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 4px 10px; padding: 13px 0; border-bottom: 1px solid var(--sable-3); }
+    .pun td { padding: 0; border: 0; font-size: .8125rem; line-height: 1.35; }
+    .pun td:first-child { grid-column: 1 / -1; font-size: .9375rem; margin-bottom: 4px; }
+    .pun td[data-label]::before { content: attr(data-label); display: block; font-size: .625rem; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: var(--on-sable-3); margin-bottom: 1px; }
+  }
+
+  /* ---- Appeal / report ---- */
+  .steps { list-style: none; margin: 18px 0 0; padding: 0; counter-reset: s; display: grid; gap: 12px; }
+  .steps li { counter-increment: s; display: grid; grid-template-columns: 26px 1fr; gap: 10px; font-size: .9375rem; line-height: 1.45; }
+  .steps li::before { content: counter(s); font: 600 1.5rem/1 var(--f-head); color: var(--gold-ink); }
+  .notes { list-style: none; margin: 18px 0 0; padding: 14px 0 0; border-top: 1px solid var(--rule); display: grid; gap: 8px; font-size: .8125rem; color: var(--ink-2); }
+  .notes li { display: flex; gap: 8px; }
+  .notes .icon { width: 15px; height: 15px; margin-top: 2px; color: var(--ink-3); }
+  .panel.form-wrap { padding: 18px; }
+  @media (min-width: 760px) { .panel.form-wrap { padding: 28px; } }
+  .form-wrap h3 { margin-bottom: 14px; }
+  .two { display: grid; gap: 14px; }
+  @media (min-width: 600px) { .two { grid-template-columns: 1fr 1fr; } }
+  .hint { font-size: .75rem; color: var(--ink-3); }
+  .form .btn-block { margin-top: 2px; }
+  .after { margin-top: 12px; font-size: .875rem; }
+  .sec + .sec.tight { padding-top: 0; }
+  .sec-rule { border-top: 1px solid var(--rule); }
+
+  /* ---- FAQ ---- */
+  .acc summary { font-size: .9375rem; padding: 15px 0; }
+  .acc .acc-body { font-size: .9375rem; line-height: 1.55; }
+  .acc code { font: 600 .875rem var(--f-mono); background: var(--vellum); border: 1px solid var(--rule); padding: 1px 5px; border-radius: 3px; }
+  .acc a { color: var(--gold-ink); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ---- Contact ---- */
+  .tickets { --tinct: var(--ink); }
+  .tickets > div { display: grid; grid-template-columns: 22px 1fr; gap: 2px 12px; padding: 14px 0; }
+  .tickets .icon { grid-row: span 2; margin-top: 2px; color: var(--gold-ink); }
+  .tickets b { font-size: 1rem; }
+  .tickets span { font-size: .875rem; color: var(--ink-2); }
+  .tickets a { color: var(--gold-ink); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .contact-cta { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; margin-top: 20px; }
+  .no-dc { display: flex; gap: 10px; margin-top: 16px; font-size: .875rem; color: var(--ink-2); }
+  .no-dc .icon { color: var(--ink-3); margin-top: 1px; }
+  .fine { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 14px; font-size: .875rem; font-weight: 700; }
+  .fine a { text-decoration: underline; text-underline-offset: 3px; }
+  .fine a:hover { color: var(--plume); }
 </style>
 </head>
 <body data-page="support">
 <header data-site-header></header>
 
 <main>
-  <!-- HERO -->
-  <section class="hero area-hero" aria-labelledby="sup-title">
-    <svg class="skyline" aria-hidden="true"></svg>
-    <div class="wrap">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Rules &amp; Support</span></nav>
-      <span class="eyebrow">The help desk</span>
-      <h1 id="sup-title">Rules &amp; Support</h1>
-      <p class="lede">The rules of the realm, what happens if you break them, and how to get help. Every question ends up in the same place: a ticket on our Discord.</p>
-
-      <div class="grid grid-3 help-row">
-        <a class="card card-link help-card" href="#appeal">
-          <span class="help-ico"><svg class="icon icon-lg"><use href="#i-gavel"/></svg></span>
-          <h3>Appeal a ban</h3>
-          <p>Think a ban or mute was a mistake? Tell us your side.</p>
-          <span class="link-arrow">Start an appeal <svg class="icon"><use href="#i-arrow"/></svg></span>
-        </a>
-        <a class="card card-link help-card" href="#report">
-          <span class="help-ico"><svg class="icon icon-lg"><use href="#i-flag"/></svg></span>
-          <h3>Report a player</h3>
-          <p>Cheating, griefing or abuse? Send staff the details.</p>
-          <span class="link-arrow">Make a report <svg class="icon"><use href="#i-arrow"/></svg></span>
-        </a>
-        <a class="card card-link help-card" href="#contact">
-          <span class="help-ico"><svg class="icon icon-lg"><use href="#i-headset"/></svg></span>
-          <h3>Contact staff</h3>
-          <p>Help with joining, payments, or a question from a parent.</p>
-          <span class="link-arrow">How to reach us <svg class="icon"><use href="#i-arrow"/></svg></span>
-        </a>
+  <div class="wrap">
+    <section class="pg-head" aria-labelledby="h1">
+      <div>
+        <div class="over">Help desk</div>
+        <h1 class="h1" id="h1" style="margin-top:8px">Rules &amp; Support</h1>
+        <p class="lede">The rules of the realm, what happens if you break them, and how to get help. Every question ends in the same place: a ticket on our Discord.</p>
       </div>
-    </div>
-  </section>
+      <nav class="quick" aria-label="Quick help">
+        <a href="#appeal"><span class="q">Banned or muted by mistake?</span><b>Appeal</b><svg class="icon"><use href="#i-arrow"/></svg></a>
+        <a href="#report"><span class="q">Someone cheating or griefing?</span><b>Report</b><svg class="icon"><use href="#i-arrow"/></svg></a>
+        <a href="#faq"><span class="q">Can't join, or rank missing?</span><b>FAQ</b><svg class="icon"><use href="#i-arrow"/></svg></a>
+        <a href="#contact"><span class="q">Anything else</span><b>Contact staff</b><svg class="icon"><use href="#i-arrow"/></svg></a>
+      </nav>
+    </section>
+  </div>
 
-  <nav class="subnav" aria-label="On this page">
-    <div class="wrap"><a href="#rules">Rules</a><a href="#punishments">Punishments</a><a href="#appeal">Appeal a ban</a><a href="#report">Report a player</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div>
+  <nav class="subnav sn-plain" aria-label="On this page">
+    <div class="wrap"><a href="#rules">Rules</a><a href="#punishments">Punishments</a><a href="#appeal">Ban appeal</a><a href="#report">Report a player</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div>
   </nav>
 
   <!-- RULES -->
-  <section class="section" id="rules" aria-labelledby="rules-title">
-    <div class="wrap">
-      <div class="section-head"><div><span class="eyebrow">The law of the land</span><h2 id="rules-title">Server rules</h2><p>Short and clear. If you're not sure whether something is allowed, ask staff first.</p></div></div>
-
-      <div class="tabs rule-tabs" role="tablist" aria-label="Rules for">
-        <button class="tab" type="button" role="tab" id="tab-r-mc" aria-selected="true" aria-controls="r-mc"><svg class="icon"><use href="#i-cube"/></svg>Minecraft</button>
-        <button class="tab" type="button" role="tab" id="tab-r-pvp" aria-selected="false" aria-controls="r-pvp"><svg class="icon"><use href="#i-sword"/></svg>PvP</button>
-        <button class="tab" type="button" role="tab" id="tab-r-cs" aria-selected="false" aria-controls="r-cs"><svg class="icon"><use href="#i-crosshair"/></svg>CS2</button>
-        <button class="tab" type="button" role="tab" id="tab-r-dc" aria-selected="false" aria-controls="r-dc"><svg class="icon"><use href="#i-chat"/></svg>Discord</button>
+  <section class="sec" id="rules" aria-labelledby="rules-t">
+    <div class="wrap split">
+      <div class="side">
+        <div class="over">The law of the realm</div>
+        <h2 class="h2" id="rules-t" style="margin-top:6px">Server rules</h2>
+        <p class="lede">Short and clear. Not sure if something is allowed? Ask staff first.</p>
+        <p class="updated">Last updated 4 October 2026</p>
       </div>
+      <div>
+        <div class="tabs" role="tablist" aria-label="Rules for">
+          <button type="button" role="tab" id="t-mc" aria-selected="true" aria-controls="r-mc" style="--c:var(--or)"><i></i>Minecraft</button>
+          <button type="button" role="tab" id="t-pvp" aria-selected="false" aria-controls="r-pvp" style="--c:var(--or)"><i></i>PvP</button>
+          <button type="button" role="tab" id="t-cs" aria-selected="false" aria-controls="r-cs" style="--c:var(--argent)"><i></i>CS2</button>
+          <button type="button" role="tab" id="t-dc" aria-selected="false" aria-controls="r-dc" style="--c:var(--ink)"><i></i>Discord</button>
+        </div>
 
-      <div class="tabpanel" id="r-mc" role="tabpanel" aria-labelledby="tab-r-mc">
-        <p class="panel-intro">These apply everywhere on the Minecraft network: the hub, Survival, Bedwars and every mode we add.</p>
-        <ol class="rules">
-          <li><div><b>No cheats or hacked clients</b><span>X-ray, kill aura, fly hacks, auto-clickers and similar mods are all banned.</span></div></li>
-          <li><div><b>Respect everyone</b><span>No hate speech, slurs, threats or harassment, in chat or anywhere else.</span></div></li>
-          <li><div><b>No griefing or stealing</b><span>Don't break, change or take anything from other players' builds or chests.</span></div></li>
-          <li><div><b>No real-money trading</b><span>Don't buy or sell items, in-game money or accounts for real money.</span></div></li>
-          <li><div><b>Don't exploit bugs</b><span>Found a bug? Report it on Discord instead of using it.</span></div></li>
-          <li><div><b>AFK machines only in the AFK pool</b><span>Don't use machines or tricks to stay online while away, except in the AFK pool. AFK pool time doesn't count for playtime rewards.</span></div></li>
-          <li><div><b>Staff decisions stand</b><span>Think a staff member got it wrong? Use the <a class="gold" href="#appeal">appeal form</a>, not chat.</span></div></li>
-        </ol>
+        <div class="tabpanel" id="r-mc" role="tabpanel" aria-labelledby="t-mc">
+          <p>Everywhere on the Minecraft server: the Citadel, Survival, Bedwars and every mode we add.</p>
+          <ol class="rules ledger" style="--tinct:var(--or)">
+            <li><div><b>No cheats or hacked clients</b><span>X-ray, kill aura, fly hacks, auto-clickers and similar mods are all banned.</span></div></li>
+            <li><div><b>Respect everyone</b><span>No hate speech, slurs, threats or bullying, in chat or anywhere else.</span></div></li>
+            <li><div><b>No griefing or stealing</b><span>Don't break, change or take anything from other players' builds or chests.</span></div></li>
+            <li><div><b>No real-money trading</b><span>Don't buy or sell items, in-game money or accounts for real money.</span></div></li>
+            <li><div><b>Don't exploit bugs</b><span>Found a bug? Report it to staff instead of using it.</span></div></li>
+            <li><div><b>AFK machines only in the AFK pool</b><span>Don't use machines or tricks to stay online while away, except in the AFK pool. Time in the AFK pool does not count toward playtime rewards.</span></div></li>
+            <li><div><b>Staff decisions stand</b><span>Think a staff member got it wrong? Use the <a href="#appeal">appeal form</a>, not chat.</span></div></li>
+          </ol>
+        </div>
+
+        <div class="tabpanel" id="r-pvp" role="tabpanel" aria-labelledby="t-pvp" hidden>
+          <p>Wherever player fighting is turned on, including fights between clans.</p>
+          <ol class="rules ledger" style="--tinct:var(--or)">
+            <li><div><b>No combat logging</b><span>Don't leave the game in the middle of a fight to avoid dying.</span></div></li>
+            <li><div><b>No killing in safe zones</b><span>Spawn and other safe zones are for everyone. No attacking players there.</span></div></li>
+            <li><div><b>No spawn-camping new players</b><span>Don't wait near spawn to pick off players who just arrived.</span></div></li>
+            <li><div><b>No trapping</b><span>Don't trap players at warps or homes in a way they can't escape.</span></div></li>
+            <li><div><b>Win fair</b><span>No bugs, glitches or exploits to win a fight.</span></div></li>
+            <li><div><b>Clan wars need two yeses</b><span>A clan war only happens when both clans agree to it.</span></div></li>
+          </ol>
+        </div>
+
+        <div class="tabpanel" id="r-cs" role="tabpanel" aria-labelledby="t-cs" hidden>
+          <p>For the Community Cup, clan 10-mans and our community servers when they open.</p>
+          <ol class="rules ledger cs" style="--tinct:var(--argent)">
+            <li><div><b>No cheats, scripts or macros</b><span>Wallhacks, aimbots, movement scripts and macros are all banned.</span></div></li>
+            <li><div><b>No ghosting or stream sniping</b><span>Don't use a stream, a spectator or a friend to see where the enemy is.</span></div></li>
+            <li><div><b>Keep voice and chat clean</b><span>No toxic voice, slurs, spam or abuse in chat.</span></div></li>
+            <li><div><b>No griefing teammates</b><span>No blocking, team-flashing or damaging teammates on purpose, and no throwing rounds.</span></div></li>
+            <li><div><b>Admins run the match</b><span>Follow the admin's call on teams, maps, pauses and disputes.</span></div></li>
+          </ol>
+        </div>
+
+        <div class="tabpanel" id="r-dc" role="tabpanel" aria-labelledby="t-dc" hidden>
+          <p>For every channel and voice room on our Discord.</p>
+          <ol class="rules ledger dc" style="--tinct:var(--ink)">
+            <li><div><b>Stay on topic</b><span>Use each channel for what its name says.</span></div></li>
+            <li><div><b>No spam, self-promo or ads</b><span>No floods of messages, invite links or adverts for other servers.</span></div></li>
+            <li><div><b>Nothing sexual, gory or upsetting</b><span>That includes names and profile pictures.</span></div></li>
+            <li><div><b>Don't DM staff about bans</b><span>Use the <a href="#appeal">appeal form</a> and a ticket instead.</span></div></li>
+            <li><div><b>English in public channels</b><span>So everyone, including staff, can follow the conversation.</span></div></li>
+          </ol>
+        </div>
       </div>
-
-      <div class="tabpanel" id="r-pvp" role="tabpanel" aria-labelledby="tab-r-pvp" hidden>
-        <p class="panel-intro">These apply wherever player fighting is turned on, including clan wars.</p>
-        <ol class="rules">
-          <li><div><b>No combat logging</b><span>Don't leave the game in the middle of a fight to avoid dying.</span></div></li>
-          <li><div><b>No killing in safe zones</b><span>Spawn and other safe zones are for everyone. No attacking players there.</span></div></li>
-          <li><div><b>No spawn-camping new players</b><span>Don't wait near spawn to pick off players who just arrived.</span></div></li>
-          <li><div><b>No trapping</b><span>Don't trap players at warps or homes in a way they can't escape.</span></div></li>
-          <li><div><b>Win fair</b><span>No bugs, glitches or exploits to win a fight.</span></div></li>
-          <li><div><b>Clan wars need two yeses</b><span>A clan war only happens when both clans agree to it.</span></div></li>
-        </ol>
-      </div>
-
-      <div class="tabpanel" id="r-cs" role="tabpanel" aria-labelledby="tab-r-cs" hidden>
-        <p class="panel-intro">For our CS2 community servers (coming soon) and clan 10-mans.</p>
-        <ol class="rules">
-          <li><div><b>No cheats, scripts or macros</b><span>Wallhacks, aimbots, movement scripts and macros are all banned.</span></div></li>
-          <li><div><b>No ghosting or stream sniping</b><span>Don't use a stream, a spectator or a friend to see where the enemy is.</span></div></li>
-          <li><div><b>Keep voice and chat clean</b><span>No toxic voice, slurs, spam or abuse in chat.</span></div></li>
-          <li><div><b>No griefing teammates</b><span>No blocking, team-flashing or damaging teammates on purpose, and no throwing rounds.</span></div></li>
-          <li><div><b>Admins run the 10-mans</b><span>Follow the admin's call on teams, maps, pauses and disputes.</span></div></li>
-        </ol>
-      </div>
-
-      <div class="tabpanel" id="r-dc" role="tabpanel" aria-labelledby="tab-r-dc" hidden>
-        <p class="panel-intro">For every channel and voice room on our Discord server.</p>
-        <ol class="rules">
-          <li><div><b>Stay on topic</b><span>Use each channel for what its name says.</span></div></li>
-          <li><div><b>No spam, self-promo or ads</b><span>No floods of messages, invite links or adverts for other servers.</span></div></li>
-          <li><div><b>No NSFW or shocking content</b><span>Nothing sexual, gory or upsetting, including in names and profile pictures.</span></div></li>
-          <li><div><b>Don't DM staff about bans</b><span>Use the <a class="gold" href="#appeal">appeal form</a> and a ticket. DMs aren't how appeals work.</span></div></li>
-          <li><div><b>English in public channels</b><span>So everyone, including staff, can follow the conversation.</span></div></li>
-        </ol>
-      </div>
-
-      <p class="updated"><svg class="icon"><use href="#i-clock"/></svg>Last updated 4 October 2026</p>
     </div>
   </section>
 
-  <!-- PUNISHMENTS -->
-  <section class="section" id="punishments" aria-labelledby="pun-title">
-    <div class="wrap">
-      <div class="section-head"><div><span class="eyebrow">Justice of the court</span><h2 id="pun-title">Punishment guide</h2><p>What usually happens for each offence. It's a guide: for serious cases, staff can skip straight to a longer punishment.</p></div></div>
-      <div class="t-scroll" tabindex="0" role="region" aria-label="Punishment guide table">
-        <table class="t">
+  <!-- PUNISHMENTS (the one sable moment) -->
+  <section class="sec band" id="punishments" aria-labelledby="pun-t">
+    <div class="wrap pun-grid">
+      <div>
+        <div class="over on-dark">If you break a rule</div>
+        <h2 class="h2" id="pun-t" style="margin-top:6px">Punishment guide</h2>
+        <p class="lede" style="margin-top:10px">What usually happens for each offence. It's a guide: for serious cases, staff can go straight to a longer punishment.</p>
+      </div>
+      <div>
+        <table class="pun">
           <thead><tr><th scope="col">Offence</th><th scope="col">1st time</th><th scope="col">2nd time</th><th scope="col">3rd time</th></tr></thead>
           <tbody>
-            <tr><td>Chat abuse</td><td data-label="1st time"><span class="pen pen-warn">Warning</span></td><td data-label="2nd time"><span class="pen pen-mute">1-day mute</span></td><td data-label="3rd time"><span class="pen pen-mute">7-day mute</span></td></tr>
-            <tr><td>Cheating or hacked client</td><td data-label="1st time"><span class="pen pen-perm">Permanent ban</span></td><td data-label="2nd time"><span class="pen-none">–</span></td><td data-label="3rd time"><span class="pen-none">–</span></td></tr>
-            <tr><td>Griefing or stealing</td><td data-label="1st time"><span class="pen pen-ban">3-day ban</span></td><td data-label="2nd time"><span class="pen pen-ban">14-day ban</span></td><td data-label="3rd time"><span class="pen pen-perm">Permanent ban</span></td></tr>
-            <tr><td>Combat logging</td><td data-label="1st time"><span class="pen pen-warn">Warning</span></td><td data-label="2nd time"><span class="pen pen-ban">1-day ban</span></td><td data-label="3rd time"><span class="pen pen-ban">7-day ban</span></td></tr>
-            <tr><td>Exploiting bugs</td><td data-label="1st time"><span class="pen pen-warn">Warning</span></td><td data-label="2nd time"><span class="pen pen-ban">7-day ban</span></td><td data-label="3rd time"><span class="pen pen-perm">Permanent ban</span></td></tr>
-            <tr><td>Real-money trading</td><td data-label="1st time"><span class="pen pen-ban">14-day ban</span></td><td data-label="2nd time"><span class="pen pen-perm">Permanent ban</span></td><td data-label="3rd time"><span class="pen-none">–</span></td></tr>
+            <tr><td>Chat abuse</td><td data-label="1st">Warning</td><td data-label="2nd">1-day mute</td><td data-label="3rd">7-day mute</td></tr>
+            <tr><td>Cheating or hacked client</td><td data-label="1st" class="pb">Permanent ban</td><td data-label="2nd" class="na">–</td><td data-label="3rd" class="na">–</td></tr>
+            <tr><td>Griefing or stealing</td><td data-label="1st">3-day ban</td><td data-label="2nd">14-day ban</td><td data-label="3rd" class="pb">Permanent ban</td></tr>
+            <tr><td>Combat logging</td><td data-label="1st">Warning</td><td data-label="2nd">1-day ban</td><td data-label="3rd">7-day ban</td></tr>
+            <tr><td>Exploiting bugs</td><td data-label="1st">Warning</td><td data-label="2nd">7-day ban</td><td data-label="3rd" class="pb">Permanent ban</td></tr>
+            <tr><td>Real-money trading</td><td data-label="1st">14-day ban</td><td data-label="2nd" class="pb">Permanent ban</td><td data-label="3rd" class="na">–</td></tr>
           </tbody>
         </table>
+        <p class="pun-note">Paid ranks aren't refunded if you're punished for breaking the rules. See the <a href="refunds.html">refund policy</a>.</p>
       </div>
-      <p class="hint mt-3">Paid ranks aren't refunded when you're punished for breaking the rules. See the <a class="gold" href="refunds.html">Refund policy</a>.</p>
     </div>
   </section>
 
   <!-- APPEAL -->
-  <section class="section" id="appeal" aria-labelledby="appeal-title">
-    <div class="wrap">
-      <div class="split">
-        <div class="split-aside">
-          <span class="eyebrow">Plead your case</span>
-          <h2 id="appeal-title">Appeal a ban</h2>
-          <p>Everyone makes mistakes, staff included. If you think your ban or mute was wrong, or you've learned from it, tell us here.</p>
-          <ol class="how">
-            <li><span>Fill in the form and press <b>Copy my appeal</b>. Your answers are copied, nothing is sent yet.</span></li>
-            <li><span>On our Discord, open a ticket in <b>#tickets</b>, pick <b>Ban appeal</b>, and paste your answers.</span></li>
-            <li><span>Staff read it and reply in your ticket. Keep an eye on it.</span></li>
-          </ol>
-          <ul class="tips">
-            <li><svg class="icon"><use href="#i-clock"/></svg><span>One appeal per ban. If it's turned down, you can try again after 7 days.</span></li>
-            <li><svg class="icon"><use href="#i-shield"/></svg><span>Be honest. Appeals with made-up stories are turned down.</span></li>
-            <li><svg class="icon"><use href="#i-chat"/></svg><span>Please don't DM staff or open extra tickets. It won't make it faster.</span></li>
-          </ul>
-        </div>
-
-        <form class="card card-pad form form-2" data-validate data-title="Ban appeal" aria-labelledby="appeal-title">
-          <div class="field"><label class="label" for="a-name">Minecraft or Steam name</label><input class="input" id="a-name" required autocomplete="nickname"><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Tell us the name that was banned.</span></div>
-          <div class="field"><label class="label" for="a-game">Which game?</label><select class="select" id="a-game" required><option value="">Choose…</option><option>Minecraft</option><option>CS2</option><option>Discord</option></select><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Pick where you were banned.</span></div>
-          <div class="field"><label class="label" for="a-date">Date of ban</label><input class="input" id="a-date" type="date" required><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Roughly when were you banned?</span></div>
-          <div class="field"><label class="label" for="a-reason">Reason on the ban screen</label><input class="input" id="a-reason" required placeholder="e.g. Combat logging"><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Copy the reason you were shown.</span></div>
-          <div class="field span-2"><label class="label" for="a-what">What happened?</label><textarea class="textarea" id="a-what" required placeholder="Tell us in your own words."></textarea><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Tell us what happened.</span></div>
-          <div class="field span-2"><label class="label" for="a-why">Why should the ban be lifted?</label><textarea class="textarea" id="a-why" required placeholder="Was it a mistake? Have you learned from it?"></textarea><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Tell us why we should lift it.</span></div>
-          <div class="field span-2"><label class="label" for="a-discord">Discord username</label><input class="input" id="a-discord" required placeholder="name"><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>We reply on Discord, so we need this.</span></div>
-          <div class="field span-2"><label class="sr-only" for="a-truth">Honesty</label><label class="check"><input type="checkbox" id="a-truth" required><span>I've told the truth in this appeal.</span></label><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Please tick this to continue.</span></div>
-          <div class="span-2"><button class="btn btn-primary btn-block" type="submit"><svg class="icon"><use href="#i-copy"/></svg> Copy my appeal</button></div>
-          <div class="form-success span-2">
-            <div class="alert alert-ok"><svg class="icon"><use href="#i-check"/></svg><div><strong>Your answers are copied</strong>Paste them into a ticket in #tickets on our Discord (choose “Ban appeal”). Nothing has been sent yet.</div></div>
-            <a class="btn btn-primary mt-4" href="community.html#discord"><svg class="icon"><use href="#i-chat"/></svg> Open the Discord</a>
+  <section class="sec" id="appeal" aria-labelledby="appeal-t">
+    <div class="wrap split">
+      <div class="side">
+        <div class="over">Tell us your side</div>
+        <h2 class="h2" id="appeal-t" style="margin-top:6px">Appeal a ban</h2>
+        <p class="lede">Everyone makes mistakes, staff included. If you think your ban or mute was wrong, or you've learned from it, tell us here.</p>
+        <ol class="steps">
+          <li><span>Fill in the form and press <b>Copy my appeal</b>. Your answers are copied. Nothing is sent yet.</span></li>
+          <li><span>On our Discord, open a ticket in <b>#tickets</b>, choose <b>Ban appeal</b> and paste your answers.</span></li>
+          <li><span>Staff read it and reply in your ticket.</span></li>
+        </ol>
+        <ul class="notes">
+          <li><svg class="icon"><use href="#i-check"/></svg><span>Be honest. Appeals with made-up stories are turned down.</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span>Please don't DM staff or open extra tickets. It won't make it faster.</span></li>
+        </ul>
+      </div>
+      <div class="panel form-wrap">
+        <form class="form" data-validate data-title="Ban appeal" aria-labelledby="appeal-t">
+          <div class="two">
+            <div class="field"><label class="label" for="a-name">Name that was banned</label><input class="input" id="a-name" required autocomplete="nickname" placeholder="Minecraft, Steam or Discord name"><span class="field-error">Tell us the name that was banned.</span></div>
+            <div class="field"><label class="label" for="a-game">Where were you banned?</label><select class="select" id="a-game" required><option value="">Choose…</option><option>Minecraft</option><option>CS2</option><option>Discord</option></select><span class="field-error">Pick where you were banned.</span></div>
+          </div>
+          <div class="two">
+            <div class="field"><label class="label" for="a-date">Date of ban</label><input class="input" id="a-date" type="date" required><span class="field-error">Roughly when were you banned?</span></div>
+            <div class="field"><label class="label" for="a-reason">Reason you were shown</label><input class="input" id="a-reason" required placeholder="e.g. Combat logging"><span class="field-error">Copy the reason from the ban screen.</span></div>
+          </div>
+          <div class="field"><label class="label" for="a-what">What happened?</label><textarea class="textarea" id="a-what" required placeholder="Tell us in your own words."></textarea><span class="field-error">Tell us what happened.</span></div>
+          <div class="field"><label class="label" for="a-why">Why should the ban be lifted?</label><textarea class="textarea" id="a-why" required placeholder="Was it a mistake? Have you learned from it?"></textarea><span class="field-error">Tell us why we should lift it.</span></div>
+          <div class="field"><label class="label" for="a-dc">Your Discord username</label><input class="input" id="a-dc" required placeholder="We reply in your ticket"><span class="field-error">We reply on Discord, so we need this.</span></div>
+          <label class="check"><input type="checkbox" id="a-truth" required><span>I've told the truth in this appeal.</span></label>
+          <button class="btn btn-ink btn-block" type="submit"><svg class="icon"><use href="#i-copy"/></svg>Copy my appeal</button>
+          <p class="hint">Nothing is sent from this page. Your answers are copied so you can paste them on Discord.</p>
+          <div class="form-success">
+            <div class="ok-box"><b>Your answers are copied.</b>Paste them into a ticket in #tickets on our Discord and choose “Ban appeal”. Nothing has been sent yet.</div>
+            <p class="after"><a class="link" href="community.html#discord">How to join our Discord</a></p>
           </div>
         </form>
       </div>
@@ -261,37 +276,39 @@
   </section>
 
   <!-- REPORT -->
-  <section class="section" id="report" aria-labelledby="report-title">
-    <div class="wrap">
-      <div class="split">
-        <div class="split-aside">
-          <span class="eyebrow">Sound the alarm</span>
-          <h2 id="report-title">Report a player</h2>
-          <p>Seen cheating, griefing, abuse or anything that breaks the rules? Tell staff here instead of arguing in chat.</p>
-          <ol class="how">
-            <li><span>Fill in the form and press <b>Copy my report</b>. Your answers are copied, nothing is sent yet.</span></li>
-            <li><span>On our Discord, open a ticket in <b>#tickets</b>, pick <b>Player report</b>, and paste your answers.</span></li>
-            <li><span>Staff look into it and may ask you questions in the ticket.</span></li>
-          </ol>
-          <ul class="tips">
-            <li><svg class="icon"><use href="#i-image"/></svg><span>Proof helps most: a screenshot or video link, with names visible.</span></li>
-            <li><svg class="icon"><use href="#i-clock"/></svg><span>Say when it happened, as closely as you can.</span></li>
-            <li><svg class="icon"><use href="#i-shield"/></svg><span>Don't call players out in public channels. Leave it to staff.</span></li>
-          </ul>
-        </div>
-
-        <form class="card card-pad form form-2" data-validate data-title="Player report" aria-labelledby="report-title">
-          <div class="field"><label class="label" for="r-who">Who are you reporting?</label><input class="input" id="r-who" required placeholder="Their in-game or Discord name"><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Tell us the player's name.</span></div>
-          <div class="field"><label class="label" for="r-game">Which game?</label><select class="select" id="r-game" required><option value="">Choose…</option><option>Minecraft</option><option>CS2</option><option>Discord</option></select><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Pick where it happened.</span></div>
-          <div class="field"><label class="label" for="r-mode">Mode or server</label><input class="input" id="r-mode" required placeholder="e.g. Survival, Bedwars, #general"><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Where exactly did it happen?</span></div>
-          <div class="field"><label class="label" for="r-when">When did it happen?</label><input class="input" id="r-when" required placeholder="e.g. Today, around 8 pm"><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Tell us roughly when.</span></div>
-          <div class="field span-2"><label class="label" for="r-what">What happened?</label><textarea class="textarea" id="r-what" required placeholder="What did they do? Who else was there?"></textarea><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Tell us what happened.</span></div>
-          <div class="field span-2"><label class="label" for="r-proof">Link to proof <span class="opt">optional</span></label><input class="input" id="r-proof" type="url" placeholder="https://… screenshot or video link"><span class="hint">Upload your screenshot or video somewhere, then paste the link here.</span></div>
-          <div class="field span-2"><label class="label" for="r-me">Your name</label><input class="input" id="r-me" required placeholder="Your in-game or Discord name"><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>We need to know who to reply to.</span></div>
-          <div class="span-2"><button class="btn btn-primary btn-block" type="submit"><svg class="icon"><use href="#i-copy"/></svg> Copy my report</button></div>
-          <div class="form-success span-2">
-            <div class="alert alert-ok"><svg class="icon"><use href="#i-check"/></svg><div><strong>Your answers are copied</strong>Paste them into a ticket in #tickets on our Discord (choose “Player report”). Nothing has been sent yet.</div></div>
-            <a class="btn btn-primary mt-4" href="community.html#discord"><svg class="icon"><use href="#i-chat"/></svg> Open the Discord</a>
+  <section class="sec sec-rule" id="report" aria-labelledby="report-t">
+    <div class="wrap split">
+      <div class="side">
+        <div class="over">Tell staff, not chat</div>
+        <h2 class="h2" id="report-t" style="margin-top:6px">Report a player</h2>
+        <p class="lede">Seen cheating, griefing, bullying or anything else that breaks the rules? Send staff the details here instead of arguing in chat.</p>
+        <ol class="steps">
+          <li><span>Fill in the form and press <b>Copy my report</b>. Nothing is sent yet.</span></li>
+          <li><span>On our Discord, open a ticket in <b>#tickets</b>, choose <b>Player report</b> and paste your answers.</span></li>
+          <li><span>Staff look into it and may ask you questions in the ticket.</span></li>
+        </ol>
+        <ul class="notes">
+          <li><svg class="icon"><use href="#i-check"/></svg><span>Proof helps most: a screenshot or video link with names visible.</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span>Don't call players out in public channels. Leave it to staff.</span></li>
+        </ul>
+      </div>
+      <div class="panel form-wrap">
+        <form class="form" data-validate data-title="Player report" aria-labelledby="report-t">
+          <div class="two">
+            <div class="field"><label class="label" for="r-who">Who are you reporting?</label><input class="input" id="r-who" required placeholder="Their in-game or Discord name"><span class="field-error">Tell us the player's name.</span></div>
+            <div class="field"><label class="label" for="r-game">Which game?</label><select class="select" id="r-game" required><option value="">Choose…</option><option>Minecraft</option><option>CS2</option><option>Discord</option></select><span class="field-error">Pick where it happened.</span></div>
+          </div>
+          <div class="two">
+            <div class="field"><label class="label" for="r-where">Mode or channel</label><input class="input" id="r-where" required placeholder="e.g. Survival, Bedwars, #general"><span class="field-error">Where exactly did it happen?</span></div>
+            <div class="field"><label class="label" for="r-when">When did it happen?</label><input class="input" id="r-when" required placeholder="e.g. Today, around 8 pm"><span class="field-error">Tell us roughly when.</span></div>
+          </div>
+          <div class="field"><label class="label" for="r-what">What happened?</label><textarea class="textarea" id="r-what" required placeholder="What did they do? Who else was there?"></textarea><span class="field-error">Tell us what happened.</span></div>
+          <div class="field"><label class="label" for="r-proof">Link to proof <span class="opt">(optional)</span></label><input class="input" id="r-proof" type="url" placeholder="https://… screenshot or video"><span class="hint">Upload your screenshot or video somewhere first, then paste the link.</span></div>
+          <div class="field"><label class="label" for="r-me">Your name</label><input class="input" id="r-me" required placeholder="Your in-game or Discord name"><span class="field-error">We need to know who to reply to.</span></div>
+          <button class="btn btn-ink btn-block" type="submit"><svg class="icon"><use href="#i-copy"/></svg>Copy my report</button>
+          <div class="form-success">
+            <div class="ok-box"><b>Your answers are copied.</b>Paste them into a ticket in #tickets on our Discord and choose “Player report”. Nothing has been sent yet.</div>
+            <p class="after"><a class="link" href="community.html#discord">How to join our Discord</a></p>
           </div>
         </form>
       </div>
@@ -299,57 +316,53 @@
   </section>
 
   <!-- FAQ -->
-  <section class="section" id="faq" aria-labelledby="faq-title">
-    <div class="wrap">
-      <div class="section-head"><div><span class="eyebrow">Asked by many</span><h2 id="faq-title">Questions &amp; answers</h2></div></div>
-      <div class="accordion faq-wrap">
-        <details id="java"><summary>How do I join on Java? <svg class="icon"><use href="#i-plus"/></svg></summary><div class="acc-body">Open Minecraft Java (version 1.21 up to 26.3), choose <b>Multiplayer</b>, then <b>Add Server</b>. Type <code>mc.thetitansclan.com</code> as the address, press <b>Done</b>, then <b>Join</b>.</div></details>
-        <details id="bedrock"><summary>How do I join on Bedrock? <svg class="icon"><use href="#i-plus"/></svg></summary><div class="acc-body">On phone or Windows, go to <b>Play</b>, then the <b>Servers</b> tab, scroll down and tap <b>Add Server</b>. Type <code>mc.thetitansclan.com</code> as the address and <code>19132</code> as the port, then save and join.</div></details>
-        <details id="console"><summary>How do I join on a console? <svg class="icon"><use href="#i-plus"/></svg></summary><div class="acc-body">Xbox, PlayStation and Switch don't have an <b>Add Server</b> button for outside servers, so you need a workaround to get in. Open a <b>General help</b> ticket on our Discord, tell us which console you have, and staff will walk you through it.</div></details>
-        <details><summary>How long until my rank arrives? <svg class="icon"><use href="#i-plus"/></svg></summary><div class="acc-body">The store isn't taking payments yet. Once it opens, ranks are added right after payment. If yours doesn't show, rejoin the server first. Still missing after 24 hours? Open a <b>Payments</b> ticket with your order number and username.</div></details>
-        <details><summary>Can I get a refund? <svg class="icon"><use href="#i-plus"/></svg></summary><div class="acc-body">Sometimes. You get a full refund if your item never arrived and we can't fix it, if you were charged twice, or if a child bought something without a parent's permission. Most other purchases are final once you've used them. The <a href="refunds.html">Refund policy</a> has the details.</div></details>
-        <details><summary>What's a season pass? <svg class="icon"><use href="#i-plus"/></svg></summary><div class="acc-body">A season lasts about 3 months, and each one has its own medieval theme. A season pass gives you a rank for the whole season for one price, which costs less than paying monthly. For example, Squire is ₹99 a month or ₹249 for the season.</div></details>
-        <details><summary>Does AFK time count for rewards? <svg class="icon"><use href="#i-plus"/></svg></summary><div class="acc-body">No. Time spent in the AFK pool doesn't count towards playtime rewards. Only time you're actually playing does.</div></details>
-        <details><summary>I'm under 18. Can I buy things? <svg class="icon"><use href="#i-plus"/></svg></summary><div class="acc-body">Yes, but only with a parent or guardian's permission. If a child buys something without permission, a parent can open a <b>Parents</b> ticket within 14 days for a full refund (the item is removed).</div></details>
-        <details><summary>How long do appeals take? <svg class="icon"><use href="#i-plus"/></svg></summary><div class="acc-body">There's no fixed time. Staff read appeals in order and reply in your ticket. Opening extra tickets or messaging staff won't make it faster. If your appeal is turned down, you can appeal the same ban again after 7 days.</div></details>
+  <section class="sec sec-rule" id="faq" aria-labelledby="faq-t">
+    <div class="wrap split">
+      <div class="side">
+        <div class="over">Asked a lot</div>
+        <h2 class="h2" id="faq-t" style="margin-top:6px">Questions &amp; answers</h2>
+        <p class="lede">Can't find yours? <a class="link" href="#contact">Open a ticket</a>.</p>
+      </div>
+      <div class="acc">
+        <details><summary>How do I join on Java?</summary><div class="acc-body">Open Minecraft Java Edition (any version from 1.21 to 26.3) and choose <b>Multiplayer</b>, then <b>Add Server</b>. Paste <code>mc.thetitansclan.com</code> as the address, press <b>Done</b>, then <b>Join Server</b>. The <a href="minecraft-join.html">full join guide</a> has pictures of each step.</div></details>
+        <details><summary>Can I play on Bedrock (phone or console)?</summary><div class="acc-body">Not yet. Bedrock (phone/console) is coming soon. We'll announce it here and on Discord the day it works. For now you need Minecraft Java Edition on a computer.</div></details>
+        <details><summary>How long until my rank arrives?</summary><div class="acc-body">Ranks are delivered in-game automatically, usually within a minute of paying. If yours doesn't show, leave and rejoin the server. Still missing? Open a <b>Payments</b> ticket with your order number and Minecraft username.</div></details>
+        <details><summary>Can I get a refund?</summary><div class="acc-body">Sometimes. You get a full refund if your item never arrived and we can't fix it, if you were charged twice, or if a child bought something without a parent's permission. Most other purchases are final once used. The <a href="refunds.html">refund policy</a> has the details.</div></details>
+        <details><summary>What's a season pass?</summary><div class="acc-body">A season lasts about 3 months. A season pass gives you a rank for the whole season with one payment, and it ends on its own (it doesn't renew). It costs 2.5× the monthly price, so less than paying three months. For example, Squire is ₹99 a month or ₹249 for the season. <a href="minecraft-ranks.html">Compare ranks</a>.</div></details>
+        <details><summary>Does AFK pool time count for rewards?</summary><div class="acc-body">No. Time in the AFK pool does not count toward playtime rewards. Only time you're actually playing does.</div></details>
+        <details><summary>I'm under 18. Can I buy things?</summary><div class="acc-body">Yes, but only with a parent or guardian's permission. If a child buys something without permission, a parent can open a <b>Parents</b> ticket within 14 days for a full refund (the item is removed). Parents can read more on the <a href="store.html#parents">store's parents section</a>.</div></details>
+        <details><summary>How long do appeals take?</summary><div class="acc-body">There's no fixed time. Staff read appeals in order and reply in your ticket. Opening extra tickets or messaging staff won't make it faster.</div></details>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section class="section" id="contact" aria-labelledby="contact-title">
-    <div class="wrap">
-      <div class="section-head"><div><span class="eyebrow">Summon the stewards</span><h2 id="contact-title">Contact staff</h2><p>We don't have email or phone support. The way to reach staff is a ticket on our Discord.</p></div></div>
-      <div class="contact-grid">
-        <div class="card card-pad ticket-card">
-          <svg class="icon icon-lg gold"><use href="#i-ticket"/></svg>
-          <h3>Open a ticket on Discord</h3>
-          <p class="muted">Join our Discord, go to <b style="color:var(--text)">#tickets</b> and pick the ticket type that fits.</p>
-          <ul class="ticket-types">
-            <li><svg class="icon"><use href="#i-user"/></svg><b>General help</b><span>For players: joining, in-game problems, questions.</span></li>
-            <li><svg class="icon"><use href="#i-cart"/></svg><b>Payments</b><span>Store orders, missing ranks and refunds. Have your order number ready.</span></li>
-            <li><svg class="icon"><use href="#i-shield"/></svg><b>Parents</b><span>For parents and guardians: purchases, safety or data questions.</span></li>
-            <li><svg class="icon"><use href="#i-gavel"/></svg><b>Ban appeal</b><span>Paste the answers from the <a class="gold" href="#appeal">appeal form</a>.</span></li>
-            <li><svg class="icon"><use href="#i-flag"/></svg><b>Player report</b><span>Paste the answers from the <a class="gold" href="#report">report form</a>.</span></li>
-          </ul>
-          <a class="btn btn-primary" href="community.html#discord"><svg class="icon"><use href="#i-chat"/></svg> Join our Discord</a>
+  <section class="sec sec-rule" id="contact" aria-labelledby="contact-t">
+    <div class="wrap split">
+      <div class="side">
+        <div class="over">Reach staff</div>
+        <h2 class="h2" id="contact-t" style="margin-top:6px">Contact us</h2>
+        <p class="lede">The way to reach staff is a ticket on our Discord. Go to <b>#tickets</b> and choose the type that fits.</p>
+        <div class="contact-cta">
+          <a class="btn btn-ink" href="community.html#discord"><svg class="icon"><use href="#i-chat"/></svg>Join our Discord</a>
         </div>
-        <div class="card card-pad">
-          <svg class="icon icon-lg gold"><use href="#i-book"/></svg>
-          <h3 class="mt-3">The fine print</h3>
-          <p class="muted mt-2">Plain-English policies for playing, privacy and payments.</p>
-          <div class="policy-links">
-            <a href="terms.html"><svg class="icon"><use href="#i-book"/></svg>Terms of Service<svg class="icon"><use href="#i-right"/></svg></a>
-            <a href="privacy.html"><svg class="icon"><use href="#i-lock"/></svg>Privacy policy<svg class="icon"><use href="#i-right"/></svg></a>
-            <a href="refunds.html"><svg class="icon"><use href="#i-refund"/></svg>Refund policy<svg class="icon"><use href="#i-right"/></svg></a>
-          </div>
+        <div class="fine" aria-label="Policies"><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="refunds.html">Refunds</a></div>
+      </div>
+      <div>
+        <div class="ledger tickets">
+          <div><svg class="icon"><use href="#i-headset"/></svg><b>General help</b><span>Joining, in-game problems and questions.</span></div>
+          <div><svg class="icon"><use href="#i-cart"/></svg><b>Payments</b><span>Store orders, missing ranks and refunds. Have your order number ready.</span></div>
+          <div><svg class="icon"><use href="#i-users"/></svg><b>Parents</b><span>For parents and guardians: purchases, safety or data questions.</span></div>
+          <div><svg class="icon"><use href="#i-gavel"/></svg><b>Ban appeal</b><span>Paste the answers from the <a href="#appeal">appeal form</a>.</span></div>
+          <div><svg class="icon"><use href="#i-flag"/></svg><b>Player report</b><span>Paste the answers from the <a href="#report">report form</a>.</span></div>
         </div>
+        <p class="no-dc"><svg class="icon"><use href="#i-alert"/></svg><span>Banned from our Discord, or a parent without Discord? We don't have another way in yet. Email contact is coming soon.</span></p>
       </div>
     </div>
   </section>
 </main>
 
 <footer data-site-footer></footer>
-<script src="assets/site.js"></script>
+<script src="assets/titans.js"></script>
 </body>
 </html>

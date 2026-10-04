@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" type="image/svg+xml" href="assets/ttc-icon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ranks — Squire, Knight and Titan · TheTitansClan Minecraft</title>
+<meta name="description" content="Minecraft ranks on TheTitansClan: cosmetics and comfort. Everyone starts as a free Citizen. Squire ₹99/month, Knight ₹199/month, Titan ₹349/month, or a one-time season pass.">
+<meta name="theme-color" content="#16120E">
+<meta property="og:title" content="Ranks · TheTitansClan Minecraft">
+<meta property="og:description" content="Cosmetics and comfort. Everyone starts as a Citizen.">
+<meta property="og:image" content="assets/img/citadel.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@700&family=Grenze:wght@600;700&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@600&display=swap">
+<link rel="stylesheet" href="assets/titans.css">
+<style>
+  :root { --c-citizen: #6F665A; --c-squire: #3D6FA8; --c-knight: #B3261E; --titan-wash: #EBDDB8; }
+
+  /* Plan switch: one class on #ranks decides which price shows */
+  #ranks[data-plan="month"] .p-s, #ranks[data-plan="season"] .p-m { display: none; }
+
+  .rk-head { padding: 26px 0 18px; display: grid; gap: 14px; }
+  .rk-head h1 { font-size: clamp(2.6rem, 1.8rem + 3.4vw, 4.25rem); }
+  .rk-head .lede { margin-top: 8px; }
+  .rk-head .seg { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
+  .rk-head .seg button { padding: 9px 10px; font-size: .875rem; }
+  .rk-head .seg button + button { border-left: 1.5px solid var(--ink); }
+  @media (min-width: 900px) {
+    .rk-head { grid-template-columns: 1fr auto; align-items: end; padding: 48px 0 26px; }
+    .rk-head .seg { width: auto; }
+    .rk-head .seg button { padding: 10px 18px; }
+  }
+
+  .rname { font: 700 2rem/1 var(--f-black); }
+  .price { font: 700 1.75rem/1 var(--f-head); }
+  .per { display: block; font-size: .6875rem; font-weight: 600; color: var(--ink-2); margin-top: 3px; }
+  .note-tbc { font-size: .75rem; font-weight: 500; color: var(--ink-3); white-space: nowrap; }
+  .added { margin: 0; padding: 9px 16px; font-size: .8125rem; font-weight: 600; background: #E4EFDF; border-top: 1px solid var(--live); color: var(--ink); }
+  .added a { color: var(--live); text-decoration: underline; text-underline-offset: 3px; font-weight: 700; white-space: nowrap; }
+
+  /* ---- Phone: stacked rank blocks ---- */
+  .stack { display: grid; gap: 12px; }
+  .rk { background: var(--vellum); border: 1.5px solid var(--ink); border-radius: var(--r); overflow: hidden; }
+  .rk.is-free { border-color: var(--rule); }
+  .rk .top { padding: 16px 16px 12px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; align-items: start; }
+  .rk .pr { text-align: right; }
+  .rk .tag { grid-column: 1 / -1; margin: 4px 0 0; font: 600 .8125rem/1.3 var(--f-mono); overflow-wrap: anywhere; }
+  .rk .perks { padding: 0 16px 14px; font-size: .875rem; line-height: 1.55; margin: 0; color: var(--ink); }
+  .rk .foot { display: flex; align-items: stretch; border-top: 1px solid var(--rule); font-size: .75rem; color: var(--ink-2); }
+  .rk .foot > span { flex: 1; padding: 10px 16px; display: flex; align-items: center; }
+  .rk .add { border: 0; background: var(--ink); color: var(--parch); font-weight: 700; font-size: .875rem; padding: 0 18px; min-height: 44px; }
+  .rk .add:hover { background: #000; }
+  .rk .incl { display: flex; align-items: center; padding: 0 18px; background: #E8DCC6; color: var(--c-citizen); font-weight: 700; font-size: .8125rem; }
+  .rk.is-titan { background: var(--sable); color: var(--on-sable); border-color: var(--sable); }
+  .rk.is-titan .perks { color: var(--on-sable); }
+  .rk.is-titan .per { color: var(--on-sable-2); }
+  .rk.is-titan .foot { border-color: var(--sable-3); color: var(--on-sable-2); }
+  .rk.is-titan .add { background: var(--plume); color: #fff; }
+  .rk.is-titan .add:hover { background: #A0221B; }
+  .rk.is-titan .note-tbc { color: var(--on-sable-3); }
+  .gold-tag { color: var(--or-hi); text-shadow: 0 0 8px rgba(231,196,110,.65); }
+  @media (min-width: 900px) { .stack { display: none; } }
+
+  /* ---- Desktop: comparison table ---- */
+  .cmp-wrap { display: none; }
+  @media (min-width: 900px) { .cmp-wrap { display: block; } }
+  .cmp { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; font-size: .875rem; }
+  .cmp th, .cmp td { text-align: left; vertical-align: top; }
+  .cmp thead th { background: var(--vellum); padding: 20px 16px 16px; font-weight: 400; }
+  .cmp thead th:first-child { background: transparent; width: 18%; }
+  .cmp thead th:nth-child(2) { border-radius: var(--r) 0 0 0; }
+  .cmp thead .c-titan { background: var(--sable); color: var(--on-sable); border-radius: var(--r) var(--r) 0 0; }
+  .cmp thead .c-titan .per { color: var(--on-sable-2); }
+  .cmp thead .rname { display: block; margin-bottom: 8px; }
+  .cmp thead .btn { margin-top: 14px; width: 100%; min-height: 42px; font-size: .875rem; }
+  .cmp thead .incl { margin-top: 14px; display: flex; align-items: center; justify-content: center; min-height: 42px; border-radius: var(--r); background: #E8DCC6; color: var(--c-citizen); font-weight: 700; }
+  .cmp thead .added { margin: 10px -16px -16px; }
+  .cmp tbody th, .cmp tbody td { padding: 12px 16px; border-top: 1px solid var(--rule); }
+  .cmp tbody th { font-weight: 700; padding-left: 0; }
+  .cmp tbody td { color: var(--ink-2); }
+  .cmp tbody td.t { background: var(--titan-wash); color: var(--ink); font-weight: 700; border-top-color: #DCCB9E; }
+  .cmp tbody td .icon { width: 16px; height: 16px; }
+  .cmp tbody tr:last-child td.t { border-radius: 0 0 var(--r) var(--r); }
+  .cmp-foot { display: flex; justify-content: space-between; gap: 20px; padding: 16px 0 0; font-size: .8125rem; color: var(--ink-2); }
+  .cmp-foot .basics { max-width: 70ch; }
+  .cmp-foot code, .rk code { font-family: var(--f-mono); font-size: .75rem; }
+
+  .parents { margin: 22px 0 40px; background: #E8DCC6; border-radius: var(--r); padding: 14px 16px; font-size: .875rem; color: var(--ink); }
+  .parents a { text-decoration: underline; text-underline-offset: 3px; font-weight: 600; }
+  .parents .lnks { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 6px; }
+  @media (min-width: 900px) { .parents { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin: 28px 0 60px; padding: 16px 20px; } .parents .lnks { margin: 0; flex: none; } }
+</style>
+</head>
+<body data-page="mc" data-realm="mc">
+<header data-site-header></header>
+<nav class="subnav" aria-label="Minecraft"><div class="wrap">
+  <span class="sn-title">Minecraft</span>
+  <a href="minecraft.html">Overview</a>
+  <a href="minecraft-join.html">How to join</a>
+  <a href="minecraft.html#modes">Game modes</a>
+  <a href="minecraft-ranks.html" aria-current="page">Ranks</a>
+  <a href="minecraft.html#vote">Vote</a>
+  <a href="support.html#rules">Rules</a>
+  <a href="minecraft.html#staff">Staff</a>
+  <a href="support.html#appeal">Bans &amp; appeals</a>
+  <a href="news.html">Updates</a>
+</div></nav>
+
+<main class="wrap" id="ranks" data-plan="month">
+  <div class="rk-head">
+    <div>
+      <h1 class="h1">Ranks</h1>
+      <p class="lede">Cosmetics and comfort. Everyone starts as a Citizen. Ranks are delivered in-game.</p>
+    </div>
+    <div class="seg" role="group" aria-label="How to pay">
+      <button type="button" data-plan="month" aria-pressed="true">Monthly<small>renews · cancel anytime</small></button>
+      <button type="button" data-plan="season" aria-pressed="false">Season pass<small>one-time · about 3 months</small></button>
+    </div>
+  </div>
+
+  <!-- Phone: one block per rank -->
+  <div class="stack">
+    <article class="rk is-free">
+      <div class="top">
+        <h2 class="rname" style="color:var(--c-citizen)">Citizen</h2>
+        <div class="pr"><span class="price">Free</span><span class="per">every new player</span></div>
+        <p class="tag">YourName</p>
+      </div>
+      <p class="perks">Plain name tag · 1 home · wooden starter kit · player shops · create or join a clan · <code>/spawn /sethome /home /tpa /msg /pay /warp /rtp /vote /grave /kit citizen</code> and more</p>
+      <div class="foot"><span>You already have this</span><span class="incl">Included</span></div>
+    </article>
+
+    <article class="rk" data-box="squire">
+      <div class="top">
+        <h2 class="rname" style="color:var(--c-squire)">Squire</h2>
+        <div class="pr"><span class="price"><span class="p-m">₹99</span><span class="p-s">₹249</span></span><span class="per"><span class="p-m">per month · renews</span><span class="p-s">one-time · about 3 months</span></span></div>
+        <p class="tag"><span style="color:var(--c-squire)">[Squire]</span> YourName · (Clan)</p>
+      </div>
+      <p class="perks">Coloured name tag · clan name in chat · 2 homes · iron starter kit <span class="note-tbc">(to confirm)</span> · <code>/feed /workbench</code> · temporary fly 30 s per vote <span class="note-tbc">(to confirm)</span></p>
+      <div class="foot"><span><span class="p-m">Cancel anytime from your account</span><span class="p-s">One payment · ends on its own</span></span><button class="add" type="button" data-rank="squire" data-name="Squire">Add to cart</button></div>
+      <p class="added" role="status" hidden></p>
+    </article>
+
+    <article class="rk" data-box="knight">
+      <div class="top">
+        <h2 class="rname" style="color:var(--c-knight)">Knight</h2>
+        <div class="pr"><span class="price"><span class="p-m">₹199</span><span class="p-s">₹499</span></span><span class="per"><span class="p-m">per month · renews</span><span class="p-s">one-time · about 3 months</span></span></div>
+        <p class="tag"><b style="color:var(--c-knight)">[KNIGHT]</b> YourName · <span style="color:var(--c-knight)">(Clan)</span></p>
+      </div>
+      <p class="perks">Everything in Squire · bold coloured tag · coloured clan name · custom join message · 3 homes · diamond starter kit · <code>/enderchest</code> · temporary fly 1 min per vote <span class="note-tbc">(to confirm)</span></p>
+      <div class="foot"><span><span class="p-m">Cancel anytime from your account</span><span class="p-s">One payment · ends on its own</span></span><button class="add" type="button" data-rank="knight" data-name="Knight">Add to cart</button></div>
+      <p class="added" role="status" hidden></p>
+    </article>
+
+    <article class="rk is-titan" data-box="titan">
+      <div class="top">
+        <h2 class="rname" style="color:var(--or-hi)">Titan</h2>
+        <div class="pr"><span class="price"><span class="p-m">₹349</span><span class="p-s">₹849</span></span><span class="per"><span class="p-m">per month · renews</span><span class="p-s">one-time · about 3 months</span></span></div>
+        <p class="tag"><span class="gold-tag">✦ TITAN ✦ YourName</span> · <span style="color:#F0A266">(Clan)</span></p>
+      </div>
+      <p class="perks">Everything in Knight <span class="note-tbc">(/enderchest to confirm)</span> · gold animated tag · glow in the hub &amp; safe zones · custom clan colour · <code>/nick</code> · 5 homes · netherite starter kit · <code>/back /repair /repair all</code> · temporary fly 90 s per vote <span class="note-tbc">(to confirm)</span></p>
+      <div class="foot"><span><span class="p-m">Cancel anytime from your account</span><span class="p-s">One payment · ends on its own</span></span><button class="add" type="button" data-rank="titan" data-name="Titan">Add to cart</button></div>
+      <p class="added" role="status" hidden></p>
+    </article>
+  </div>
+
+  <!-- Desktop: comparison table -->
+  <div class="cmp-wrap">
+    <table class="cmp">
+      <caption class="sr-only">What each rank includes</caption>
+      <thead>
+        <tr>
+          <th scope="col"><span class="sr-only">Feature</span></th>
+          <th scope="col">
+            <span class="rname" style="color:var(--c-citizen)">Citizen</span>
+            <span class="price">Free</span><span class="per">every new player</span>
+            <span class="incl">Included</span>
+          </th>
+          <th scope="col" data-box="squire">
+            <span class="rname" style="color:var(--c-squire)">Squire</span>
+            <span class="price"><span class="p-m">₹99</span><span class="p-s">₹249</span></span><span class="per"><span class="p-m">per month · renews</span><span class="p-s">one-time · about 3 months</span></span>
+            <button class="btn btn-ink" type="button" data-rank="squire" data-name="Squire">Add to cart</button>
+            <p class="added" role="status" hidden></p>
+          </th>
+          <th scope="col" data-box="knight">
+            <span class="rname" style="color:var(--c-knight)">Knight</span>
+            <span class="price"><span class="p-m">₹199</span><span class="p-s">₹499</span></span><span class="per"><span class="p-m">per month · renews</span><span class="p-s">one-time · about 3 months</span></span>
+            <button class="btn btn-ink" type="button" data-rank="knight" data-name="Knight">Add to cart</button>
+            <p class="added" role="status" hidden></p>
+          </th>
+          <th scope="col" class="c-titan" data-box="titan">
+            <span class="rname" style="color:var(--or-hi)">Titan</span>
+            <span class="price"><span class="p-m">₹349</span><span class="p-s">₹849</span></span><span class="per"><span class="p-m">per month · renews</span><span class="p-s">one-time · about 3 months</span></span>
+            <button class="btn btn-play" type="button" data-rank="titan" data-name="Titan">Add to cart</button>
+            <p class="added" role="status" hidden></p>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Name tag</th><td>Plain</td><td>Coloured</td><td>Bold coloured</td><td class="t">Gold, animated</td></tr>
+        <tr><th scope="row">Clan in chat</th><td>—</td><td>Clan name</td><td>Coloured clan name</td><td class="t">Custom clan colour</td></tr>
+        <tr><th scope="row">Homes</th><td>1</td><td>2</td><td>3</td><td class="t">5</td></tr>
+        <tr><th scope="row">Starter kit</th><td>Wooden</td><td>Iron <span class="note-tbc">(to confirm)</span></td><td>Diamond</td><td class="t">Netherite</td></tr>
+        <tr><th scope="row">Join message</th><td>—</td><td>—</td><td>Custom</td><td class="t">Custom</td></tr>
+        <tr><th scope="row">Glow</th><td>—</td><td>—</td><td>—</td><td class="t">Hub &amp; safe zones</td></tr>
+        <tr><th scope="row">Extra commands</th><td>Basics</td><td>/feed /workbench</td><td>+ /enderchest</td><td class="t">+ /nick /back /repair /repair all<br><span class="note-tbc">/enderchest (to confirm)</span></td></tr>
+        <tr><th scope="row">Temporary fly per vote</th><td>—</td><td>30 s <span class="note-tbc">(to confirm)</span></td><td>1 min <span class="note-tbc">(to confirm)</span></td><td class="t">90 s <span class="note-tbc">(to confirm)</span></td></tr>
+        <tr><th scope="row">Shops &amp; clans</th><td><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only">Yes</span></td><td><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only">Yes</span></td><td><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only">Yes</span></td><td class="t"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only">Yes</span></td></tr>
+      </tbody>
+    </table>
+    <div class="cmp-foot">
+      <p class="basics"><b>Basics for everyone:</b> <code>/spawn /sethome /home /delhome /tpa /tpaccept /tpdeny /msg /bal /pay /warp /help /rtp /vote /grave /kit citizen</code></p>
+      <p>Delivered in-game · prices in ₹</p>
+    </div>
+  </div>
+
+  <div class="parents">
+    <p style="margin:0"><b>Parents:</b> Monthly ranks renew each month until cancelled. A season pass is a single payment for about 3 months and ends on its own — nothing renews.</p>
+    <div class="lnks"><a href="refunds.html">Refunds</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="store.html#parents">For parents</a></div>
+  </div>
+</main>
+
+<footer data-site-footer></footer>
+<script src="assets/titans.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById("ranks");
+    var segBtns = root.querySelectorAll(".seg [data-plan]");
+    var LABEL = { month: "Monthly", season: "Season pass" };
+    var plan = "month";
+
+    function setPlan(p) {
+      plan = p;
+      root.dataset.plan = p;
+      segBtns.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.plan === p)); });
+    }
+    segBtns.forEach(function (b) { b.addEventListener("click", function () { setPlan(b.dataset.plan); }); });
+    if (new URLSearchParams(location.search).get("plan") === "season") setPlan("season");
+
+    // Show "In your cart" under every block for this rank.
+    function showAdded(rank, name, which) {
+      root.querySelectorAll('[data-box="' + rank + '"] .added').forEach(function (p) {
+        p.innerHTML = name + " · " + LABEL[which] + " is in your cart. <a href=\"store.html?tab=mc\">Go to store →</a>";
+        p.hidden = false;
+      });
+    }
+
+    root.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-rank]");
+      if (!b || !window.TT_CART) return;
+      var rank = b.dataset.rank, name = b.dataset.name;
+      var id = rank + "@" + plan;
+      // A rank is one per player: keep qty 1 and swap monthly/season if the other one is already there.
+      var cart = window.TT_CART.get().filter(function (x) { return !/^(squire|knight|titan)@/.test(x.id); }); // one rank at a time, same rule as the store
+      cart.push({ id: id, qty: 1 });
+      window.TT_CART.set(cart);
+      window.TT_TOAST(name + " · " + LABEL[plan] + " added to your cart");
+      showAdded(rank, name, plan);
+    });
+
+    // Already in the cart from before? Say so.
+    if (window.TT_CART) window.TT_CART.get().forEach(function (x) {
+      var m = /^(squire|knight|titan)@(month|season)$/.exec(x.id);
+      if (m) showAdded(m[1], m[1].charAt(0).toUpperCase() + m[1].slice(1), m[2]);
+    });
+  })();
+</script>
+</body>
+</html>

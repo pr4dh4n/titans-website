@@ -4,399 +4,327 @@
 <meta charset="utf-8">
 <link rel="icon" type="image/svg+xml" href="assets/ttc-icon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Titans Community Cup #4 · CS2 · TheTitansClan</title>
-<meta name="description" content="Titans Community Cup #4: a 5v5 CS2 cup for 16 teams on Saturday 17 October 2026, 18:00 UTC. Format, bracket, rules and team signup.">
-<meta name="theme-color" content="#F1E7D0">
+<title>Community Cup #4 · TheTitansClan CS2</title>
+<meta name="description" content="Titans Community Cup #4: a CS2 cup on Sat 17 Oct 2026, 18:00 UTC. 5v5, 16 teams, single elimination, Bo1 until the Bo3 final. Signups close Thu 15 Oct.">
+<meta name="theme-color" content="#16120E">
+<meta property="og:title" content="Titans Community Cup #4 · Sat 17 Oct">
+<meta property="og:description" content="5v5 CS2 cup. 16 teams, single elimination. Signups close Thu 15 Oct.">
+<meta property="og:image" content="assets/img/citadel.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600&family=UnifrakturMaguntia&display=swap">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@700&family=Grenze:wght@600;700&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@600&display=swap">
+<link rel="stylesheet" href="assets/titans.css">
 <style>
-  main [hidden] { display: none !important; }   /* page parts below set display, so make [hidden] win */
-
-  /* Hero */
-  .cup-hero-grid { display: grid; gap: var(--s6); align-items: center; }
-  @media (min-width: 900px) { .cup-hero-grid { grid-template-columns: 1fr 380px; gap: var(--s7); } }
-  .cup-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: var(--s3); }
-  .when { display: grid; gap: var(--s2); margin: 0 0 var(--s5); font-size: var(--fs-sm); color: var(--text-2); }
-  .when div { display: flex; gap: var(--s2); align-items: flex-start; }
-  .when .icon { color: var(--cs); width: 18px; height: 18px; margin-top: 2px; }
-  .when b { color: var(--text); }
-  .cd-card { padding: var(--s5); display: grid; gap: var(--s4); text-align: center; }
-  .cd-card .eyebrow { justify-content: center; margin: 0; }
-  .cd { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3); }
-  .cd div { padding: var(--s4) var(--s2); background: var(--surface-2); border-radius: var(--r); border: 1px solid var(--line); }
-  .cd b { display: block; font: 800 clamp(2.5rem, 2rem + 2vw, 3.25rem)/1 var(--font-display); font-variant-numeric: tabular-nums; }
-  .cd span { display: block; margin-top: 6px; font: 700 .75rem/1 var(--font-display); letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); }
-  .cd-note { font-size: var(--fs-xs); color: var(--text-3); margin: 0; }
-  .cd-msg { font: 700 1.375rem/1.2 var(--font-display); margin: 0; }
-
-  /* Layout: facts + tabs on the left, signup on the right (desktop); facts, signup, tabs (phones) */
-  .cup-layout { display: grid; gap: var(--s6); grid-template-areas: "facts" "signup" "tabs"; }
-  .cup-facts { grid-area: facts; }
-  .cup-signup { grid-area: signup; scroll-margin-top: calc(var(--header-h) + 16px); }
-  .cup-tabs { grid-area: tabs; min-width: 0; scroll-margin-top: calc(var(--header-h) + 16px); }
-  @media (min-width: 1100px) {
-    .cup-layout { grid-template-columns: minmax(0, 1fr) 380px; grid-template-areas: "facts signup" "tabs signup"; column-gap: var(--s7); row-gap: var(--s6); align-items: start; }
-    .cup-signup { grid-row: 1 / span 2; align-self: start; }
-  }
-  @media (min-width: 1100px) and (min-height: 1000px) {
-    .cup-signup { position: sticky; top: calc(var(--header-h) + 16px); }
-  }
-
-  /* Key facts */
-  .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s3); }
-  @media (min-width: 600px) { .facts { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-  .facts > div { padding: var(--s4); background: var(--surface); border: 1px solid var(--line-2); border-radius: var(--r); box-shadow: inset 0 0 0 3px var(--surface), inset 0 0 0 4px var(--line); }
-  .facts .icon { color: var(--gold); width: 22px; height: 22px; margin-bottom: var(--s2); }
-  .facts span { display: block; font-size: var(--fs-xs); color: var(--text-3); letter-spacing: .06em; text-transform: uppercase; font-weight: 700; }
-  .facts b { display: block; margin-top: 4px; font: 700 1.0625rem/1.2 var(--font-display); }
-  .facts small { display: block; margin-top: 4px; font-size: var(--fs-xs); color: var(--text-2); }
-
-  /* Tabs */
-  .cup-tabs .tabs { margin-bottom: var(--s5); }
-  @media (max-width: 599px) { .cup-tabs .tabs { gap: var(--s4); } .cup-tabs .tab { font-size: .875rem; letter-spacing: .06em; } }
-  .panel-body { max-width: 68ch; color: var(--text-2); }
-  .panel-body h3 { font-size: 1.25rem; color: var(--text); margin: var(--s6) 0 var(--s3); }
-  .panel-body h3:first-child { margin-top: 0; }
-  .ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
-  .ticks li { display: flex; gap: var(--s3); align-items: flex-start; }
-  .ticks .icon { color: var(--gold); flex: none; margin-top: 3px; width: 18px; height: 18px; }
-  .ticks b { color: var(--text); }
-  .timeline { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--line-2); display: grid; gap: var(--s4); }
-  .timeline li { position: relative; padding-left: var(--s5); }
-  .timeline li::before { content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; transform: rotate(45deg); background: var(--surface); border: 2px solid var(--crimson); }
-  .timeline li.is-key::before { background: var(--crimson); }
-  .timeline time, .timeline .t { display: block; font: 700 .875rem/1.2 var(--font-display); letter-spacing: .04em; color: var(--text); }
-  .timeline span { font-size: var(--fs-sm); }
-
-  /* Rules */
-  .rules { list-style: none; counter-reset: rule; margin: 0; padding: 0; display: grid; gap: var(--s3); }
-  .rules li { counter-increment: rule; display: grid; grid-template-columns: 40px 1fr; gap: var(--s3); padding: var(--s3) 0; border-bottom: 1px solid var(--line); }
-  .rules li:last-child { border-bottom: 0; }
-  .rules li::before { content: counter(rule); font: 800 1.5rem/1 var(--font-display); color: var(--crimson); text-align: center; padding-top: 2px; }
-  .rules b { display: block; color: var(--text); margin-bottom: 2px; }
-
-  /* Bracket: one round at a time on narrow screens, all four columns when there's room */
-  .bracket-wrap { container-type: inline-size; }
-  .round-pick { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-bottom: var(--s4); }
-  .round-pick .filter { padding: 0 4px; font-size: .875rem; }
-  .bracket { display: block; }
-  .round { display: none; flex-direction: column; }
-  .bracket[data-show="1"] .round[data-r="1"], .bracket[data-show="2"] .round[data-r="2"],
-  .bracket[data-show="3"] .round[data-r="3"], .bracket[data-show="4"] .round[data-r="4"] { display: flex; }
-  .round-title { font: 700 .8125rem/1 var(--font-display); letter-spacing: .1em; text-transform: uppercase; color: var(--text-2); display: flex; justify-content: space-between; gap: var(--s2); padding-bottom: var(--s3); margin-bottom: var(--s2); border-bottom: 1px solid var(--line); }
-  .round-title small { font: 600 .75rem/1 var(--font-body); color: var(--text-3); letter-spacing: .04em; text-transform: none; }
-  .round-body { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s3); }
-  .round[data-r="3"] .round-body, .round[data-r="4"] .round-body { grid-template-columns: minmax(0, 1fr); max-width: 320px; }
-  .pair { display: contents; }
-  .bm { position: relative; background: var(--surface); border: 1px solid var(--line-2); border-radius: var(--r); font-size: var(--fs-sm); }
-  .bm-head { padding: 5px 10px; font: 700 .6875rem/1 var(--font-display); letter-spacing: .08em; color: var(--text-3); border-bottom: 1px solid var(--line); text-transform: uppercase; }
-  .bm-slot { display: flex; align-items: center; gap: var(--s2); padding: 6px 10px; color: var(--text-3); font-style: italic; }
-  .bm-slot + .bm-slot { border-top: 1px dashed var(--line); }
-  .bm-slot i { width: 18px; height: 18px; flex: none; border-radius: 3px; background: var(--surface-3); }
-  .bm.is-final { border-color: var(--gold); box-shadow: var(--glow-gold); }
-  .bm.is-final .bm-head { color: var(--gold); }
-  @container (min-width: 600px) {
-    .round-pick { display: none; }
-    .bracket { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 28px; }
-    .bracket .round { display: flex !important; }
-    .round-body, .round[data-r="3"] .round-body, .round[data-r="4"] .round-body { flex: 1; display: flex; flex-direction: column; max-width: none; gap: 0; }
-    .round[data-r="4"] .round-body { justify-content: center; }
-    .pair { flex: 1; display: flex; flex-direction: column; justify-content: space-around; position: relative; }
-    .bm { margin: 5px 0; }
-    .pair .bm::after { content: ""; position: absolute; left: 100%; top: 50%; width: 14px; border-top: 1.5px solid var(--line-2); }
-    .pair::after { content: ""; position: absolute; right: -14px; top: 25%; bottom: 25%; border-right: 1.5px solid var(--line-2); }
-    .pair::before { content: ""; position: absolute; left: calc(100% + 14px); top: 50%; width: 14px; border-top: 1.5px solid var(--line-2); }
+  /* ---- Hero band ---- */
+  .ev-hero { padding: 26px 0 28px; }
+  .ev-hero .wrap { display: grid; gap: 24px; }
+  .ev-l { display: flex; flex-direction: column; gap: 14px; }
+  .ev-hero .over { color: var(--argent-2); letter-spacing: 1.4px; font-weight: 800; }
+  .ev-hero h1 { color: var(--or-hi); font-size: clamp(2.625rem, 1.6rem + 4vw, 4.5rem); }
+  .ev-hero .lede { color: var(--on-sable-2); }
+  .when { display: grid; gap: 4px; font-size: .9375rem; }
+  .when b { font-weight: 700; }
+  .when span { font-size: .8125rem; color: var(--on-sable-2); }
+  .cup-cd { display: flex; gap: 16px; align-items: baseline; font-family: var(--f-head); font-weight: 600; line-height: 1; padding: 12px 0; border-top: 1px solid var(--sable-3); border-bottom: 1px solid var(--sable-3); }
+  .cup-cd > div { display: flex; align-items: baseline; gap: 3px; }
+  .cup-cd span { font-size: 2.375rem; }
+  .cup-cd small { font-size: .875rem; color: var(--on-sable-2); }
+  .cup-cd .s span { color: #F0928A; }
+  .cup-cd .msg { font: 700 1rem var(--f-text); }
+  .ev-btns { display: flex; flex-wrap: wrap; gap: 10px; }
+  .ev-btns .btn-play { flex: 1; min-height: 52px; }
+  .ev-btns .btn-line-light { min-height: 52px; border-color: #5A5047; }
+  .ev-facts { margin: 0; display: grid; grid-template-columns: auto 1fr; font-size: .875rem; border-top: 3px solid var(--argent); }
+  .ev-facts dt, .ev-facts dd { margin: 0; padding: 10px 0; border-bottom: 1px solid var(--sable-3); }
+  .ev-facts dt { color: var(--on-sable-2); padding-right: 18px; }
+  .ev-facts dd { font-weight: 600; }
+  .ev-facts dd small { display: block; font-weight: 400; color: var(--on-sable-2); }
+  .su-state { display: inline-flex; align-self: flex-start; }
+  .su-state.bill-open { color: #7CCB86; }
+  .su-state.closed { color: var(--on-sable-2); }
+  @media (min-width: 960px) {
+    .ev-hero { padding: 52px 0; }
+    .ev-hero .wrap { grid-template-columns: minmax(0,7fr) minmax(0,5fr); gap: 56px; align-items: end; }
+    .ev-l { gap: 18px; }
+    .cup-cd span { font-size: 2.875rem; }
+    .ev-btns .btn-play { flex: none; padding: 0 30px; min-height: 56px; }
+    .ev-btns .btn-line-light { min-height: 56px; }
   }
 
-  /* Signup card */
-  .cup-signup .form { gap: var(--s3); }
-  .su-head h2 { font-size: 1.5rem; }
-  .su-head p { font-size: var(--fs-sm); color: var(--text-2); margin: var(--s2) 0 0; }
-  .su-players { border: 0; margin: 0; padding: 0; min-width: 0; }
-  .su-players legend { padding: 0; margin-bottom: 6px; }
-  .su-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s2) var(--s3); }
-  .su-grid .label { font-weight: 600; color: var(--text-2); }
-  .check-row { display: flex; gap: var(--s3); align-items: flex-start; font-size: var(--fs-sm); color: var(--text-2); }
-  .check-row input { appearance: none; width: 22px; height: 22px; flex: none; border: 1.5px solid var(--line-2); border-radius: 5px; background: #FDF9EF; display: grid; place-items: center; margin: 0; cursor: pointer; }
-  .check-row input:checked { background: var(--gilt); border-color: var(--gold); }
-  .check-row input:checked::after { content: ""; width: 6px; height: 11px; border: solid var(--gold-ink); border-width: 0 2.5px 2.5px 0; transform: rotate(45deg) translate(-1px, -1px); }
-  .check-row label { cursor: pointer; padding-top: 1px; }
-  .check-row a { color: var(--gold); text-decoration: underline; text-underline-offset: 2px; }
-  .field.is-invalid .check-row input { border-color: var(--danger); box-shadow: 0 0 0 3px var(--danger-wash); }
-  .su-note { font-size: var(--fs-xs); color: var(--text-3); margin: 0; display: flex; gap: 6px; align-items: flex-start; }
-  .su-note .icon { width: 14px; height: 14px; margin-top: 2px; flex: none; }
-  .su-closed { display: grid; gap: var(--s3); }
+  /* ---- Body: tabs + signup ---- */
+  .ev-main { display: grid; gap: 40px; align-items: start; }
+  @media (min-width: 1000px) { .ev-main { grid-template-columns: minmax(0,1fr) 400px; gap: 48px; } }
+  .tabbar { display: flex; gap: 22px; border-bottom: 1px solid var(--rule); overflow-x: auto; scrollbar-width: none; }
+  .tabbar::-webkit-scrollbar { display: none; }
+  .tabbar [role="tab"] { flex: none; border: 0; background: none; padding: 12px 0 10px; margin-bottom: -1px; border-bottom: 3px solid transparent; font-weight: 700; font-size: .9375rem; color: var(--ink-3); }
+  .tabbar [role="tab"][aria-selected="true"] { color: var(--ink); border-bottom-color: var(--argent); }
+  .tabpanel { padding-top: 22px; }
+  .tabpanel h3 { font: 700 1.375rem/1.15 var(--f-head); margin: 26px 0 8px; }
+  .tabpanel h3:first-child { margin-top: 0; }
+  .tabpanel p { color: var(--ink-2); max-width: 62ch; }
+  .rows { list-style: none; margin: 0; padding: 0; border-top: 3px solid var(--argent); }
+  .rows li { display: grid; grid-template-columns: 112px minmax(0,1fr); gap: 4px 16px; padding: 11px 0; border-bottom: 1px solid var(--rule); font-size: .9375rem; }
+  .rows .d { font: 600 .75rem/1.9 var(--f-mono); color: var(--argent-dark); }
+  .rows li.key .d { color: var(--plume); }
+  .rows b { display: block; }
+  .rows span.t { color: var(--ink-2); }
+  @media (max-width: 480px) { .rows li { grid-template-columns: 1fr; } .rows .d { line-height: 1.4; } }
+  .rules { list-style: none; margin: 0; padding: 0; counter-reset: r; border-top: 3px solid var(--argent); }
+  .rules li { counter-increment: r; display: grid; grid-template-columns: 28px minmax(0,1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--rule); font-size: .9375rem; color: var(--ink-2); }
+  .rules li::before { content: counter(r); font: 600 1.375rem/1 var(--f-head); color: var(--argent); }
+  .rules b { display: block; color: var(--ink); }
+  .note { margin-top: 16px; padding: 12px 14px; border: 1.5px solid var(--argent); border-radius: var(--r); font-size: .875rem; color: var(--ink-2); display: flex; gap: 10px; }
+  .note .icon { color: var(--argent); margin-top: 2px; }
+  .empty { padding: 28px 0; text-align: center; color: var(--ink-2); display: grid; justify-items: center; gap: 6px; }
+  .empty .icon { width: 30px; height: 30px; color: var(--argent); }
+  .empty b { color: var(--ink); font: 700 1.25rem/1.2 var(--f-head); }
+
+  /* Bracket on parchment */
+  .rpick { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 14px; }
+  .b-cols, .b-grid { display: grid; grid-template-columns: minmax(0,1fr); gap: 14px; }
+  .b-cols span { font-size: .6875rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--argent-dark); }
+  .b-col { display: grid; gap: 8px; align-content: start; }
+  .b-m { border: 1px solid var(--rule-2); border-radius: 4px; overflow: hidden; font-size: .8125rem; background: var(--vellum); }
+  .b-m div { padding: 6px 10px; color: var(--ink-3); line-height: 1.35; }
+  .b-m div + div { border-top: 1px solid var(--rule); }
+  .b-m em { display: block; font-style: normal; font-size: .6875rem; font-weight: 700; color: var(--ink-3); padding: 4px 10px; background: var(--parch); border-bottom: 1px solid var(--rule); }
+  .b-col.fin .b-m { border-color: var(--or); }
+  .b-cols span:not(.on), .b-grid .b-col:not(.on) { display: none; }
+  @media (min-width: 700px) {
+    .rpick { display: none; }
+    .b-cols, .b-grid { grid-template-columns: repeat(4, minmax(0,1fr)); }
+    .b-cols span:not(.on), .b-grid .b-col:not(.on) { display: grid; }
+    .b-cols span:not(.on) { display: block; }
+    .b-grid { height: 520px; }
+    .b-col { display: flex !important; flex-direction: column; justify-content: space-around; gap: 0; }
+    .b-m em { display: none; }
+  }
+  .seed { font-size: .8125rem; color: var(--ink-3); margin-top: 12px; }
+
+  /* Signup */
+  .su { padding: 20px; }
+  @media (min-width: 1000px) { .su-wrap { position: sticky; top: calc(var(--head) + 66px); } .su { padding: 24px; } }
+  .su h2 { font: 700 1.75rem/1.1 var(--f-head); }
+  .su .intro { font-size: .875rem; color: var(--ink-2); margin: 6px 0 16px; }
+  .su fieldset { border: 0; padding: 0; margin: 0; min-width: 0; display: grid; gap: 10px; }
+  .su legend { padding: 0; margin-bottom: 8px; }
+  .su .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .su .grid2 .field { min-width: 0; }
+  .su .pass { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); font-size: .875rem; }
+  .su .pass a { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .su .pass a:hover { color: var(--plume); }
+  .su .small { font-size: .75rem; color: var(--ink-3); }
+  .su .ok-box .btn { margin-top: 12px; }
+  .mono-in { font-family: var(--f-mono); font-weight: 600; font-size: .9375rem; }
+  .btn-steel { background: var(--argent); color: #fff; font-weight: 800; min-height: 52px; }
+  .btn-steel:hover { background: var(--argent-dark); }
 </style>
 </head>
-<body data-page="events">
+<body data-page="cs" data-realm="cs">
 <header data-site-header></header>
 
+<nav class="subnav sn-cs" aria-label="CS2">
+  <div class="wrap">
+    <span class="sn-title">CS2</span>
+    <a href="cs2.html">Overview</a>
+    <a href="cs2.html#tryouts">Tryouts</a>
+    <a href="event.html" aria-current="page">Community Cup</a>
+    <a href="store.html?tab=cs">Shop</a>
+    <a href="cs2.html#servers" style="opacity:.8">Servers · soon</a>
+  </div>
+</nav>
+
 <main>
-  <!-- HERO -->
-  <section class="hero area-hero area-cs" aria-labelledby="cup-title">
+  <section class="band ev-hero" aria-labelledby="h1">
     <div class="wrap">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="events.html">Events</a><span>/</span><span>Community Cup #4</span></nav>
-      <div class="cup-hero-grid">
+      <div class="ev-l">
+        <span class="bill bill-open su-state" id="su-state">Signups open</span>
+        <div class="over">Titans CS2 · Community Cup</div>
+        <h1 class="h1" id="h1">Community Cup #4</h1>
+        <p class="lede" style="margin:0">A CS2 cup for any team of five. Sixteen teams, single elimination, one trophy.</p>
+        <div class="when"><b>Saturday 17 October 2026 · 18:00 UTC</b><span id="local" hidden></span></div>
+        <div class="cup-cd" id="cup-cd" aria-live="off"></div>
+        <div class="ev-btns">
+          <a class="btn btn-play" href="#signup">REGISTER TEAM</a>
+          <a class="btn btn-line-light" href="#rules">Read the rules</a>
+        </div>
+      </div>
+      <dl class="ev-facts">
+        <dt>Format</dt><dd>5v5 · single elimination</dd>
+        <dt>Matches</dt><dd>Best of one<small>The final is best of three</small></dd>
+        <dt>Teams</dt><dd>16</dd>
+        <dt>Signups close</dt><dd>Thu 15 Oct</dd>
+        <dt>Draw</dt><dd>Fri 16 Oct<small>Seeds drawn live on Discord</small></dd>
+        <dt>Team pass</dt><dd>₹999 · one-time<small>One pass covers the whole team</small></dd>
+        <dt>Prize</dt><dd>Trophy + Discord role</dd>
+      </dl>
+    </div>
+  </section>
+
+  <div class="wrap sec ev-main">
+    <div class="ev-tabs" id="cup-tabs">
+      <div class="tabbar" role="tablist" aria-label="Cup details">
+        <button type="button" role="tab" id="tab-overview" aria-selected="true" aria-controls="overview">Overview</button>
+        <button type="button" role="tab" id="tab-bracket" aria-selected="false" aria-controls="bracket">Bracket</button>
+        <button type="button" role="tab" id="tab-rules" aria-selected="false" aria-controls="rules">Rules</button>
+        <button type="button" role="tab" id="tab-results" aria-selected="false" aria-controls="results">Results</button>
+      </div>
+
+      <div class="tabpanel" id="overview" role="tabpanel" aria-labelledby="tab-overview">
+        <h3>What it is</h3>
+        <p>Our own CS2 tournament, open to the community. Sixteen teams, single elimination: lose a match and you're out. Every match is best of one, except the final, which is best of three.</p>
+        <h3>Who can play</h3>
+        <p>Any team of five, plus one sub if you like. The captain registers the team and talks to the admins. Every player should be on our Discord — that's where the bracket, match calls and server details are posted.</p>
+        <h3>Schedule</h3>
+        <ol class="rows">
+          <li><span class="d">Thu 15 Oct</span><span><b>Signups close</b></span></li>
+          <li><span class="d">Fri 16 Oct</span><span><b>The draw</b><span class="t">Seeds are drawn live on Discord. The bracket goes up here after.</span></span></li>
+          <li class="key"><span class="d">Sat 17 Oct · 18:00</span><span><b>Round of 16 starts</b><span class="t">Times are UTC. Then quarter-finals and semi-finals, all best of one.</span></span></li>
+          <li class="key"><span class="d">Last</span><span><b>The final · best of three</b><span class="t">Winners get the trophy and their Discord role.</span></span></li>
+        </ol>
+        <h3>Entry</h3>
+        <p>Entry needs the Cup #4 team pass: <b style="color:var(--ink)">₹999, one-time</b>, one pass for the whole team. <a class="link" href="store.html?tab=cs">Get it in the store</a></p>
+        <div class="note"><svg class="icon"><use href="#i-server"/></svg><span>Our CS2 community servers aren't open yet. Admins confirm where matches are played on Discord before the cup.</span></div>
+      </div>
+
+      <div class="tabpanel" id="bracket" role="tabpanel" aria-labelledby="tab-bracket" hidden>
+        <div class="note" style="margin-top:0"><svg class="icon"><use href="#i-calendar"/></svg><span>All 16 slots are open. Seeds are drawn live on Discord after signups close, on Fri 16 Oct. Team names go up here after the draw.</span></div>
+        <div class="rpick" role="group" aria-label="Choose a round">
+          <button class="filter" type="button" data-round="0" aria-pressed="true">Last 16</button>
+          <button class="filter" type="button" data-round="1" aria-pressed="false">Quarters</button>
+          <button class="filter" type="button" data-round="2" aria-pressed="false">Semis</button>
+          <button class="filter" type="button" data-round="3" aria-pressed="false">Final</button>
+        </div>
+        <div class="b-cols" id="b-cols" style="margin:18px 0 10px"><span class="on">Round of 16 · Bo1</span><span>Quarter-finals · Bo1</span><span>Semi-finals · Bo1</span><span>Final · Bo3</span></div>
+        <div class="b-grid" id="b-grid"></div>
+      </div>
+
+      <div class="tabpanel" id="rules" role="tabpanel" aria-labelledby="tab-rules" hidden>
+        <ol class="rules">
+          <li><span><b>Teams</b>Five players and up to one sub. The captain speaks for the team with the admins.</span></li>
+          <li><span><b>Format</b>Single elimination. Every match is best of one; the final is best of three.</span></li>
+          <li><span><b>Be on our Discord</b>Every player. The bracket, match calls and server details are posted there.</span></li>
+          <li><span><b>No cheats</b>No cheats, scripts or bug exploits. A team that breaks this is removed from the cup.</span></li>
+          <li><span><b>Respect everyone</b>No abuse or harassment of players or admins, in game or on Discord.</span></li>
+          <li><span><b>Admins decide</b>If something isn't covered here, the admins decide, and their decision stands.</span></li>
+        </ol>
+        <div class="note"><svg class="icon"><use href="#i-alert"/></svg><span>Admins confirm the match details — check-in, maps and servers — on Discord before the cup.</span></div>
+      </div>
+
+      <div class="tabpanel" id="results" role="tabpanel" aria-labelledby="tab-results" hidden>
+        <div class="empty"><svg class="icon"><use href="#i-trophy"/></svg><b>No results yet</b><span>Cup #4 is played on Sat 17 Oct. The winners go up here after the final.</span></div>
+      </div>
+    </div>
+
+    <aside class="su-wrap" id="signup" aria-labelledby="su-title">
+      <form class="panel su form" id="su-form" data-validate data-title="Community Cup #4 team signup">
         <div>
-          <div class="cup-tags"><span class="chip chip-cs">CS2</span><span class="chip" id="su-chip">Signups open</span></div>
-          <h1 id="cup-title">Titans Community Cup #4</h1>
-          <p class="lede">A one-night CS2 cup for any team of five. Sixteen teams, single elimination, one trophy.</p>
-          <div class="when">
-            <div><svg class="icon"><use href="#i-calendar"/></svg><span><b>Saturday 17 October 2026 · 18:00 UTC</b></span></div>
-            <div id="local-time" hidden><svg class="icon"><use href="#i-clock"/></svg><span>Your time: <b id="local-time-val"></b></span></div>
-          </div>
-          <div class="row">
-            <a class="btn btn-primary" href="#signup"><svg class="icon"><use href="#i-users"/></svg> Sign up your team</a>
-            <a class="btn btn-ghost" href="#rules" data-open-tab="tab-rules">Read the rules</a>
-          </div>
+          <h2 id="su-title">Register your team</h2>
+          <p class="intro">Fill this in, then paste it into #cup-signups on our Discord. Signups close Thu 15 Oct.</p>
         </div>
-        <aside class="card cd-card" aria-labelledby="cd-label" id="cd-card" hidden>
-          <span class="eyebrow" id="cd-label">Starts in</span>
-          <div class="cd" id="cd-boxes" aria-live="off">
-            <div><b id="cd-d">0</b><span id="cd-dl">days</span></div>
-            <div><b id="cd-h">0</b><span id="cd-hl">hours</span></div>
+        <div class="field"><label class="label" for="su-team">Team name</label><input class="input" id="su-team" required maxlength="40" autocomplete="off"><span class="field-error">Give your team a name.</span></div>
+        <div class="field"><label class="label" for="su-discord">Captain's Discord username</label><input class="input" id="su-discord" required autocomplete="off" autocapitalize="off"><span class="field-error">Admins contact the captain on Discord.</span></div>
+        <div class="field"><label class="label" for="su-steam">Captain's Steam profile link</label><input class="input mono-in" id="su-steam" required placeholder="steamcommunity.com/id/…" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="field-error">Paste the link to the captain's Steam profile.</span></div>
+        <fieldset>
+          <legend class="label">Players 2–5 <span class="opt">in-game names</span></legend>
+          <div class="grid2">
+            <div class="field"><label class="sr-only" for="su-p2">Player 2</label><input class="input" id="su-p2" required placeholder="Player 2" autocomplete="off"><span class="field-error">Needed</span></div>
+            <div class="field"><label class="sr-only" for="su-p3">Player 3</label><input class="input" id="su-p3" required placeholder="Player 3" autocomplete="off"><span class="field-error">Needed</span></div>
+            <div class="field"><label class="sr-only" for="su-p4">Player 4</label><input class="input" id="su-p4" required placeholder="Player 4" autocomplete="off"><span class="field-error">Needed</span></div>
+            <div class="field"><label class="sr-only" for="su-p5">Player 5</label><input class="input" id="su-p5" required placeholder="Player 5" autocomplete="off"><span class="field-error">Needed</span></div>
           </div>
-          <p class="cd-msg" id="cd-msg" hidden></p>
-          <p class="cd-note">Check-in opens at 17:30 UTC on our Discord.</p>
-        </aside>
+        </fieldset>
+        <div class="field"><label class="label" for="su-sub">Sub <span class="opt">optional</span></label><input class="input" id="su-sub" placeholder="In-game name" autocomplete="off"></div>
+        <div class="pass"><span>Team pass <b>₹999</b> <span class="bill bill-once">One-time</span></span><a href="store.html?tab=cs">Store</a></div>
+        <label class="check"><input type="checkbox" id="su-rules" required><span>We've read the cup rules.</span></label>
+        <label class="check"><input type="checkbox" id="su-pass" required><span>We know entry needs the Cup #4 team pass (₹999, one-time, for the whole team).</span></label>
+        <button class="btn btn-steel btn-block" type="submit">Copy my signup</button>
+        <p class="small" style="margin:0">Nothing is sent or stored by this page. Your answers are only copied to your clipboard.</p>
+        <div class="form-success">
+          <div class="ok-box"><b>Your answers are copied.</b>Paste them into #cup-signups on our Discord. Admins confirm your place there.<br><a class="btn btn-ink btn-sm" href="community.html#discord">Open Discord</a></div>
+        </div>
+      </form>
+      <div class="panel su" id="su-closed" hidden>
+        <h2>Signups are closed</h2>
+        <p class="intro" style="margin-bottom:12px">Signups for Cup #4 closed on Thu 15 Oct. Watch Discord for the next cup.</p>
+        <a class="btn btn-ink btn-block" href="community.html#discord">Open Discord</a>
       </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <div class="cup-layout">
-
-        <!-- KEY FACTS -->
-        <div class="cup-facts">
-          <h2 class="sr-only">Key facts</h2>
-          <div class="facts">
-            <div><svg class="icon"><use href="#i-bracket"/></svg><span>Format</span><b>5v5 · Single elimination</b><small>Bo1, final is Bo3</small></div>
-            <div><svg class="icon"><use href="#i-users"/></svg><span>Teams</span><b>16</b><small>5 players + 1 sub</small></div>
-            <div><svg class="icon"><use href="#i-trophy"/></svg><span>Prize</span><b>Trophy + Discord role</b><small>For the winning team</small></div>
-            <div><svg class="icon"><use href="#i-flag"/></svg><span>Signups close</span><b>Thu 15 Oct</b><small>Draw on Fri 16 Oct</small></div>
-          </div>
-        </div>
-
-        <!-- SIGNUP -->
-        <aside class="cup-signup" id="signup" aria-labelledby="su-title">
-          <form class="card card-pad form" id="su-form" data-validate data-title="Cup #4 team signup" aria-labelledby="su-title">
-            <div class="su-head">
-              <span class="eyebrow">Two quick steps</span>
-              <h2 id="su-title">Sign up your team</h2>
-              <p>Fill this in, then paste it on our Discord. Signups close Thu 15 Oct.</p>
-            </div>
-            <div class="field"><label class="label" for="su-team">Team name</label><input class="input" id="su-team" required autocomplete="off" maxlength="40"><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Give your team a name.</span></div>
-            <div class="field"><label class="label" for="su-discord">Captain's Discord username</label><input class="input" id="su-discord" required placeholder="name" autocomplete="off"><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Admins contact the captain on Discord.</span></div>
-            <div class="field"><label class="label" for="su-steam">Captain's Steam profile link</label><input class="input" id="su-steam" type="url" required placeholder="https://steamcommunity.com/id/…" autocomplete="off"><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Paste the link to the captain's Steam profile.</span></div>
-            <fieldset class="su-players">
-              <legend class="label">The other four players</legend>
-              <div class="su-grid">
-                <div class="field"><label class="label" for="su-p2">Player 2</label><input class="input" id="su-p2" required placeholder="In-game name" autocomplete="off"><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Needed</span></div>
-                <div class="field"><label class="label" for="su-p3">Player 3</label><input class="input" id="su-p3" required placeholder="In-game name" autocomplete="off"><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Needed</span></div>
-                <div class="field"><label class="label" for="su-p4">Player 4</label><input class="input" id="su-p4" required placeholder="In-game name" autocomplete="off"><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Needed</span></div>
-                <div class="field"><label class="label" for="su-p5">Player 5</label><input class="input" id="su-p5" required placeholder="In-game name" autocomplete="off"><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Needed</span></div>
-              </div>
-            </fieldset>
-            <div class="field"><label class="label" for="su-sub">Sub <span class="opt">optional</span></label><input class="input" id="su-sub" placeholder="In-game name" autocomplete="off"></div>
-            <div class="field">
-              <div class="check-row"><input type="checkbox" id="su-age" required><label for="su-age">Everyone on our team is 13 or older</label></div>
-              <span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Every player must be 13 or older.</span>
-            </div>
-            <div class="field">
-              <div class="check-row"><input type="checkbox" id="su-rules" required><label for="su-rules">We've read the rules</label></div>
-              <span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Please read the <a href="#rules" data-open-tab="tab-rules" style="color:inherit;text-decoration:underline">rules</a> first.</span>
-            </div>
-            <button class="btn btn-primary btn-block" type="submit">Copy my signup</button>
-            <p class="su-note"><svg class="icon"><use href="#i-shield"/></svg>We don't store anything here. Your answers are only copied to your clipboard.</p>
-            <div class="form-success">
-              <div class="alert alert-ok"><svg class="icon"><use href="#i-check"/></svg><div><strong>Your answers are copied.</strong>Paste them into #cup-signups on our Discord to lock in your team.</div></div>
-              <a class="btn btn-primary btn-block mt-4" href="community.html#discord"><svg class="icon"><use href="#i-chat"/></svg> Open the Discord</a>
-            </div>
-          </form>
-          <div class="card card-pad su-closed" id="su-closed" hidden>
-            <span class="eyebrow">Signups</span>
-            <h2 style="font-size:1.5rem">Signups are closed</h2>
-            <p class="muted mb-0">Signups for Cup #4 closed on Thu 15 October. Watch Discord for the next cup.</p>
-            <a class="btn btn-secondary btn-block" href="community.html#discord"><svg class="icon"><use href="#i-chat"/></svg> Open the Discord</a>
-          </div>
-        </aside>
-
-        <!-- TABS -->
-        <div class="cup-tabs" id="cup-tabs">
-          <div class="tabs" role="tablist" aria-label="Cup details">
-            <button class="tab" type="button" role="tab" id="tab-overview" aria-selected="true" aria-controls="overview">Overview</button>
-            <button class="tab" type="button" role="tab" id="tab-bracket" aria-selected="false" aria-controls="bracket">Bracket</button>
-            <button class="tab" type="button" role="tab" id="tab-rules" aria-selected="false" aria-controls="rules">Rules</button>
-            <button class="tab" type="button" role="tab" id="tab-results" aria-selected="false" aria-controls="results">Results</button>
-          </div>
-
-          <!-- Overview -->
-          <div class="tabpanel" id="overview" role="tabpanel" aria-labelledby="tab-overview">
-            <div class="panel-body">
-              <h3>What it is</h3>
-              <p>The Titans Community Cup is our own CS2 tournament, open to the whole community. Sixteen teams play one night of single elimination. Lose a match and you're out. Every match is best of one, except the final, which is best of three.</p>
-
-              <h3>Who can play</h3>
-              <ul class="ticks">
-                <li><svg class="icon"><use href="#i-check"/></svg><span>Any <b>team of five</b>, plus one sub if you like. You don't need to be in the clan.</span></li>
-                <li><svg class="icon"><use href="#i-check"/></svg><span>Every player is <b>13 or older</b>.</span></li>
-                <li><svg class="icon"><use href="#i-check"/></svg><span>Every player has a <b>working mic</b>.</span></li>
-                <li><svg class="icon"><use href="#i-check"/></svg><span>Every player is <b>in our Discord</b>. That's where check-in, match calls and admin help happen.</span></li>
-              </ul>
-
-              <h3>Where matches are played</h3>
-              <div class="alert"><svg class="icon"><use href="#i-server"/></svg><div><strong>Servers are announced on Discord</strong>Our CS2 community servers aren't open yet. Matches are played on servers we announce on Discord before the cup, with the connect details sent to each captain.</div></div>
-
-              <h3>Schedule</h3>
-              <ol class="timeline">
-                <li><time datetime="2026-10-15">Thu 15 Oct</time><span>Signups close.</span></li>
-                <li><time datetime="2026-10-16">Fri 16 Oct</time><span>The draw. The bracket goes up here and on Discord.</span></li>
-                <li class="is-key"><time datetime="2026-10-17T17:30Z">Sat 17 Oct · 17:30 UTC</time><span>Check-in on Discord. Every team must check in.</span></li>
-                <li class="is-key"><time datetime="2026-10-17T18:00Z">Sat 17 Oct · 18:00 UTC</time><span>Round of 16 starts (Bo1).</span></li>
-                <li><span class="t">Then</span><span>Quarter-finals and semi-finals (Bo1). Each round starts as soon as the one before it is done.</span></li>
-                <li class="is-key"><span class="t">Last</span><span>The final (Bo3). The winners get the trophy and their Discord role.</span></li>
-              </ol>
-            </div>
-          </div>
-
-          <!-- Bracket -->
-          <div class="tabpanel" id="bracket" role="tabpanel" aria-labelledby="tab-bracket" hidden>
-            <div class="alert mb-5"><svg class="icon"><use href="#i-calendar"/></svg><div><strong>The draw happens on 16 October</strong>Every slot shows TBD until then. Team names go up here after the draw.</div></div>
-            <div class="bracket-wrap">
-              <div class="round-pick" role="group" aria-label="Choose a round">
-                <button class="filter" type="button" data-round="1" aria-pressed="true">Last 16</button>
-                <button class="filter" type="button" data-round="2" aria-pressed="false">Quarters</button>
-                <button class="filter" type="button" data-round="3" aria-pressed="false">Semis</button>
-                <button class="filter" type="button" data-round="4" aria-pressed="false">Final</button>
-              </div>
-              <div class="bracket" id="bracket-grid" data-show="1"></div>
-            </div>
-          </div>
-
-          <!-- Rules -->
-          <div class="tabpanel" id="rules" role="tabpanel" aria-labelledby="tab-rules" hidden>
-            <div class="panel-body">
-              <ol class="rules">
-                <li><div><b>Teams</b>Five players and up to one sub, all 13 or older. Once the draw is done, you can't add or swap players.</div></li>
-                <li><div><b>Discord and mics</b>Every player must be in our Discord and have a working mic. The captain speaks for the team with admins.</div></li>
-                <li><div><b>Check-in</b>Check in on Discord 30 minutes before the cup starts (17:30 UTC). A team that doesn't check in loses its place.</div></li>
-                <li><div><b>Map veto</b>Maps come from the current CS2 Active Duty pool. In a Bo1, captains take turns banning maps until one is left. In the Bo3 final, each team bans one, picks one, bans one more, and the last map left is the decider. A coin flip decides who starts.</div></li>
-                <li><div><b>Sides</b>A knife round decides who picks the starting side on each map.</div></li>
-                <li><div><b>Be on time</b>If your team isn't on the server 10 minutes after your match is called, you forfeit that match.</div></li>
-                <li><div><b>Disconnects</b>If a player drops, pause the game and tell an admin. You get up to 10 minutes per map to get them back.</div></li>
-                <li><div><b>No cheats</b>No cheats, scripts, macros or bug exploits. Breaking this gets your team removed from the cup and banned from future ones.</div></li>
-                <li><div><b>Respect</b>No abuse, slurs or harassment of players, admins or casters, in game or on Discord. Admins can warn or remove players.</div></li>
-                <li><div><b>Admins' calls are final</b>If something isn't covered here, admins decide, and their decision is final.</div></li>
-              </ol>
-            </div>
-          </div>
-
-          <!-- Results -->
-          <div class="tabpanel" id="results" role="tabpanel" aria-labelledby="tab-results" hidden>
-            <div class="empty">
-              <svg class="icon"><use href="#i-trophy"/></svg>
-              <h4>No results yet</h4>
-              <p class="mb-0">Cup #4 is played on Saturday 17 October. Scores and the winners go up here after the final.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
+    </aside>
+  </div>
 </main>
 
 <footer data-site-footer></footer>
+<script src="assets/titans.js"></script>
 <script>
 (function () {
   "use strict";
   var START = Date.parse("2026-10-17T18:00:00Z");
   var CLOSES = Date.parse("2026-10-16T00:00:00Z");   // end of Thu 15 Oct, UTC
+  var pad = function (n) { return String(n).padStart(2, "0"); };
 
-  /* ---------- Viewer's local time ---------- */
-  try {
-    var fmt = new Intl.DateTimeFormat(undefined, { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZoneName: "short" });
-    document.getElementById("local-time-val").textContent = fmt.format(new Date(START));
-    document.getElementById("local-time").hidden = false;
-  } catch (e) { /* old browser: the UTC time above is enough */ }
-
-  /* ---------- Countdown (days / hours) ---------- */
-  var card = document.getElementById("cd-card");
+  /* Countdown */
+  var cd = document.getElementById("cup-cd");
   function tick() {
     var ms = START - Date.now();
-    var boxes = document.getElementById("cd-boxes"), msg = document.getElementById("cd-msg"), lab = document.getElementById("cd-label");
-    card.hidden = false;
     if (ms > 0) {
-      var hrs = Math.floor(ms / 3600000), d = Math.floor(hrs / 24), h = hrs % 24;
-      document.getElementById("cd-d").textContent = d;
-      document.getElementById("cd-h").textContent = h;
-      document.getElementById("cd-dl").textContent = d === 1 ? "day" : "days";
-      document.getElementById("cd-hl").textContent = h === 1 ? "hour" : "hours";
-      card.setAttribute("aria-label", "Starts in " + d + (d === 1 ? " day " : " days ") + h + (h === 1 ? " hour" : " hours"));
-      return;
+      var d = Math.floor(ms / 864e5), h = Math.floor(ms % 864e5 / 36e5), m = Math.floor(ms % 36e5 / 6e4), s = Math.floor(ms % 6e4 / 1e3);
+      cd.setAttribute("aria-label", "Starts in " + d + " days " + h + " hours " + m + " minutes");
+      cd.innerHTML = "<div><span>" + pad(d) + "</span><small>d</small></div><div><span>" + pad(h) + "</span><small>h</small></div><div><span>" + pad(m) + "</span><small>m</small></div><div class=\"s\"><span>" + pad(s) + "</span><small>s</small></div>";
+    } else if (ms > -8 * 36e5) {
+      cd.innerHTML = '<span class="msg">The cup is on now. Follow it on Discord.</span>';
+    } else {
+      cd.innerHTML = '<span class="msg">Cup #4 has been played. See the Results tab.</span>';
     }
-    boxes.hidden = true; msg.hidden = false;
-    if (ms > -8 * 3600000) { lab.textContent = "Happening now"; msg.textContent = "The cup is on. Follow it on Discord."; }
-    else { lab.textContent = "Finished"; msg.textContent = "Cup #4 has been played. See the Results tab."; }
   }
-  tick();
-  setInterval(tick, 60000);
+  tick(); setInterval(tick, 1000);
 
-  /* ---------- Signups closed after the deadline ---------- */
+  /* Viewer's local time */
+  try {
+    var loc = new Intl.DateTimeFormat(undefined, { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZoneName: "short" }).format(new Date(START));
+    var el = document.getElementById("local"); el.textContent = "Your time: " + loc; el.hidden = false;
+  } catch (e) { /* UTC above is enough */ }
+
+  /* Signups closed after the deadline */
   if (Date.now() >= CLOSES) {
     document.getElementById("su-form").hidden = true;
     document.getElementById("su-closed").hidden = false;
-    document.getElementById("su-chip").textContent = "Signups closed";
+    var st = document.getElementById("su-state");
+    st.textContent = "Signups closed"; st.classList.remove("bill-open"); st.classList.add("closed");
   }
 
-  /* ---------- Bracket (16 teams, single elimination) ---------- */
-  var ROUNDS = [["Round of 16", "Bo1", 8], ["Quarter-finals", "Bo1", 4], ["Semi-finals", "Bo1", 2], ["Final", "Bo3", 1]];
-  var n = 0, html = "";
-  ROUNDS.forEach(function (r, ri) {
-    var matches = [], i;
-    for (i = 0; i < r[2]; i++) {
-      n++;
-      var fin = ri === 3;
-      matches.push('<div class="bm' + (fin ? " is-final" : "") + '"><div class="bm-head">' + (fin ? "Final · Bo3" : "Match " + n) + '</div>' +
-        '<div class="bm-slot"><i aria-hidden="true"></i>TBD</div><div class="bm-slot"><i aria-hidden="true"></i>TBD</div></div>');
-    }
-    var body = "";
-    if (r[2] === 1) body = matches[0];
-    else for (i = 0; i < matches.length; i += 2) body += '<div class="pair">' + matches[i] + matches[i + 1] + '</div>';
-    html += '<section class="round" data-r="' + (ri + 1) + '" aria-label="' + r[0] + '"><h4 class="round-title">' + r[0] + ' <small>' + r[1] + '</small></h4><div class="round-body">' + body + '</div></section>';
-  });
-  var grid = document.getElementById("bracket-grid");
-  grid.innerHTML = html;
-  document.querySelector(".round-pick").addEventListener("click", function (e) {
-    var b = e.target.closest("[data-round]");
-    if (!b) return;
-    grid.dataset.show = b.dataset.round;
+  /* Bracket: 16 open slots, then TBD */
+  var R = [["", 8, "Open slot"], ["", 4, "TBD"], ["", 2, "TBD"], ["fin", 1, "TBD"]], n = 0;
+  document.getElementById("b-grid").innerHTML = R.map(function (r, ri) {
+    var m = "";
+    for (var i = 0; i < r[1]; i++) { n++; m += '<div class="b-m"><em>' + (ri === 3 ? "Final · Bo3" : "Match " + n) + "</em><div>" + r[2] + "</div><div>" + r[2] + "</div></div>"; }
+    return '<div class="b-col ' + r[0] + (ri === 0 ? " on" : "") + '">' + m + "</div>";
+  }).join("");
+  document.querySelector(".rpick").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-round]"); if (!b) return;
+    var k = +b.dataset.round;
     this.querySelectorAll("[data-round]").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+    document.querySelectorAll("#b-cols span, #b-grid .b-col").forEach(function (x) { x.classList.toggle("on", (x.parentNode.id === "b-cols" ? [].indexOf.call(x.parentNode.children, x) : [].indexOf.call(x.parentNode.children, x)) === k); });
   });
 
-  /* ---------- Open a tab from a link (#rules, #bracket …) ---------- */
-  function openTab(id, scroll) {
-    var t = document.getElementById(id);
-    if (!t) return;
-    t.click();   // site.js switches the panel
-    if (scroll) document.getElementById("cup-tabs").scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-  document.addEventListener("click", function (e) {
-    var a = e.target.closest("[data-open-tab]");
-    if (!a) return;
-    e.preventDefault();
-    openTab(a.dataset.openTab, true);
-    history.replaceState(null, "", a.getAttribute("href"));
-  });
-  // Deep links: event.html#bracket, #rules, #results open that tab once site.js has loaded
-  window.addEventListener("load", function () {
+  /* Deep links: event.html#overview / #bracket / #rules / #results open that tab */
+  var TABS = ["overview", "bracket", "rules", "results"];
+  function openFromHash(smooth) {
     var h = location.hash.slice(1);
-    if (["overview", "bracket", "rules", "results"].indexOf(h) > -1) openTab("tab-" + h, true);
+    if (TABS.indexOf(h) < 0) return;
+    document.getElementById("tab-" + h).click();
+    var hdr = document.querySelector(".hdr"), sn = document.querySelector(".subnav");
+    var off = (hdr ? hdr.offsetHeight : 0) + (sn ? sn.offsetHeight : 0) + 12;
+    window.scrollTo({ top: document.getElementById("cup-tabs").getBoundingClientRect().top + window.scrollY - off, behavior: smooth ? "smooth" : "instant" });
+  }
+  window.addEventListener("hashchange", function () { openFromHash(true); });
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (a && a.getAttribute("href") === location.hash) openFromHash(true);   // same hash clicked again
   });
+  if (TABS.indexOf(location.hash.slice(1)) > -1) {
+    document.getElementById("tab-" + location.hash.slice(1)).click();
+    window.addEventListener("load", function () { setTimeout(function () { openFromHash(false); }, 60); });
+  }
 })();
 </script>
-<script src="assets/site.js"></script>
 </body>
 </html>

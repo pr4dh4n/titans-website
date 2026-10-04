@@ -4,245 +4,167 @@
 <meta charset="utf-8">
 <link rel="icon" type="image/svg+xml" href="assets/ttc-icon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>TheTitansClan — Minecraft network &amp; CS2 team</title>
-<meta name="description" content="TheTitansClan: a Minecraft server network and a CS2 team. Play, compete, join the Discord.">
-<meta name="theme-color" content="#F1E7D0">
+<title>TheTitansClan — a medieval Minecraft realm · mc.thetitansclan.com</title>
+<meta name="description" content="A medieval Minecraft server with custom enchantments, souls and clans, plus a CS2 clan in the making. Season I opens Fri 9 Oct. IP: mc.thetitansclan.com">
+<meta name="theme-color" content="#16120E">
+<meta property="og:title" content="TheTitansClan · Season I opens Fri 9 Oct">
+<meta property="og:description" content="A medieval Minecraft realm. IP: mc.thetitansclan.com">
+<meta property="og:image" content="assets/img/citadel.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600&family=UnifrakturMaguntia&display=swap">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@700&family=Grenze:wght@600;700&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@600&display=swap">
+<link rel="stylesheet" href="assets/titans.css">
 <style>
-  .home-hero { padding-top: var(--s6); padding-bottom: 120px; }
-  .hh-grid { display: grid; gap: var(--s5); align-items: center; }
-  .hh-crest { justify-self: center; width: 150px; position: relative; }
-  .hh-crest::before { content: ""; position: absolute; inset: -20%; background: radial-gradient(closest-side, rgba(212,165,58,.45), transparent); z-index: -1; }
-  .hh-title { font-size: var(--fs-hero); font-weight: 900; line-height: .98; letter-spacing: .005em; margin-bottom: var(--s4); }
-  .lede { color: var(--text-2); font-size: 1.0625rem; max-width: 46ch; margin-bottom: var(--s5); }
-  .actions { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3); }
-  .action { --c: 9px; box-shadow: inset 0 0 0 3px var(--surface), inset 0 0 0 4px var(--line); display: flex; flex-direction: column; gap: 10px; padding: var(--s4); min-height: 112px; background: var(--surface); border: 1px solid var(--line-2);
-    clip-path: polygon(var(--c) 0, calc(100% - var(--c)) 0, 100% var(--c), 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, var(--c) 100%, 0 calc(100% - var(--c)), 0 var(--c)); transition: background .15s, border-color .15s; }
-  .action:hover { background: var(--surface-2); color: var(--text); border-color: var(--gold-line); }
-  .action .icon { width: 26px; height: 26px; color: var(--gold); }
-  .action b { font: 700 1.125rem/1.1 var(--font-display); letter-spacing: .02em; margin-top: auto; }
-  .action span { font-size: var(--fs-xs); color: var(--text-3); margin-top: -4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .action.is-primary { background: var(--grad-gold); border: 0; color: var(--gold-ink); box-shadow: inset 0 1px 0 rgba(255,255,255,.55), inset 0 0 0 1px rgba(110,75,10,.5); }
-  .action.is-primary .icon, .action.is-primary span { color: rgba(27,20,5,.75); }
-  .action.is-primary:hover { filter: brightness(1.06); color: var(--gold-ink); }
-  .hh-status { display: grid; gap: var(--s3); margin-top: var(--s6); }
-  .hh-status .card { background: rgba(250,244,230,.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
-  @media (min-width: 600px) { .hh-status { grid-template-columns: 1fr 1fr; } .hh-crest { width: 190px; } }
-  @media (min-width: 900px) {
-    .home-hero { padding-top: var(--s8); padding-bottom: 140px; }
-    .hh-grid { grid-template-columns: 1.25fr .75fr; gap: var(--s7); }
-    .hh-crest { order: 2; width: 100%; max-width: 360px; }
-    .actions { grid-template-columns: repeat(4, 1fr); }
+  /* ---- Hero ---- */
+  .hero { display: grid; gap: 8px; padding: 22px 0 8px; }
+  .hero-copy { display: flex; flex-direction: column; gap: 16px; }
+  .hero h1 { font-size: clamp(2.875rem, 1.5rem + 5.2vw, 4.875rem); }
+  .hero .addr { max-width: none; }
+  .hero-cta { display: flex; gap: 10px; }
+  .hero-cta .btn-play { flex: 1; min-height: 52px; font-size: 1rem; }
+  .hero-cta .btn-line { min-height: 52px; }
+  .citadel { position: relative; height: 300px; margin-top: 6px; }
+  .citadel img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 18px 18px rgba(60,40,15,.18)); }
+  .cap { text-align: center; font-size: .75rem; color: var(--ink-3); }
+  @media (min-width: 960px) {
+    .hero { grid-template-columns: minmax(0,5fr) minmax(0,7fr); gap: 24px; align-items: center; padding: 56px 0 24px; }
+    .hero-copy { gap: 22px; }
+    .hero .lede { font-size: 1.125rem; max-width: 440px; }
+    .count .digits span { font-size: 3.25rem; }
+    .hero .addr { min-height: 56px; }
+    .hero .addr code { font-size: 1rem; }
+    .hero-cta .btn-play { flex: none; padding: 0 34px; min-height: 56px; font-size: 1.0625rem; }
+    .hero-cta .btn-line { min-height: 56px; padding: 0 22px; }
+    .citadel { height: 560px; margin: 0; }
+    .cap { display: none; }
   }
 
-  .home-news .grid > :not(:first-child) .news-card { flex-direction: row; }
-  .home-news .grid > :not(:first-child) .news-card .ph { width: 36%; aspect-ratio: auto; flex: none; }
-  .home-news .grid > :not(:first-child) .news-card p { display: none; }
-  .home-news .grid > :not(:first-child) .news-card h3 { font-size: 1.125rem; }
-  .home-news .grid > :not(:first-child) .news-card .nc-body { padding: var(--s3) var(--s4); }
-  @media (min-width: 900px) {
-    .home-news .grid { grid-template-columns: repeat(3, 1fr); }
-    .home-news .grid > :not(:first-child) .news-card { flex-direction: column; }
-    .home-news .grid > :not(:first-child) .news-card .ph { width: auto; aspect-ratio: 16/9; }
-    .home-news .grid > :not(:first-child) .news-card p { display: -webkit-box; }
-    .home-news .grid > :not(:first-child) .news-card h3 { font-size: 1.375rem; }
-    .home-news .grid > :not(:first-child) .news-card .nc-body { padding: var(--s4) var(--s5) var(--s5); }
+  /* ---- The shield: the map of the clan ---- */
+  .shield-wrap { padding: 26px 6px 8px; }
+  .shield { background: var(--or); padding: 3px; clip-path: var(--shield); max-width: 360px; margin: 0 auto; }
+  .shield-in { clip-path: var(--shield); display: flex; flex-direction: column; min-height: 430px; text-align: center; }
+  .field-mc, .field-store, .field-cs { display: flex; flex-direction: column; align-items: center; gap: 6px; transition: filter .15s; }
+  .field-mc:hover, .field-store:hover, .field-cs:hover { filter: brightness(1.06); }
+  .field-mc { flex: 1.25; background: var(--or); color: var(--or-ink); justify-content: center; border-bottom: 3px solid var(--sable); }
+  .field-store { flex: 1; background: var(--sable); color: var(--on-sable); justify-content: center; border-bottom: 3px solid var(--sable); }
+  .field-cs { flex: 1.15; background: var(--argent); color: #fff; justify-content: flex-start; padding-top: 22px; }
+  .shield .over { color: inherit; opacity: .85; }
+  .shield h2 { font: 700 2.125rem/1 var(--f-black); }
+  .field-store h2 { color: var(--or-hi); }
+  .shield p { font-size: .8125rem; font-weight: 600; margin: 0; max-width: 220px; }
+  .shield .lnks { display: flex; gap: 14px; font-size: .75rem; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .shield .lnks a:hover { opacity: .75; }
+  .field-mc .over, .field-cs .over, .field-store .over { display: none; }
+  @media (min-width: 960px) {
+    .shield-wrap { padding: 20px 0 0; }
+    .shield { background: var(--sable); max-width: none; clip-path: polygon(0 0,100% 0,100% 62%,98% 74%,92% 84%,80% 93%,50% 100%,20% 93%,8% 84%,2% 74%,0 62%); }
+    .shield-in { clip-path: polygon(0 0,100% 0,100% 62%,98% 74%,92% 84%,80% 93%,50% 100%,20% 93%,8% 84%,2% 74%,0 62%); display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px; min-height: 400px; background: var(--sable); text-align: left; }
+    .field-mc, .field-store, .field-cs { justify-content: flex-start; padding-top: 40px; gap: 10px; border: 0; }
+    .field-mc { align-items: flex-start; padding: 40px 40px 0 56px; }
+    .field-store { background: var(--sable-2); align-items: center; text-align: center; padding: 40px 36px 0; }
+    .field-cs { align-items: flex-end; text-align: right; padding: 40px 56px 0 40px; }
+    .field-mc .over, .field-cs .over, .field-store .over { display: block; }
+    .field-store .over { color: var(--on-sable-2); }
+    .shield h2 { font-size: 3.5rem; }
+    .shield p { font-size: .9375rem; font-weight: 400; line-height: 1.45; max-width: 280px; }
+    .shield .lnks { font-size: .8125rem; margin-top: 4px; }
   }
 
-  .world { overflow: hidden; display: flex; flex-direction: column; }
-  .world .ph { aspect-ratio: 16/7; }
-  .world .w-body { padding: var(--s5); display: grid; gap: var(--s4); }
-  .world ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; color: var(--text-2); font-size: var(--fs-sm); }
-  .world li { display: flex; gap: 10px; align-items: center; }
-  .world li .icon { width: 18px; height: 18px; color: var(--gold); }
-  .band { display: grid; gap: var(--s5); padding: var(--s6) var(--s5); }
-  @media (min-width: 900px) { .band { grid-template-columns: 1fr auto; align-items: center; padding: var(--s7); } }
-  .discord-band { text-align: center; padding: var(--s7) var(--s5); background:
-    radial-gradient(60% 120% at 50% 0%, rgba(212,165,58,.22), transparent 70%), var(--surface); }
-  .discord-band h2 { max-width: 18ch; margin: 0 auto var(--s3); }
-  .discord-band p { color: var(--text-2); max-width: 44ch; margin: 0 auto var(--s5); }
+  /* ---- Coming up ---- */
+  .soon { padding: 22px 0 28px; }
+  .soon .over { color: var(--ink-3); margin-bottom: 6px; }
+  .soon-list a { display: flex; gap: 12px; padding: 9px 0; border-top: 1px solid var(--rule); font-size: .8125rem; align-items: baseline; }
+  .soon-list .d { width: 58px; flex: none; font: 600 .75rem var(--f-mono); color: var(--gold-ink); }
+  .soon-list .n { flex: 1; font-weight: 600; }
+  .soon-list .n small { display: none; }
+  .soon-list .r { font-size: .6875rem; font-weight: 700; }
+  .soon-list a:hover .n { color: var(--plume); }
+  @media (min-width: 960px) {
+    .soon { display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: start; padding: 40px 0 44px; }
+    .soon .over { padding-top: 10px; }
+    .soon-list { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 20px; }
+    .soon-list a { flex-direction: column; gap: 3px; border-top: 2px solid var(--c); padding-top: 8px; }
+    .soon-list .n { font-size: .875rem; font-weight: 700; }
+    .soon-list .n small { display: block; font-size: .75rem; font-weight: 400; color: var(--ink-2); margin-top: 2px; }
+    .soon-list .r { display: none; }
+  }
 </style>
 </head>
 <body data-page="home">
 <header data-site-header></header>
 
-<main>
-  <!-- HERO -->
-  <section class="hero home-hero" aria-labelledby="hero-title">
-    <svg class="skyline" aria-hidden="true"></svg>
-    <div class="wrap">
-      <div class="hh-grid">
-        <div class="hh-crest"><img src="assets/ttc-logo.webp" alt="TheTitansClan logo: a knight's helm with a red plume above the clan banner" width="572" height="720"></div>
-        <div>
-          <span class="eyebrow">Minecraft network · CS2 team</span>
-          <h1 class="hh-title" id="hero-title">Rise with<br><span class="gold-text">the Titans</span></h1>
-          <p class="lede">One clan, two battlegrounds. Build, fight and climb on our Minecraft network, or line up with our CS2 squad.</p>
-          <nav class="actions" aria-label="Get started">
-            <a class="action is-primary" href="minecraft.html"><svg class="icon"><use href="#i-cube"/></svg><b>Play Minecraft</b><span>mc.thetitansclan.com</span></a>
-            <a class="action" href="cs2.html"><svg class="icon"><use href="#i-crosshair"/></svg><b>Join CS2</b><span>Server, team &amp; tryouts</span></a>
-            <a class="action" href="community.html"><svg class="icon"><use href="#i-chat"/></svg><b>Discord</b><span>Chat, events &amp; news</span></a>
-            <a class="action" href="store.html"><svg class="icon"><use href="#i-cart"/></svg><b>Store</b><span>Ranks, VIP &amp; passes</span></a>
-          </nav>
-        </div>
+<main class="wrap">
+  <section class="hero" aria-labelledby="h1">
+    <div class="hero-copy">
+      <div class="status" data-status="line"><i class="dot"></i><span class="s-txt">Checking server…</span><span class="sep">·</span><span>Java 1.21 – 26.3</span><span class="sep">·</span><span>Bedrock soon</span></div>
+      <div>
+        <h1 class="h1" id="h1">A medieval Minecraft realm.</h1>
+        <p class="lede" style="margin-top:10px">Survival with custom enchants and souls, Bedwars, and a CS2 clan in the making. One clan, two games.</p>
       </div>
-      <div class="hh-status" aria-live="polite">
-        <div class="card status-card" data-live="mc"></div>
-        <div class="card status-card" data-live="cs"></div>
+      <div class="count" data-countdown aria-live="off"></div>
+      <div class="addr"><div class="a-txt"><span class="a-lbl">Server address</span><code>mc.thetitansclan.com</code></div><button type="button" data-copy="mc.thetitansclan.com">Copy</button></div>
+      <div class="hero-cta">
+        <button class="btn btn-play" type="button" data-toggle="join" aria-expanded="false" aria-controls="join">PLAY NOW</button>
+        <a class="btn btn-line" href="community.html#discord">Join Discord</a>
       </div>
+      <div class="joinbox" id="join" hidden>
+        <div class="jb-head"><b>Join on Java Edition</b><span>1.21 – 26.3</span></div>
+        <ol>
+          <li><span>Open Minecraft and choose <b>Multiplayer</b>.</span></li>
+          <li><span>Tap <b>Add Server</b> and paste <code>mc.thetitansclan.com</code></span></li>
+          <li><span>Hit <b>Done</b>, then <b>Join Server</b>. You'll arrive in the Citadel.</span></li>
+        </ol>
+        <div class="jb-foot">Bedrock (phone / console): coming soon. <a href="minecraft-join.html">Full guide →</a></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="citadel">
+        <img src="assets/img/citadel.webp" alt="The Titan Citadel: the great hall, two golden knight statues and the compass plaza on a floating island" width="1400" height="1362" fetchpriority="high">
+        <span class="pin dark" style="left:44%;top:58%">You spawn here<span class="only-d"> · compass plaza</span></span>
+        <span class="pin" style="left:12%;top:22%">Great Hall</span>
+        <span class="pin" style="right:6%;top:32%">Golden knights</span>
+        <span class="pin only-d" style="left:20%;bottom:14%">Fountain &amp; gardens</span>
+      </div>
+      <p class="cap">The Titan Citadel — our spawn, exactly as you'll see it.</p>
     </div>
   </section>
 
-  <!-- EVENTS STRIP -->
-  <section class="section" aria-labelledby="ev-title">
-    <div class="wrap">
-      <div class="section-head">
-        <div><span class="eyebrow">Coming up</span><h2 id="ev-title">Events</h2></div>
-        <a class="link-arrow" href="events.html">All events <svg class="icon"><use href="#i-arrow"/></svg></a>
+  <section class="shield-wrap" aria-label="The clan">
+    <div class="shield"><div class="shield-in">
+      <div class="field-mc">
+        <span class="over">Season I · launching</span>
+        <h2><a href="minecraft.html">Minecraft</a></h2>
+        <p><span class="only-p">Survival · Bedwars · Season I</span><span class="only-d">Survival with custom enchants, souls and clans. Bedwars. Knight Palace.</span></p>
+        <div class="lnks"><a href="minecraft-join.html">How to join</a><a href="minecraft-ranks.html">Ranks</a><a href="minecraft.html#vote">Vote</a></div>
       </div>
-      <div class="scroll-x">
-        <article class="card event-card">
-          <div class="date-block"><b>09</b><span>Oct</span></div>
-          <div class="ev-body">
-            <span class="chip chip-mc" style="align-self:flex-start">Minecraft</span>
-            <h4>Season 1 Survival launch</h4>
-            <div class="ev-meta"><span><svg class="icon"><use href="#i-clock"/></svg>19:00 UTC</span><span><svg class="icon"><use href="#i-users"/></svg>Open to all</span></div>
-            <div class="ev-foot"><span class="slots">No signup needed</span><a class="link-arrow" href="events.html">Details <svg class="icon"><use href="#i-arrow"/></svg></a></div>
-          </div>
-        </article>
-        <article class="card event-card">
-          <div class="date-block"><b>11</b><span>Oct</span></div>
-          <div class="ev-body">
-            <span class="chip chip-mc" style="align-self:flex-start">Minecraft</span>
-            <h4>Bedwars Night</h4>
-            <div class="ev-meta"><span><svg class="icon"><use href="#i-clock"/></svg>20:00 UTC</span><span><svg class="icon"><use href="#i-trophy"/></svg>Prize: Knight rank (1 month)</span></div>
-            <div class="ev-foot"><span class="slots">Sign up on Discord</span><a class="btn btn-outline btn-sm" href="events.html">Details</a></div>
-          </div>
-        </article>
-        <article class="card event-card">
-          <div class="date-block"><b>17</b><span>Oct</span></div>
-          <div class="ev-body">
-            <span class="chip chip-cs" style="align-self:flex-start">CS2</span>
-            <h4>Titans Community Cup #4</h4>
-            <div class="ev-meta"><span><svg class="icon"><use href="#i-users"/></svg>5v5 · 16 teams</span><span><svg class="icon"><use href="#i-clock"/></svg>18:00 UTC</span></div>
-            <div class="ev-foot"><span class="slots">16 teams · closes 15 Oct</span><a class="btn btn-outline btn-sm" href="event.html#signup">Sign up</a></div>
-          </div>
-        </article>
-        <article class="card event-card">
-          <div class="date-block"><b>24</b><span>Oct</span></div>
-          <div class="ev-body">
-            <span class="chip chip-clan" style="align-self:flex-start">Clan</span>
-            <h4>Build contest: Citadel Gate</h4>
-            <div class="ev-meta"><span><svg class="icon"><use href="#i-calendar"/></svg>Entries close Oct 31</span></div>
-            <div class="ev-foot"><span class="slots">Entries close 31 Oct</span><a class="link-arrow" href="events.html">Details <svg class="icon"><use href="#i-arrow"/></svg></a></div>
-          </div>
-        </article>
+      <div class="field-store">
+        <span class="over">One store · one cart</span>
+        <h2><a href="store.html">Store</a></h2>
+        <p><span class="only-p">Ranks from ₹99/month · delivered in-game</span><span class="only-d">Ranks from ₹99/month, delivered in-game. Pay with UPI.</span></p>
+        <div class="lnks"><a href="store.html#parents">For parents</a></div>
       </div>
-    </div>
+      <div class="field-cs">
+        <span class="over">Forming now</span>
+        <h2><a href="cs2.html">CS2</a></h2>
+        <p><span class="only-p">Tryouts open<br>Cup #4 · Sat 17 Oct</span><span class="only-d">Tryouts open for every role. Community Cup #4 — Sat 17 Oct.</span></p>
+        <div class="lnks"><a href="cs2.html#tryouts">Apply</a><a href="cs2.html#cup">Cup #4</a></div>
+      </div>
+    </div></div>
   </section>
 
-  <!-- LATEST NEWS -->
-  <section class="section home-news" aria-labelledby="news-title">
-    <div class="wrap">
-      <div class="section-head">
-        <div><span class="eyebrow">Latest</span><h2 id="news-title">News</h2></div>
-        <a class="link-arrow" href="news.html">All news <svg class="icon"><use href="#i-arrow"/></svg></a>
-      </div>
-      <div class="grid">
-        <div><a class="card card-link news-card" href="news-post.html">
-          <div class="ph ph-mc"><svg class="icon"><use href="#i-sparkle"/></svg><span class="ph-label">post cover image</span></div>
-          <div class="nc-body">
-            <div class="nc-meta"><span class="chip chip-patch">Patch notes</span><span class="chip chip-mc">Minecraft</span><span>Oct 1</span></div>
-            <h3>Custom Enchantments 2.0: coming to Survival</h3>
-            <p>Souls, armour sets and the Fabled tier: everything new in the biggest gear update yet.</p>
-          </div></a></div>
-        <div><a class="card card-link news-card" href="cs2.html#tryout">
-          <div class="ph ph-cs"><svg class="icon"><use href="#i-users"/></svg></div>
-          <div class="nc-body">
-            <div class="nc-meta"><span class="chip chip-cs">CS2</span><span>Oct 2</span></div>
-            <h3>CS2 tryouts are open</h3>
-            <p>We're picking our first five. Every role, every rank welcome to try.</p>
-          </div></a></div>
-        <div><a class="card card-link news-card" href="news-post.html">
-          <div class="ph"><svg class="icon"><use href="#i-castle"/></svg><span class="ph-label">cover</span></div>
-          <div class="nc-body">
-            <div class="nc-meta"><span class="chip chip-clan">Clan</span><span>Sep 26</span></div>
-            <h3>Season 1 Survival starts Friday, Oct 9</h3>
-            <p>A fresh world, the Citadel spawn and a launch-week event with prizes.</p>
-          </div></a></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TWO WORLDS -->
-  <section class="section" aria-labelledby="worlds-title">
-    <div class="wrap">
-      <div class="section-head"><div><span class="eyebrow">Choose your battleground</span><h2 id="worlds-title">Two games. One clan.</h2></div></div>
-      <div class="grid grid-2">
-        <a class="card card-link world" href="minecraft.html">
-          <div class="ph ph-mc"><svg class="icon"><use href="#i-castle"/></svg><span class="ph-label">screenshot: Titan Citadel spawn</span></div>
-          <div class="w-body">
-            <span class="chip chip-mc" style="justify-self:start">Minecraft</span>
-            <h3 style="font-size:1.75rem">The Titans Network</h3>
-            <ul>
-              <li><svg class="icon"><use href="#i-sparkle"/></svg>Custom enchantments you won't find anywhere else</li>
-              <li><svg class="icon"><use href="#i-flame"/></svg>Souls &amp; clan system: fight, earn, rise together</li>
-              <li><svg class="icon"><use href="#i-castle"/></svg>Legendary builds: Titan Citadel, Knight Palace</li>
-            </ul>
-            <span class="link-arrow">Explore Minecraft <svg class="icon"><use href="#i-arrow"/></svg></span>
-          </div>
-        </a>
-        <a class="card card-link world" href="cs2.html">
-          <div class="ph ph-cs"><svg class="icon"><use href="#i-crosshair"/></svg><span class="ph-label">team photo / match screenshot</span></div>
-          <div class="w-body">
-            <span class="chip chip-cs" style="justify-self:start">CS2</span>
-            <h3 style="font-size:1.75rem">Titans CS2</h3>
-            <ul>
-              <li><svg class="icon"><use href="#i-trophy"/></svg>Tryouts open for the first five</li>
-              <li><svg class="icon"><use href="#i-server"/></svg>Community servers opening soon</li>
-              <li><svg class="icon"><use href="#i-users"/></svg>Tryouts open for a support player</li>
-            </ul>
-            <span class="link-arrow">Explore CS2 <svg class="icon"><use href="#i-arrow"/></svg></span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- STORE BAND -->
-  <section class="section" aria-labelledby="store-title">
-    <div class="wrap">
-      <div class="card card-feature band">
-        <div>
-          <span class="eyebrow">Store</span>
-          <h2 id="store-title">Back the clan</h2>
-          <p class="muted mt-3" style="max-width:52ch">Ranks and cosmetics for Minecraft, VIP and tournament passes for CS2. Every purchase keeps the servers running.</p>
-          <div class="trust mt-5" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr))">
-            <div><svg class="icon"><use href="#i-lock"/></svg><div><strong>Secure payment</strong>Card, PayPal &amp; more</div></div>
-            <div><svg class="icon"><use href="#i-zap"/></svg><div><strong>Delivered in-game</strong>Usually within 5 min</div></div>
-            <div><svg class="icon"><use href="#i-refund"/></svg><div><strong>Fair refunds</strong><a class="gold" href="terms.html">Read the policy</a></div></div>
-          </div>
-        </div>
-        <a class="btn btn-primary btn-lg" href="store.html">Visit the store <svg class="icon"><use href="#i-arrow"/></svg></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- DISCORD -->
-  <section class="section" aria-labelledby="dc-title">
-    <div class="wrap">
-      <div class="card discord-band">
-        <span class="eyebrow">Community</span>
-        <h2 id="dc-title">Join the Titans on Discord</h2>
-        <p>Find a squad, get event pings, talk to staff and see server status the second it changes.</p>
-        <div class="row" style="justify-content:center"><a class="btn btn-primary" href="community.html"><svg class="icon"><use href="#i-chat"/></svg> Join the Discord</a><a class="btn btn-secondary" href="community.html">Meet the staff</a></div>
-      </div>
+  <section class="soon" aria-label="Coming up">
+    <div class="over">Coming up</div>
+    <div class="soon-list">
+      <a href="events.html" style="--c:var(--or)"><span class="d">09 Oct</span><span class="n">Season I opens<small>19:00 UTC</small></span><span class="r" style="color:var(--gold-ink)">MC</span></a>
+      <a href="events.html" style="--c:var(--or)"><span class="d">11 Oct</span><span class="n">Bedwars Night<small>Prize: Knight rank, 1 month</small></span><span class="r" style="color:var(--gold-ink)">MC</span></a>
+      <a href="cs2.html#cup" style="--c:var(--argent)"><span class="d">17 Oct</span><span class="n">Community Cup #4<small>Signups close 15 Oct</small></span><span class="r" style="color:var(--argent)">CS2</span></a>
+      <a href="events.html" style="--c:var(--or)"><span class="d">24 Oct</span><span class="n">Build contest: The Citadel Gate<small>Entries close 31 Oct</small></span><span class="r" style="color:var(--gold-ink)">MC</span></a>
     </div>
   </section>
 </main>
 
 <footer data-site-footer></footer>
-<script src="assets/site.js"></script>
+<style>.only-d { display: none; } @media (min-width: 960px) { .only-d { display: inline; } .only-p { display: none; } .pin.only-d { display: inline-flex; } }</style>
+<script src="assets/titans.js"></script>
 </body>
 </html>

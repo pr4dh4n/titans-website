@@ -5,104 +5,155 @@
 <link rel="icon" type="image/svg+xml" href="assets/ttc-icon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>News · TheTitansClan</title>
-<meta name="description" content="Announcements, patch notes and event recaps from TheTitansClan: Minecraft and CS2.">
-<meta name="theme-color" content="#F1E7D0">
+<meta name="description" content="Announcements and updates from TheTitansClan: Minecraft, CS2 and the clan.">
+<meta name="theme-color" content="#16120E">
+<meta property="og:title" content="News · TheTitansClan">
+<meta property="og:description" content="Custom Enchantments 2.0, CS2 tryouts, Season I and more.">
+<meta property="og:image" content="assets/img/great-hall.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600&family=UnifrakturMaguntia&display=swap">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@700&family=Grenze:wght@600;700&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@600&display=swap">
+<link rel="stylesheet" href="assets/titans.css">
 <style>
-  .news-hero { padding-block: var(--s6) var(--s5); }
-  .news-tools { display: grid; gap: var(--s3); margin-bottom: var(--s5); }
-  @media (min-width: 900px) { .news-tools { grid-template-columns: 1fr 280px; align-items: center; } }
-  .search { position: relative; }
-  .search .icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-3); width: 18px; height: 18px; }
-  .search .input { padding-left: 42px; min-height: 44px; }
-  .featured { display: grid; overflow: hidden; margin-bottom: var(--s5); }
-  .featured .ph { aspect-ratio: 16/9; }
-  .featured .f-body { padding: var(--s5); display: grid; gap: var(--s3); align-content: center; }
-  .featured h2 { font-size: clamp(1.75rem, 1.3rem + 2vw, 2.75rem); }
-  .featured p { color: var(--text-2); margin: 0; }
-  @media (min-width: 900px) { .featured { grid-template-columns: 1.3fr 1fr; } .featured .ph { aspect-ratio: auto; min-height: 360px; } .featured .f-body { padding: var(--s7) var(--s6); } }
-  .byline { display: flex; align-items: center; gap: var(--s2); font-size: var(--fs-xs); color: var(--text-3); }
-  .byline .avatar { width: 28px; height: 28px; border-radius: 7px; font-size: .75rem; }
-  .byline b { color: var(--text-2); font-weight: 600; }
-  .more { display: grid; justify-items: center; gap: var(--s3); margin-top: var(--s6); }
+  /* ---- Page head ---- */
+  .pg-head { padding: 26px 0 20px; display: grid; gap: 10px; }
+  .pg-head .filters { margin-top: 8px; }
+  @media (min-width: 960px) {
+    .pg-head { grid-template-columns: 1fr auto; align-items: end; padding: 56px 0 28px; gap: 12px 40px; }
+    .pg-head .filters { margin: 0 0 4px; }
+  }
+
+  /* Realm squares: gold = Minecraft, steel = CS2, red = clan */
+  .sq { display: inline-block; width: 9px; height: 9px; flex: none; background: var(--sq); }
+  .sq-mc { --sq: var(--or); } .sq-cs { --sq: var(--argent); } .sq-clan { --sq: var(--plume); }
+  .tag { display: inline-flex; align-items: center; gap: 7px; font: 700 .6875rem/1.2 var(--f-text); letter-spacing: 1.1px; text-transform: uppercase; color: var(--ink-2); }
+
+  /* ---- Featured post ---- */
+  .feat { display: grid; gap: 14px; padding: 4px 0 26px; border-top: 3px solid var(--or); }
+  .feat-img { display: block; background: var(--vellum); border-bottom: 1px solid var(--rule); height: 260px; overflow: hidden; }
+  .feat-img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; }
+  .feat-body { display: grid; gap: 10px; align-content: start; }
+  .feat h2 { font: 700 clamp(1.75rem, 1.3rem + 1.8vw, 2.625rem)/1.05 var(--f-head); }
+  .feat h2 a:hover { color: var(--gold-ink); }
+  .feat p { color: var(--ink-2); max-width: 52ch; margin: 0; }
+  .meta { font: 600 .75rem var(--f-mono); color: var(--gold-ink); }
+  .feat .go { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+  @media (min-width: 960px) {
+    .feat { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 44px; padding-bottom: 40px; }
+    .feat-img { height: 420px; border: 0; border-right: 1px solid var(--rule); }
+    .feat-body { padding-top: 36px; }
+  }
+
+  /* ---- The ruled list ---- */
+  .posts-list { border-top: 1px solid var(--ink); }
+  .post { display: grid; grid-template-columns: 1fr auto; gap: 4px 14px; padding: 14px 0; border-bottom: 1px solid var(--rule); align-items: center; }
+  .post .p-top { grid-column: 1; display: flex; gap: 12px; align-items: center; }
+  .post h3 { font: 600 1.1875rem/1.2 var(--f-head); grid-column: 1; }
+  .post p { grid-column: 1; margin: 0; font-size: .875rem; color: var(--ink-2); }
+  .post .arr { grid-column: 2; grid-row: 1 / span 3; color: var(--ink-3); }
+  .post:hover h3 { color: var(--gold-ink); }
+  .post:hover .arr { color: var(--ink); }
+  @media (min-width: 960px) {
+    .post { grid-template-columns: 110px 150px minmax(0, 1fr) minmax(0, 1fr) 24px; gap: 24px; padding: 18px 0; }
+    .post .p-top { display: contents; }
+    .post .meta { grid-column: 1; }
+    .post .tag { grid-column: 2; }
+    .post h3 { grid-column: 3; font-size: 1.3125rem; }
+    .post p { grid-column: 4; }
+    .post .arr { grid-column: 5; grid-row: auto; }
+  }
+  .empty { padding: 22px 0; color: var(--ink-2); border-bottom: 1px solid var(--rule); }
+  .end { padding: 16px 0 44px; font-size: .8125rem; color: var(--ink-3); }
+
+  /* ---- Band ---- */
+  .band .wrap { display: grid; gap: 16px; padding-block: 36px; }
+  .band h2 { font: 700 clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem)/1.05 var(--f-head); color: var(--on-sable); }
+  .band p { color: var(--on-sable-2); max-width: 52ch; margin: 8px 0 0; }
+  .band .acts { display: flex; gap: 10px; flex-wrap: wrap; }
+  @media (min-width: 960px) { .band .wrap { grid-template-columns: 1fr auto; align-items: center; padding-block: 52px; } }
 </style>
 </head>
 <body data-page="news">
 <header data-site-header></header>
 
 <main>
-  <section class="hero news-hero" aria-labelledby="news-title">
-    <div class="wrap">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>News</span></nav>
-      <span class="eyebrow">From the citadel</span>
-      <h1 id="news-title">News</h1>
-      <p class="muted mt-3" style="max-width:52ch">Announcements, patch notes and recaps from both games. Big updates are also posted in #announcements on Discord.</p>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:var(--s5)">
-    <div class="wrap">
-      <div class="news-tools">
-        <div class="filters" data-filter-group="posts" role="group" aria-label="Filter by tag">
-          <button class="filter" data-filter="all" aria-pressed="true">All</button>
-          <button class="filter" data-filter="mc">Minecraft</button>
-          <button class="filter" data-filter="cs">CS2</button>
-          <button class="filter" data-filter="clan">Clan</button>
-          <button class="filter" data-filter="patch">Patch notes</button>
-        </div>
-        <label class="search"><span class="sr-only">Search news</span><svg class="icon"><use href="#i-search"/></svg><input class="input" type="search" placeholder="Search posts"></label>
+  <div class="wrap">
+    <section class="pg-head" aria-labelledby="h1">
+      <div>
+        <div class="over">From the Citadel</div>
+        <h1 class="h1" id="h1" style="margin-top:8px">News</h1>
+        <p class="lede" style="margin-top:10px">Announcements from both games and the clan. Big updates also go to #announcements on Discord.</p>
       </div>
+      <div class="filters" data-filter-group="posts" role="group" aria-label="Show news about">
+        <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter" type="button" data-filter="mc" aria-pressed="false"><i style="--fc:var(--or)"></i>Minecraft</button>
+        <button class="filter" type="button" data-filter="cs" aria-pressed="false"><i style="--fc:var(--argent)"></i>CS2</button>
+        <button class="filter" type="button" data-filter="clan" aria-pressed="false"><i style="--fc:var(--plume)"></i>Clan</button>
+      </div>
+    </section>
 
-      <div id="posts-wrap">
-        <div id="posts">
-          <a class="card card-link featured" href="news-post.html" data-cat="mc patch">
-            <div class="ph ph-mc"><svg class="icon"><use href="#i-sparkle"/></svg><span class="ph-label">featured cover image 16:9</span></div>
-            <div class="f-body">
-              <div class="row"><span class="chip chip-patch">Patch notes</span><span class="chip chip-mc">Minecraft</span><span class="chip chip-clan">Featured</span></div>
-              <h2>Custom Enchantments 2.0: coming to Survival</h2>
-              <p>Souls, armour sets, the Tinkerer and the Alchemist. Here's the gear system waiting for you at launch.</p>
-              <div class="byline"><span class="avatar">TS</span><span><b>Titans Staff</b> · Dev team · Oct 1, 2026 · 6 min read</span></div>
-            </div>
+    <div>
+      <div id="posts">
+        <article class="feat" data-cat="mc" aria-labelledby="f-title">
+          <a class="feat-img" href="news-post.html" tabindex="-1" aria-hidden="true">
+            <img src="assets/img/great-hall.webp" alt="" width="740" height="840">
           </a>
-
-          <div class="grid grid-3">
-            <a class="card card-link news-card" href="cs2.html#tryout" data-cat="cs clan">
-              <div class="ph ph-cs"><svg class="icon"><use href="#i-users"/></svg></div>
-              <div class="nc-body"><div class="nc-meta"><span class="chip chip-cs">CS2</span><span>Oct 2</span></div><h3>CS2 tryouts are open</h3><p>We're picking our first five. Every role, every rank welcome to try.</p></div></a>
-            <a class="card card-link news-card" href="news-post.html" data-cat="mc clan">
-              <div class="ph"><svg class="icon"><use href="#i-castle"/></svg><span class="ph-label">cover</span></div>
-              <div class="nc-body"><div class="nc-meta"><span class="chip chip-mc">Minecraft</span><span class="chip chip-clan">Clan</span><span>Sep 26</span></div><h3>Season 1 Survival starts Friday, Oct 9</h3><p>A fresh world, the Citadel spawn and a launch-week event with prizes.</p></div></a>
-            <a class="card card-link news-card" href="news-post.html" data-cat="cs clan">
-              <div class="ph ph-cs"><svg class="icon"><use href="#i-ticket"/></svg><span class="ph-label">cover</span></div>
-              <div class="nc-body"><div class="nc-meta"><span class="chip chip-cs">CS2</span><span>Sep 24</span></div><h3>Community Cup #4: signups are open</h3><p>16 teams, single elimination, Oct 17. Free slots open Oct 10.</p></div></a>
-            <a class="card card-link news-card" href="news-post.html" data-cat="clan">
-              <div class="ph"><svg class="icon"><use href="#i-users"/></svg><span class="ph-label">cover</span></div>
-              <div class="nc-body"><div class="nc-meta"><span class="chip chip-clan">Clan</span><span>Sep 18</span></div><h3>Staff applications are open</h3><p>We're hiring helpers and moderators for both games. Apply by Oct 15.</p></div></a>
+          <div class="feat-body">
+            <div class="tag"><i class="sq sq-mc"></i>Minecraft · Patch notes</div>
+            <h2 id="f-title"><a href="news-post.html">Custom Enchantments 2.0 is coming to Survival</a></h2>
+            <p>Souls, armour sets, the Tinkerer and the Alchemist. Here's the gear system that will be waiting for you when Season I opens.</p>
+            <span class="meta"><time datetime="2026-10-01">01 Oct 2026</time> · Titans staff</span>
+            <div class="go"><a class="btn btn-ink" href="news-post.html">Read the post</a></div>
           </div>
-        </div>
-        <div class="empty mt-5" data-empty hidden><svg class="icon"><use href="#i-search"/></svg><h4>No posts with this tag yet</h4><p>Try another tag, or catch every update in #announcements on Discord.</p></div>
-      </div>
+        </article>
 
-      <div class="more">
-        <span class="hint" id="more-note">That's every post so far.</span>
+        <div class="posts-list">
+          <a class="post" href="cs2.html#tryouts" data-cat="cs clan">
+            <span class="p-top"><span class="meta"><time datetime="2026-10-02">02 Oct</time></span><span class="tag"><i class="sq sq-cs"></i>CS2</span></span>
+            <h3>CS2 tryouts are open</h3>
+            <p>We're picking our first five. All five roles are open: Entry, AWPer, IGL, Support and Lurker.</p>
+            <svg class="icon arr" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+          <a class="post" href="events.html" data-cat="mc">
+            <span class="p-top"><span class="meta"><time datetime="2026-09-26">26 Sep</time></span><span class="tag"><i class="sq sq-mc"></i>Minecraft</span></span>
+            <h3>Season I opens Fri 9 Oct</h3>
+            <p>Survival starts at 19:00 UTC, with the Titan Citadel as spawn. Bedwars Night follows on Sun 11 Oct.</p>
+            <svg class="icon arr" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+          <a class="post" href="event.html" data-cat="cs">
+            <span class="p-top"><span class="meta"><time datetime="2026-09-24">24 Sep</time></span><span class="tag"><i class="sq sq-cs"></i>CS2</span></span>
+            <h3>Community Cup #4: signups are open</h3>
+            <p>Sat 17 Oct, 5v5, 16 teams, single elimination. Signups close Thu 15 Oct.</p>
+            <svg class="icon arr" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+          <a class="post" href="community.html#apply" data-cat="clan">
+            <span class="p-top"><span class="meta"><time datetime="2026-09-18">18 Sep</time></span><span class="tag"><i class="sq sq-clan"></i>Clan</span></span>
+            <h3>Staff applications are open</h3>
+            <p>We're looking for helpers and moderators for both games.</p>
+            <svg class="icon arr" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+        </div>
+      </div>
+      <p class="empty" data-empty hidden>No posts with this tag yet. Every update also goes to #announcements on Discord.</p>
+    </div>
+    <p class="end">That's every post so far.</p>
+  </div>
+
+  <section class="band" aria-labelledby="band-t">
+    <div class="wrap">
+      <div>
+        <div class="over on-dark">Never miss an update</div>
+        <h2 id="band-t" style="margin-top:8px">Updates land on Discord first.</h2>
+        <p>Patch notes, event reminders and server news are posted in #announcements as soon as they happen.</p>
+      </div>
+      <div class="acts">
+        <a class="btn btn-paper" href="community.html#discord">Join Discord</a>
+        <a class="btn btn-line-light" href="events.html">See events</a>
       </div>
     </div>
   </section>
 </main>
 
 <footer data-site-footer></footer>
-<script src="assets/site.js"></script>
-<script>
-  // ?state=loading shows skeleton cards; ?state=error shows the failed-to-load state
-  if (window.TT_STATE === "loading" || window.TT_STATE === "error") {
-    const posts = document.getElementById("posts");
-    posts.innerHTML = window.TT_STATE === "loading"
-      ? '<div class="skel" style="height:360px;border-radius:16px;margin-bottom:24px"></div><div class="grid grid-3">' + '<div class="skel" style="height:320px;border-radius:16px"></div>'.repeat(3) + "</div>"
-      : '<div class="empty" style="border-style:solid;background:var(--danger-wash);border-color:rgba(174,42,31,.35)"><svg class="icon" style="color:var(--danger)"><use href="#i-alert"/></svg><h4>We couldn\'t load the news</h4><p>Check your connection and try again.</p><a class="btn btn-secondary btn-sm mt-4" href="news.html">Try again</a></div>';
-    document.querySelector(".more").hidden = true;
-  }
-</script>
+<script src="assets/titans.js"></script>
 </body>
 </html>

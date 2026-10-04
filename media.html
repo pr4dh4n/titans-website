@@ -5,215 +5,240 @@
 <link rel="icon" type="image/svg+xml" href="assets/ttc-icon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Media · TheTitansClan</title>
-<meta name="description" content="Builds, screenshots and clips from the Titans Minecraft network: the Titan Citadel hub, the Knight Palace and its 90-block knight.">
-<meta name="theme-color" content="#F1E7D0">
+<meta name="description" content="Renders of our Minecraft builds: the Titan Citadel where you spawn, its great hall and golden knights, and the Knight Palace sky island.">
+<meta name="theme-color" content="#16120E">
+<meta property="og:title" content="Media · TheTitansClan">
+<meta property="og:description" content="The Titan Citadel, the golden knights and the Knight Palace, exactly as they stand on the server.">
+<meta property="og:image" content="assets/img/citadel.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600&family=UnifrakturMaguntia&display=swap">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@700&family=Grenze:wght@600;700&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@600&display=swap">
+<link rel="stylesheet" href="assets/titans.css">
 <style>
-  section[id] { scroll-margin-top: var(--header-h); }
-  .hero-jump { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s5); }
+  .pg-head { padding: 26px 0 22px; }
+  @media (min-width: 960px) { .pg-head { padding: 56px 0 30px; } }
 
-  /* Featured builds */
-  .feat { display: grid; gap: var(--s4); }
-  @media (min-width: 900px) { .feat { grid-template-columns: 1.5fr 1fr; gap: var(--s5); } .build:first-child { grid-row: span 2; } }
-  .build { display: flex; flex-direction: column; overflow: hidden; }
-  .build-media { all: unset; cursor: pointer; display: flex; flex-direction: column; flex: 1; position: relative; }
-  .build-media .ph { aspect-ratio: 16/9; flex: 1; border-bottom: 1px solid var(--line); }
-  .build-media .ph .icon { width: 56px; height: 56px; opacity: .45; color: var(--mc); transition: transform .3s var(--ease); }
-  .build:first-child .build-media .ph .icon { width: 88px; height: 88px; }
-  @media (min-width: 900px) { .build:first-child .build-media .ph { aspect-ratio: auto; min-height: 340px; } .build:not(:first-child) .build-media .ph { aspect-ratio: 16/7; } }
-  .build-media:hover .ph .icon { transform: scale(1.06); }
-  .build-media:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: -4px; }
-  .view-pill { position: absolute; top: var(--s3); right: var(--s3); display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: var(--r-sm); background: rgba(250,244,230,.92); border: 1px solid var(--line-2); font: 700 .75rem/1 var(--font-display); letter-spacing: .06em; color: var(--text); z-index: 1; }
-  .view-pill .icon { width: 14px; height: 14px; color: var(--gold); }
-  .build-media:hover .view-pill { color: var(--gold-hi); border-color: var(--gold-line); }
-  .build-body { padding: var(--s4) var(--s5) var(--s5); display: grid; gap: var(--s2); }
-  .build-body h3 { font-size: 1.5rem; }
-  .build:first-child .build-body h3 { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.125rem); }
-  .build-body p { margin: 0; color: var(--text-2); font-size: var(--fs-sm); }
+  .view { all: unset; box-sizing: border-box; cursor: pointer; display: block; }
+  .view:focus-visible { outline: 2px solid var(--plume); outline-offset: 2px; }
 
-  /* Gallery */
-  .gal-tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s3); margin-bottom: var(--s4); }
-  .gal-tools .hint { margin: 0; }
-  .gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 132px; grid-auto-flow: dense; gap: var(--s2); }
-  @media (min-width: 600px) { .gallery { grid-auto-rows: 180px; gap: var(--s3); } }
-  @media (min-width: 900px) { .gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 200px; gap: var(--s4); } }
-  .g-item { all: unset; box-sizing: border-box; cursor: pointer; position: relative; display: block; border-radius: var(--r); overflow: hidden; border: 1px solid var(--line-2); box-shadow: var(--shadow); }
-  .g-item[hidden] { display: none; }
-  .g-wide { grid-column: span 2; }
-  .g-tall { grid-row: span 2; }
+  /* ---- Featured build ---- */
+  .feat { display: grid; gap: 14px; border-top: 3px solid var(--or); padding-bottom: 22px; }
+  .feat .view { position: relative; height: 330px; background: var(--vellum); border-bottom: 1px solid var(--rule); }
+  .feat .view img { width: 100%; height: 100%; object-fit: contain; padding: 14px 6px 6px; transition: transform .25s var(--ease); }
+  .feat .view:hover img { transform: scale(1.02); }
+  .zoom { position: absolute; right: 10px; top: 10px; display: inline-flex; align-items: center; gap: 6px; padding: 5px 9px; border-radius: 3px; background: var(--sable); color: var(--on-sable); font-size: .75rem; font-weight: 700; }
+  .zoom .icon { width: 14px; height: 14px; }
+  .feat-body { display: grid; gap: 10px; align-content: start; }
+  .feat-body h2 { font: 700 clamp(2.25rem, 1.6rem + 2.2vw, 3.25rem)/1 var(--f-black); }
+  .feat-body p { margin: 0; color: var(--ink-2); max-width: 46ch; }
+  .facts { list-style: none; margin: 4px 0 0; padding: 0; border-top: 1px solid var(--rule); font-size: .875rem; }
+  .facts li { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--rule); }
+  .facts li b { width: 92px; flex: none; font-weight: 700; }
+  @media (min-width: 960px) {
+    .feat { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 48px; padding-bottom: 32px; }
+    .feat .view { height: 520px; border: 0; border-right: 1px solid var(--rule); }
+    .feat-body { padding-top: 40px; }
+  }
+
+  /* ---- Other builds: rows ---- */
+  .builds { border-top: 1px solid var(--ink); }
+  .build { display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--rule); align-items: center; }
+  .build .view { height: 104px; background: var(--vellum); border: 1px solid var(--rule); }
+  .build .view img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+  .build h3 { font: 600 1.3125rem/1.15 var(--f-head); }
+  .build p { margin: 4px 0 0; font-size: .875rem; color: var(--ink-2); }
+  .build .tag { font: 700 .6875rem/1.2 var(--f-text); letter-spacing: 1.1px; text-transform: uppercase; color: var(--gold-ink); }
+  @media (min-width: 960px) {
+    .builds { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; border: 0; }
+    .build { grid-template-columns: 140px 1fr; gap: 22px; border-top: 1px solid var(--ink); border-bottom: 0; padding: 18px 0; }
+    .build .view { height: 150px; }
+  }
+
+  /* ---- Gallery ---- */
+  .gal { padding-top: 44px; }
+  .gal .sec-head { align-items: baseline; flex-wrap: wrap; margin-bottom: 14px; }
+  .gal .note { font-size: .8125rem; color: var(--ink-3); margin: 0; }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 150px; gap: 8px; }
+  .g { position: relative; background: var(--vellum); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+  .g img { position: absolute; inset: 0; width: 100%; height: calc(100% - 30px); object-fit: contain; padding: 8px; transition: transform .25s var(--ease); }
+  .g:hover img { transform: scale(1.03); }
+  .g .cap { position: absolute; left: 0; right: 0; bottom: 0; height: 30px; display: flex; align-items: center; padding: 0 10px; border-top: 1px solid var(--rule); background: var(--parch); font-size: .75rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .g-big { grid-column: span 2; grid-row: span 2; }
-  .g-item .ph { position: absolute; inset: 0; aspect-ratio: auto; }
-  .g-item .ph > .icon { width: 36px; height: 36px; opacity: .4; transition: transform .3s var(--ease); }
-  .g-big .ph > .icon { width: 64px; height: 64px; }
-  .g-item:hover .ph > .icon { transform: scale(1.08); }
-  .g-item:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 2px; }
-  .g-kind { position: absolute; top: var(--s2); left: var(--s2); z-index: 1; }
-  .g-cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: var(--s5) var(--s3) var(--s3); background: linear-gradient(180deg, transparent, rgba(43,32,21,.78)); color: #FBF3E2; display: grid; gap: 2px; }
-  .g-cap b { font: 700 .9375rem/1.15 var(--font-display); }
-  .g-cap small { font-size: var(--fs-xs); color: #E6D7B8; }
-  @media (min-width: 900px) { .g-big .g-cap b { font-size: 1.25rem; } }
-  .g-item .play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -60%); width: 52px; height: 52px; border-radius: 50%; background: rgba(43,32,21,.72); border: 1px solid rgba(250,244,230,.45); display: grid; place-items: center; color: #FBF3E2; z-index: 1; transition: background .2s; }
-  .g-item .play .icon { width: 20px; height: 20px; fill: currentColor; margin-left: 3px; }
-  .g-item:hover .play { background: var(--crimson); }
-  .gallery-wrap .empty { margin-top: var(--s4); }
-  .gallery-wrap .empty[hidden] { display: none; }
-  @media (max-width: 599px) { .g-cap { padding: var(--s4) var(--s2) var(--s2); } .g-cap b { font-size: .8125rem; } .g-cap small { display: none; } .g-kind { display: none; } }
+  .g-tall { grid-row: span 2; }
+  .g-wide { grid-column: span 2; }
+  @media (min-width: 760px) { .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 210px; gap: 12px; } .g .cap { font-size: .8125rem; } }
 
-  /* Share */
-  .share { display: grid; gap: var(--s4); padding: var(--s5); align-items: center; }
-  @media (min-width: 900px) { .share { grid-template-columns: auto 1fr auto; gap: var(--s6); padding: var(--s6); } }
-  .share .seal { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; background: var(--surface-2); border: 1px solid var(--gold-line); color: var(--gold); box-shadow: inset 0 0 0 4px var(--surface); }
-  .share .seal .icon { width: 28px; height: 28px; }
-  .share h2 { font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); }
-  .share p { margin: var(--s2) 0 0; color: var(--text-2); max-width: 60ch; }
+  /* ---- Band ---- */
+  .band { margin-top: 56px; }
+  .band .wrap { display: grid; gap: 16px; padding-block: 36px; }
+  .band h2 { font: 700 clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem)/1.05 var(--f-head); }
+  .band p { color: var(--on-sable-2); max-width: 54ch; margin: 8px 0 0; }
+  .band b { color: var(--on-sable); }
+  @media (min-width: 960px) { .band .wrap { grid-template-columns: 1fr auto; align-items: center; padding-block: 52px; } }
+
+  /* ---- Lightbox (page-local: shows the real render) ---- */
+  .lbx { position: fixed; inset: 0; z-index: 80; background: rgba(22,18,14,.97); display: grid; grid-template-rows: auto 1fr auto; color: var(--on-sable); }
+  .lbx-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 12px 10px var(--gut); }
+  .lbx-top .n { font: 600 .75rem var(--f-mono); color: var(--on-sable-2); }
+  .lbx-stage { position: relative; min-height: 0; display: grid; place-items: center; padding: 0 12px; }
+  .lbx-stage img { position: absolute; top: 0; left: 12px; width: calc(100% - 24px); height: 100%; object-fit: contain; }
+  .lbx-cap { padding: 12px var(--gut) 18px; text-align: center; }
+  .lbx-cap b { display: block; font: 600 1.25rem/1.2 var(--f-head); }
+  .lbx-cap span { font-size: .8125rem; color: var(--on-sable-2); }
+  .lbx-btn { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid var(--sable-3); border-radius: var(--r); background: var(--sable); color: var(--on-sable); }
+  .lbx-btn:hover { border-color: var(--on-sable-2); }
+  .lbx-btn .icon { width: 20px; height: 20px; }
+  .lbx-nav { position: absolute; top: 50%; transform: translateY(-50%); }
+  .lbx-prev { left: 10px; } .lbx-next { right: 10px; }
 </style>
 </head>
 <body data-page="media">
 <header data-site-header></header>
 
 <main>
-  <!-- HERO -->
-  <section class="hero area-hero" aria-labelledby="media-title">
-    <div class="wrap">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Media</span></nav>
-      <span class="eyebrow">Builds, screenshots, clips</span>
-      <h1 id="media-title">Media</h1>
-      <p class="lede">A look around the Titans Minecraft network: the Titan Citadel where you spawn, the Knight Palace in the sky and the giant knight that guards it.</p>
-      <div class="hero-jump">
-        <a class="btn btn-primary" href="#builds"><svg class="icon"><use href="#i-castle"/></svg> Featured builds</a>
-        <a class="btn btn-secondary" href="#all-media"><svg class="icon"><use href="#i-image"/></svg> Gallery</a>
-      </div>
-    </div>
-  </section>
+  <div class="wrap">
+    <section class="pg-head" aria-labelledby="h1">
+      <div class="over">Our builds</div>
+      <h1 class="h1" id="h1" style="margin-top:8px">Media</h1>
+      <p class="lede" style="margin-top:10px">A look around before you join. Every picture here is a render of a build that stands on our server today.</p>
+    </section>
 
-  <!-- FEATURED BUILDS -->
-  <section class="section" id="builds" aria-labelledby="builds-title">
-    <div class="wrap">
-      <div class="section-head"><div><span class="eyebrow">Built by hand</span><h2 id="builds-title">Featured builds</h2><p>Our three biggest builds. Tap one to see it bigger.</p></div></div>
-      <div class="feat" data-gallery>
-        <article class="card build">
-          <button type="button" class="build-media" data-lightbox="Titan Citadel" data-by="The hub, where every player spawns" data-tone="ph-mc" aria-label="View Titan Citadel">
-            <span class="ph ph-mc"><svg class="icon"><use href="#i-castle"/></svg></span>
-            <span class="view-pill"><svg class="icon"><use href="#i-image"/></svg> View</span>
+    <section aria-label="Featured builds" data-group="builds">
+      <article class="feat" aria-labelledby="f-title">
+        <button type="button" class="view" data-view="assets/img/citadel.webp" data-title="Titan Citadel" data-by="Our spawn hub, on a floating island" aria-label="View the Titan Citadel larger">
+          <img src="assets/img/citadel.webp" alt="The Titan Citadel: the great hall, two golden knight statues and the compass plaza on a floating island" width="1400" height="1362">
+          <span class="zoom"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>View</span>
+        </button>
+        <div class="feat-body">
+          <div class="over">Featured build · Spawn</div>
+          <h2 id="f-title">Titan Citadel</h2>
+          <p>The hub where every player spawns. A walled citadel on a floating island, built to greet you the moment you join.</p>
+          <ul class="facts">
+            <li><b>Great hall</b><span>Red banners and the clan crest over the doors</span></li>
+            <li><b>Knights</b><span>Two golden knight statues</span></li>
+            <li><b>Plaza</b><span>The compass plaza, where you arrive</span></li>
+            <li><b>Grounds</b><span>A fountain and gardens</span></li>
+          </ul>
+        </div>
+      </article>
+
+      <div class="builds">
+        <article class="build">
+          <button type="button" class="view" data-view="assets/img/knight-palace.webp" data-title="Knight Palace" data-by="The cathedral on our sky island" aria-label="View the Knight Palace larger">
+            <img src="assets/img/knight-palace.webp" alt="The Knight Palace cathedral in white and green stone, with a shield crest over its doors" width="700" height="818" loading="lazy">
           </button>
-          <div class="build-body">
-            <div class="row"><span class="chip chip-mc">Hub</span><span class="chip">Spawn</span></div>
-            <h3>Titan Citadel</h3>
-            <p>The hub where every player spawns. A walled citadel with portals to every game mode, including the one up to the Knight Palace. Type <code class="mono">/hub</code> to come back any time.</p>
-          </div>
-        </article>
-        <article class="card build">
-          <button type="button" class="build-media" data-lightbox="Knight Palace" data-by="A cathedral on a sky island" data-tone="ph-mc" aria-label="View Knight Palace">
-            <span class="ph ph-mc"><svg class="icon"><use href="#i-shield"/></svg></span>
-            <span class="view-pill"><svg class="icon"><use href="#i-image"/></svg> View</span>
-          </button>
-          <div class="build-body">
-            <div class="row"><span class="chip chip-mc">Sky island</span></div>
+          <div>
+            <span class="tag">Sky island</span>
             <h3>Knight Palace</h3>
-            <p>A cathedral on an island floating in the sky. Take the portal from the Titan Citadel to get there.</p>
+            <p>A cathedral on an island floating in the sky, guarded by a knight statue 90 blocks tall.</p>
           </div>
         </article>
-        <article class="card build">
-          <button type="button" class="build-media" data-lightbox="The 90-block knight" data-by="Guarding the Knight Palace" data-tone="ph-mc" aria-label="View the 90-block knight">
-            <span class="ph ph-mc"><svg class="icon"><use href="#i-user"/></svg></span>
-            <span class="view-pill"><svg class="icon"><use href="#i-image"/></svg> View</span>
+        <article class="build">
+          <button type="button" class="view" data-view="assets/img/knight-statue.webp" data-title="Golden knight" data-by="One of the two statues in the Titan Citadel" aria-label="View the golden knight statue larger">
+            <img src="assets/img/knight-statue.webp" alt="A golden knight statue with a red plume and a raised sword" width="348" height="850" loading="lazy">
           </button>
-          <div class="build-body">
-            <div class="row"><span class="chip chip-mc">Statue</span></div>
-            <h3>The 90-block knight</h3>
-            <p>A knight statue 90 blocks tall that stands guard over the Knight Palace. You can see it from all over the island.</p>
+          <div>
+            <span class="tag">Statue · Titan Citadel</span>
+            <h3>The golden knights</h3>
+            <p>Two golden knights with raised swords stand watch over the Citadel.</p>
           </div>
         </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- GALLERY -->
-  <section class="section" id="all-media" aria-labelledby="gallery-title">
-    <div class="wrap">
-      <div class="section-head"><div><span class="eyebrow">Look around</span><h2 id="gallery-title">Gallery</h2></div></div>
-      <div class="gal-tools">
-        <div class="filters" data-filter-group="gallery" role="group" aria-label="Filter the gallery">
-          <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
-          <button class="filter" type="button" data-filter="builds" aria-pressed="false">Builds</button>
-          <button class="filter" type="button" data-filter="shots" aria-pressed="false">Screenshots</button>
-          <button class="filter" type="button" data-filter="clips" aria-pressed="false">Clips</button>
-        </div>
-        <p class="hint">More screenshots are added every season.</p>
+    <section class="gal" aria-labelledby="gal-t">
+      <div class="sec-head">
+        <h2 class="h2" id="gal-t">Gallery</h2>
+        <p class="note">In-game screenshots are added every season.</p>
       </div>
-      <div class="gallery-wrap">
-        <div class="gallery" id="gallery" data-gallery>
-          <button type="button" class="g-item g-big" data-cat="builds" data-lightbox="Titan Citadel" data-by="Build · the hub" data-tone="ph-mc">
-            <span class="ph ph-mc"><svg class="icon"><use href="#i-castle"/></svg></span>
-            <span class="chip chip-mc g-kind">Build</span>
-            <span class="g-cap"><b>Titan Citadel</b><small>The hub, where every player spawns</small></span>
-          </button>
-          <button type="button" class="g-item g-tall" data-cat="builds" data-lightbox="Knight Palace cathedral" data-by="Build · sky island" data-tone="ph-mc">
-            <span class="ph ph-mc"><svg class="icon"><use href="#i-shield"/></svg></span>
-            <span class="chip chip-mc g-kind">Build</span>
-            <span class="g-cap"><b>Knight Palace cathedral</b><small>Sky island</small></span>
-          </button>
-          <button type="button" class="g-item g-tall" data-cat="builds" data-lightbox="The 90-block knight" data-by="Build · Knight Palace" data-tone="ph-mc">
-            <span class="ph ph-mc"><svg class="icon"><use href="#i-user"/></svg></span>
-            <span class="chip chip-mc g-kind">Build</span>
-            <span class="g-cap"><b>The 90-block knight</b><small>Knight Palace</small></span>
-          </button>
-          <button type="button" class="g-item g-wide" data-cat="shots" data-lightbox="Survival world" data-by="Screenshot · Survival" data-tone="ph-mc">
-            <span class="ph ph-mc"><svg class="icon"><use href="#i-image"/></svg></span>
-            <span class="chip g-kind">Screenshot</span>
-            <span class="g-cap"><b>Survival world</b><small>Survival</small></span>
-          </button>
-          <button type="button" class="g-item" data-cat="shots" data-lightbox="Bedwars map" data-by="Screenshot · Bedwars" data-tone="ph-mc">
-            <span class="ph ph-mc"><svg class="icon"><use href="#i-bed"/></svg></span>
-            <span class="chip g-kind">Screenshot</span>
-            <span class="g-cap"><b>Bedwars map</b><small>Bedwars</small></span>
-          </button>
-          <button type="button" class="g-item" data-cat="shots" data-lightbox="Custom enchantment books" data-by="Screenshot · Survival" data-tone="ph-mc">
-            <span class="ph ph-mc"><svg class="icon"><use href="#i-sparkle"/></svg></span>
-            <span class="chip g-kind">Screenshot</span>
-            <span class="g-cap"><b>Custom enchantment books</b><small>Survival</small></span>
-          </button>
-          <button type="button" class="g-item" data-cat="shots" data-lightbox="Lava armour set" data-by="Screenshot · Survival" data-tone="ph-mc">
-            <span class="ph ph-mc"><svg class="icon"><use href="#i-flame"/></svg></span>
-            <span class="chip g-kind">Screenshot</span>
-            <span class="g-cap"><b>Lava armour set</b><small>Survival</small></span>
-          </button>
-          <button type="button" class="g-item" data-cat="clips" data-lightbox="A walk through the Titan Citadel" data-by="Clip · hub tour" data-tone="ph-mc" data-kind="video">
-            <span class="ph ph-mc"></span>
-            <span class="play" aria-hidden="true"><svg class="icon"><use href="#i-play"/></svg></span>
-            <span class="chip chip-clan g-kind">Clip</span>
-            <span class="g-cap"><b>A walk through the Titan Citadel</b><small>Hub tour</small></span>
-          </button>
-          <button type="button" class="g-item g-wide" data-cat="clips" data-lightbox="A round of Bedwars" data-by="Clip · Bedwars" data-tone="ph-mc" data-kind="video">
-            <span class="ph ph-mc"></span>
-            <span class="play" aria-hidden="true"><svg class="icon"><use href="#i-play"/></svg></span>
-            <span class="chip chip-clan g-kind">Clip</span>
-            <span class="g-cap"><b>A round of Bedwars</b><small>Bedwars</small></span>
-          </button>
-        </div>
-        <div class="empty" data-empty hidden><svg class="icon"><use href="#i-image"/></svg><h4>Nothing here yet</h4><p>More screenshots are added every season. Try another filter.</p></div>
+      <div class="grid" data-group="gallery">
+        <button type="button" class="view g g-big" data-view="assets/img/citadel.webp" data-title="Titan Citadel" data-by="The whole island">
+          <img src="assets/img/citadel.webp" alt="The whole Titan Citadel island" width="1400" height="1362" loading="lazy"><span class="cap">Titan Citadel</span>
+        </button>
+        <button type="button" class="view g g-tall" data-view="assets/img/great-hall.webp" data-title="The great hall" data-by="Titan Citadel">
+          <img src="assets/img/great-hall.webp" alt="The great hall, with red banners and a golden crest" width="740" height="840" loading="lazy"><span class="cap">The great hall</span>
+        </button>
+        <button type="button" class="view g g-tall" data-view="assets/img/knight-statue.webp" data-title="Golden knight" data-by="Titan Citadel">
+          <img src="assets/img/knight-statue.webp" alt="A golden knight statue" width="348" height="850" loading="lazy"><span class="cap">Golden knight</span>
+        </button>
+        <button type="button" class="view g g-wide" data-view="assets/img/citadel-towers.webp" data-title="The towers" data-by="Titan Citadel">
+          <img src="assets/img/citadel-towers.webp" alt="The red-roofed towers along the Citadel walls" width="1200" height="816" loading="lazy"><span class="cap">The towers</span>
+        </button>
+        <button type="button" class="view g" data-view="assets/img/courtyard.webp" data-title="Compass plaza" data-by="Titan Citadel, where you arrive">
+          <img src="assets/img/courtyard.webp" alt="The compass plaza with a golden star, a fountain and trees" width="800" height="660" loading="lazy"><span class="cap">Compass plaza</span>
+        </button>
+        <button type="button" class="view g" data-view="assets/img/knight-palace.webp" data-title="Knight Palace" data-by="Sky island">
+          <img src="assets/img/knight-palace.webp" alt="The Knight Palace cathedral" width="700" height="818" loading="lazy"><span class="cap">Knight Palace</span>
+        </button>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
-  <!-- SHARE -->
-  <section class="section" aria-labelledby="share-title">
+  <section class="band" aria-labelledby="share-t">
     <div class="wrap">
-      <div class="card card-feature share">
-        <span class="seal"><svg class="icon"><use href="#i-image"/></svg></span>
-        <div>
-          <h2 id="share-title">Share your screenshot</h2>
-          <p>Got a great shot of your base, a build or a big win? Post it in <b style="color:var(--text)">#media</b> on our Discord. If we add it here, we'll credit you.</p>
-        </div>
-        <a class="btn btn-primary" href="community.html#discord"><svg class="icon"><use href="#i-chat"/></svg> Post it in #media</a>
+      <div>
+        <div class="over on-dark">Your turn</div>
+        <h2 id="share-t" style="margin-top:8px">Share your screenshot</h2>
+        <p>Got a great shot of your base, a build or a big win? Post it in <b>#media</b> on our Discord. If we add it here, we'll credit you.</p>
       </div>
+      <a class="btn btn-paper" href="community.html#discord">Post it in #media</a>
     </div>
   </section>
 </main>
 
+<div class="lbx" id="lbx" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+  <div class="lbx-top"><span class="n tnum"></span><button type="button" class="lbx-btn" data-lbx="close" aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button></div>
+  <div class="lbx-stage">
+    <img alt="">
+    <button type="button" class="lbx-btn lbx-nav lbx-prev" data-lbx="-1" aria-label="Previous image"><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg></button>
+    <button type="button" class="lbx-btn lbx-nav lbx-next" data-lbx="1" aria-label="Next image"><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+  </div>
+  <div class="lbx-cap"><b></b><span></span></div>
+</div>
+
 <footer data-site-footer></footer>
-<script src="assets/site.js"></script>
+<script src="assets/titans.js"></script>
+<script>
+  /* Lightbox that shows the real render (the shared one only draws a placeholder). */
+  (function () {
+    const box = document.getElementById("lbx");
+    const img = box.querySelector("img");
+    let items = [], i = 0, opener = null;
+    function show() {
+      const it = items[i];
+      img.src = it.dataset.view;
+      img.alt = it.querySelector("img") ? it.querySelector("img").alt : it.dataset.title;
+      box.querySelector(".lbx-cap b").textContent = it.dataset.title;
+      box.querySelector(".lbx-cap span").textContent = it.dataset.by || "";
+      box.querySelector(".n").textContent = (i + 1) + " / " + items.length;
+    }
+    function close() {
+      box.hidden = true;
+      document.body.style.overflow = "";
+      if (opener) opener.focus();
+    }
+    document.addEventListener("click", e => {
+      const v = e.target.closest("[data-view]");
+      if (v) {
+        items = [...v.closest("[data-group]").querySelectorAll("[data-view]")];
+        i = items.indexOf(v); opener = v;
+        show(); box.hidden = false; document.body.style.overflow = "hidden";
+        box.querySelector('[data-lbx="close"]').focus();
+        return;
+      }
+      const b = e.target.closest("[data-lbx]");
+      if (b) {
+        if (b.dataset.lbx === "close") close();
+        else { i = (i + +b.dataset.lbx + items.length) % items.length; show(); }
+        return;
+      }
+      if (!box.hidden && (e.target === box || e.target.classList.contains("lbx-stage"))) close();
+    });
+    document.addEventListener("keydown", e => {
+      if (box.hidden) return;
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft") { i = (i + (e.key === "ArrowRight" ? 1 : -1) + items.length) % items.length; show(); }
+    });
+  })();
+</script>
 </body>
 </html>

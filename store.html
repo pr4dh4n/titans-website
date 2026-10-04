@@ -5,449 +5,435 @@
 <link rel="icon" type="image/svg+xml" href="assets/ttc-icon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Store · TheTitansClan</title>
-<meta name="description" content="TheTitansClan store: Minecraft ranks and cosmetics, CS2 VIP, tournament passes and merch. Secure checkout, delivered in-game.">
-<meta name="theme-color" content="#F1E7D0">
+<meta name="description" content="Minecraft ranks and CS2 VIP in one cart. Prices in ₹. Pay with UPI, cards or wallets. Monthly renews until cancelled; one-time is a single payment.">
+<meta name="theme-color" content="#16120E">
+<meta property="og:title" content="TheTitansClan Store">
+<meta property="og:description" content="Minecraft ranks from ₹99/month and CS2 VIP, in one cart.">
+<meta property="og:image" content="assets/img/citadel.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600&family=UnifrakturMaguntia&display=swap">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@700&family=Grenze:wght@600;700&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@600&display=swap">
+<link rel="stylesheet" href="assets/titans.css">
 <style>
-  .store-hero { padding-block: var(--s6) var(--s5); }
-  .store-hero .lede { color: var(--text-2); max-width: 52ch; margin: var(--s3) 0 var(--s5); }
-  .store-top { display: grid; gap: var(--s4); }
-  @media (min-width: 900px) { .store-top { grid-template-columns: 1fr auto; align-items: end; } }
-  .trust-wrap { padding: var(--s4) var(--s5); }
-  .toolbar { display: flex; flex-direction: column; gap: var(--s3); margin: var(--s6) 0 var(--s4); }
-  @media (min-width: 900px) { .toolbar { flex-direction: row; align-items: center; justify-content: space-between; } }
-  .toolbar .count { font-size: var(--fs-sm); color: var(--text-3); }
-  .products { display: grid; grid-template-columns: 1fr; gap: var(--s4); }
-  @media (min-width: 520px) { .products { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1000px) { .products { grid-template-columns: repeat(4, 1fr); gap: var(--s5); } }
-  .pc-art.ph { aspect-ratio: 4/3; }
-  .pc-tag { position: absolute; top: var(--s3); right: var(--s3); font: 700 10px/1 var(--font-display); letter-spacing: .1em; text-transform: uppercase; padding: 5px 8px; border-radius: 2px; background: var(--crimson); color: var(--crimson-ink); }
-  .pc-sub { font-size: var(--fs-xs); color: var(--text-3); margin-top: -6px; }
-  .policy-note { display: grid; gap: var(--s3); margin-top: var(--s6); padding: var(--s4) var(--s5); font-size: var(--fs-sm); color: var(--text-2); }
-  .policy-note nav { display: flex; gap: var(--s4); flex-wrap: wrap; }
-  .policy-note a { color: var(--gold); text-decoration: underline; text-underline-offset: 2px; }
-  @media (min-width: 900px) { .policy-note { grid-template-columns: 1fr auto; align-items: center; } }
-  .skel-card { height: 420px; border-radius: var(--r-lg); }
+  /* ---- Sable header band ---- */
+  .st-band { background: var(--sable); color: var(--on-sable); padding-top: 22px; }
+  .st-top { display: grid; gap: 14px; }
+  .st-band h1 { color: var(--or-hi); font-size: clamp(2.625rem, 2rem + 2.4vw, 3.5rem); }
+  .st-band .sub { font-size: .875rem; color: var(--on-sable-2); margin-top: 6px; max-width: 52ch; }
+  .user { display: grid; gap: 5px; }
+  .user label { font: 700 .6875rem/1.2 var(--f-text); letter-spacing: 1px; text-transform: uppercase; color: var(--on-sable-2); }
+  .user input { height: 46px; width: 100%; border-radius: 5px; border: 1.5px solid #5A5047; background: var(--sable-2); color: var(--on-sable); padding: 0 12px; font: 600 .9375rem var(--f-mono); }
+  .user input::placeholder { color: var(--on-sable-3); }
+  .user input:focus { outline: none; border-color: var(--or-hi); }
+  .user .u-err { display: none; font-size: .75rem; font-weight: 700; color: #F0928A; }
+  .user.is-invalid input { border-color: #E0544B; }
+  .user.is-invalid .u-err { display: block; }
+  .tabs { display: flex; gap: 4px; margin-top: 18px; }
+  .tabs button { height: 42px; padding: 0 16px; border: 0; border-radius: 5px 5px 0 0; background: var(--sable-2); color: #E6DCCB; font: 700 .875rem var(--f-text); display: inline-flex; align-items: center; gap: 8px; }
+  .tabs button i { width: 9px; height: 9px; background: var(--sw); }
+  .tabs button[aria-pressed="true"] { background: var(--parch); color: var(--ink); }
+  @media (min-width: 760px) {
+    .st-band { padding-top: 30px; }
+    .st-top { grid-template-columns: minmax(0,1fr) 300px; align-items: end; gap: 24px; }
+    .tabs { margin-top: 22px; }
+    .tabs button { padding: 0 20px; }
+  }
 
-  .plan-wrap { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s4); margin-top: var(--s6); padding: var(--s3) var(--s4); background: var(--surface); border: 1px solid var(--line-2); border-radius: var(--r); }
-  .plan-wrap[hidden] { display: none; }
-  .plan-label { font: 700 .8125rem/1 var(--font-display); letter-spacing: .1em; text-transform: uppercase; color: var(--crimson); }
-  .plan-wrap + .toolbar { margin-top: var(--s4); }
-  .pc-price small { font-family: var(--font-body); }
-  .tbc { display: inline-block; font: 700 9px/1 var(--font-display); letter-spacing: .08em; text-transform: uppercase; color: var(--warn); border: 1px solid currentColor; padding: 2px 4px; border-radius: 2px; margin-left: 4px; vertical-align: 2px; white-space: nowrap; }
-  .compare { overflow: hidden; }
-  .compare summary { list-style: none; cursor: pointer; display: grid; gap: 4px; padding: var(--s4) var(--s5); }
-  .compare summary::-webkit-details-marker { display: none; }
-  .compare .t-scroll { border: 0; border-radius: 0; border-top: 1px solid var(--line); }
-  .compare table th:not(:first-child), .compare table td:not(:first-child) { text-align: center; white-space: nowrap; }
-  .compare table th:first-child, .compare table td:first-child { position: sticky; left: 0; background: var(--surface); min-width: 170px; text-align: left; }
-  .compare td.yes { color: var(--live); } .compare td.yes .icon { margin: 0 auto; }
-  .compare td.no { color: var(--text-3); }
-  .cmds { display: flex; flex-wrap: wrap; gap: 6px; }
-  .cmds code { font: 500 .8125rem/1 var(--font-mono); padding: 6px 8px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 3px; color: var(--gold-hi); }
-  .pd .segmented { width: 100%; }
-  .pd .segmented button { min-height: 40px; font-size: .875rem; }
+  /* ---- Main: ledger + cart ---- */
+  .st-main { display: grid; gap: 32px; padding-top: 26px; padding-bottom: 48px; align-items: start; }
+  @media (min-width: 1080px) { .st-main { grid-template-columns: minmax(0,1fr) 360px; padding-top: 30px; padding-bottom: 64px; } }
+  .st-col { display: grid; gap: 36px; min-width: 0; }
+  .st-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; padding-bottom: 10px; }
+  .st-head h2 { display: flex; align-items: center; gap: 10px; font: 700 clamp(1.375rem, 1.1rem + 1vw, 1.875rem)/1.1 var(--f-head); }
+  .st-head h2 i { width: 14px; height: 14px; background: var(--tinct); flex: none; }
+  .ledger { --tinct: var(--or); }
+  .item { border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: minmax(0,1fr) auto; grid-template-areas: "name btn" "price btn" "desc desc"; gap: 4px 12px; align-items: center; padding: 14px 0; }
+  .i-name { grid-area: name; font: 700 1.5rem/1.05 var(--f-head); }
+  .i-name.rank { font-family: var(--f-black); font-size: 1.75rem; }
+  .i-desc { grid-area: desc; font-size: .8125rem; line-height: 1.45; color: var(--ink-2); margin-top: 2px; }
+  .i-price { grid-area: price; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+  .i-price b { font: 700 1.125rem/1 var(--f-head); }
+  .i-price small { font-size: .6875rem; color: var(--ink-3); width: 100%; }
+  .item .btn { grid-area: btn; min-width: 96px; min-height: 44px; font-size: .8125rem; font-weight: 800; padding: 0 14px; }
+  .item .btn .d { display: none; }
+  .item.soon { color: var(--ink-3); }
+  .item.soon .i-name { color: var(--ink-3); }
+  .item.soon .s-lbl { grid-area: btn; font-size: .8125rem; font-weight: 700; }
+  @media (min-width: 640px) {
+    .item { grid-template-columns: 150px minmax(0,1fr) 170px 140px; grid-template-areas: "name desc price btn"; gap: 20px; padding: 18px 0; }
+    .i-name { font-size: 1.5rem; }
+    .i-name.rank { font-size: 2rem; }
+    .i-desc { font-size: .875rem; margin: 0; }
+    .i-price { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .i-price b { font-size: 1.625rem; }
+    .item .btn .d { display: inline; } .item .btn .p { display: none; }
+    .item.soon { grid-template-areas: "name desc desc btn"; }
+    .item.soon .s-lbl { text-align: right; }
+  }
+  .st-note { font-size: .8125rem; color: var(--ink-2); margin-top: 10px; }
+  .st-note a { font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  .st-note a:hover { color: var(--plume); }
+  .parents-m { font-size: .8125rem; line-height: 1.5; color: var(--ink-2); padding-top: 4px; }
+  .parents-m b { color: var(--ink); }
+  .parents-m a { text-decoration: underline; text-underline-offset: 2px; }
+  @media (min-width: 1080px) { .parents-m { display: none; } }
 
-  /* Detail panel */
-  .pd { display: grid; gap: var(--s5); }
-  @media (min-width: 900px) { .pd { grid-template-columns: 1fr 1.1fr; gap: var(--s6); } }
-  .pd .ph { border-radius: var(--r-lg); aspect-ratio: 1; }
-  .pd .ph img.badge { width: 70%; height: auto; filter: drop-shadow(0 10px 14px rgba(60,35,5,.35)); }
-  .line .ph img.badge { width: 86%; height: auto; }
-  .pd .ph .icon { width: 96px; height: 96px; color: var(--gold); opacity: 1; filter: drop-shadow(0 2px 0 rgba(255,250,235,.8)); }
-  .pd h2 { font-size: 2.25rem; }
-  .pd-price { font: 700 2rem/1 var(--font-display); color: var(--gold-hi); display: flex; gap: var(--s3); align-items: baseline; }
-  .pd-price s { font-size: 1.125rem; color: var(--text-3); }
-  .qty { display: inline-flex; align-items: center; border: 1px solid var(--line-2); border-radius: var(--r); overflow: hidden; }
-  .qty button { width: 44px; height: 44px; border: 0; background: var(--surface-2); color: var(--text); display: grid; place-items: center; }
-  .qty button:hover { background: var(--surface-3); }
-  .qty output { min-width: 40px; text-align: center; font-weight: 700; font-variant-numeric: tabular-nums; }
-  .qty.sm button { width: 32px; height: 32px; }
-  .qty.sm output { min-width: 28px; font-size: var(--fs-sm); }
-  .how { display: grid; gap: var(--s2); font-size: var(--fs-sm); color: var(--text-2); padding: var(--s4); background: var(--surface); border-radius: var(--r); border: 1px solid var(--line); }
-  .how b { color: var(--text); }
+  /* ---- Cart panel (the one place a shadow is allowed) ---- */
+  .cart-side { display: none; }
+  @media (min-width: 1080px) { .cart-side { display: block; position: sticky; top: calc(var(--head) + 20px); } }
+  .cart { background: var(--vellum); border: 1.5px solid var(--ink); border-radius: var(--r); overflow: hidden; }
+  .cart-side .cart { box-shadow: 0 14px 34px -22px rgba(22,18,14,.45); }
+  .cart-side .cart.flash { animation: flash .9s var(--ease); }
+  @keyframes flash { 30% { box-shadow: 0 0 0 4px var(--or-hi); } }
+  .c-head { padding: 18px 20px 12px; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .c-head h2 { font: 700 1.625rem/1 var(--f-head); }
+  .c-head .n { font-size: .8125rem; color: var(--ink-2); }
+  .c-empty { padding: 4px 20px 18px; font-size: .875rem; color: var(--ink-3); }
+  .ci { padding: 14px 20px; border-top: 1px solid #E4D8C2; display: grid; gap: 4px; }
+  .ci-top { display: flex; justify-content: space-between; gap: 10px; font-weight: 700; font-size: .9375rem; }
+  .ci-top span { display: flex; align-items: center; gap: 8px; }
+  .ci-top i { width: 9px; height: 9px; flex: none; }
+  .ci-bill { font-size: .75rem; color: var(--ink-2); }
+  .ci-foot { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: .75rem; }
+  .ci-del { color: var(--live); font-weight: 600; }
+  .ci-del.need { color: var(--gold-ink); }
+  .ci-del a { text-decoration: underline; text-underline-offset: 2px; }
+  .ci-rm { border: 0; background: none; padding: 4px 0; color: var(--plume); font-weight: 700; font-size: .75rem; }
+  .ci-steam { padding: 12px 20px 14px; border-top: 1px solid #E4D8C2; }
+  .ci-steam .input { font: 600 .875rem var(--f-mono); min-height: 44px; }
+  .ci-steam .hint { font-size: .6875rem; color: var(--ink-3); }
+  .c-tot { padding: 16px 20px; border-top: 1.5px solid var(--ink); display: grid; gap: 6px; }
+  .c-tot .due { display: flex; justify-content: space-between; font-size: .9375rem; font-weight: 800; }
+  .c-tot .rec { display: flex; justify-content: space-between; gap: 10px; font-size: .8125rem; color: var(--ink-2); }
+  .c-tot .btn-play { margin-top: 8px; min-height: 50px; }
+  .c-tot .partner { font-size: .6875rem; color: var(--ink-3); text-align: center; margin-top: 4px; }
+  .c-par { background: #E8DCC6; padding: 14px 20px; font-size: .8125rem; line-height: 1.5; }
+  .c-links { padding: 12px 20px; display: flex; gap: 14px; font-size: .75rem; font-weight: 600; }
+  .c-links a { text-decoration: underline; text-underline-offset: 2px; }
+  .c-links a:hover { color: var(--plume); }
 
-  /* Cart */
-  .line { display: grid; grid-template-columns: 56px 1fr auto; gap: var(--s3); align-items: center; padding-bottom: var(--s4); border-bottom: 1px solid var(--line); }
-  .line .ph { aspect-ratio: 1; border-radius: var(--r); }
-  .line .ph .icon { width: 24px; height: 24px; color: var(--gold); opacity: 1; }
-  .line b { display: block; font: 700 1rem/1.15 var(--font-display); }
-  .line small { display: block; font-size: var(--fs-xs); color: var(--text-3); margin-top: 2px; }
-  .line .l-right { display: grid; justify-items: end; gap: 6px; }
-  .line .l-price { font-weight: 700; font-variant-numeric: tabular-nums; }
-  .line .rm { border: 0; background: none; color: var(--text-3); font-size: var(--fs-xs); padding: 4px 0; display: inline-flex; gap: 4px; align-items: center; }
-  .line .rm:hover { color: var(--danger); }
-  .totals { display: grid; gap: 6px; font-size: var(--fs-sm); }
-  .totals div { display: flex; justify-content: space-between; }
-  .totals .grand { font: 700 1.25rem/1 var(--font-display); color: var(--text); padding-top: 6px; }
-  .id-box { display: grid; gap: var(--s3); padding: var(--s4); border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); }
-  .id-box h4 { font-size: 1rem; display: flex; align-items: center; gap: 8px; }
+  /* ---- Phone cart bar ---- */
+  .cartbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 35; background: var(--sable); color: var(--on-sable); padding: 10px 14px calc(10px + env(safe-area-inset-bottom)) 18px; display: flex; align-items: center; gap: 12px; }
+  .cartbar .cb-t { flex: 1; min-width: 0; }
+  .cartbar .cb-t small { display: block; font-size: .75rem; color: var(--on-sable-2); }
+  .cartbar .cb-t b { font: 700 1.5rem/1.1 var(--f-head); }
+  .cartbar .btn-play { min-height: 48px; letter-spacing: .3px; }
+  body.has-bar { padding-bottom: 72px; }
+  @media (min-width: 1080px) { .cartbar { display: none !important; } body.has-bar { padding-bottom: 0; } }
 
-  /* Checkout handoff */
-  .handoff { text-align: center; max-width: 460px; margin: 0 auto; display: grid; gap: var(--s4); justify-items: center; padding: var(--s3) 0; }
-  .handoff .seal { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; background: var(--gold-wash); border: 1px solid var(--gold-line); color: var(--gold); }
-  .handoff .seal .icon { width: 32px; height: 32px; }
-  .handoff ol { text-align: left; margin: 0; padding-left: 1.2em; color: var(--text-2); font-size: var(--fs-sm); display: grid; gap: 6px; }
-  .handoff ol b { color: var(--text); }
+  /* ---- Overlays (sheet on phone, dialog on desktop) ---- */
+  .overlay { position: fixed; inset: 0; z-index: 70; display: none; flex-direction: column; justify-content: flex-end; }
+  .overlay.is-open { display: flex; }
+  .overlay .scrim { position: absolute; inset: 0; background: rgba(22,18,14,.6); }
+  .sheet { position: relative; background: var(--vellum); border-radius: 12px 12px 0 0; max-height: 90vh; overflow-y: auto; animation: up .22s var(--ease); padding-bottom: env(safe-area-inset-bottom); }
+  @keyframes up { from { transform: translateY(24px); opacity: 0; } }
+  .sheet .x { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; border: 0; background: none; display: grid; place-items: center; color: var(--ink); }
+  .sheet .x .icon { width: 22px; height: 22px; }
+  .sheet .cart { border: 0; border-radius: 0; }
+  .sheet .c-head { padding-right: 60px; }
+  .sheet .c-head .n { display: none; }
+  body.no-scroll { overflow: hidden; }
+  @media (min-width: 760px) {
+    .overlay { justify-content: center; align-items: center; padding: 24px; }
+    .sheet { width: min(480px, 100%); border-radius: 8px; border: 1.5px solid var(--ink); }
+  }
+  .co { padding: 26px 22px 22px; display: grid; gap: 14px; }
+  .co h2 { font: 700 1.75rem/1.1 var(--f-head); padding-right: 40px; }
+  .co p { font-size: .9375rem; color: var(--ink-2); margin: 0; }
+  .co .sum { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 10px 0; display: grid; gap: 4px; font-size: .875rem; }
+  .co .sum div { display: flex; justify-content: space-between; gap: 10px; }
+  .co .sum .due { font-weight: 800; }
+  .co .acts { display: flex; flex-wrap: wrap; gap: 10px; }
+  .co .acts .btn { flex: 1; }
 </style>
 </head>
-<body data-page="store">
+<body data-page="store" data-realm="store">
 <header data-site-header></header>
 
 <main>
-  <section class="hero store-hero" aria-labelledby="store-title">
+  <section class="st-band" aria-labelledby="h1">
     <div class="wrap">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Store</span></nav>
-      <div class="store-top">
+      <div class="st-top">
         <div>
-          <span class="eyebrow">Official store</span>
-          <h1 id="store-title">Titans Store</h1>
-          <p class="lede">Cosmetics, ranks and passes for both games. Every purchase keeps the servers online and the team on the road.</p>
+          <h1 class="h1" id="h1">Store</h1>
+          <p class="sub">Minecraft and CS2 in one cart. Prices in ₹. Pay with UPI, cards or wallets.</p>
         </div>
-        <div class="segmented" role="tablist" aria-label="Choose a game" id="game-tabs">
-          <button role="tab" aria-selected="true" aria-controls="shop" data-game="mc" id="tab-mc"><i class="seg-dot dot-mc"></i>Minecraft</button>
-          <button role="tab" aria-selected="false" aria-controls="shop" data-game="cs" id="tab-cs"><i class="seg-dot dot-cs"></i>CS2</button>
+        <div class="user" id="user-f">
+          <label for="mc-user">Minecraft username</label>
+          <input id="mc-user" placeholder="e.g. Steve_IN" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="16">
+          <span class="u-err" id="u-err">Type your Minecraft username so we know who gets the rank.</span>
         </div>
+      </div>
+      <div class="tabs" role="group" aria-label="Show">
+        <button type="button" data-tab="all" aria-pressed="true" style="--sw:var(--on-sable-2)"><i></i>All</button>
+        <button type="button" data-tab="mc" aria-pressed="false" style="--sw:var(--or)"><i></i>Minecraft</button>
+        <button type="button" data-tab="cs" aria-pressed="false" style="--sw:var(--argent-2)"><i></i>CS2</button>
       </div>
     </div>
   </section>
 
-  <section class="wrap" id="shop" aria-live="polite">
-    <div class="card trust-wrap mt-5">
-      <div class="trust">
-        <div><svg class="icon"><use href="#i-lock"/></svg><div><strong>Secure payment</strong>Card, UPI &amp; more via our checkout partner</div></div>
-        <div><svg class="icon"><use href="#i-zap"/></svg><div><strong>Delivered in-game</strong>Usually within 5 minutes</div></div>
-        <div><svg class="icon"><use href="#i-refund"/></svg><div><strong>Fair refunds</strong><a class="gold" href="refunds.html">Refund policy</a></div></div>
-        <div><svg class="icon"><use href="#i-headset"/></svg><div><strong>Real support</strong>Ticket answered within 24h</div></div>
+  <div class="wrap st-main">
+    <div class="st-col">
+      <section id="sec-mc" aria-labelledby="mc-title">
+        <div class="st-head" style="--tinct:var(--or)">
+          <h2 id="mc-title"><i></i>Minecraft · Ranks</h2>
+          <div class="seg" role="group" aria-label="Billing">
+            <button type="button" data-plan="month" aria-pressed="true">Monthly</button>
+            <button type="button" data-plan="season" aria-pressed="false">Season pass</button>
+          </div>
+        </div>
+        <div class="ledger" id="list-mc" style="--tinct:var(--or)"></div>
+        <p class="st-note">Delivered in-game within a minute of payment. Ranks are cosmetic and comfort perks. <a href="minecraft-ranks.html">Compare all perks</a></p>
+      </section>
+
+      <section id="sec-cs" aria-labelledby="cs-title">
+        <div class="st-head" style="--tinct:var(--argent)"><h2 id="cs-title"><i></i>CS2</h2></div>
+        <div class="ledger" style="--tinct:var(--argent)">
+          <div id="list-cs" style="display:contents"></div>
+          <div class="item soon">
+            <div class="i-name">Merch</div>
+            <div class="i-desc">Jersey · Hoodie · Stickers</div>
+            <span class="s-lbl">Coming soon</span>
+          </div>
+        </div>
+      </section>
+
+      <p class="parents-m" id="parents-m">Parents: <b>Monthly</b> is charged every month until cancelled. <b>One-time</b> is a single payment, nothing more. <a href="refunds.html">Refunds</a> · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></p>
+    </div>
+
+    <aside class="cart-side" aria-label="Your cart">
+      <div class="cart" id="cart">
+        <div class="c-head"><h2>Your cart</h2><span class="n" data-cart-n>0 item(s)</span></div>
+        <div data-cart-body></div>
+        <div class="c-par" id="parents"><b>For parents</b><br>Monthly = charged every month until cancelled. One-time = a single payment, nothing more.</div>
+        <div class="c-links"><a href="refunds.html">Refund policy</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a></div>
       </div>
-    </div>
-
-    <div class="plan-wrap" id="plan-wrap" hidden><span class="plan-label">Rank length</span><div class="filters" role="group" aria-label="Rank length"><button class="filter" data-plan="month" aria-pressed="true">1 month</button><button class="filter" data-plan="season" aria-pressed="false">Season pass · about 3 months</button></div><span class="hint">A season pass costs 2.5× the monthly price, so you save 16–19%.</span></div>
-
-    <div class="toolbar">
-      <div class="filters" data-filter-group="grid" role="group" aria-label="Category" id="filters"></div>
-      <span class="count" id="count"></span>
-    </div>
-
-    <div id="grid-wrap">
-      <div class="products" id="grid"></div>
-      <div id="compare-wrap" class="mt-6"></div>
-      <div class="empty" data-empty hidden><svg class="icon"><use href="#i-search"/></svg><h4>Nothing here yet</h4><p>New items drop with each season. Check back soon or try another category.</p></div>
-    </div>
-
-    <div class="card policy-note">
-      <div>Prices in Indian rupees (₹). Tax is added at checkout where required. Ranks are sold for one month or as a season pass (about 3 months). <b style="color:var(--text)">Under 18?</b> Ask a parent or guardian before you buy.</div>
-      <nav aria-label="Store policies"><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="refunds.html">Refund policy</a></nav>
-    </div>
-  </section>
+    </aside>
+  </div>
 </main>
 
-<!-- Product detail (bottom sheet on phone, modal on desktop) -->
-<div class="overlay" id="detail" role="dialog" aria-modal="true" aria-labelledby="pd-title">
+<div class="cartbar" id="cartbar" hidden>
+  <div class="cb-t"><small data-bar-n>0 items · due today</small><b data-bar-total>₹0</b></div>
+  <button class="btn btn-play" type="button" data-open="cart-sheet">View cart</button>
+</div>
+
+<div class="overlay" id="cart-sheet" role="dialog" aria-modal="true" aria-label="Your cart">
   <div class="scrim" data-close></div>
   <div class="sheet">
-    <button class="btn-icon close-x" data-close aria-label="Close"><svg class="icon"><use href="#i-x"/></svg></button>
-    <div class="sheet-body" id="pd-body"></div>
+    <button class="x" type="button" data-close aria-label="Close cart"><svg class="icon"><use href="#i-x"/></svg></button>
+    <div class="cart">
+      <div class="c-head"><h2>Your cart</h2><span class="n" data-cart-n>0 item(s)</span></div>
+      <div data-cart-body></div>
+      <div class="c-par"><b>For parents</b><br>Monthly = charged every month until cancelled. One-time = a single payment, nothing more.</div>
+      <div class="c-links"><a href="refunds.html">Refund policy</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a></div>
+    </div>
   </div>
 </div>
 
-<!-- Cart drawer -->
-<div class="overlay" id="cart" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+<div class="overlay" id="checkout-sheet" role="dialog" aria-modal="true" aria-labelledby="co-title">
   <div class="scrim" data-close></div>
-  <aside class="drawer">
-    <div class="drawer-head"><h3 id="cart-title">Your cart</h3><button class="btn-icon" data-close aria-label="Close cart"><svg class="icon"><use href="#i-x"/></svg></button></div>
-    <div class="drawer-body" id="cart-body"></div>
-    <div class="drawer-foot" id="cart-foot"></div>
-  </aside>
-</div>
-
-<!-- Checkout handoff -->
-<div class="overlay" id="handoff" role="dialog" aria-modal="true" aria-labelledby="ho-title">
-  <div class="scrim" data-close></div>
-  <div class="sheet" style="max-width:560px">
-    <div class="sheet-body">
-      <div class="handoff">
-        <div class="seal"><svg class="icon"><use href="#i-lock"/></svg></div>
-        <h2 id="ho-title" style="font-size:2rem">Secure checkout</h2>
-        <p class="muted mb-0">You're moving to our payment partner to pay. We never see or store your card details.</p>
-        <ol>
-          <li>Pay on the secure page: <b>card, UPI or wallet</b>.</li>
-          <li>You come straight back here with a receipt by email.</li>
-          <li>Items arrive <b>in-game within 5 minutes</b>. Merch ships in 5–7 days.</li>
-        </ol>
-        <div class="totals card card-pad" style="width:100%;text-align:left" id="ho-sum"></div>
-        <button class="btn btn-primary btn-block btn-lg" id="ho-go">Continue to payment <svg class="icon"><use href="#i-external"/></svg></button>
-        <button class="btn btn-ghost" data-open="cart">Back to cart</button>
-        <p class="hint mb-0">Problem paying? <a class="gold" href="support.html">Contact support</a> · <a class="gold" href="refunds.html">Refund policy</a></p>
+  <div class="sheet">
+    <button class="x" type="button" data-close aria-label="Close"><svg class="icon"><use href="#i-x"/></svg></button>
+    <div class="co">
+      <h2 id="co-title">Payments open at launch</h2>
+      <p><b style="color:var(--ink)">Nothing has been charged.</b> Our store partner's checkout isn't switched on yet, so no money can be taken today.</p>
+      <div class="sum" id="co-sum"></div>
+      <p>Your cart is saved on this device. Come back when payments open — we'll announce it on Discord.</p>
+      <div class="acts">
+        <button class="btn btn-ink" type="button" data-close>Keep my cart</button>
+        <a class="btn btn-line" href="community.html#discord">Discord</a>
       </div>
     </div>
   </div>
 </div>
 
 <footer data-site-footer></footer>
-<script src="assets/site.js"></script>
+<script src="assets/titans.js"></script>
 <script>
 (function () {
-  const ic = window.TT_ICON, Cart = window.TT_CART;
-  // Ranks come from "TitansMC Tracker.xlsx" (Ranks & Perks sheet). "TBC" = marked "to confirm" there.
+  "use strict";
+  const Cart = window.TT_CART;
+  const fmt = n => "₹" + n.toLocaleString("en-IN");
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const store = { get(k) { try { return localStorage.getItem(k) || ""; } catch (e) { return ""; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* private mode */ } } };
+
+  /* ---------- Products (real prices from the rank plan) ---------- */
   const RANKS = [
-    { key: "citizen", name: "Citizen", icon: "user", free: true, month: 0, season: 0,
-      desc: "Every new player starts as a Citizen. Free, forever.",
-      card: ["Plain [Citizen] name tag", "1 home · wooden starter kit", "Create or join a clan", "All basic commands"],
-      cosmetics: ["Plain [Citizen] name tag", "Can create or join a clan"],
-      perks: ["1 home", "Wooden starter kit", "Access to player shops", "All basic commands"],
-      cmds: ["/spawn", "/sethome, /home, /delhome", "/tpa, /tpaccept, /tpdeny", "/msg, /bal, /pay", "/warp, /help, /rtp, /vote, /grave", "/kit citizen"] },
-    { key: "squire", name: "Squire", icon: "shield", month: 99, season: 249,
-      desc: "Your first step up: a coloured tag, your clan name in chat, a second home and handy commands.",
-      card: ["Coloured [Squire] name tag", "Clan name shown in chat", "2 homes · iron starter kit TBC", "/feed and /workbench"],
-      cosmetics: ["Coloured [Squire] name tag", "Clan name shown in chat"],
-      perks: ["2 homes", "Iron starter kit TBC", "Feed yourself anywhere", "Portable crafting table", "Temporary fly: 30 sec per vote TBC"],
-      cmds: ["/sethome (2 homes)", "/feed", "/workbench", "/tfly", "/kit squire"] },
-    { key: "knight", name: "Knight", icon: "sword", month: 199, season: 499,
-      desc: "A bold tag, a coloured clan name, your own join message, three homes and a portable ender chest.",
-      card: ["Bold [Knight] tag + join message", "Coloured clan name", "3 homes · diamond starter kit", "Portable ender chest"],
-      cosmetics: ["Bold coloured [Knight] name tag", "Coloured clan name", "Custom join message"],
-      perks: ["3 homes", "Diamond starter kit", "Feed yourself anywhere", "Portable crafting table", "Portable ender chest", "Temporary fly: 1 min per vote TBC"],
-      cmds: ["/sethome (3 homes)", "/feed", "/workbench", "/enderchest", "/tfly", "/kit knight"] },
-    { key: "titan", name: "Titan", icon: "crown", month: 349, season: 849,
-      desc: "The top rank: a gold animated tag, glow, your own clan colour, five homes, /back and /repair.",
-      card: ["Gold animated [Titan] tag + glow", "Custom clan colour · /nick", "5 homes · netherite starter kit", "/back and /repair"],
-      cosmetics: ["Gold / animated [Titan] name tag", "Custom clan colour", "Glow (on/off; hub and safe zones only)", "/nick (change display name)"],
-      perks: ["5 homes", "Netherite starter kit", "Feed yourself anywhere", "Portable crafting table", "Go back to your last location", "Repair items (one or all)", "Temporary fly: 90 sec per vote TBC"],
-      cmds: ["/sethome (5 homes)", "/feed", "/workbench", "/back", "/repair, /repair all", "/tfly", "/kit titan"] }
+    { key: "squire", name: "Squire", color: "#3D6FA8", month: 99, season: 249, desc: "Coloured tag, clan name in chat, 2 homes, /feed /workbench." },
+    { key: "knight", name: "Knight", color: "#B3261E", month: 199, season: 499, desc: "Bold tag, custom join message, 3 homes, diamond kit, /enderchest." },
+    { key: "titan",  name: "Titan",  color: "#8A6417", month: 349, season: 849, desc: "Gold animated tag, glow, /nick, 5 homes, netherite kit, /back /repair." }
   ];
-  const COMPARE = [
-    ["Price per month", "Free", "₹99", "₹199", "₹349"],
-    ["Season pass (about 3 months)", "Free", "₹249", "₹499", "₹849"],
-    ["Name tag", "Plain", "Coloured", "Bold coloured", "Gold / animated"],
-    ["Create or join a clan", "✓", "✓", "✓", "✓"],
-    ["Clan name in chat", "–", "Shown", "Coloured", "Custom colour"],
-    ["Custom join message", "–", "–", "✓", "✓"],
-    ["Glow (hub and safe zones)", "–", "–", "–", "✓"],
-    ["/nick", "–", "–", "–", "✓"],
-    ["Homes", "1", "2", "3", "5"],
-    ["Starter kit", "Wooden", "Iron TBC", "Diamond", "Netherite"],
-    ["Temporary fly per vote", "–", "30 sec TBC", "1 min TBC", "90 sec TBC"],
-    ["Player shops", "✓", "✓", "✓", "✓"],
-    ["Basic commands: /spawn /home /tpa /msg /bal /pay /warp /rtp /vote /grave", "✓", "✓", "✓", "✓"],
-    ["/feed", "–", "✓", "✓", "✓"],
-    ["/workbench", "–", "✓", "✓", "✓"],
-    ["/enderchest", "–", "–", "✓", "TBC"],
-    ["/back", "–", "–", "–", "✓"],
-    ["/repair, /repair all", "–", "–", "–", "✓"]
+  const CS = [
+    { id: "cs-vip1", name: "VIP · 1 month", price: 149, desc: "Reserved slot and tag. Activates when our CS2 servers open.", steam: true },
+    { id: "cs-vip3", name: "VIP · 3 months", price: 349, desc: "Reserved slot and tag. Activates when our CS2 servers open.", steam: true },
+    { id: "cs-cuppass", name: "Cup #4 team pass", price: 999, desc: "Entry for one 5-player team. Signups close Thu 15 Oct." }
   ];
-  const P = [];
+  const P = {};
   RANKS.forEach(r => {
-    if (r.free) { P.push({ id: r.key, g: "mc", cat: "ranks", rank: r, free: true, name: r.name, price: 0, icon: r.icon, sub: "Free for every player", perks: r.card, desc: r.desc }); return; }
-    P.push({ id: r.key + "@month", plan: "month", g: "mc", cat: "ranks", rank: r, name: r.name + " Rank", cartName: r.name + " Rank · 1 month", price: r.month, unit: "/ month", icon: r.icon, sub: "1 month", perks: r.card, desc: r.desc });
-    P.push({ id: r.key + "@season", plan: "season", g: "mc", cat: "ranks", rank: r, name: r.name + " Rank", cartName: r.name + " Rank · Season pass", price: r.season, was: r.month * 3, unit: "/ season", icon: r.icon, sub: "Season pass · about 3 months", perks: r.card, desc: r.desc });
+    P[r.key + "@month"] = { realm: "mc", rank: r.key, plan: "month", title: r.name + " rank", price: r.month, recurring: true, bill: "Monthly · renews until cancelled", label: fmt(r.month) + "/mo" };
+    P[r.key + "@season"] = { realm: "mc", rank: r.key, plan: "season", title: r.name + " rank", price: r.season, recurring: false, bill: "Season pass (about 3 months) · one-time, no renewal", label: fmt(r.season) };
   });
-  P.push(
-    // Sample items below: not in the tracker yet
-    { id: "keys3", g: "mc", cat: "crates", name: "Crate Key ×3", price: 149, icon: "key", sub: "3 keys", qty: true, perks: ["3 crate keys", "Open at the crate in the hub"], desc: "Open at the crate in the hub. Crate rewards are still being decided." },
-    { id: "keys10", g: "mc", cat: "crates", name: "Crate Key ×10", price: 399, icon: "key", sub: "10 keys", qty: true, perks: ["10 crate keys", "Open at the crate in the hub"], desc: "Ten keys at a better price. Crate rewards are still being decided." },
-    { id: "wings", g: "mc", cat: "cosmetics", name: "Golden Wings Trail", price: 199, icon: "sparkle", sub: "Lifetime", perks: ["Animated gold wing trail", "Works in every mode"], desc: "Gold wing particles that follow you everywhere on the network." },
-    { id: "pet", g: "mc", cat: "cosmetics", name: "Baby Griffin Pet", price: 249, icon: "flame", sub: "Lifetime", perks: ["A griffin chick that follows you", "Rename it"], desc: "A tiny griffin that follows you around. Name it whatever you like." },
-    { id: "vip1", g: "cs", cat: "vip", name: "VIP · 1 month", price: 149, icon: "star", sub: "1 month", perks: ["Reserved slot", "VIP chat tag", "Custom join message"], desc: "Skip the full-server wait and get the VIP tag on every Titans CS2 server." },
-    { id: "vip3", g: "cs", cat: "vip", name: "VIP · 3 months", price: 349, was: 447, icon: "star", sub: "One payment", perks: ["Everything in VIP", "3 months in one payment", "Priority in 10-man queue"], desc: "Three months of VIP in one payment." },
-    { id: "pass", g: "cs", cat: "passes", name: "Cup #4 Team Pass", price: 999, icon: "ticket", sub: "Per team of 5", perks: ["Guaranteed slot in Cup #4", "Team page on the bracket", "Caster shout-out"], desc: "Lock in your team's slot for Titans Community Cup #4 on Oct 17. Free entry slots also open on Oct 10." },
-    { id: "jersey", g: "cs", cat: "merch", name: "Titans Jersey 2026", price: 1499, icon: "shirt", sub: "Sizes XS–3XL", ship: true, perks: ["Official team jersey", "Name on the back"], desc: "The jersey the team wears on stream. Add your name at checkout." },
-    { id: "hoodie", g: "cs", cat: "merch", name: "Titans Hoodie", price: 1999, icon: "shirt", sub: "Sizes XS–3XL", ship: true, perks: ["Heavyweight cotton", "Embroidered logo"], desc: "Heavyweight hoodie with the embroidered logo." },
-    { id: "stickers", g: "cs", cat: "merch", name: "Sticker Pack", price: 199, icon: "image", sub: "6 stickers", ship: true, perks: ["Logo, helm, wordmark", "Weatherproof vinyl"], desc: "Six weatherproof vinyl stickers." }
-  );
-  const CATS = { mc: [["all", "All"], ["ranks", "Ranks"], ["crates", "Crate keys"], ["cosmetics", "Cosmetics"]],
-                 cs: [["all", "All"], ["vip", "Server VIP"], ["passes", "Tournament passes"], ["merch", "Merch"]] };
-  const money = n => n === 0 ? "Free" : "₹" + n.toLocaleString("en-IN");
-  const tbc = t => t.replace(/ ?\bTBC\b/g, ' <span class="tbc">to confirm</span>');
-  const byId = id => P.find(p => p.id === id);
-  const tone = p => p.g === "mc" ? "ph-mc" : "ph-cs";
-  const art = p => ic(p.icon);
-  const state = window.TT_STATE;
-  let game = new URLSearchParams(location.search).get("tab") === "cs" ? "cs" : "mc";
-  let plan = new URLSearchParams(location.search).get("plan") === "season" ? "season" : "month";
+  CS.forEach(c => { P[c.id] = { realm: "cs", title: c.name, price: c.price, recurring: false, steam: !!c.steam, bill: "CS2 · one-time", label: fmt(c.price) }; });
 
+  /* ---------- State ---------- */
+  const qs = new URLSearchParams(location.search);
+  let tab = ["mc", "cs"].includes(qs.get("tab")) ? qs.get("tab") : "all";
+  let plan = qs.get("plan") === "season" ? "season" : "month";
+  // Keep only items this store sells (older versions of the site used other ids).
+  let cart = Cart.get().filter(x => P[x.id]).map(x => ({ id: x.id, qty: 1 }));
+  Cart.set(cart);
+  if (!qs.get("plan") && cart.some(x => P[x.id].plan === "season")) plan = "season";
+  const has = id => cart.some(x => x.id === id);
+  const userIn = document.getElementById("mc-user");
+  userIn.value = store.get("tt-mc-user");
+  let steam = store.get("tt-steam");
+
+  /* ---------- Rows ---------- */
+  function btn(id, rank) {
+    if (has(id)) return `<button class="btn btn-line" type="button" data-add="${id}" aria-pressed="true"><span class="d">In cart ✓</span><span class="p">Added ✓</span></button>`;
+    const other = rank && cart.find(x => P[x.id].rank === rank);
+    if (other) return `<button class="btn btn-line" type="button" data-add="${id}"><span class="d">Switch to ${plan === "month" ? "monthly" : "season"}</span><span class="p">Switch</span></button>`;
+    return `<button class="btn btn-ink" type="button" data-add="${id}"><span class="d">Add to cart</span><span class="p">Add</span></button>`;
+  }
+  function renderRows() {
+    const mo = plan === "month";
+    document.getElementById("list-mc").innerHTML = RANKS.map(r => {
+      const id = r.key + "@" + plan;
+      return `<div class="item">
+        <div class="i-name rank" style="color:${r.color}">${r.name}</div>
+        <div class="i-desc">${r.desc}</div>
+        <div class="i-price"><b>${mo ? fmt(r.month) + "/mo" : fmt(r.season)}</b><span class="bill ${mo ? "bill-month" : "bill-once"}">${mo ? "Monthly · renews" : "Season · one-time"}</span>${mo ? "" : "<small>About 3 months, one payment</small>"}</div>
+        ${btn(id, r.key)}
+      </div>`;
+    }).join("");
+    document.getElementById("list-cs").innerHTML = CS.map(c => `<div class="item">
+        <div class="i-name">${c.name}</div>
+        <div class="i-desc">${c.desc}</div>
+        <div class="i-price"><b>${fmt(c.price)}</b><span class="bill bill-once">One-time</span></div>
+        ${btn(c.id)}
+      </div>`).join("");
+    document.querySelectorAll("[data-plan]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.plan === plan)));
+  }
+
+  /* ---------- Cart ---------- */
+  const totals = () => {
+    const items = cart.map(x => P[x.id]);
+    return { n: items.length, due: items.reduce((a, p) => a + p.price, 0), rec: items.filter(p => p.recurring).reduce((a, p) => a + p.price, 0), mc: items.some(p => p.realm === "mc"), steam: items.some(p => p.steam) };
+  };
   function delivery(p) {
-    if (p.free) return `<span class="delivery">${ic("check")} Given automatically on first join</span>`;
-    return p.ship ? `<span class="delivery ships">${ic("truck")} Ships in 5–7 days</span>`
-      : `<span class="delivery">${ic("zap")} Delivered in-game</span>`;
-  }
-  function priceHtml(p) {
-    return `${money(p.price)}${p.unit ? `<small>${p.unit}</small>` : ""}${p.was ? `<s>${money(p.was)}</s>` : ""}`;
-  }
-  function card(p) {
-    const save = p.was ? `<span class="chip chip-sale">Save ${Math.round((1 - p.price / p.was) * 100)}%</span>` : "";
-    return `<article class="card product-card" data-cat="${p.cat}">
-      <div class="pc-art ph ${tone(p)}">${art(p)}
-        <div class="pc-badges">${save}</div>
-        ${p.free ? `<span class="pc-tag">Free</span>` : ""}</div>
-      <div class="pc-body">
-        <div><div class="pc-name">${p.name}</div></div>
-        <div class="pc-sub">${p.sub}</div>
-        <div class="pc-price">${priceHtml(p)}</div>
-        <ul class="perks">${p.perks.map(x => `<li>${ic("check")}<span>${tbc(x)}</span></li>`).join("")}</ul>
-        ${delivery(p)}
-        <div class="pc-actions">
-          ${p.free ? `<button class="btn btn-secondary btn-sm" disabled>Everyone has it</button>` : `<button class="btn btn-primary btn-sm" data-add="${p.id}">Add to cart</button>`}
-          <button class="btn btn-secondary btn-sm" data-detail="${p.id}" aria-label="Details for ${p.name}">Details</button>
-        </div>
-      </div></article>`;
-  }
-  function compareTable() {
-    return `<details class="compare card" open>
-      <summary><h3>Compare ranks</h3><span class="hint">From the rank plan. Items marked <span class="tbc">to confirm</span> may still change.</span></summary>
-      <div class="t-scroll"><table class="t">
-        <thead><tr><th>Perk or command</th>${RANKS.map(r => `<th>${r.name}</th>`).join("")}</tr></thead>
-        <tbody>${COMPARE.map(row => `<tr><td>${row[0]}</td>${row.slice(1).map(v => `<td class="${v === "✓" ? "yes" : v === "–" ? "no" : ""}">${v === "✓" ? ic("check", "icon-sm") + '<span class="sr-only">Yes</span>' : v === "–" ? '<span aria-label="No">–</span>' : tbc(v)}</td>`).join("")}</tr>`).join("")}</tbody>
-      </table></div>
-      <p class="hint" style="padding:0 var(--s5) var(--s4)">Every rank keeps all Citizen commands.</p>
-    </details>`;
-  }
-  function currentFilter() { const b = document.querySelector('#filters [aria-pressed="true"]'); return b ? b.dataset.filter : "all"; }
-  function applyFilter(v) {
-    let n = 0;
-    document.querySelectorAll("#grid [data-cat]").forEach(el => { const ok = v === "all" || el.dataset.cat === v; el.hidden = !ok; if (ok) n++; });
-    document.querySelector("[data-empty]").hidden = n > 0;
-    document.getElementById("count").textContent = n + " items";
-  }
-  function renderGrid() {
-    const items = P.filter(p => p.g === game && (!p.plan || p.plan === plan));
-    document.getElementById("grid").innerHTML = items.map(card).join("");
-    const pw = document.getElementById("plan-wrap");
-    pw.hidden = game !== "mc";
-    pw.querySelectorAll("[data-plan]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.plan === plan)));
-    document.getElementById("compare-wrap").innerHTML = game === "mc" ? compareTable() : "";
-    applyFilter(currentFilter());
-  }
-
-  function renderShop() {
-    document.querySelectorAll("#game-tabs [role=tab]").forEach(t => t.setAttribute("aria-selected", String(t.dataset.game === game)));
-    document.getElementById("filters").innerHTML = CATS[game].map(([k, l], i) => `<button class="filter" data-filter="${k}" aria-pressed="${i === 0}">${l}</button>`).join("");
-    const grid = document.getElementById("grid"), count = document.getElementById("count");
-    document.querySelector("[data-empty]").hidden = true;
-    if (state === "loading") {
-      grid.innerHTML = Array(4).fill('<div class="skel skel-card"></div>').join(""); count.textContent = "Loading…"; return;
+    if (p.realm === "mc") {
+      const u = userIn.value.trim();
+      return u ? `<span class="ci-del">Delivered in-game to ${esc(u)}</span>` : `<span class="ci-del">Delivered in-game to your username</span>`;
     }
-    if (state === "error" || state === "offline") {
-      count.textContent = ""; document.getElementById("plan-wrap").hidden = true;
-      grid.innerHTML = `<div class="empty" style="grid-column:1/-1;border-style:solid;border-color:rgba(174,42,31,.35);background:var(--danger-wash)">
-        <svg class="icon" style="color:var(--danger)"><use href="#i-alert"/></svg>
-        <h4>The store is taking a short break</h4>
-        <p>We can't load products right now, so nothing can be bought. No payment has been taken.<br>Try again in a few minutes, or check #status on Discord.</p>
-        <div class="row mt-4" style="justify-content:center"><a class="btn btn-secondary btn-sm" href="store.html">${ic("refresh", "icon-sm")} Try again</a><a class="btn btn-ghost btn-sm" href="community.html">Discord status</a></div></div>`;
-      return;
-    }
-    renderGrid();
-  }
-  document.getElementById("game-tabs").addEventListener("tabchange", e => { game = e.detail.dataset.game; renderShop(); });
-  document.getElementById("filters").addEventListener("click", () => setTimeout(() => applyFilter(currentFilter())));
-  document.getElementById("plan-wrap").addEventListener("click", e => { const b = e.target.closest("[data-plan]"); if (b) { plan = b.dataset.plan; renderGrid(); } });
-
-  /* ----- Detail panel ----- */
-  function openDetail(id) {
-    const p = byId(id), r = p.rank;
-    const list = (title, arr) => `<div><h4 class="mb-3" style="font-size:1rem">${title}</h4><ul class="perks" style="font-size:1rem">${arr.map(x => `<li>${ic("check")}<span>${tbc(x)}</span></li>`).join("")}</ul></div>`;
-    const planPick = r && !r.free ? `<div class="segmented" role="group" aria-label="Rank length">
-        <button type="button" data-detail="${r.key}@month" aria-selected="${p.plan === "month"}">1 month</button>
-        <button type="button" data-detail="${r.key}@season" aria-selected="${p.plan === "season"}">Season pass</button></div>` : "";
-    document.getElementById("pd-body").innerHTML = `<div class="pd">
-      <div class="ph ${tone(p)}">${ic(p.icon)}<span class="ph-label">${r ? "rank artwork" : "product render"}</span></div>
-      <div class="stack">
-        <div class="row"><span class="chip ${p.g === "mc" ? "chip-mc" : "chip-cs"}">${p.g === "mc" ? "Minecraft" : "CS2"}</span>${p.plan === "season" ? '<span class="chip chip-clan">Season pass</span>' : ""}${p.free ? '<span class="chip chip-clan">Free</span>' : ""}</div>
-        <h2 id="pd-title">${p.name}</h2>
-        ${planPick}
-        <div class="pd-price">${money(p.price)}${p.was ? `<s>${money(p.was)}</s>` : ""}<small class="faint" style="font:500 var(--fs-sm)/1 var(--font-body)">${p.sub}</small></div>
-        <p class="muted">${p.desc}</p>
-        ${r ? list("Cosmetics", r.cosmetics) + list("Perks", r.perks) + `<div><h4 class="mb-3" style="font-size:1rem">Commands</h4><div class="cmds">${r.cmds.map(c => `<code>${c}</code>`).join("")}</div></div>`
-            : `<ul class="perks" style="font-size:1rem">${p.perks.map(x => `<li>${ic("check")}${x}</li>`).join("")}</ul>`}
-        ${delivery(p)}
-        ${p.free ? `<div class="how"><div><b>How you get it:</b> join the server. Every new player is a Citizen.</div></div>` : `<div class="how">${p.ship
-          ? `<div><b>How it arrives:</b> we email tracking when it ships. Delivery 5–7 days in most places.</div>`
-          : `<div><b>How it arrives:</b> enter your ${p.g === "mc" ? "Minecraft username" : "Steam profile"} in the cart. After payment it's applied automatically, usually within 5 minutes. You don't need to be online.</div>`}
-          <div><b>Gift it:</b> put a friend's ${p.g === "mc" ? "username" : "Steam profile"} in the cart instead.</div></div>
-        <div class="row">
-          ${p.qty ? `<div class="qty" data-qty><button type="button" data-step="-1" aria-label="Less">${ic("minus", "icon-sm")}</button><output>1</output><button type="button" data-step="1" aria-label="More">${ic("plus", "icon-sm")}</button></div>` : ""}
-          <button class="btn btn-primary" style="flex:1" data-add="${p.id}" data-from-detail>Add to cart · ${money(p.price)}</button>
-        </div>
-        <p class="hint mb-0">By buying you agree to our <a class="gold" href="terms.html">Terms</a> and <a class="gold" href="refunds.html">Refund policy</a>.</p>`}
-      </div></div>`;
-    window.TT_OPEN("detail");
-  }
-
-  /* ----- Cart ----- */
-  function add(id, n) {
-    const c = Cart.get(), line = c.find(x => x.id === id);
-    if (line) line.qty += n; else c.push({ id, qty: n });
-    Cart.set(c); renderCart();
+    if (p.steam) return `<span class="ci-del">Linked to your Steam account</span>`;
+    return `<span class="ci-del need">Then <a href="event.html#signup">register your team</a></span>`;
   }
   function renderCart() {
-    const c = Cart.get().filter(l => byId(l.id));
-    const body = document.getElementById("cart-body"), foot = document.getElementById("cart-foot");
-    if (!c.length) {
-      body.innerHTML = `<div class="empty" style="border:0;padding-top:var(--s8)"><svg class="icon"><use href="#i-cart"/></svg><h4>Your cart is empty</h4><p>Pick something from the Minecraft or CS2 store.</p><button class="btn btn-secondary btn-sm mt-4" data-close>Browse the store</button></div>`;
-      foot.innerHTML = ""; foot.hidden = true; return;
-    }
-    foot.hidden = false;
-    const needMc = c.some(l => byId(l.id).g === "mc"), needCs = c.some(l => byId(l.id).g === "cs" && !byId(l.id).ship);
-    const total = c.reduce((a, l) => a + byId(l.id).price * l.qty, 0);
-    body.innerHTML = c.map(l => { const p = byId(l.id); return `<div class="line">
-        <div class="ph ${tone(p)}">${art(p)}</div>
-        <div><b>${p.cartName || p.name}</b><small>${p.g === "mc" ? "Minecraft" : "CS2"} · ${p.ship ? "ships" : "in-game"}</small>
-          <div class="qty sm mt-2" data-line="${p.id}"><button type="button" data-lstep="-1" aria-label="One less">${ic("minus", "icon-sm")}</button><output>${l.qty}</output><button type="button" data-lstep="1" aria-label="One more">${ic("plus", "icon-sm")}</button></div></div>
-        <div class="l-right"><span class="l-price">${money(p.price * l.qty)}</span><button class="rm" data-rm="${p.id}">${ic("trash", "icon-sm")} Remove</button></div></div>`; }).join("")
-      + (needMc ? `<div class="id-box"><h4>${ic("cube", "icon-sm")} Deliver Minecraft items to</h4>
-          <div class="field"><label class="label" for="mc-user">Minecraft username</label><input class="input" id="mc-user" placeholder="e.g. Steve" autocomplete="off"><span class="field-error">${ic("alert")}We need the exact username to deliver your items.</span></div>
-          <div class="choice-group" role="radiogroup" aria-label="Edition"><label class="choice"><input type="radio" name="ed" checked><span>Java</span></label><label class="choice"><input type="radio" name="ed"><span>Bedrock</span></label></div></div>` : "")
-      + (needCs ? `<div class="id-box"><h4>${ic("crosshair", "icon-sm")} Deliver CS2 items to</h4>
-          <div class="field"><label class="label" for="cs-user">Steam profile link</label><input class="input" id="cs-user" placeholder="https://steamcommunity.com/id/…"><span class="field-error">${ic("alert")}We need your Steam profile to apply VIP.</span></div>
-          <span class="hint">Or sign in with Steam at checkout. We never ask for your Steam password.</span></div>` : "");
-    foot.innerHTML = `<div class="totals"><div><span class="muted">Subtotal</span><span class="tnum">${money(total)}</span></div><div><span class="faint">Tax</span><span class="faint">Calculated at checkout</span></div><div class="grand"><span>Total</span><span class="tnum">${money(total)}</span></div></div>
-      <label class="check" id="agree-wrap"><input type="checkbox" id="agree"><span>I agree to the <a href="terms.html">Terms</a> and <a href="refunds.html">Refund policy</a>. Under 18? I have a parent's OK.</span></label>
-      <button class="btn btn-primary btn-block" id="checkout">${ic("lock")} Checkout · ${money(total)}</button>
-      <span class="hint" style="text-align:center">Secure payment. Your card details never touch our servers.</span>`;
+    const t = totals();
+    const body = t.n === 0 ? `<div class="c-empty">Nothing here yet.</div>` :
+      cart.map(x => { const p = P[x.id]; return `<div class="ci">
+        <div class="ci-top"><span><i style="background:${p.realm === "mc" ? "var(--or)" : "var(--argent)"}"></i>${p.title}</span><b>${p.label}</b></div>
+        <div class="ci-bill">${p.bill}</div>
+        <div class="ci-foot">${delivery(p)}<button class="ci-rm" type="button" data-rm="${x.id}">Remove</button></div>
+      </div>`; }).join("") +
+      (t.steam ? `<div class="ci-steam field"><label class="label" for="steam-{K}">Steam profile link</label><input class="input" id="steam-{K}" data-steam placeholder="steamcommunity.com/id/…" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="field-error">Paste your Steam profile link so VIP goes to the right account.</span><span class="hint">We only need the link. Never share your Steam password.</span></div>` : "") +
+      `<div class="c-tot">
+        <div class="due"><span>Due today</span><span class="tnum">${fmt(t.due)}</span></div>
+        ${t.rec ? `<div class="rec"><span>Then every month, until cancelled</span><span class="tnum">${fmt(t.rec)}/mo</span></div>` : ""}
+        <button class="btn btn-play btn-block" type="button" data-checkout>Checkout · UPI / card</button>
+        <div class="partner">Secure checkout by our store partner</div>
+      </div>`;
+    document.querySelectorAll("[data-cart-body]").forEach((el, i) => { el.innerHTML = body.replace(/\{K\}/g, i ? "s" : "d"); });
+    document.querySelectorAll("[data-steam]").forEach(inp => { inp.value = steam; });
+    document.querySelectorAll("[data-cart-n]").forEach(el => { el.textContent = t.n + " item(s)"; });
+    const bar = document.getElementById("cartbar");
+    bar.hidden = t.n === 0;
+    document.body.classList.toggle("has-bar", t.n > 0);
+    bar.querySelector("[data-bar-n]").textContent = t.n + (t.n === 1 ? " item" : " items") + " · due today";
+    bar.querySelector("[data-bar-total]").textContent = fmt(t.due);
+    if (t.n === 0 && document.getElementById("cart-sheet").classList.contains("is-open")) window.TT_CLOSE();
   }
-  function checkout() {
-    let bad = null;
-    ["mc-user", "cs-user"].forEach(id => { const el = document.getElementById(id); if (el) { const f = el.closest(".field"); const b = !el.value.trim(); f.classList.toggle("is-invalid", b); if (b && !bad) bad = el; } });
-    const ag = document.getElementById("agree"); const aw = document.getElementById("agree-wrap");
-    aw.style.color = ag.checked ? "" : "var(--danger)";
-    if (bad) { bad.focus(); return; }
-    if (!ag.checked) { ag.focus(); return; }
-    const c = Cart.get(), total = c.reduce((a, l) => a + byId(l.id).price * l.qty, 0);
-    document.getElementById("ho-sum").innerHTML = c.map(l => `<div><span class="muted">${l.qty} × ${byId(l.id).cartName || byId(l.id).name}</span><span class="tnum">${money(byId(l.id).price * l.qty)}</span></div>`).join("") + `<div class="grand"><span>Total</span><span class="tnum">${money(total)}</span></div>`;
-    window.TT_CLOSE(); window.TT_OPEN("handoff");
+  function save() { Cart.set(cart); renderRows(); renderCart(); }
+
+  function toggle(id) {
+    const p = P[id];
+    if (has(id)) { cart = cart.filter(x => x.id !== id); save(); return; }
+    if (p.rank) {
+      // One rank at a time: adding a rank replaces any other rank (or the other billing) in the cart.
+      const old = cart.find(x => P[x.id].rank);
+      cart = cart.filter(x => !P[x.id].rank);
+      if (old && P[old.id].rank !== p.rank) window.TT_TOAST("Swapped " + P[old.id].title + " for " + p.title + ". One rank at a time.");
+    }
+    cart.push({ id, qty: 1 });
+    save();
   }
 
-  document.addEventListener("click", e => {
-    const a = e.target.closest("[data-add]");
-    if (a) {
-      const qEl = a.closest(".pd") && a.closest(".pd").querySelector("[data-qty] output");
-      add(a.dataset.add, qEl ? +qEl.textContent : 1);
-      window.TT_TOAST((byId(a.dataset.add).cartName || byId(a.dataset.add).name) + " added to cart");
-      if (a.hasAttribute("data-from-detail")) { window.TT_CLOSE(); window.TT_OPEN("cart"); }
+  /* ---------- Tabs ---------- */
+  function setTab(v, push) {
+    tab = v;
+    document.querySelectorAll("[data-tab]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.tab === v)));
+    document.getElementById("sec-mc").hidden = v === "cs";
+    document.getElementById("sec-cs").hidden = v === "mc";
+    if (push) history.replaceState(null, "", v === "all" ? location.pathname : "?tab=" + v);
+  }
+
+  /* ---------- Checkout (honest: payments are not switched on yet) ---------- */
+  const narrow = () => !matchMedia("(min-width: 1080px)").matches;
+  function checkout() {
+    const t = totals();
+    const uf = document.getElementById("user-f");
+    const u = userIn.value.trim();
+    if (t.mc && !/^[A-Za-z0-9_]{3,16}$/.test(u)) {
+      document.getElementById("u-err").textContent = u ? "Minecraft usernames are 3–16 letters, numbers or _. Check the spelling." : "Type your Minecraft username so we know who gets the rank.";
+      uf.classList.add("is-invalid");
+      window.TT_CLOSE();
+      uf.scrollIntoView({ behavior: "smooth", block: "center" });
+      setTimeout(() => userIn.focus({ preventScroll: true }), 350);
       return;
     }
-    const d = e.target.closest("[data-detail]"); if (d) return openDetail(d.dataset.detail);
-    const st = e.target.closest("[data-step]");
-    if (st) { const o = st.parentElement.querySelector("output"); o.textContent = Math.max(1, Math.min(20, +o.textContent + +st.dataset.step)); return; }
-    const ls = e.target.closest("[data-lstep]");
-    if (ls) { const id = ls.closest("[data-line]").dataset.line; const c = Cart.get(); const l = c.find(x => x.id === id); l.qty = Math.max(1, l.qty + +ls.dataset.lstep); Cart.set(c); renderCart(); return; }
-    const rm = e.target.closest("[data-rm]");
-    if (rm) { Cart.set(Cart.get().filter(x => x.id !== rm.dataset.rm)); renderCart(); return; }
-    if (e.target.closest("#checkout")) return checkout();
-    if (e.target.closest("[data-open-cart]")) { renderCart(); window.TT_OPEN("cart"); }
-    if (e.target.closest("#ho-go")) { const b = e.target.closest("#ho-go"); b.classList.add("is-busy"); setTimeout(() => { b.classList.remove("is-busy"); window.TT_TOAST("Payments open at launch. Nothing has been charged."); }, 1200); }
+    if (t.steam && !/steamcommunity\.com\/(id|profiles)\/[^\s\/?#]+/i.test(steam)) {
+      const scope = narrow() ? document.getElementById("cart-sheet") : document.getElementById("cart");
+      const f = scope.querySelector(".ci-steam");
+      if (f) { f.classList.add("is-invalid"); f.querySelector("input").focus(); }
+      return;
+    }
+    document.getElementById("co-sum").innerHTML = cart.map(x => `<div><span>${P[x.id].title}${P[x.id].plan === "season" ? " · season pass" : ""}</span><span class="tnum">${P[x.id].label}</span></div>`).join("") +
+      `<div class="due"><span>Would be due today</span><span class="tnum">${fmt(t.due)}</span></div>` +
+      (t.rec ? `<div class="muted"><span>Then every month, until cancelled</span><span class="tnum">${fmt(t.rec)}/mo</span></div>` : "");
+    window.TT_CLOSE();
+    window.TT_OPEN("checkout-sheet");
+  }
+
+  /* ---------- Events ---------- */
+  document.addEventListener("click", e => {
+    const a = e.target.closest("[data-add]"); if (a) return toggle(a.dataset.add);
+    const r = e.target.closest("[data-rm]"); if (r) { cart = cart.filter(x => x.id !== r.dataset.rm); return save(); }
+    const tb = e.target.closest("[data-tab]"); if (tb) return setTab(tb.dataset.tab, true);
+    const pl = e.target.closest("[data-plan]"); if (pl) { plan = pl.dataset.plan; return renderRows(); }
+    if (e.target.closest("[data-checkout]")) return checkout();
+    if (e.target.closest("[data-open-cart]")) {      // header Cart button on this page
+      if (narrow()) { window.TT_CLOSE(); window.TT_OPEN("cart-sheet"); }
+      else { const c = document.getElementById("cart"); c.scrollIntoView({ behavior: "smooth", block: "center" }); c.classList.remove("flash"); void c.offsetWidth; c.classList.add("flash"); }
+    }
+  });
+  let uT;
+  userIn.addEventListener("input", () => {
+    document.getElementById("user-f").classList.remove("is-invalid");
+    store.set("tt-mc-user", userIn.value.trim());
+    clearTimeout(uT); uT = setTimeout(renderCart, 250);
+  });
+  document.addEventListener("input", e => {
+    if (!e.target.matches("[data-steam]")) return;
+    steam = e.target.value.trim();
+    store.set("tt-steam", steam);
+    document.querySelectorAll("[data-steam]").forEach(inp => { if (inp !== e.target) inp.value = e.target.value; inp.closest(".field").classList.remove("is-invalid"); });
   });
 
-  renderShop(); renderCart();
-  if (location.hash === "#cart") window.TT_OPEN("cart");
-  // Design-review shortcuts: store.html?demo=detail | cart | empty-cart | handoff
-  const demo = new URLSearchParams(location.search).get("demo");
-  if (demo === "detail") openDetail(game === "cs" ? "vip3" : "knight@month");
-  if (demo === "cart" || demo === "handoff") { Cart.set([{ id: "knight@season", qty: 1 }, { id: "keys10", qty: 2 }, { id: "vip1", qty: 1 }]); renderCart(); window.TT_OPEN("cart"); }
-  if (demo === "empty-cart") { Cart.set([]); renderCart(); window.TT_OPEN("cart"); }
-  if (demo === "handoff") { document.getElementById("mc-user").value = "Steve"; document.getElementById("cs-user").value = "https://steamcommunity.com/id/steve"; document.getElementById("agree").checked = true; checkout(); }
+  setTab(tab, false);
+  renderRows();
+  renderCart();
+  // Deep links: #cart opens the cart; #parents on a phone jumps to the parents note.
+  if (location.hash === "#cart" && narrow() && cart.length) window.TT_OPEN("cart-sheet");
+  if (location.hash === "#parents" && narrow()) setTimeout(() => document.getElementById("parents-m").scrollIntoView({ block: "center" }), 100);
 })();
 </script>
 </body>

@@ -4,410 +4,283 @@
 <meta charset="utf-8">
 <link rel="icon" type="image/svg+xml" href="assets/ttc-icon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Events &amp; Tournaments · TheTitansClan</title>
-<meta name="description" content="TheTitansClan events for October 2026: Season 1 Survival launch, Bedwars Night, the Titans Community Cup #4 for CS2 and the Citadel Gate build contest.">
-<meta name="theme-color" content="#F1E7D0">
+<title>Events · TheTitansClan</title>
+<meta name="description" content="TheTitansClan events for October 2026: Season I opens, Bedwars Night, Community Cup #4 for CS2 and the Citadel Gate build contest.">
+<meta name="theme-color" content="#16120E">
+<meta property="og:title" content="Events · TheTitansClan">
+<meta property="og:description" content="Season I opens Fri 9 Oct. Bedwars Night, Community Cup #4 and a build contest this October.">
+<meta property="og:image" content="assets/img/citadel.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600&family=UnifrakturMaguntia&display=swap">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@700&family=Grenze:wght@600;700&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@600&display=swap">
+<link rel="stylesheet" href="assets/titans.css">
 <style>
-  /* Hero */
-  .ev-hero .lede { margin-bottom: var(--s5); }
-  .next-up { display: flex; align-items: flex-start; gap: var(--s3); padding: var(--s3) var(--s4); border-radius: var(--r); background: rgba(250,244,230,.75); border: 1px solid var(--line-2); font-size: var(--fs-sm); color: var(--text-2); max-width: 560px; }
-  .next-up .icon { color: var(--crimson); margin-top: 1px; }
-  .next-up b { color: var(--text); }
-  .ev-hero .row { margin-top: var(--s5); }
+  /* ---- Page head ---- */
+  .pg-head { padding: 26px 0 26px; }
+  .pg-head .lede { margin-top: 10px; }
+  @media (min-width: 960px) { .pg-head { padding: 56px 0 40px; } }
 
-  /* Toolbar: view switch + filters */
-  .ev-toolbar { display: grid; gap: var(--s4); margin-bottom: var(--s5); }
-  .ev-toolbar .segmented button { min-height: 44px; font-size: .9375rem; }
-  @media (min-width: 900px) {
-    .ev-toolbar { display: flex; align-items: center; justify-content: space-between; }
-    .ev-toolbar .segmented { order: 2; }
+  /* ---- Next up: the sable band ---- */
+  .next { padding-block: 26px 28px; }
+  .next .wrap { display: grid; gap: 16px; }
+  .next h2 { font: 700 clamp(2rem, 1.4rem + 2.6vw, 3.25rem)/1 var(--f-head); color: var(--or-hi); margin-top: 8px; }
+  .next h2.cs { color: #fff; }
+  .next .when { margin-top: 10px; font-size: .9375rem; color: var(--on-sable); }
+  .next .when small { display: block; font-size: .8125rem; color: var(--on-sable-2); margin-top: 2px; }
+  .next-r { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
+  .cd { display: flex; gap: 14px; align-items: baseline; font-family: var(--f-head); font-weight: 600; line-height: 1; padding: 12px 0; border-top: 1px solid var(--sable-3); border-bottom: 1px solid var(--sable-3); }
+  .cd span { font-size: 2.25rem; color: var(--on-sable); }
+  .cd small { font-size: .9375rem; color: var(--or); margin-left: 2px; }
+  @media (min-width: 960px) {
+    .next { padding-block: 44px; }
+    .next .wrap { grid-template-columns: minmax(0,7fr) minmax(0,5fr); align-items: end; gap: 48px; }
+    .next-r { justify-content: flex-end; }
+    .cd span { font-size: 3rem; }
   }
 
-  /* Event list */
-  .ev-list { display: grid; gap: var(--s4); }
-  @media (min-width: 900px) { .ev-list { grid-template-columns: 1fr 1fr; gap: var(--s5); } }
-  .ev-card { padding: var(--s5) var(--s4); scroll-margin-top: calc(var(--header-h) + 24px); }
-  @media (min-width: 600px) { .ev-card { padding: var(--s5); gap: var(--s5); } }
-  .ev-card:focus { outline: none; }
-  .ev-card[hidden] { display: none; }
-  .ev-card .ev-body { gap: var(--s2); }
-  .ev-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .ev-card h3 { font-size: 1.375rem; line-height: 1.12; }
-  .ev-card .ev-meta { font-size: var(--fs-sm); color: var(--text-2); gap: 4px var(--s4); }
-  .ev-card .ev-meta .icon { width: 15px; height: 15px; color: var(--gold); }
-  .ev-desc { font-size: var(--fs-sm); color: var(--text-2); margin: 0; }
-  .ev-card .ev-foot { flex-wrap: wrap; padding-top: var(--s3); border-top: 1px solid var(--line); margin-top: var(--s2); }
-  .ev-toggle { display: inline-flex; align-items: center; gap: 4px; min-height: 36px; padding: 0; border: 0; background: none; font-weight: 600; font-size: var(--fs-sm); color: var(--gold); }
-  .ev-toggle:hover { color: var(--gold-hi); }
-  .ev-toggle .icon { width: 16px; height: 16px; transition: transform .2s var(--ease); }
-  .ev-toggle[aria-expanded="true"] .icon { transform: rotate(180deg); }
-  .ev-panel { font-size: var(--fs-sm); color: var(--text-2); padding: var(--s3) var(--s4); background: var(--surface-2); border-radius: var(--r); }
-  .ev-panel ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
-  .ev-panel p { margin-bottom: var(--s2); }
-  .ev-panel a { color: var(--gold); text-decoration: underline; text-underline-offset: 2px; }
-  .ev-panel b { color: var(--text); }
-  .ev-card.is-flash { animation: evflash 2.2s var(--ease); }
-  @keyframes evflash { 0%, 55% { box-shadow: inset 0 0 0 3px var(--surface), inset 0 0 0 4px var(--line), 0 0 0 3px var(--crimson), var(--shadow); } }
+  /* ---- Month: list + calendar ---- */
+  .month { display: grid; gap: 36px; }
+  @media (min-width: 1000px) { .month { grid-template-columns: minmax(0,8fr) minmax(0,4fr); gap: 56px; align-items: start; } .cal-wrap { position: sticky; top: calc(var(--head) + 24px); } }
+  .month-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 14px; margin-bottom: 18px; }
+  .filter i { width: 8px; height: 8px; }
+
+  .evs { --tinct: var(--ink); }
+  .ev { display: grid; grid-template-columns: 54px minmax(0,1fr); gap: 0 14px; padding: 16px 0; }
+  .ev .d { display: flex; flex-direction: column; align-items: flex-start; }
+  .ev .d b { font: 600 2rem/1 var(--f-head); }
+  .ev .d span { font: 600 .6875rem/1.4 var(--f-mono); color: var(--ink-3); text-transform: uppercase; margin-top: 3px; }
+  .ev .rl { display: inline-flex; align-items: center; gap: 6px; font-size: .6875rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-2); }
+  .ev .rl i { width: 9px; height: 9px; background: var(--c); }
+  .ev h3 { font: 600 1.375rem/1.15 var(--f-head); margin-top: 3px; }
+  .ev .info { font-size: .875rem; color: var(--ink-2); margin-top: 4px; }
+  .ev .info .bill { margin-left: 4px; vertical-align: 1px; }
+  .ev .t { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 2px 10px; align-items: baseline; font-size: .875rem; }
+  .ev .t b { font: 600 .875rem var(--f-mono); }
+  .ev .t span { color: var(--ink-3); font-size: .8125rem; }
+  .ev .go { margin-top: 8px; font-size: .875rem; }
+  .ev .main { grid-column: 2; }
+  @media (min-width: 760px) {
+    .ev { grid-template-columns: 64px minmax(0,1fr) 150px 150px; gap: 0 22px; padding: 20px 0; align-items: start; }
+    .ev .main { grid-column: auto; }
+    .ev .t { margin-top: 0; flex-direction: column; gap: 3px; padding-top: 4px; }
+    .ev .go { margin-top: 0; padding-top: 4px; text-align: right; }
+  }
+  .empty { padding: 22px 0; font-size: .9375rem; color: var(--ink-2); border-bottom: 1px solid var(--rule); }
 
   /* Calendar */
-  .cal { padding: var(--s3); }
-  @media (min-width: 600px) { .cal { padding: var(--s5); } }
-  .cal-top { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s3); padding: var(--s2) var(--s2) var(--s3); }
-  .cal-top h3 { font-size: 1.25rem; }
-  .cal-top span { font-size: var(--fs-xs); color: var(--text-3); }
-  .cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
-  @media (min-width: 600px) { .cal-grid { gap: 6px; } }
-  .cal-dow { text-align: center; padding: 4px 0 6px; font: 700 .6875rem/1 var(--font-display); letter-spacing: .08em; color: var(--text-3); }
-  .cal-dow abbr { text-decoration: none; }
-  .cal-day { position: relative; min-width: 0; min-height: 52px; padding: 6px 2px 5px; display: flex; flex-direction: column; align-items: center; gap: 5px;
-    border: 1px solid var(--line); border-radius: var(--r-sm); background: rgba(253,249,239,.55); color: var(--text-2); font: inherit; text-align: left; }
-  .cal-day.is-blank { border-color: transparent; background: transparent; }
-  .cal-day.is-past { opacity: .55; }
-  button.cal-day { cursor: pointer; background: var(--surface); border-color: var(--line-2); color: var(--text); }
-  button.cal-day:hover { background: var(--surface-2); border-color: var(--gold); }
-  button.cal-day:disabled { cursor: default; background: rgba(253,249,239,.55); border-color: var(--line); color: var(--text-2); }
-  button.cal-day:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 1px; }
-  .cal-num { font: 700 .9375rem/1 var(--font-display); width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; flex: none; }
-  .cal-day.is-today .cal-num { background: var(--text); color: var(--bg); }
-  .cal-dots { display: flex; gap: 3px; justify-content: center; flex-wrap: wrap; }
-  .cal-dot { width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
-  .cal-dot.is-deadline { background: transparent; box-shadow: inset 0 0 0 2px currentColor; }
-  .is-mc { color: var(--mc); } .is-cs { color: var(--cs); } .is-clan { color: var(--crimson); }
-  .cal-label { display: none; }
-  .cal-item.is-off { display: none !important; }
-  @media (min-width: 900px) {
-    .cal-day { min-height: 112px; align-items: stretch; padding: 8px; gap: 6px; }
-    .cal-num { width: 26px; height: 26px; margin: -2px 0 0 -2px; }
-    .cal-dots { display: none; }
-    .cal-label { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-      padding: 4px 6px; border-left: 3px solid currentColor; border-radius: 0 2px 2px 0; font: 600 .8125rem/1.25 var(--font-body); }
-    .cal-label.is-mc { background: var(--mc-wash); } .cal-label.is-cs { background: var(--cs-wash); } .cal-label.is-clan { background: rgba(142,27,36,.09); }
-    .cal-label.is-deadline { background: transparent; border-left-style: dashed; }
-    .cal-label b { display: block; font-weight: 700; color: var(--text); }
-    .cal-label small { color: var(--text-2); font-size: .75rem; }
-  }
-  .cal-legend { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s4); margin: var(--s4) var(--s2) 0; font-size: var(--fs-xs); color: var(--text-2); }
-  .cal-legend span { display: inline-flex; align-items: center; gap: 6px; }
-  .cal-agenda { list-style: none; margin: var(--s4) 0 0; padding: var(--s3) 0 0; border-top: 1px solid var(--line); display: grid; gap: 2px; }
-  .cal-agenda button { width: 100%; display: grid; grid-template-columns: 58px 10px 1fr auto; align-items: center; gap: var(--s3); min-height: 48px; padding: 6px var(--s2); border: 0; border-radius: var(--r-sm); background: none; text-align: left; color: var(--text); }
-  .cal-agenda button:hover { background: var(--surface-2); }
-  .cal-agenda .ag-date { font: 700 .8125rem/1.1 var(--font-display); color: var(--text-2); }
-  .cal-agenda .ag-title { font-size: var(--fs-sm); font-weight: 600; line-height: 1.25; }
-  .cal-agenda .ag-title small { display: block; font-weight: 400; color: var(--text-3); font-size: var(--fs-xs); }
-  .cal-agenda .icon { width: 16px; height: 16px; color: var(--gold); }
-  @media (min-width: 900px) { .cal-agenda { display: none; } }
+  .cal-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 10px; }
+  .cal-head h3 { font: 600 1.375rem/1 var(--f-head); }
+  .cal-head span { font-size: .75rem; color: var(--ink-3); }
+  .cal { width: 100%; border-collapse: collapse; table-layout: fixed; border-top: 3px solid var(--ink); }
+  .cal th { font-size: .6875rem; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; color: var(--ink-3); padding: 9px 0 6px; text-align: center; }
+  .cal td { padding: 2px; text-align: center; }
+  .cal td > span { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 40px; border-radius: 4px; font: 600 .875rem/1 var(--f-text); font-variant-numeric: tabular-nums; color: var(--ink-2); border: 1.5px solid transparent; }
+  .cal .mc { background: var(--or); color: var(--or-ink); font-weight: 800; }
+  .cal .cs { background: var(--argent); color: #fff; font-weight: 800; }
+  .cal .dl-mc { border-color: var(--or); color: var(--ink); }
+  .cal .dl-cs { border-color: var(--argent); color: var(--ink); }
+  .cal .today { box-shadow: inset 0 -3px 0 var(--ink); }
+  .cal-key { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 12px; font-size: .75rem; color: var(--ink-2); }
+  .cal-key span { display: inline-flex; align-items: center; gap: 6px; }
+  .cal-key i { width: 12px; height: 12px; border-radius: 2px; }
+  .cal-dates { list-style: none; margin: 14px 0 0; padding: 0; font-size: .8125rem; color: var(--ink-2); display: grid; gap: 4px; }
+  .cal-dates b { font: 600 .75rem var(--f-mono); color: var(--ink); display: inline-block; width: 52px; }
 
-  /* Run an event band */
-  .host-band { display: grid; gap: var(--s5); padding: var(--s6) var(--s5); }
-  .host-band ul { list-style: none; margin: var(--s4) 0 0; padding: 0; display: grid; gap: var(--s2); color: var(--text-2); font-size: var(--fs-sm); }
-  .host-band li { display: flex; gap: var(--s3); align-items: flex-start; }
-  .host-band li .icon { color: var(--gold); flex: none; margin-top: 2px; width: 18px; height: 18px; }
-  @media (min-width: 900px) { .host-band { grid-template-columns: 1fr auto; align-items: center; padding: var(--s7); gap: var(--s7); } }
+  /* Winners + suggest */
+  .sec-rule { border-top: 1px solid var(--rule); }
+  .tail { display: grid; gap: 36px; }
+  @media (min-width: 960px) { .tail { grid-template-columns: minmax(0,7fr) minmax(0,5fr); gap: 64px; } }
+  .none { display: flex; gap: 14px; align-items: flex-start; margin-top: 16px; padding: 18px 0; border-top: 3px solid var(--or); border-bottom: 1px solid var(--rule); }
+  .none .icon { width: 28px; height: 28px; color: var(--rule-2); stroke-width: 1.6; }
+  .none b { display: block; font-size: 1rem; }
+  .none p { font-size: .875rem; color: var(--ink-2); margin-top: 2px; }
+  .suggest p { margin-top: 10px; color: var(--ink-2); font-size: .9375rem; }
+  .suggest .btn { margin-top: 16px; }
 </style>
 </head>
 <body data-page="events">
 <header data-site-header></header>
 
 <main>
-  <!-- HERO -->
-  <section class="hero area-hero ev-hero" aria-labelledby="ev-page-title">
+  <div class="wrap">
+    <section class="pg-head" aria-labelledby="h1">
+      <div class="over">What's on</div>
+      <h1 class="h1" id="h1" style="margin-top:8px">Events</h1>
+      <p class="lede">Game nights, contests and the CS2 cup. Times are in UTC, with your own time next to them.</p>
+    </section>
+  </div>
+
+  <!-- NEXT UP (the one sable moment). Filled from the list below by the script. -->
+  <section class="band next" aria-labelledby="next-name">
     <div class="wrap">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Events</span></nav>
-      <span class="eyebrow">Compete · Build · Win</span>
-      <h1 id="ev-page-title">Events &amp; Tournaments</h1>
-      <p class="lede">Game nights, build contests and CS2 cups for the whole clan. Every time on this page is in UTC, and every event is announced on Discord first.</p>
-      <p class="next-up" id="next-up"><svg class="icon"><use href="#i-calendar"/></svg><span>Next up: <b>Season 1 Survival launch</b> · Fri 9 Oct, 19:00 UTC</span></p>
-      <div class="row">
-        <a class="btn btn-primary" href="community.html#discord"><svg class="icon"><use href="#i-chat"/></svg> Get event pings on Discord</a>
-        <a class="btn btn-ghost" href="event.html#signup">Cup #4 team signup</a>
+      <div>
+        <div class="over on-dark">Next up</div>
+        <h2 id="next-name">Season I opens</h2>
+        <p class="when" id="next-when">Fri 9 Oct · 19:00 UTC<small id="next-local"></small></p>
+      </div>
+      <div class="next-r">
+        <div class="cd" id="next-cd" hidden aria-live="off"></div>
+        <a class="btn btn-paper" id="next-go" href="minecraft-join.html">How to join</a>
       </div>
     </div>
   </section>
 
-  <!-- THIS MONTH -->
-  <section class="section" id="whats-on" aria-labelledby="month-title">
-    <div class="wrap">
-      <div class="section-head"><div><span class="eyebrow">What's on</span><h2 id="month-title">October 2026</h2><p>Tap an event for details. Use the calendar to see the whole month at a glance.</p></div></div>
-
-      <div class="ev-toolbar">
-        <div class="segmented" role="tablist" aria-label="How to show events">
-          <button type="button" role="tab" id="vt-list" aria-selected="true" aria-controls="view-list"><svg class="icon icon-sm"><use href="#i-menu"/></svg> List</button>
-          <button type="button" role="tab" id="vt-cal" aria-selected="false" aria-controls="view-cal"><svg class="icon icon-sm"><use href="#i-calendar"/></svg> Calendar</button>
-        </div>
-        <div class="filters" data-filter-group="ev-list" role="group" aria-label="Filter by game">
-          <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
-          <button class="filter" type="button" data-filter="mc" aria-pressed="false">Minecraft</button>
-          <button class="filter" type="button" data-filter="cs" aria-pressed="false">CS2</button>
-          <button class="filter" type="button" data-filter="clan" aria-pressed="false">Clan</button>
-        </div>
-      </div>
-
-      <!-- LIST VIEW -->
-      <div class="tabpanel" id="view-list" role="tabpanel" aria-labelledby="vt-list">
-        <div class="ev-list" id="ev-list">
-
-          <article class="card event-card ev-card" id="ev-launch" tabindex="-1" data-cat="mc" data-start="2026-10-09T19:00:00Z" data-next="Season 1 Survival launch|Fri 9 Oct, 19:00 UTC" aria-labelledby="ev-launch-t">
-            <div class="date-block" aria-hidden="true"><b>09</b><span>Oct</span></div>
-            <div class="ev-body">
-              <div class="ev-tags"><span class="chip chip-mc">Minecraft</span><span class="chip">Open to all</span></div>
-              <h3 id="ev-launch-t">Season 1 Survival launch</h3>
-              <div class="ev-meta"><span><svg class="icon"><use href="#i-calendar"/></svg>Fri 9 Oct</span><span><svg class="icon"><use href="#i-clock"/></svg>19:00 UTC</span><span><svg class="icon"><use href="#i-users"/></svg>Open to all</span></div>
-              <p class="ev-desc">A fresh Survival world opens at the Citadel spawn. Be there when the gates open.</p>
-              <div class="ev-foot">
-                <span class="slots">No signup needed</span>
-                <button class="ev-toggle" type="button" aria-expanded="false" aria-controls="ev-launch-more">Details <svg class="icon"><use href="#i-down"/></svg></button>
-              </div>
-              <div class="ev-panel" id="ev-launch-more" hidden>
-                <ul>
-                  <li>Join with <b>mc.thetitansclan.com</b>. Java and Bedrock both work.</li>
-                  <li>Everyone starts fresh on the new world. No signup, just log in.</li>
-                  <li>New to the server? <a href="minecraft.html#join">How to join</a> takes two minutes.</li>
-                </ul>
-              </div>
-            </div>
-          </article>
-
-          <article class="card event-card ev-card" id="ev-bedwars" tabindex="-1" data-cat="mc" data-start="2026-10-11T20:00:00Z" data-next="Bedwars Night|Sun 11 Oct, 20:00 UTC" aria-labelledby="ev-bedwars-t">
-            <div class="date-block" aria-hidden="true"><b>11</b><span>Oct</span></div>
-            <div class="ev-body">
-              <div class="ev-tags"><span class="chip chip-mc">Minecraft</span><span class="chip">Signups open</span></div>
-              <h3 id="ev-bedwars-t">Bedwars Night</h3>
-              <div class="ev-meta"><span><svg class="icon"><use href="#i-calendar"/></svg>Sun 11 Oct</span><span><svg class="icon"><use href="#i-clock"/></svg>20:00 UTC</span><span><svg class="icon"><use href="#i-trophy"/></svg>Prize: Knight rank (1 month)</span></div>
-              <p class="ev-desc">An evening of Bedwars with staff and the community. Protect your bed, break theirs.</p>
-              <div class="ev-foot">
-                <a class="btn btn-outline btn-sm" href="community.html#discord">Sign up on Discord</a>
-                <button class="ev-toggle" type="button" aria-expanded="false" aria-controls="ev-bedwars-more">Details <svg class="icon"><use href="#i-down"/></svg></button>
-              </div>
-              <div class="ev-panel" id="ev-bedwars-more" hidden>
-                <ul>
-                  <li>Sign up on our Discord so we know you're coming.</li>
-                  <li>Prize: <b>Knight rank for 1 month</b>.</li>
-                  <li>Never played? Read about <a href="minecraft.html#modes">Bedwars on our network</a>.</li>
-                </ul>
-              </div>
-            </div>
-          </article>
-
-          <article class="card event-card ev-card" id="ev-cup" tabindex="-1" data-cat="cs" data-start="2026-10-17T18:00:00Z" data-next="Titans Community Cup #4|Sat 17 Oct, 18:00 UTC" aria-labelledby="ev-cup-t">
-            <div class="date-block" aria-hidden="true"><b>17</b><span>Oct</span></div>
-            <div class="ev-body">
-              <div class="ev-tags"><span class="chip chip-cs">CS2</span><span class="chip">Signups open</span></div>
-              <h3 id="ev-cup-t">Titans Community Cup #4</h3>
-              <div class="ev-meta"><span><svg class="icon"><use href="#i-calendar"/></svg>Sat 17 Oct</span><span><svg class="icon"><use href="#i-clock"/></svg>18:00 UTC</span><span><svg class="icon"><use href="#i-users"/></svg>5v5 · 16 teams</span></div>
-              <p class="ev-desc">Single elimination, Bo1 until the final (Bo3). Prize: a trophy and a Discord role. Signups close Thu 15 Oct.</p>
-              <div class="ev-foot">
-                <a class="btn btn-outline btn-sm" href="event.html#signup">Sign up your team</a>
-                <a class="link-arrow" href="event.html">Details <svg class="icon"><use href="#i-arrow"/></svg></a>
-              </div>
-            </div>
-          </article>
-
-          <article class="card event-card ev-card" id="ev-build" tabindex="-1" data-cat="clan" data-start="2026-10-24T00:00:00Z" data-next="Build contest: Citadel Gate|starts Sat 24 Oct" aria-labelledby="ev-build-t">
-            <div class="date-block" aria-hidden="true"><b>24</b><span>Oct</span></div>
-            <div class="ev-body">
-              <div class="ev-tags"><span class="chip chip-clan">Clan</span><span class="chip">Build contest</span></div>
-              <h3 id="ev-build-t">Build contest: Citadel Gate</h3>
-              <div class="ev-meta"><span><svg class="icon"><use href="#i-calendar"/></svg>Starts Sat 24 Oct</span><span><svg class="icon"><use href="#i-flag"/></svg>Entries close Sat 31 Oct</span></div>
-              <p class="ev-desc">Build a medieval gate on Survival. Staff pick three winners.</p>
-              <div class="ev-foot">
-                <span class="slots">Entries close Sat 31 Oct</span>
-                <button class="ev-toggle" type="button" aria-expanded="false" aria-controls="ev-build-more">Details <svg class="icon"><use href="#i-down"/></svg></button>
-              </div>
-              <div class="ev-panel" id="ev-build-more" hidden>
-                <p>Prizes:</p>
-                <ul>
-                  <li><b>1st:</b> Titan rank (1 month)</li>
-                  <li><b>2nd:</b> Knight rank (1 month)</li>
-                  <li><b>3rd:</b> Squire rank (1 month)</li>
-                </ul>
-                <p class="mt-3 mb-0">How to enter and the full contest rules go up on Discord when the contest starts on 24 October.</p>
-              </div>
-            </div>
-          </article>
-
-        </div>
-        <div class="empty mt-5" data-empty hidden><svg class="icon"><use href="#i-calendar"/></svg><h4>Nothing here this month</h4><p>Try another game, or watch Discord for new events.</p></div>
-      </div>
-
-      <!-- CALENDAR VIEW -->
-      <div class="tabpanel" id="view-cal" role="tabpanel" aria-labelledby="vt-cal" hidden>
-        <div class="card cal">
-          <div class="cal-top"><h3>October 2026</h3><span>Times in UTC</span></div>
-          <div class="cal-grid" id="cal-grid" role="group" aria-label="October 2026"></div>
-          <div class="cal-legend" aria-hidden="true">
-            <span><i class="cal-dot is-mc"></i>Minecraft</span>
-            <span><i class="cal-dot is-cs"></i>CS2</span>
-            <span><i class="cal-dot is-clan"></i>Clan</span>
-            <span><i class="cal-dot is-deadline" style="color:var(--text-2)"></i>Deadline</span>
+  <section class="sec" id="october" aria-labelledby="oct-t">
+    <div class="wrap month">
+      <div>
+        <div class="month-head">
+          <h2 class="h2" id="oct-t">October 2026</h2>
+          <div class="filters" data-filter-group="ev-list" role="group" aria-label="Show events for">
+            <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter" type="button" data-filter="mc" aria-pressed="false"><i style="background:var(--or)"></i>Minecraft</button>
+            <button class="filter" type="button" data-filter="cs" aria-pressed="false"><i style="background:var(--argent)"></i>CS2</button>
           </div>
-          <ul class="cal-agenda" id="cal-agenda" aria-label="Dates this month"></ul>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- PAST WINNERS -->
-  <section class="section" id="winners" aria-labelledby="win-title">
-    <div class="wrap">
-      <div class="section-head"><div><span class="eyebrow">Hall of champions</span><h2 id="win-title">Past winners</h2></div></div>
-      <div class="empty">
-        <svg class="icon"><use href="#i-trophy"/></svg>
-        <h4>No winners yet</h4>
-        <p class="mb-0">Winners appear here after our first events.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- RUN AN EVENT -->
-  <section class="section" aria-labelledby="host-title">
-    <div class="wrap">
-      <div class="card card-feature host-band">
         <div>
-          <span class="eyebrow">Your idea here</span>
-          <h2 id="host-title">Run an event with us</h2>
-          <p class="muted mt-3 mb-0" style="max-width:54ch">Got an idea for a game night, a build theme or a CS2 cup? Tell us on Discord. If it's a good fit, staff help you plan it and set it up.</p>
-          <ul>
-            <li><svg class="icon"><use href="#i-sparkle"/></svg>Suggest a theme for the next build contest</li>
-            <li><svg class="icon"><use href="#i-bed"/></svg>Pitch a new game night on the Minecraft network</li>
-            <li><svg class="icon"><use href="#i-bracket"/></svg>Help admin or cast a CS2 cup</li>
-          </ul>
+          <div class="ledger evs" id="ev-list">
+            <article class="ev" data-cat="mc" data-start="2026-10-09T19:00:00Z" data-when="Fri 9 Oct · 19:00 UTC" aria-labelledby="e1">
+              <div class="d"><b>09</b><span>Fri</span></div>
+              <div class="main">
+                <span class="rl" style="--c:var(--or)"><i></i>Minecraft</span>
+                <h3 id="e1">Season I opens</h3>
+                <p class="info">The Survival world opens. Join at mc.thetitansclan.com and arrive in the Titan Citadel.</p>
+              </div>
+              <div class="t main"><b>19:00 UTC</b><span data-local="2026-10-09T19:00:00Z"></span></div>
+              <div class="go main"><a class="link" href="minecraft-join.html">How to join</a></div>
+            </article>
+            <article class="ev" data-cat="mc" data-start="2026-10-11T20:00:00Z" data-when="Sun 11 Oct · 20:00 UTC" aria-labelledby="e2">
+              <div class="d"><b>11</b><span>Sun</span></div>
+              <div class="main">
+                <span class="rl" style="--c:var(--or)"><i></i>Minecraft</span>
+                <h3 id="e2">Bedwars Night</h3>
+                <p class="info">Protect your bed, break theirs. Prize: Knight rank for 1 month.</p>
+              </div>
+              <div class="t main"><b>20:00 UTC</b><span data-local="2026-10-11T20:00:00Z"></span></div>
+              <div class="go main"><a class="link" href="minecraft.html#modes">About Bedwars</a></div>
+            </article>
+            <article class="ev" data-cat="cs" data-start="2026-10-17T18:00:00Z" data-when="Sat 17 Oct · 18:00 UTC" aria-labelledby="e3">
+              <div class="d"><b>17</b><span>Sat</span></div>
+              <div class="main">
+                <span class="rl" style="--c:var(--argent)"><i></i>CS2</span>
+                <h3 id="e3">Community Cup #4</h3>
+                <p class="info">5v5 · 16 teams · single elimination · Bo1, final Bo3. Signups close Thu 15 Oct. Team pass ₹999<span class="bill bill-once">One-time</span></p>
+              </div>
+              <div class="t main"><b>18:00 UTC</b><span data-local="2026-10-17T18:00:00Z"></span></div>
+              <div class="go main"><a class="link" href="event.html">Cup details</a></div>
+            </article>
+            <article class="ev" data-cat="mc" data-start="2026-10-24" data-allday data-when="Opens Sat 24 Oct · entries close Sat 31 Oct" aria-labelledby="e4">
+              <div class="d"><b>24</b><span>Sat</span></div>
+              <div class="main">
+                <span class="rl" style="--c:var(--or)"><i></i>Minecraft</span>
+                <h3 id="e4">Build contest: The Citadel Gate</h3>
+                <p class="info">Build your own gate for the Citadel in Survival.</p>
+              </div>
+              <div class="t main"><b>Opens 24 Oct</b><span>Entries close Sat 31 Oct</span></div>
+              <div class="go main"></div>
+            </article>
+          </div>
+          <p class="empty" data-empty hidden>No events for this game this month. Watch our Discord for new ones.</p>
         </div>
-        <a class="btn btn-primary btn-lg" href="community.html#discord"><svg class="icon"><use href="#i-chat"/></svg> Suggest an event</a>
+      </div>
+
+      <aside class="cal-wrap" aria-labelledby="cal-t">
+        <div class="cal-head"><h3 id="cal-t">October 2026</h3><span>Mon – Sun</span></div>
+        <table class="cal">
+          <thead><tr><th scope="col" abbr="Monday">M</th><th scope="col" abbr="Tuesday">T</th><th scope="col" abbr="Wednesday">W</th><th scope="col" abbr="Thursday">T</th><th scope="col" abbr="Friday">F</th><th scope="col" abbr="Saturday">S</th><th scope="col" abbr="Sunday">S</th></tr></thead>
+          <tbody>
+            <tr><td></td><td></td><td></td><td><span data-day="1">1</span></td><td><span data-day="2">2</span></td><td><span data-day="3">3</span></td><td><span data-day="4">4</span></td></tr>
+            <tr><td><span data-day="5">5</span></td><td><span data-day="6">6</span></td><td><span data-day="7">7</span></td><td><span data-day="8">8</span></td><td><span class="mc" data-day="9" title="Season I opens">9<i class="sr-only"> Season I opens</i></span></td><td><span data-day="10">10</span></td><td><span class="mc" data-day="11" title="Bedwars Night">11<i class="sr-only"> Bedwars Night</i></span></td></tr>
+            <tr><td><span data-day="12">12</span></td><td><span data-day="13">13</span></td><td><span data-day="14">14</span></td><td><span class="dl-cs" data-day="15" title="Cup #4 signups close">15<i class="sr-only"> Cup #4 signups close</i></span></td><td><span data-day="16">16</span></td><td><span class="cs" data-day="17" title="Community Cup #4">17<i class="sr-only"> Community Cup #4</i></span></td><td><span data-day="18">18</span></td></tr>
+            <tr><td><span data-day="19">19</span></td><td><span data-day="20">20</span></td><td><span data-day="21">21</span></td><td><span data-day="22">22</span></td><td><span data-day="23">23</span></td><td><span class="mc" data-day="24" title="Build contest opens">24<i class="sr-only"> Build contest opens</i></span></td><td><span data-day="25">25</span></td></tr>
+            <tr><td><span data-day="26">26</span></td><td><span data-day="27">27</span></td><td><span data-day="28">28</span></td><td><span data-day="29">29</span></td><td><span data-day="30">30</span></td><td><span class="dl-mc" data-day="31" title="Build contest entries close">31<i class="sr-only"> Build contest entries close</i></span></td><td></td></tr>
+          </tbody>
+        </table>
+        <div class="cal-key" aria-hidden="true">
+          <span><i style="background:var(--or)"></i>Minecraft</span>
+          <span><i style="background:var(--argent)"></i>CS2</span>
+          <span><i style="border:1.5px solid var(--ink-3)"></i>Deadline</span>
+        </div>
+        <ul class="cal-dates">
+          <li><b>15 Oct</b>Cup #4 signups close</li>
+          <li><b>31 Oct</b>Build contest entries close</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sec sec-rule" aria-label="Past winners and ideas">
+    <div class="wrap tail">
+      <div id="winners">
+        <h2 class="h2">Past winners</h2>
+        <div class="none">
+          <svg class="icon"><use href="#i-trophy"/></svg>
+          <div><b>No winners yet</b><p>Our first events are this month. Winners will be listed here after each one.</p></div>
+        </div>
+      </div>
+      <div class="suggest">
+        <h2 class="h2">Got an idea?</h2>
+        <p>A game night, a build theme or a CS2 cup? Tell us on Discord. If it's a good fit, staff will help you set it up.</p>
+        <a class="btn btn-line" href="community.html#discord"><svg class="icon"><use href="#i-chat"/></svg>Suggest an event</a>
       </div>
     </div>
   </section>
 </main>
 
 <footer data-site-footer></footer>
+<script src="assets/titans.js"></script>
 <script>
-(function () {
-  "use strict";
-  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var icon = function (n) { return '<svg class="icon" aria-hidden="true"><use href="#i-' + n + '"/></svg>'; };
-
-  /* ---------- Details toggles on cards ---------- */
-  document.querySelectorAll(".ev-toggle").forEach(function (b) {
-    b.addEventListener("click", function () {
-      var p = document.getElementById(b.getAttribute("aria-controls"));
-      var open = b.getAttribute("aria-expanded") !== "true";
-      b.setAttribute("aria-expanded", String(open));
-      p.hidden = !open;
+  /* Local times, the "Next up" band and today's date on the calendar. */
+  (function () {
+    var now = Date.now();
+    var fmt = function (d) { return d.toLocaleString([], { weekday: "short", hour: "2-digit", minute: "2-digit" }); };
+    var utcOffset = new Date("2026-10-15T12:00:00Z").getTimezoneOffset();
+    document.querySelectorAll("[data-local]").forEach(function (el) {
+      el.textContent = utcOffset === 0 ? "Same as your time" : fmt(new Date(el.dataset.local)) + " your time";
     });
-  });
 
-  /* ---------- Hero: next event that hasn't started yet ---------- */
-  var now = Date.now();
-  var next = [].slice.call(document.querySelectorAll(".ev-card[data-start]"))
-    .filter(function (c) { return Date.parse(c.dataset.start) > now; })[0];
-  var nu = document.getElementById("next-up");
-  if (nu) {
-    if (next) {
-      var parts = next.dataset.next.split("|");
-      nu.querySelector("span").innerHTML = 'Next up: <b>' + parts[0] + '</b> · ' + parts[1];
-    } else {
-      nu.querySelector("span").textContent = "October's events are done. New ones are announced on Discord first.";
+    // Next upcoming event (all-day events count until the end of that day, UTC).
+    var next = null;
+    document.querySelectorAll("#ev-list .ev").forEach(function (ev) {
+      var start = Date.parse(ev.dataset.allday != null ? ev.dataset.start + "T23:59:59Z" : ev.dataset.start);
+      if (!next && start > now) next = ev;
+    });
+    var name = document.getElementById("next-name"), when = document.getElementById("next-when"),
+        go = document.getElementById("next-go"), cd = document.getElementById("next-cd");
+    if (!next) {
+      name.textContent = "That's October";
+      when.textContent = "New events are announced on Discord first.";
+      go.textContent = "About our Discord"; go.href = "community.html#discord";
+      return markToday();
     }
-  }
+    name.textContent = next.querySelector("h3").textContent;
+    name.classList.toggle("cs", next.dataset.cat === "cs");
+    when.innerHTML = next.dataset.when + (next.dataset.allday == null && utcOffset !== 0
+      ? '<small>' + fmt(new Date(next.dataset.start)) + ' your time</small>' : "");
+    var link = next.querySelector(".go a");
+    if (link) { go.textContent = link.textContent; go.href = link.getAttribute("href"); } else { go.hidden = true; }
 
-  /* ---------- View switch (List / Calendar) ---------- */
-  var tabs = { list: document.getElementById("vt-list"), cal: document.getElementById("vt-cal") };
-  function setView(v) {
-    Object.keys(tabs).forEach(function (k) {
-      var on = k === v;
-      tabs[k].setAttribute("aria-selected", String(on));
-      document.getElementById(tabs[k].getAttribute("aria-controls")).hidden = !on;
-    });
-  }
-  var asked = new URLSearchParams(location.search).get("view");
-  var wide = window.matchMedia && matchMedia("(min-width: 900px)").matches;
-  setView(asked === "calendar" || asked === "cal" ? "cal" : asked === "list" ? "list" : wide ? "cal" : "list");
-
-  /* ---------- Calendar ---------- */
-  var EVENTS = [
-    { d: 9,  cat: "mc",   card: "ev-launch",  title: "Season 1 Survival launch", sub: "19:00 UTC" },
-    { d: 11, cat: "mc",   card: "ev-bedwars", title: "Bedwars Night", sub: "20:00 UTC" },
-    { d: 15, cat: "cs",   card: "ev-cup",     title: "Cup #4 signups close", sub: "Deadline", deadline: true },
-    { d: 17, cat: "cs",   card: "ev-cup",     title: "Titans Community Cup #4", sub: "18:00 UTC" },
-    { d: 24, cat: "clan", card: "ev-build",   title: "Build contest: Citadel Gate", sub: "Starts" },
-    { d: 31, cat: "clan", card: "ev-build",   title: "Build contest entries close", sub: "Deadline", deadline: true }
-  ];
-  var DOW = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-  var Y = 2026, M = 9, DAYS = 31;
-  var lead = (new Date(Date.UTC(Y, M, 1)).getUTCDay() + 6) % 7;   // 1 Oct 2026 = Thursday -> 3
-  var today = new Date();
-  var todayD = today.getUTCFullYear() === Y && today.getUTCMonth() === M ? today.getUTCDate() : (today < Date.UTC(Y, M, 1) ? 0 : 99);
-
-  var grid = document.getElementById("cal-grid");
-  var html = '<div class="cal-dow" aria-hidden="true"><abbr title="Monday">Mon</abbr></div><div class="cal-dow" aria-hidden="true"><abbr title="Tuesday">Tue</abbr></div><div class="cal-dow" aria-hidden="true"><abbr title="Wednesday">Wed</abbr></div><div class="cal-dow" aria-hidden="true"><abbr title="Thursday">Thu</abbr></div><div class="cal-dow" aria-hidden="true"><abbr title="Friday">Fri</abbr></div><div class="cal-dow" aria-hidden="true"><abbr title="Saturday">Sat</abbr></div><div class="cal-dow" aria-hidden="true"><abbr title="Sunday">Sun</abbr></div>';
-  var cells = Math.ceil((lead + DAYS) / 7) * 7;
-  for (var i = 0; i < cells; i++) {
-    var d = i - lead + 1;
-    if (d < 1 || d > DAYS) { html += '<div class="cal-day is-blank" aria-hidden="true"></div>'; continue; }
-    var evs = EVENTS.filter(function (e) { return e.d === d; });
-    var cls = "cal-day" + (d === todayD ? " is-today" : "") + (d < todayD ? " is-past" : "");
-    var dayName = DOW[i % 7] + " " + d + " October";
-    var cur = d === todayD ? ' aria-current="date"' : "";
-    if (!evs.length) {
-      html += '<div class="' + cls + '"' + cur + ' aria-hidden="true"><span class="cal-num">' + d + '</span></div>';
-      continue;
+    if (next.dataset.allday == null) {
+      var target = Date.parse(next.dataset.start), pad = function (n) { return String(n).padStart(2, "0"); };
+      var tick = function () {
+        var ms = target - Date.now();
+        if (ms <= 0) { cd.hidden = true; return; }
+        var d = Math.floor(ms / 864e5), h = Math.floor(ms % 864e5 / 36e5), m = Math.floor(ms % 36e5 / 6e4);
+        cd.innerHTML = '<div><span>' + pad(d) + '</span><small>d</small></div><div><span>' + pad(h) + '</span><small>h</small></div><div><span>' + pad(m) + '</span><small>m</small></div>';
+        cd.setAttribute("aria-label", d + " days " + h + " hours " + m + " minutes to go");
+        cd.hidden = false;
+      };
+      tick(); setInterval(tick, 30000);
     }
-    var label = dayName + ": " + evs.map(function (e) { return e.title + (e.deadline ? "" : ", " + e.sub); }).join("; ") + ". Show event.";
-    html += '<button type="button" class="' + cls + '"' + cur + ' data-go="' + evs[0].card + '" aria-label="' + label + '">' +
-      '<span class="cal-num" aria-hidden="true">' + d + '</span>' +
-      '<span class="cal-dots" aria-hidden="true">' + evs.map(function (e) { return '<i class="cal-dot cal-item is-' + e.cat + (e.deadline ? " is-deadline" : "") + '" data-cat="' + e.cat + '"></i>'; }).join("") + '</span>' +
-      evs.map(function (e) { return '<span class="cal-label cal-item is-' + e.cat + (e.deadline ? " is-deadline" : "") + '" data-cat="' + e.cat + '" aria-hidden="true"><b>' + e.title + '</b><small>' + e.sub + '</small></span>'; }).join("") +
-      '</button>';
-  }
-  grid.innerHTML = html;
+    markToday();
 
-  // Phone agenda under the grid (cells there only have room for dots)
-  var SHORT = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  document.getElementById("cal-agenda").innerHTML = EVENTS.map(function (e) {
-    var dow = SHORT[(lead + e.d - 1) % 7];
-    return '<li class="cal-item" data-cat="' + e.cat + '"><button type="button" data-go="' + e.card + '">' +
-      '<span class="ag-date">' + dow + " " + e.d + ' Oct</span>' +
-      '<i class="cal-dot is-' + e.cat + (e.deadline ? " is-deadline" : "") + '" aria-hidden="true"></i>' +
-      '<span class="ag-title">' + e.title + '<small>' + e.sub + '</small></span>' + icon("right") + '</button></li>';
-  }).join("");
-
-  /* Tapping a marked day: show the list, make sure the card is visible, scroll to it and flash it */
-  function goTo(id) {
-    var card = document.getElementById(id);
-    if (!card) return;
-    setView("list");
-    if (card.hidden) {
-      var all = document.querySelector('[data-filter-group="ev-list"] [data-filter="all"]');
-      if (all) all.click();
+    function markToday() {
+      var t = new Date();
+      if (t.getFullYear() === 2026 && t.getMonth() === 9) {
+        var cell = document.querySelector('.cal [data-day="' + t.getDate() + '"]');
+        if (cell) { cell.classList.add("today"); cell.title = (cell.title ? cell.title + " · " : "") + "Today"; }
+      }
     }
-    card.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
-    card.classList.remove("is-flash"); void card.offsetWidth; card.classList.add("is-flash");
-    card.focus({ preventScroll: true });
-  }
-  document.getElementById("view-cal").addEventListener("click", function (e) {
-    var b = e.target.closest("[data-go]");
-    if (b && !b.disabled) goTo(b.dataset.go);
-  });
-
-  /* Keep the calendar in step with the game filter */
-  function filterCal(v) {
-    document.querySelectorAll("#view-cal .cal-item").forEach(function (el) {
-      el.classList.toggle("is-off", v !== "all" && el.dataset.cat !== v);
-    });
-    grid.querySelectorAll("button[data-go]").forEach(function (b) {
-      var any = b.querySelector(".cal-label:not(.is-off)");
-      b.disabled = !any;
-    });
-    document.querySelectorAll("#cal-agenda li").forEach(function (li) { li.hidden = li.classList.contains("is-off"); });
-  }
-  document.addEventListener("click", function (e) {
-    var f = e.target.closest('[data-filter-group="ev-list"] [data-filter]');
-    if (f) filterCal(f.dataset.filter);
-  });
-})();
+  })();
 </script>
-<script src="assets/site.js"></script>
 </body>
 </html>

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" type="image/svg+xml" href="assets/ttc-icon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How to join — mc.thetitansclan.com · TheTitansClan</title>
+<meta name="description" content="Join TheTitansClan Minecraft server in about a minute. Java Edition 1.21 to 26.3. Server address: mc.thetitansclan.com. Bedrock coming soon.">
+<meta name="theme-color" content="#16120E">
+<meta property="og:title" content="How to join TheTitansClan">
+<meta property="og:description" content="Java 1.21 – 26.3 · IP: mc.thetitansclan.com">
+<meta property="og:image" content="assets/img/citadel.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@700&family=Grenze:wght@600;700&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@600&display=swap">
+<link rel="stylesheet" href="assets/titans.css">
+<style>
+  .join-top { padding: 26px 0 8px; display: grid; gap: 14px; }
+  .join-top h1 { font-size: clamp(2.6rem, 1.8rem + 3.4vw, 4rem); }
+
+  /* Edition switch */
+  .ed-tabs { display: grid; grid-template-columns: 1fr 1fr; border: 1.5px solid var(--ink); border-radius: var(--r); overflow: hidden; max-width: 460px; }
+  .ed-tabs button { border: 0; background: var(--vellum); min-height: 46px; padding: 6px 10px; font-size: .9375rem; font-weight: 700; }
+  .ed-tabs button + button { border-left: 1.5px solid var(--ink); }
+  .ed-tabs button[aria-selected="true"] { background: var(--ink); color: var(--parch); }
+
+  .ed-panel { padding: 14px 0 6px; }
+  .ed-grid { display: grid; gap: 22px; }
+  .vers { font-size: .875rem; color: var(--ink-2); padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+  .steps { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+  .steps li { counter-increment: s; display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 4px 12px; padding: 16px 0; border-bottom: 1px solid var(--rule); }
+  .steps li::before { content: counter(s); font: 600 2rem/1 var(--f-head); color: var(--gold-ink); grid-row: span 2; }
+  .steps b { font-size: 1rem; }
+  .steps span { font-size: .875rem; color: var(--ink-2); }
+  .steps .addr { grid-column: 2; margin-top: 10px; }
+  .shot-slot { background: #E4D8C2; border: 1px dashed var(--rule-2); border-radius: var(--r); min-height: 200px; display: grid; place-content: center; justify-items: center; gap: 8px; padding: 20px; text-align: center; color: var(--ink-3); font-size: .8125rem; font-weight: 600; }
+  .shot-slot .icon { width: 26px; height: 26px; }
+  .shot-slot small { font-weight: 400; max-width: 30ch; }
+  .soon-box { background: var(--vellum); border: 1.5px solid var(--ink); border-radius: var(--r); padding: 20px; display: grid; gap: 12px; max-width: 560px; }
+  .soon-box h2 { font: 700 1.5rem/1.15 var(--f-head); }
+  .soon-box p { margin: 0; color: var(--ink-2); }
+  .soon-box .btns { display: flex; flex-wrap: wrap; gap: 10px; }
+  @media (min-width: 900px) {
+    .join-top { padding: 48px 0 10px; }
+    .ed-grid { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 48px; align-items: start; }
+    .shot-slot { min-height: 360px; margin-top: 8px; }
+  }
+
+  /* First minutes + troubleshooting */
+  .after { display: grid; gap: 40px; padding: 34px 0 10px; }
+  .after h2 { margin-bottom: 8px; }
+  .after .intro { color: var(--ink-2); font-size: .9375rem; margin-bottom: 12px; }
+  .cmds { list-style: none; margin: 0; padding: 0; border-top: 3px solid var(--or); }
+  .cmds li { display: grid; grid-template-columns: 122px minmax(0, 1fr); gap: 12px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid var(--rule); font-size: .9375rem; }
+  .cmds code { font: 600 .875rem/1.3 var(--f-mono); background: #E8DCC6; padding: 2px 7px; border-radius: 3px; justify-self: start; white-space: nowrap; }
+  .cmds .first { font-weight: 700; font-size: .875rem; display: inline-flex; gap: 6px; align-items: center; }
+  .cmds .first .icon { width: 16px; height: 16px; color: var(--gold-ink); }
+  .acc code { font-family: var(--f-mono); font-size: .8125rem; }
+  @media (min-width: 900px) { .after { grid-template-columns: 1fr 1fr; gap: 56px; padding: 52px 0 10px; } }
+
+  /* Bottom actions */
+  .help-bar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 26px 0 36px; }
+  .help-bar .btn-play { min-height: 52px; }
+  .help-bar .btn-line { min-height: 52px; }
+  .help-bar p { grid-column: 1 / -1; margin: 0; font-size: .8125rem; color: var(--ink-3); }
+  @media (min-width: 900px) { .help-bar { grid-template-columns: auto auto 1fr; justify-content: start; padding: 40px 0 56px; } .help-bar .btn-play { padding: 0 30px; } .help-bar p { grid-column: auto; } }
+</style>
+</head>
+<body data-page="mc" data-realm="mc">
+<header data-site-header></header>
+<nav class="subnav" aria-label="Minecraft"><div class="wrap">
+  <span class="sn-title">Minecraft</span>
+  <a href="minecraft.html">Overview</a>
+  <a href="minecraft-join.html" aria-current="page">How to join</a>
+  <a href="minecraft.html#modes">Game modes</a>
+  <a href="minecraft-ranks.html">Ranks</a>
+  <a href="minecraft.html#vote">Vote</a>
+  <a href="support.html#rules">Rules</a>
+  <a href="minecraft.html#staff">Staff</a>
+  <a href="support.html#appeal">Bans &amp; appeals</a>
+  <a href="news.html">Updates</a>
+</div></nav>
+
+<main class="wrap">
+  <section aria-labelledby="h1">
+    <div class="join-top">
+      <h1 class="h1" id="h1">How to join</h1>
+      <div class="status" data-status="line"><i class="dot"></i><span class="s-txt">Checking server…</span><span class="sep">·</span><span>Season I opens Fri 9 Oct, 19:00 UTC</span></div>
+      <div class="ed-tabs" role="tablist" aria-label="Your edition of Minecraft">
+        <button type="button" role="tab" id="tab-java" aria-selected="true" aria-controls="ed-java">Java · PC</button>
+        <button type="button" role="tab" id="tab-bedrock" aria-selected="false" aria-controls="ed-bedrock">Bedrock · Phone</button>
+      </div>
+    </div>
+
+    <div class="ed-panel tabpanel" id="ed-java" role="tabpanel" aria-labelledby="tab-java">
+      <div class="ed-grid">
+        <div>
+          <p class="vers">Versions <b>1.21 to 26.3</b>. Takes about a minute.</p>
+          <ol class="steps">
+            <li><b>Open Minecraft Java Edition</b><span>Any version from 1.21 to 26.3 works.</span></li>
+            <li><b>Multiplayer → Add Server</b><span>Name it anything, for example “Titans”.</span></li>
+            <li><b>Paste the address</b><span>Then click Done, and Join Server.</span>
+              <div class="addr"><div class="a-txt"><span class="a-lbl">Server address</span><code>mc.thetitansclan.com</code></div><button type="button" data-copy="mc.thetitansclan.com">Copy</button></div>
+            </li>
+          </ol>
+        </div>
+        <div class="shot-slot" role="img" aria-label="Screenshot coming soon">
+          <svg class="icon"><use href="#i-image"/></svg>
+          <span>In-game screenshot: Add Server screen</span>
+          <small>A real screenshot goes here once the server opens.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="ed-panel tabpanel" id="ed-bedrock" role="tabpanel" aria-labelledby="tab-bedrock" hidden>
+      <div class="soon-box">
+        <span class="bill bill-soon" style="justify-self:start">Coming soon</span>
+        <h2>Bedrock isn't ready yet</h2>
+        <p>Bedrock support is being set up. Join the Discord to hear when it's ready.</p>
+        <p class="muted" style="font-size:.875rem">Bedrock is the version on phones, tablets, consoles and Windows. If you have Minecraft Java Edition on a computer, you can play right away.</p>
+        <div class="btns"><a class="btn btn-ink" href="community.html#discord">Join the Discord</a><button class="btn btn-line" type="button" data-show-java>Show Java steps</button></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="after">
+    <section aria-labelledby="first-h">
+      <h2 class="h2" id="first-h">Your first minutes</h2>
+      <p class="intro">You land in the <b>Titan Citadel</b>, our spawn hub. Have a look around, then try these.</p>
+      <ul class="cmds">
+        <li><code>/rtp</code><span>Start somewhere random in the wild.</span></li>
+        <li><code>/spawn</code><span>Come back to the Citadel any time.</span></li>
+        <li><code>/kit citizen</code><span>Claim your free starter kit.</span></li>
+        <li><code>/sethome</code><span>Save the spot you're standing on as home. <code style="font-size:.8125rem">/home</code> takes you back.</span></li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="fix-h">
+      <h2 class="h2" id="fix-h">Can't connect?</h2>
+      <div class="acc">
+        <details>
+          <summary>“Outdated client” or “Outdated server”</summary>
+          <div class="acc-body">Your game version doesn't match. Use any version from 1.21 to 26.3 — you can pick the version in the Minecraft Launcher under Installations.</div>
+        </details>
+        <details>
+          <summary>“Can't resolve hostname”</summary>
+          <div class="acc-body">Check the spelling: it must be exactly <code>mc.thetitansclan.com</code>. Then try again — sometimes the internet just needs a second go.</div>
+        </details>
+        <details>
+          <summary>Stuck on “Connecting…”</summary>
+          <div class="acc-body">The server may be restarting. Check the status at the top of this page, or ask on our Discord.</div>
+        </details>
+      </div>
+    </section>
+  </div>
+
+  <div class="help-bar">
+    <button class="btn btn-play" type="button" data-copy="mc.thetitansclan.com">COPY ADDRESS</button>
+    <a class="btn btn-line" href="community.html#discord">Discord help</a>
+    <p>Still stuck? Open a ticket on our Discord and tell us what the error says.</p>
+  </div>
+</main>
+
+<footer data-site-footer></footer>
+<script src="assets/titans.js"></script>
+<script>
+  // "Show Java steps" on the Bedrock panel just switches the tab back.
+  document.querySelector("[data-show-java]").addEventListener("click", function () {
+    document.getElementById("tab-java").click();
+    document.getElementById("tab-java").focus();
+  });
+  // ?ed=bedrock opens the Bedrock tab (handy for links and testing).
+  if (new URLSearchParams(location.search).get("ed") === "bedrock") document.getElementById("tab-bedrock").click();
+</script>
+</body>
+</html>

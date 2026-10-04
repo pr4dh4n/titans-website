@@ -4,298 +4,320 @@
 <meta charset="utf-8">
 <link rel="icon" type="image/svg+xml" href="assets/ttc-icon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Minecraft — The Titans Network · TheTitansClan</title>
-<meta name="description" content="Join the Titans Minecraft network: Java 1.21–26.3 and Bedrock. Survival, Bedwars, custom enchantments and the souls system.">
-<meta name="theme-color" content="#F1E7D0">
+<title>Minecraft — Survival, Bedwars and the Titan Citadel · TheTitansClan</title>
+<meta name="description" content="Survival with our own custom enchantments in six rarities, souls, Lava and Frost armour sets and clans. Bedwars and the Titan Citadel. Season I opens Fri 9 Oct. IP: mc.thetitansclan.com">
+<meta name="theme-color" content="#16120E">
+<meta property="og:title" content="Minecraft · Season I opens Fri 9 Oct">
+<meta property="og:description" content="Survival, forged our way. IP: mc.thetitansclan.com">
+<meta property="og:image" content="assets/img/knight-palace.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600&family=UnifrakturMaguntia&display=swap">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@700&family=Grenze:wght@600;700&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@600&display=swap">
+<link rel="stylesheet" href="assets/titans.css">
 <style>
-  .mc-hero-grid { display: grid; gap: var(--s6); align-items: start; }
-  @media (min-width: 900px) { .mc-hero-grid { grid-template-columns: 1fr 440px; gap: var(--s7); } }
-  .hero-points { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s5); margin-top: var(--s5); color: var(--text-2); font-size: var(--fs-sm); }
-  .hero-points span { display: inline-flex; align-items: center; gap: 8px; }
-  .hero-points .icon { width: 16px; height: 16px; color: var(--mc); }
+  /* ---- Hero ---- */
+  .mc-hero { display: grid; gap: 18px; padding: 26px 0 30px; border-bottom: 1px solid var(--rule); }
+  .mc-hero .copy { display: flex; flex-direction: column; gap: 16px; }
+  .mc-hero h1 { font-size: clamp(2.75rem, 1.6rem + 4.4vw, 4.5rem); }
+  .mc-hero .lede { margin-top: 12px; }
+  .mc-hero .act { display: grid; gap: 10px; }
+  .mc-hero .addr { max-width: none; }
+  .mc-hero .btn-play { min-height: 52px; }
+  .palace { position: relative; height: 260px; }
+  .palace img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 18px 18px rgba(60,40,15,.16)); }
+  .palace .pin { display: none; }
+  .cap { text-align: center; font-size: .75rem; color: var(--ink-3); margin-top: 6px; }
+  @media (min-width: 640px) { .mc-hero .act { grid-template-columns: minmax(0, 330px) auto; justify-content: start; } }
+  @media (min-width: 960px) {
+    .mc-hero { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 32px; align-items: center; padding: 48px 0 44px; }
+    .mc-hero .copy { gap: 22px; }
+    .mc-hero .lede { max-width: 470px; }
+    .mc-hero .btn-play { padding: 0 26px; min-height: 54px; }
+    .palace { height: 470px; }
+    .palace .pin { display: inline-flex; }
+    .cap { display: none; }
+  }
 
-  .join-card { padding: var(--s5); display: grid; gap: var(--s4); border-color: rgba(23,118,94,.5); }
-  .join-card h2 { font-size: 1.75rem; }
-  .join-top { display: flex; justify-content: space-between; align-items: center; gap: var(--s3); }
-  .join-card .segmented { width: 100%; }
-  .join-card .segmented button { min-height: 40px; font-size: .9375rem; }
-  .kv { display: grid; grid-template-columns: auto 1fr; gap: 6px var(--s4); font-size: var(--fs-sm); }
-  .kv dt { color: var(--text-3); }
-  .kv dd { margin: 0; color: var(--text); font-weight: 600; }
-  .steps { list-style: none; counter-reset: s; margin: 0; padding: 0; display: grid; gap: var(--s2); font-size: var(--fs-sm); color: var(--text-2); }
-  .steps li { counter-increment: s; display: flex; gap: var(--s3); align-items: baseline; }
-  .steps li::before { content: counter(s); flex: none; width: 22px; height: 22px; border-radius: 6px; background: var(--surface-3); color: var(--gold); font: 700 .8125rem/22px var(--font-display); text-align: center; }
-  .steps b { color: var(--text); font-weight: 600; }
+  /* ---- Game modes ---- */
+  .modes { display: grid; gap: 14px; }
+  .mode-feat { overflow: hidden; display: flex; flex-direction: column; }
+  .mode-feat .shot { position: relative; height: 210px; background: #E4D8C2; border-bottom: 1.5px solid var(--ink); }
+  .mode-feat .shot { overflow: hidden; }
+  .mode-feat .shot img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.4); transform-origin: 75% 20%; }
+  .mode-feat .shot .bill { position: absolute; left: 12px; top: 12px; }
+  .mode-feat .shot small { position: absolute; right: 8px; bottom: 6px; font-size: .6875rem; font-weight: 600; background: rgba(251,247,238,.9); padding: 2px 6px; border-radius: 3px; }
+  .mode-feat .body { padding: 16px 18px 18px; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 10px 16px; }
+  .mode-name { font: 700 2.125rem/1 var(--f-black); }
+  .mode-feat p, .mode-side p { margin: 6px 0 0; font-size: .9375rem; color: var(--ink-2); }
+  .go { display: inline-flex; align-items: center; gap: 6px; font-size: .875rem; font-weight: 700; }
+  .go .icon { width: 16px; height: 16px; }
+  .go:hover { color: var(--plume); }
+  .mode-bw { background: var(--sable); color: var(--on-sable); border-radius: var(--r); padding: 20px 20px 18px; display: flex; flex-direction: column; gap: 10px; }
+  .mode-bw .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .mode-bw .when { font-size: .75rem; font-weight: 700; color: var(--or-hi); white-space: nowrap; padding-top: 4px; }
+  .mode-bw p { margin: 0; font-size: .9375rem; color: var(--on-sable-2); }
+  .mode-bw .go { color: var(--or-hi); }
+  .mode-bw .go:hover { color: #fff; }
+  .mode-cit { display: grid; grid-template-columns: minmax(0, 1fr) 118px; overflow: hidden; }
+  .mode-cit .txt { padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 8px; }
+  .mode-cit .txt p { margin: 0; font-size: .9375rem; color: var(--ink-2); }
+  .mode-cit .pic { background: #E4D8C2; border-left: 1.5px solid var(--ink); }
+  .mode-cit .pic img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; }
+  @media (min-width: 900px) {
+    .modes { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); grid-template-rows: auto 1fr; gap: 20px; }
+    .mode-feat { grid-row: span 2; }
+    .mode-feat .shot { height: auto; flex: 1; min-height: 300px; }
+    .mode-feat .body { padding: 20px 24px 22px; }
+    .mode-name { font-size: 2.5rem; }
+    .mode-bw { padding: 24px; min-height: 190px; justify-content: space-between; }
+    .mode-cit { grid-template-columns: minmax(0, 1fr) 160px; }
+    .mode-cit .txt { padding: 22px 24px; justify-content: space-between; }
+  }
 
-  .feature { display: grid; gap: var(--s5); align-items: center; padding-block: var(--s6); border-top: 1px solid var(--line); }
-  .section-head + .feature { border-top: 0; padding-top: 0; }
-  .feature .ph { border-radius: var(--r-lg); aspect-ratio: 4/3; border: 1px solid var(--line); }
-  .feature h3 { font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.25rem); margin-bottom: var(--s3); }
-  .feature p { color: var(--text-2); }
-  @media (min-width: 900px) { .feature { grid-template-columns: 1fr 1fr; gap: var(--s7); } .feature.flip .ph { order: 2; } }
-  .ench-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--s4); }
-  .ench { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 6px; background: var(--surface-2); border: 1px solid var(--line); font-size: var(--fs-sm); font-weight: 600; }
-  .ench i { font-style: normal; font: 700 10px/1 var(--font-body); letter-spacing: .08em; text-transform: uppercase; }
-  .r-simple { color: #5E574B; } .r-unique { color: #1E6F3E; } .r-elite { color: #2A55A0; } .r-ultimate { color: #7A5B00; } .r-legendary { color: #9A4A0C; } .r-fabled { color: #9E1B2A; }
-  .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: var(--s4); }
-  @media (min-width: 600px) { .tiers { grid-template-columns: repeat(6, 1fr); } }
-  .tiers div { text-align: center; padding: 10px 4px; border-radius: 8px; background: var(--surface); border: 1px solid var(--line); font: 700 .8125rem/1 var(--font-display); letter-spacing: .08em; text-transform: uppercase; }
-  .mini-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s3); margin-top: var(--s4); }
-  .mini-stats div { padding: var(--s3); border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); }
-  .mini-stats b { display: block; font: 700 1.5rem/1 var(--font-display); color: var(--gold-hi); }
-  .mini-stats span { font-size: var(--fs-xs); color: var(--text-3); }
-  .builds { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s2); }
-  .builds button { all: unset; cursor: pointer; display: block; border-radius: var(--r); overflow: hidden; border: 1px solid var(--line); }
-  .builds button:first-child { grid-column: 1 / -1; }
-  .builds button:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 2px; }
-  .builds .ph { aspect-ratio: 16/9; }
-  .builds button:first-child .ph { aspect-ratio: 16/8; }
+  /* ---- Why play (sable band) ---- */
+  .why { padding-block: 44px; }
+  .why-top { display: grid; gap: 26px; }
+  .why h2 { color: var(--on-sable); font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem); margin-top: 8px; }
+  .why .muted { margin-top: 12px; font-size: .9375rem; max-width: 40ch; }
+  .tiers { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; }
+  .tiers li { display: grid; grid-template-columns: 74px minmax(0, 1fr); align-items: center; gap: 10px; }
+  .tiers .nm { font-size: .75rem; font-weight: 700; color: var(--t); }
+  .tiers .bar { width: var(--h); min-width: 44px; height: 30px; background: var(--c); border-radius: 2px; display: flex; align-items: center; justify-content: flex-end; padding: 0 10px; font: 700 1rem/1 var(--f-head); color: var(--ink); }
+  .steps3 { margin-top: 30px; border: 1px solid var(--sable-3); display: grid; }
+  .steps3 > div { padding: 16px 18px; }
+  .steps3 > div + div { border-top: 1px solid var(--sable-3); }
+  .steps3 b { display: block; font: 700 1.25rem/1.2 var(--f-head); color: var(--or-hi); }
+  .steps3 p { margin: 4px 0 0; font-size: .875rem; color: var(--on-sable-2); }
+  .extras { margin-top: 18px; display: grid; gap: 12px; }
+  .extra { display: flex; align-items: center; gap: 14px; }
+  .slot-sm { width: 64px; height: 64px; flex: none; border: 1px dashed var(--on-sable-3); background: var(--sable-2); display: grid; place-content: center; justify-items: center; gap: 2px; color: var(--on-sable-3); font-size: .625rem; font-weight: 600; text-align: center; }
+  .slot-sm .icon { width: 18px; height: 18px; }
+  .extra b { display: block; font-size: .9375rem; color: var(--on-sable); }
+  .extra span { font-size: .8125rem; color: var(--on-sable-2); }
+  .why-more { margin-top: 18px; font-size: .8125rem; color: var(--on-sable-3); }
+  @media (min-width: 900px) {
+    .why { padding-block: 60px; }
+    .why-top { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 40px; align-items: end; }
+    .tiers { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; height: 230px; align-items: end; }
+    .tiers li { display: flex; flex-direction: column; align-items: stretch; justify-content: flex-end; height: 100%; gap: 6px; }
+    .tiers .bar { width: 100%; height: var(--h); min-width: 0; justify-content: center; align-items: flex-start; padding-top: 12px; font-size: 1.125rem; }
+    .steps3 { grid-template-columns: repeat(3, 1fr); margin-top: 40px; }
+    .steps3 > div { padding: 22px 24px; }
+    .steps3 > div + div { border-top: 0; border-left: 1px solid var(--sable-3); }
+    .extras { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .slot-sm { width: 84px; height: 84px; }
+  }
 
-  .rules { list-style: none; counter-reset: r; padding: 0; margin: 0; display: grid; gap: var(--s3); }
-  @media (min-width: 900px) { .rules { grid-template-columns: 1fr 1fr; } }
-  .rules li { counter-increment: r; display: flex; gap: var(--s4); padding: var(--s4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); }
-  .rules li::before { content: counter(r, decimal-leading-zero); font: 800 1.5rem/1 var(--font-display); color: var(--gold); flex: none; width: 32px; }
-  .rules b { display: block; margin-bottom: 2px; }
-  .rules span { color: var(--text-2); font-size: var(--fs-sm); }
+  /* ---- Perks ---- */
+  .perks { display: grid; gap: 16px; padding-block: 36px; }
+  .perk-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; margin-top: 10px; font-size: .9375rem; }
+  .perk-line b { font-weight: 700; }
+  .perk-note { margin-top: 8px; font-size: .8125rem; color: var(--ink-2); display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+  @media (min-width: 900px) { .perks { grid-template-columns: 1fr auto; align-items: center; padding-block: 44px; } }
 
-  .vote { display: grid; grid-template-columns: auto 1fr auto; gap: var(--s3); align-items: center; padding: var(--s3) var(--s4); }
-  .vote-n { width: 36px; height: 36px; border-radius: 8px; display: grid; place-items: center; background: var(--surface-3); font: 700 1.125rem/1 var(--font-display); color: var(--gold); }
-  .vote b { display: block; font-size: var(--fs-sm); }
-  .vote small { color: var(--text-3); font-size: var(--fs-xs); }
-  .cmd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3); }
-  @media (min-width: 900px) { .cmd-grid { grid-template-columns: repeat(4, 1fr); } }
-  .cmd { display: grid; gap: 6px; padding: var(--s4); }
-  .cmd code { font: 600 .875rem/1.2 var(--font-mono); color: var(--gold-hi); }
-  .cmd span { font-size: var(--fs-sm); color: var(--text-2); }
-  .vote.is-done .vote-n { background: var(--live-wash); color: var(--live); }
+  /* ---- Vote + Staff ---- */
+  .ruled { border-top: 1px solid var(--rule); }
+  .split { display: grid; gap: 22px; }
+  .split .intro p { margin-top: 10px; color: var(--ink-2); font-size: .9375rem; max-width: 46ch; }
+  .split .intro .note { display: flex; gap: 8px; align-items: flex-start; font-size: .8125rem; color: var(--ink-2); margin-top: 14px; }
+  .split .intro .note .icon { width: 16px; height: 16px; margin-top: 2px; color: var(--gold-ink); }
+  @media (min-width: 900px) { .split { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: start; } }
+  .vote-row { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 13px 0; }
+  .vote-row .n { font: 600 1.375rem/1 var(--f-head); color: var(--gold-ink); }
+  .vote-row b { display: block; font-size: .9375rem; }
+  .vote-row small { font-size: .8125rem; color: var(--ink-3); }
+  .bill-wait { color: var(--ink-3); }
+  .staff-row { display: grid; gap: 2px 20px; padding: 14px 0; }
+  .staff-row b { font: 700 1.25rem/1.2 var(--f-head); display: flex; align-items: center; gap: 8px; }
+  .staff-row b .icon { color: var(--gold-ink); width: 18px; height: 18px; }
+  .staff-row span { font-size: .9375rem; color: var(--ink-2); }
+  @media (min-width: 640px) { .staff-row { grid-template-columns: 170px minmax(0, 1fr); align-items: baseline; } }
+
+  /* ---- Quiet links ---- */
+  .quiet { border-top: 1px solid var(--rule); padding: 18px 0 30px; display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: .8125rem; font-weight: 600; color: var(--ink-2); }
+  .quiet a:hover { color: var(--plume); }
+  .quiet .faint { font-weight: 500; }
 </style>
 </head>
-<body data-page="mc">
+<body data-page="mc" data-realm="mc">
 <header data-site-header></header>
+<nav class="subnav" aria-label="Minecraft"><div class="wrap">
+  <span class="sn-title">Minecraft</span>
+  <a href="minecraft.html" aria-current="page">Overview</a>
+  <a href="minecraft-join.html">How to join</a>
+  <a href="#modes">Game modes</a>
+  <a href="minecraft-ranks.html">Ranks</a>
+  <a href="#vote">Vote</a>
+  <a href="support.html#rules">Rules</a>
+  <a href="#staff">Staff</a>
+  <a href="support.html#appeal">Bans &amp; appeals</a>
+  <a href="news.html">Updates</a>
+</div></nav>
 
 <main>
-  <!-- AREA HERO + JOIN CARD -->
-  <section class="hero area-hero area-mc" aria-labelledby="mc-title">
-    <div class="wrap">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Minecraft</span></nav>
-      <div class="mc-hero-grid">
+  <div class="wrap">
+    <section class="mc-hero" aria-labelledby="h1">
+      <div class="copy">
+        <p class="over" id="season-line">Season I · opens Fri 9 Oct, 19:00 UTC<span id="togo"></span></p>
         <div>
-          <div class="area-tag"><i></i>Minecraft</div>
-          <h1 id="mc-title">The Titans<br>Network</h1>
-          <p class="lede">Survival with custom enchantments and a souls economy, fast Bedwars, and a citadel hub worth exploring. Java and Bedrock play together.</p>
-          <div class="hero-points">
-            <span><svg class="icon"><use href="#i-check"/></svg>Java 1.21 – 26.3</span>
-            <span><svg class="icon"><use href="#i-check"/></svg>Bedrock (phone, console, PC)</span>
-            <span><svg class="icon"><use href="#i-check"/></svg>Free to play</span>
-          </div>
+          <h1 class="h1" id="h1">Survival, forged our way.</h1>
+          <p class="lede">Custom enchantments in six rarities, a souls system that powers the strongest of them, armour sets and clans. Every season brings a new chapter of the story.</p>
         </div>
-
-        <aside class="card join-card" id="join" aria-labelledby="join-title">
-          <div class="join-top">
-            <h2 id="join-title">Join now</h2>
-            <span class="status" data-live="mc" data-live-variant="pill"></span>
-          </div>
-          <div class="segmented" role="tablist" aria-label="Edition">
-            <button role="tab" aria-selected="true" aria-controls="ed-java" id="tab-java">Java</button>
-            <button role="tab" aria-selected="false" aria-controls="ed-bedrock" id="tab-bedrock">Bedrock</button>
-          </div>
-          <div class="tabpanel stack" id="ed-java" role="tabpanel" aria-labelledby="tab-java">
-            <div class="copy-row"><code>mc.thetitansclan.com</code><button type="button" class="copy-btn" data-copy="mc.thetitansclan.com"><svg class="icon icon-sm"><use href="#i-copy"/></svg> Copy</button></div>
-            <dl class="kv"><dt>Versions</dt><dd>1.21 – 26.3</dd><dt>Cross-play</dt><dd>Java + Bedrock together</dd></dl>
-            <ol class="steps">
-              <li><span>Open Minecraft and choose <b>Multiplayer</b>.</span></li>
-              <li><span>Press <b>Add Server</b> and paste the address.</span></li>
-              <li><span>Hit <b>Join</b>. You spawn in the Citadel hub.</span></li>
-            </ol>
-          </div>
-          <div class="tabpanel stack" id="ed-bedrock" role="tabpanel" aria-labelledby="tab-bedrock" hidden>
-            <div class="copy-row"><code>mc.thetitansclan.com</code><button type="button" class="copy-btn" data-copy="mc.thetitansclan.com"><svg class="icon icon-sm"><use href="#i-copy"/></svg> Copy</button></div>
-            <dl class="kv"><dt>Port</dt><dd class="mono">19132</dd><dt>Works on</dt><dd>Phone, Windows, consoles</dd></dl>
-            <ol class="steps">
-              <li><span>Go to <b>Play → Servers</b>, scroll down, tap <b>Add Server</b>.</span></li>
-              <li><span>Paste the address, port <b>19132</b>, then <b>Save</b>.</span></li>
-              <li><span>Console player? <a class="gold" href="support.html#console">See the console guide</a>.</span></li>
-            </ol>
-          </div>
-        </aside>
+        <div class="act">
+          <div class="addr"><div class="a-txt"><span class="a-lbl">Server address · Java 1.21 – 26.3</span><code>mc.thetitansclan.com</code></div><button type="button" data-copy="mc.thetitansclan.com">Copy</button></div>
+          <a class="btn btn-play" href="minecraft-join.html">How to join</a>
+        </div>
+        <div class="status" data-status="line"><i class="dot"></i><span class="s-txt">Checking server…</span><span class="sep">·</span><span>Bedrock (phone/console): coming soon</span></div>
       </div>
-    </div>
-  </section>
+      <div>
+        <div class="palace">
+          <img src="assets/img/knight-palace.webp" alt="The Knight Palace: a white and teal cathedral with a great shield over its doors" width="700" height="818" fetchpriority="high">
+          <span class="pin dark" style="left:4%;top:8%">Knight Palace · sky island</span>
+        </div>
+        <p class="cap">The Knight Palace, our sky-island cathedral — a real render of the build.</p>
+      </div>
+    </section>
 
-  <nav class="subnav" aria-label="On this page">
-    <div class="wrap"><a href="#modes">Game modes</a><a href="#features">Features</a><a href="#rules">Rules</a><a href="#commands">Commands</a><a href="#vote">Vote</a><a href="store.html">Store</a></div>
-  </nav>
-
-  <!-- GAME MODES -->
-  <section class="section" id="modes" aria-labelledby="modes-title">
-    <div class="wrap">
-      <div class="section-head"><div><span class="eyebrow">Pick your fight</span><h2 id="modes-title">Game modes</h2></div></div>
-      <div class="grid grid-3">
-        <article class="card mode-card">
-          <div class="mode-media"><div class="ph ph-mc"><span class="ph-label">screenshot: survival world</span></div><span class="mode-ico"><svg class="icon icon-lg"><use href="#i-sword"/></svg></span></div>
-          <div class="mode-body">
-            <div class="mode-head"><h3>Survival</h3><span class="chip chip-clan">Season 1</span></div>
-            <p>Custom enchantments, souls and clans. A fresh world launches Oct 9.</p>
-            <div class="mode-foot"><code>/server survival</code><a class="link-arrow" href="#features">How it works <svg class="icon"><use href="#i-arrow"/></svg></a></div>
+    <section class="sec" id="modes" aria-labelledby="modes-h">
+      <div class="sec-head"><h2 class="h2" id="modes-h">Choose your adventure</h2></div>
+      <div class="modes">
+        <article class="panel mode-feat">
+          <div class="shot">
+            <img src="assets/img/courtyard.webp" alt="The Citadel courtyard: a stone plaza with a gold compass star, trees and a fountain" width="800" height="660" loading="lazy">
+            <span class="bill bill-soon">Opens 9 Oct</span>
+            <small>Pictured: the Citadel courtyard, where you start</small>
+          </div>
+          <div class="body">
+            <div>
+              <h3 class="mode-name">Survival</h3>
+              <p>Custom enchants, souls, Lava &amp; Frost sets, clans and player shops.</p>
+            </div>
+            <a class="go" href="#why">Explore <svg class="icon"><use href="#i-arrow"/></svg></a>
           </div>
         </article>
-        <article class="card mode-card">
-          <div class="mode-media"><div class="ph ph-mc"><span class="ph-label">screenshot: bedwars map</span></div><span class="mode-ico"><svg class="icon icon-lg"><use href="#i-bed"/></svg></span></div>
-          <div class="mode-body">
-            <div class="mode-head"><h3>Bedwars</h3><span class="chip">Solo · Duos · Squads</span></div>
-            <p>Protect your bed, break theirs. Quick rounds and weekly Bedwars Nights.</p>
-            <div class="mode-foot"><code>/server bedwars</code><a class="link-arrow" href="events.html">Next event <svg class="icon"><use href="#i-arrow"/></svg></a></div>
-          </div>
+
+        <article class="mode-bw">
+          <div class="top"><h3 class="mode-name">Bedwars</h3><span class="when">Night: Sun 11 Oct</span></div>
+          <p>Defend your bed, break theirs. Bedwars Night is Sun 11 Oct at 20:00 UTC — the prize is a Knight rank for a month.</p>
+          <a class="go" href="events.html">See the event <svg class="icon"><use href="#i-arrow"/></svg></a>
         </article>
-        <article class="card mode-card">
-          <div class="mode-media"><div class="ph ph-mc"><span class="ph-label">screenshot: titan citadel hub</span></div><span class="mode-ico"><svg class="icon icon-lg"><use href="#i-castle"/></svg></span></div>
-          <div class="mode-body">
-            <div class="mode-head"><h3>Lobby</h3><span class="chip">Hub</span></div>
-            <p>The Titan Citadel hub, the Knight Palace sky island and portals to every mode.</p>
-            <div class="mode-foot"><code>/hub</code><a class="link-arrow" href="media.html">See the builds <svg class="icon"><use href="#i-arrow"/></svg></a></div>
+
+        <article class="panel mode-cit">
+          <div class="txt">
+            <h3 class="mode-name" style="font-size:1.875rem">The Titan Citadel</h3>
+            <p>Our spawn hub: the great hall, golden knights, the compass plaza, a fountain and gardens.</p>
           </div>
+          <div class="pic"><img src="assets/img/great-hall.webp" alt="The great hall of the Titan Citadel with red banners and gold trim" width="740" height="840" loading="lazy"></div>
         </article>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
-  <!-- FEATURES -->
-  <section class="section" id="features" aria-labelledby="feat-title">
+  <section class="band why" id="why" aria-labelledby="why-h">
     <div class="wrap">
-      <div class="section-head"><div><span class="eyebrow">Only on Titans</span><h2 id="feat-title">What makes it different</h2></div></div>
-
-      <div class="feature">
-        <div class="ph ph-mc"><svg class="icon"><use href="#i-sparkle"/></svg><span class="ph-label">screenshot: enchant table GUI</span></div>
+      <div class="why-top">
         <div>
-          <span class="chip chip-mc">Custom enchantments</span>
-          <h3 class="mt-3">Gear that fights back</h3>
-          <p>Our own enchantment engine, built in-house. Find books, roll your luck, and stack effects you won't see on any other server. Six rarity tiers, from Simple to Fabled.</p>
-          <div class="ench-list" aria-label="Example enchantments">
-            <span class="ench r-legendary">Soulblade <i>Legendary</i></span>
-            <span class="ench r-ultimate">Thunderstrike <i>Ultimate</i></span>
-            <span class="ench r-elite">Lifesteal <i>Elite</i></span>
-            <span class="ench r-unique">Dash <i>Unique</i></span>
-            <span class="ench r-fabled">Executioner <i>Fabled</i></span>
-            <span class="ench r-elite">Phantom <i>Elite</i></span>
-          </div>
-          <div class="tiers" aria-label="Rarity tiers">
-            <div class="r-simple">Simple</div><div class="r-unique">Unique</div><div class="r-elite">Elite</div><div class="r-ultimate">Ultimate</div><div class="r-legendary">Legendary</div><div class="r-fabled">Fabled</div>
-          </div>
+          <p class="over on-dark">Why play</p>
+          <h2 class="h2" id="why-h">Enchantments you won't find anywhere else.</h2>
+          <p class="muted">Six rarity tiers, all made by us. The rarer the book, the more it can do, and the top tiers run on souls.</p>
         </div>
+        <ul class="tiers" aria-label="The six enchantment rarities, weakest to strongest">
+          <li style="--c:var(--r-simple);--t:#C9C4BA;--h:24%"><span class="nm">Simple</span><span class="bar">I</span></li>
+          <li style="--c:var(--r-unique);--t:#8FC487;--h:36%"><span class="nm">Unique</span><span class="bar">II</span></li>
+          <li style="--c:var(--r-elite);--t:#8DB4E2;--h:50%"><span class="nm">Elite</span><span class="bar">III</span></li>
+          <li style="--c:var(--r-ultimate);--t:#E7C96B;--h:64%"><span class="nm">Ultimate</span><span class="bar">IV</span></li>
+          <li style="--c:var(--r-legendary);--t:#F0A266;--h:79%"><span class="nm">Legendary</span><span class="bar">V</span></li>
+          <li style="--c:var(--r-fabled);--t:#F07A70;--h:94%"><span class="nm">Fabled</span><span class="bar">VI</span></li>
+        </ul>
       </div>
 
-      <div class="feature flip">
-        <div class="ph ph-mc"><svg class="icon"><use href="#i-flame"/></svg><span class="ph-label">screenshot: soul tracker on a sword</span></div>
-        <div>
-          <span class="chip chip-mc">Souls &amp; clans</span>
-          <h3 class="mt-3">Every kill feeds your blade</h3>
-          <p>Put a Soul Tracker on your weapon and it collects souls with every kill. Spend them to wake up your strongest enchantments. Team up in a clan, share a base and climb the clan ladder together.</p>
-          <div class="mini-stats">
-            <div><b>Soul</b><span>Tracker &amp; Gem</span></div>
-            <div><b>2</b><span>Armour sets: Lava, Frost</span></div>
-            <div><b>Clans</b><span>Team up, rise together</span></div>
-          </div>
+      <div class="steps3">
+        <div><b>01 · Kill</b><p>Every kill drops souls.</p></div>
+        <div><b>02 · Soul Tracker</b><p>Put it on your weapon and it collects them.</p></div>
+        <div><b>03 · Power</b><p>Souls fuel your strongest enchantments.</p></div>
+      </div>
+
+      <div class="extras">
+        <div class="extra"><div class="slot-sm" aria-hidden="true"><svg class="icon"><use href="#i-image"/></svg>Picture soon</div><div><b>Lava set</b><span>Armour set</span></div></div>
+        <div class="extra"><div class="slot-sm" aria-hidden="true"><svg class="icon"><use href="#i-image"/></svg>Picture soon</div><div><b>Frost set</b><span>Armour set</span></div></div>
+        <div class="extra"><div class="slot-sm" aria-hidden="true"><svg class="icon"><use href="#i-image"/></svg>Picture soon</div><div><b>Clans</b><span>Free for every player</span></div></div>
+      </div>
+      <p class="why-more">Plus the Tinkerer and Alchemist menus, scrolls and dusts.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="perks" id="perks" aria-labelledby="perks-h">
+      <div>
+        <h2 class="h2" id="perks-h">Grab your perks</h2>
+        <div class="perk-line">
+          <span><b style="color:#3D6FA8">Squire</b> ₹99/mo</span>
+          <span><b style="color:#B3261E">Knight</b> ₹199/mo</span>
+          <span><b style="color:var(--gold-ink)">Titan</b> ₹349/mo</span>
         </div>
+        <p class="perk-note"><span class="bill bill-month">Monthly · renews</span><span>Or a season pass: one payment, about 2.5× monthly, lasts about 3 months. Delivered in-game.</span></p>
       </div>
+      <a class="btn btn-ink" href="minecraft-ranks.html">Compare ranks <svg class="icon"><use href="#i-arrow"/></svg></a>
+    </section>
+  </div>
 
-      <div class="feature">
-        <div class="builds" data-gallery>
-          <button type="button" data-lightbox="Titan Citadel" data-by="Main hub" data-tone="ph-mc" aria-label="View Titan Citadel"><div class="ph ph-mc"><svg class="icon"><use href="#i-castle"/></svg><span class="ph-label">Titan Citadel</span></div></button>
-          <button type="button" data-lightbox="Knight Palace" data-by="Sky island" data-tone="ph-mc" aria-label="View Knight Palace"><div class="ph ph-mc"><svg class="icon"><use href="#i-shield"/></svg><span class="ph-label">Knight Palace</span></div></button>
-          <button type="button" data-lightbox="The 90-block knight" data-by="Knight Palace" data-tone="ph-mc" aria-label="View the 90-block knight"><div class="ph ph-mc"><svg class="icon"><use href="#i-user"/></svg><span class="ph-label">90-block knight</span></div></button>
-        </div>
-        <div>
-          <span class="chip chip-mc">Legendary builds</span>
-          <h3 class="mt-3">A hub worth exploring</h3>
-          <p>Spawn inside the Titan Citadel, then take the portal to the Knight Palace: a sky-island cathedral guarded by a knight 90 blocks tall.</p>
-          <a class="btn btn-secondary mt-3" href="media.html"><svg class="icon"><use href="#i-image"/></svg> Full gallery</a>
-        </div>
+  <div class="wrap">
+    <section class="sec split ruled" id="vote" aria-labelledby="vote-h">
+      <div class="intro">
+        <h2 class="h2" id="vote-h">Vote for us</h2>
+        <p>Voting on server-list sites helps new players find us. Each vote earns you something in-game. The vote links open on the server lists at launch, and the exact rewards are announced then too.</p>
+        <p class="note"><svg class="icon"><use href="#i-alert"/></svg><span>Time in the AFK pool doesn't count toward playtime rewards.</span></p>
       </div>
-    </div>
-  </section>
+      <div class="ledger">
+        <div class="vote-row"><span class="n">1</span><div><b>Server list 1</b><small>Link goes up at launch</small></div><span class="bill bill-wait">Opens at launch</span></div>
+        <div class="vote-row"><span class="n">2</span><div><b>Server list 2</b><small>Link goes up at launch</small></div><span class="bill bill-wait">Opens at launch</span></div>
+        <div class="vote-row"><span class="n">3</span><div><b>Server list 3</b><small>Link goes up at launch</small></div><span class="bill bill-wait">Opens at launch</span></div>
+        <div class="vote-row"><span class="n">4</span><div><b>Server list 4</b><small>Link goes up at launch</small></div><span class="bill bill-wait">Opens at launch</span></div>
+      </div>
+    </section>
+  </div>
 
-  <!-- RULES -->
-  <section class="section" id="rules" aria-labelledby="rules-title">
-    <div class="wrap">
-      <div class="section-head">
-        <div><span class="eyebrow">Keep it fair</span><h2 id="rules-title">The short rules</h2><p>The full list lives on Rules &amp; Support. Breaking these gets you muted or banned.</p></div>
-        <a class="link-arrow hide-sm" href="support.html#rules">Full rules <svg class="icon"><use href="#i-arrow"/></svg></a>
+  <div class="wrap">
+    <section class="sec split ruled" id="staff" aria-labelledby="staff-h">
+      <div class="intro">
+        <h2 class="h2" id="staff-h">Staff</h2>
+        <p>Staff names are posted at launch. Until then, here's who does what.</p>
+        <p class="note"><svg class="icon"><use href="#i-lock"/></svg><span>Never share your password with anyone — not even staff.</span></p>
+        <p><a class="link" href="community.html#apply">Want to help? Apply for staff</a></p>
       </div>
-      <ol class="rules">
-        <li><div><b>No cheats or hacked clients</b><span>X-ray, kill aura, fly, auto-clickers: all banned.</span></div></li>
-        <li><div><b>Respect every player</b><span>No hate speech, threats or harassment in chat or voice.</span></div></li>
-        <li><div><b>No griefing</b><span>Leave other players' builds and bases alone.</span></div></li>
-        <li><div><b>No real-money trading</b><span>Don't sell items, accounts or ranks for money outside the store.</span></div></li>
-        <li><div><b>Don't exploit bugs</b><span>Found one? Report it on Discord and you may get a reward.</span></div></li>
-        <li><div><b>Staff decisions stand</b><span>Disagree? Use the appeal form, not chat.</span></div></li>
-      </ol>
-      <div class="row mt-5">
-        <a class="btn btn-secondary" href="support.html#rules"><svg class="icon"><use href="#i-book"/></svg> Read full rules</a>
-        <a class="btn btn-ghost" href="support.html#report"><svg class="icon"><use href="#i-flag"/></svg> Report a player</a>
+      <div class="ledger">
+        <div class="staff-row"><b><svg class="icon"><use href="#i-crown"/></svg>Owner</b><span>Runs the server and makes the final call.</span></div>
+        <div class="staff-row"><b><svg class="icon"><use href="#i-key"/></svg>Admin</b><span>Looks after the server, its settings and the bigger problems.</span></div>
+        <div class="staff-row"><b><svg class="icon"><use href="#i-gavel"/></svg>Moderator</b><span>Keeps chat and gameplay fair: checks reports and hands out mutes and bans.</span></div>
+        <div class="staff-row"><b><svg class="icon"><use href="#i-headset"/></svg>Helper</b><span>Answers questions and helps new players find their feet.</span></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FIRST COMMANDS (Citizen commands from the TitansMC Tracker) -->
-  <section class="section" id="commands" aria-labelledby="cmd-title">
-    <div class="wrap">
-      <div class="section-head"><div><span class="eyebrow">New here?</span><h2 id="cmd-title">Your first commands</h2><p>Every player starts as a <b style="color:var(--text)">Citizen</b>: free, with 1 home, a wooden starter kit, player shops and a clan to create or join. These commands work from day one.</p></div></div>
-      <div class="cmd-grid">
-        <div class="card cmd"><code>/spawn</code><span>Go back to spawn</span></div>
-        <div class="card cmd"><code>/sethome · /home</code><span>Save your home and return to it</span></div>
-        <div class="card cmd"><code>/tpa &lt;player&gt;</code><span>Ask to teleport to a friend</span></div>
-        <div class="card cmd"><code>/rtp</code><span>Teleport somewhere random in the wild</span></div>
-        <div class="card cmd"><code>/warp</code><span>Visit server warps and player warps</span></div>
-        <div class="card cmd"><code>/msg &lt;player&gt;</code><span>Send a private message</span></div>
-        <div class="card cmd"><code>/bal · /pay</code><span>Check your money, pay a player</span></div>
-        <div class="card cmd"><code>/grave</code><span>Find your items after you die</span></div>
-        <div class="card cmd"><code>/kit citizen</code><span>Claim your starter kit</span></div>
-        <div class="card cmd"><code>/vote</code><span>Get the vote links for rewards</span></div>
-        <div class="card cmd"><code>/help</code><span>See every command you can use</span></div>
-        <a class="card card-link cmd" href="store.html"><code>Ranks</code><span>See what Squire, Knight and Titan add</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- VOTE -->
-  <section class="section" id="vote" aria-labelledby="vote-title">
-    <div class="wrap">
-      <div class="section-head"><div><span class="eyebrow">Free rewards</span><h2 id="vote-title">Vote for us</h2><p>Voting on server-list sites helps new players find us, and earns you rewards in-game. The vote sites go live when the server launches.</p></div></div>
-      <div class="grid grid-2">
-        <div class="card vote"><span class="vote-n">1</span><div><b>Vote site 1</b><small>Vote links open at launch</small></div><span class="btn btn-secondary btn-sm is-disabled" aria-disabled="true">Soon</span></div>
-        <div class="card vote"><span class="vote-n">2</span><div><b>Vote site 2</b><small>Vote links open at launch</small></div><span class="btn btn-secondary btn-sm is-disabled" aria-disabled="true">Soon</span></div>
-        <div class="card vote"><span class="vote-n">3</span><div><b>Vote site 3</b><small>Vote links open at launch</small></div><span class="btn btn-secondary btn-sm is-disabled" aria-disabled="true">Soon</span></div>
-        <div class="card vote"><span class="vote-n">4</span><div><b>Vote site 4</b><small>Vote links open at launch</small></div><span class="btn btn-secondary btn-sm is-disabled" aria-disabled="true">Soon</span></div>
-      </div>
-      <p class="hint mt-4">Time spent in the AFK pool doesn't count towards playtime rewards.</p>
-    </div>
-  </section>
-
-  <!-- STORE + DISCORD -->
-  <section class="section">
-    <div class="wrap">
-      <div class="grid grid-2">
-        <a class="card card-link card-pad" href="store.html?tab=mc">
-          <svg class="icon icon-lg gold"><use href="#i-crown"/></svg>
-          <h3 class="mt-3">Ranks</h3>
-          <p class="muted mt-2">Everyone starts as a Citizen for free. Squire, Knight and Titan add name tags, more homes, starter kits and handy commands. From ₹99 a month.</p>
-          <span class="link-arrow mt-3">Minecraft store <svg class="icon"><use href="#i-arrow"/></svg></span>
-        </a>
-        <a class="card card-link card-pad" href="community.html">
-          <svg class="icon icon-lg gold"><use href="#i-chat"/></svg>
-          <h3 class="mt-3">Find a clan on Discord</h3>
-          <p class="muted mt-2">Recruitment channel, trading, event pings and live server status.</p>
-          <span class="link-arrow mt-3">Join the Discord <svg class="icon"><use href="#i-arrow"/></svg></span>
-        </a>
-      </div>
-    </div>
-  </section>
+    <nav class="quiet" aria-label="More">
+      <a href="support.html#rules">Rules</a>
+      <a href="support.html#appeal">Bans &amp; appeals</a>
+      <a href="support.html#report">Report a player</a>
+      <a href="news.html">Updates</a>
+      <span class="faint">Leaderboards — after launch</span>
+    </nav>
+  </div>
 </main>
 
 <footer data-site-footer></footer>
-<script src="assets/site.js"></script>
+<script src="assets/titans.js"></script>
+<script>
+  // Season line: "5d 5h to go" before launch, "open now" after.
+  (function () {
+    var LAUNCH = Date.parse("2026-10-09T19:00:00Z");
+    var st = window.TT_STATE;
+    var ms = LAUNCH - Date.now();
+    var pre = st ? st === "pre" : ms > 0;
+    if (pre && ms > 0) {
+      var d = Math.floor(ms / 864e5), h = Math.floor(ms % 864e5 / 36e5);
+      document.getElementById("togo").textContent = " · " + d + "d " + h + "h to go";
+    } else if (!pre) {
+      document.getElementById("season-line").textContent = "Season I · open now";
+    }
+  })();
+</script>
 </body>
 </html>

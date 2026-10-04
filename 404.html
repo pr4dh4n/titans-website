@@ -5,36 +5,51 @@
 <link rel="icon" type="image/svg+xml" href="assets/ttc-icon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Page not found · TheTitansClan</title>
+<meta name="description" content="This page doesn't exist. Head back to TheTitansClan home, or copy the server address: mc.thetitansclan.com">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#F1E7D0">
+<meta name="theme-color" content="#16120E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600&family=UnifrakturMaguntia&display=swap">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@700&family=Grenze:wght@600;700&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@600&display=swap">
+<link rel="stylesheet" href="assets/titans.css">
 <style>
-  .lost { min-height: calc(100vh - var(--header-h)); display: grid; place-items: center; text-align: center; padding-block: var(--s8) 160px; }
-  .lost .code { font: 400 clamp(6rem, 4rem + 12vw, 12rem)/.9 var(--font-black); background: linear-gradient(180deg, #B4862A 0%, #7E5813 58%, #5A3C08 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .lost h1 { font-size: clamp(1.75rem, 1.4rem + 2vw, 2.75rem); margin: var(--s4) 0 var(--s3); }
-  .lost p { color: var(--text-2); max-width: 44ch; margin: 0 auto var(--s6); }
-  .lost .quick { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s2); max-width: 520px; margin: var(--s5) auto 0; }
-  @media (min-width: 600px) { .lost .quick { grid-template-columns: repeat(4, 1fr); } }
-  .lost .quick a { padding: var(--s3); border: 1px solid var(--line-2); border-radius: var(--r); font-weight: 600; font-size: var(--fs-sm); background: var(--surface); }
-  .lost .quick a:hover { border-color: var(--gold-line); }
-  .site-footer { margin-top: 0; }
+  .lost { display: grid; gap: 18px; justify-items: center; text-align: center; padding: 30px 0 56px; }
+  .lost .img { width: 220px; height: 214px; opacity: .9; }
+  .lost .img img { width: 100%; height: 100%; object-fit: contain; }
+  .lost .code { font: 600 .8125rem var(--f-mono); letter-spacing: 1px; color: var(--gold-ink); }
+  .lost h1 { font-size: clamp(2.5rem, 1.6rem + 3.6vw, 4.25rem); }
+  .lost p { margin: 0; color: var(--ink-2); max-width: 44ch; }
+  .lost .addr { width: 100%; max-width: 420px; text-align: left; }
+  .go { width: 100%; max-width: 420px; border-top: 3px solid var(--or); margin-top: 6px; }
+  .go a { display: flex; justify-content: space-between; align-items: center; padding: 12px 2px; border-bottom: 1px solid var(--rule); font-weight: 700; }
+  .go a i { width: 9px; height: 9px; display: inline-block; margin-right: 10px; }
+  .go a span { display: inline-flex; align-items: center; }
+  .go a:hover { color: var(--gold-ink); }
+  .go .icon { color: var(--ink-3); }
+  .help { font-size: .8125rem; color: var(--ink-3); }
+  @media (min-width: 960px) { .lost { padding: 56px 0 88px; } .lost .img { width: 300px; height: 292px; } }
 </style>
 </head>
 <body data-page="">
 <header data-site-header></header>
-<main class="hero lost" aria-labelledby="t">
-  <svg class="skyline" aria-hidden="true"></svg>
-  <div class="wrap">
-    <div class="code" aria-hidden="true">404</div>
-    <h1 id="t">Lost outside the walls</h1>
-    <p>This page doesn't exist, or it moved. The link may be old. Head back inside the citadel.</p>
-    <div class="row" style="justify-content:center"><a class="btn btn-primary" href="index.html"><svg class="icon"><use href="#i-home"/></svg> Back to Home</a><a class="btn btn-secondary" href="support.html">Get help</a></div>
-    <nav class="quick" aria-label="Popular pages"><a href="minecraft.html">Minecraft</a><a href="cs2.html">CS2</a><a href="store.html">Store</a><a href="news.html">News</a></nav>
-  </div>
+
+<main class="wrap">
+  <section class="lost" aria-labelledby="h1">
+    <div class="img"><img src="assets/img/citadel.webp" alt="The Titan Citadel, far away" width="1400" height="1362"></div>
+    <span class="code">Error 404 · page not found</span>
+    <h1 class="h1" id="h1">Lost outside the walls</h1>
+    <p>This page doesn't exist, or it moved. The link may be old. Head back inside the Citadel.</p>
+    <div class="addr"><div class="a-txt"><span class="a-lbl">Server address</span><code>mc.thetitansclan.com</code></div><button type="button" data-copy="mc.thetitansclan.com">Copy</button></div>
+    <nav class="go" aria-label="Popular pages">
+      <a href="index.html"><span><i style="background:var(--ink)"></i>Home</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a href="minecraft.html"><span><i style="background:var(--or)"></i>Minecraft</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a href="store.html"><span><i style="background:var(--sable)"></i>Store</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a href="cs2.html"><span><i style="background:var(--argent)"></i>CS2</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </nav>
+    <p class="help">Still stuck? <a class="link" href="support.html">Get help</a></p>
+  </section>
 </main>
+
 <footer data-site-footer></footer>
-<script src="assets/site.js"></script>
+<script src="assets/titans.js"></script>
 </body>
 </html>

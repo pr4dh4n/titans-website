@@ -6,105 +6,100 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Privacy policy · TheTitansClan</title>
 <meta name="description" content="What information TheTitansClan collects when you play, contact us or use this website, why, how long we keep it, and how to get a copy or have it deleted.">
-<meta name="theme-color" content="#F1E7D0">
+<meta name="theme-color" content="#16120E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600&family=UnifrakturMaguntia&display=swap">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@700&family=Grenze:wght@600;700&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@600&display=swap">
+<link rel="stylesheet" href="assets/titans.css">
 <style>
-  /* Shared legal layout: terms.html, privacy.html, refunds.html */
-  main [id] { scroll-margin-top: calc(var(--header-h) + 24px); }
-  .legal-hero { padding-bottom: 0; }
-  .legal-meta { display: inline-flex; align-items: center; gap: 6px; margin-top: var(--s3); font-size: var(--fs-sm); color: var(--text-3); }
-  .legal-meta .icon { width: 16px; height: 16px; }
-  .legal-tabs { margin-top: var(--s6); border-bottom: 0; gap: var(--s5); }
-  .legal-tabs .tab { display: inline-flex; align-items: center; gap: 8px; padding-block: var(--s4); }
-  .legal-tabs .tab .icon { width: 16px; height: 16px; }
-  .legal-tabs .tab[aria-current="page"] { color: var(--text); }
-  .legal-tabs .tab[aria-current="page"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--crimson); }
+  /* ---- One layout for Terms, Privacy and Refunds ---- */
+  .pg-head { padding: 26px 0 20px; display: grid; gap: 10px; }
+  .pg-head .h1 { font-size: clamp(2.5rem, 1.7rem + 3.4vw, 4.25rem); }
+  .updated { display: inline-flex; align-items: center; gap: 7px; font: 600 .75rem var(--f-mono); color: var(--gold-ink); }
+  .updated .icon { width: 15px; height: 15px; }
+  .pol { margin-top: 6px; justify-self: start; }
+  .updated { justify-self: start; }
+  .pol a { display: inline-flex; align-items: center; padding: 9px 14px; font-size: .8125rem; font-weight: 700; }
+  .pol a + a { border-left: 1.5px solid var(--ink); }
+  .pol a[aria-current="page"] { background: var(--ink); color: var(--parch); }
+  .pol a:not([aria-current]):hover { background: var(--vellum); }
+  @media (min-width: 960px) { .pg-head { padding: 56px 0 30px; } }
 
-  .legal-layout { display: grid; gap: var(--s6); }
-  @media (min-width: 1100px) { .legal-layout { grid-template-columns: 220px minmax(0, 1fr); gap: var(--s7); } }
-  .legal-main { min-width: 0; max-width: 760px; }
+  .legal { display: grid; gap: 24px; padding-bottom: 48px; }
   .toc { display: none; }
-  @media (min-width: 1100px) {
-    .toc { display: block; position: sticky; top: calc(var(--header-h) + 24px); align-self: start; font-size: var(--fs-sm); }
-    .toc h6 { margin: 0 0 var(--s3); font: 700 11px/1 var(--font-display); letter-spacing: .16em; color: var(--text-3); text-transform: uppercase; }
-    .toc a { display: block; padding: 6px 0 6px 12px; color: var(--text-2); border-left: 2px solid var(--line); }
-    .toc a:hover { color: var(--text); border-color: var(--crimson); }
+  @media (min-width: 1000px) {
+    .legal { grid-template-columns: 220px minmax(0, 1fr); gap: 64px; padding-bottom: 72px; }
+    .toc { display: block; position: sticky; top: calc(var(--head) + 24px); align-self: start; border-top: 3px solid var(--ink); }
+    .toc a { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: .8125rem; font-weight: 600; color: var(--ink-2); }
+    .toc a span { font: 600 .75rem/1.6 var(--f-mono); color: var(--gold-ink); width: 14px; flex: none; }
+    .toc a:hover { color: var(--ink); }
   }
+  .main { max-width: 68ch; min-width: 0; }
 
-  .notice { display: flex; gap: var(--s3); align-items: flex-start; padding: var(--s4) var(--s5); background: rgba(142,27,36,.07); border: 1px solid rgba(142,27,36,.3); border-left: 4px solid var(--crimson); border-radius: var(--r); font-size: var(--fs-sm); color: var(--text-2); }
-  .notice .icon { color: var(--crimson); margin-top: 2px; }
-  .notice strong { display: block; color: var(--crimson); font-family: var(--font-display); font-size: 1rem; letter-spacing: .02em; margin-bottom: 2px; }
-  .notice a { color: var(--crimson); text-decoration: underline; text-underline-offset: 2px; }
+  .draft { display: flex; gap: 10px; align-items: flex-start; padding: 12px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); font-size: .875rem; color: var(--ink-2); }
+  .draft .icon { color: var(--gold-ink); margin-top: 1px; }
+  .draft b { color: var(--ink); }
+  .draft a { text-decoration: underline; text-underline-offset: 3px; font-weight: 700; }
 
-  .short { margin: var(--s5) 0 var(--s6); }
-  .short h2 { font-size: 1.5rem; margin-bottom: var(--s4); }
-  .short ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s3); }
-  .short li { display: flex; gap: var(--s3); color: var(--text); }
-  .short li .icon { color: var(--gold); flex: none; margin-top: 3px; width: 18px; height: 18px; }
+  .short { margin-top: 20px; padding: 18px 18px 8px; }
+  .short h2 { font: 700 1.5rem/1.1 var(--f-head); margin-bottom: 8px; }
+  .short ul { list-style: none; margin: 0; padding: 0; }
+  .short li { display: flex; gap: 10px; padding: 9px 0; border-top: 1px solid var(--rule); font-size: .9375rem; line-height: 1.45; }
+  .short li .icon { color: var(--live); width: 16px; height: 16px; margin-top: 3px; }
+  @media (min-width: 760px) { .short { padding: 22px 24px 10px; } }
 
-  .prose h2 { display: flex; gap: .45em; align-items: baseline; }
-  .prose h2 .n { color: var(--crimson); flex: none; }
-  .prose h2:first-of-type { margin-top: var(--s5); }
-  .legal-cta { display: grid; gap: var(--s4); padding: var(--s5); margin-top: var(--s7); }
-  @media (min-width: 700px) { .legal-cta { grid-template-columns: 1fr auto; align-items: center; } }
-  .legal-cta h3 { margin: 0 0 4px; }
-  .legal-cta p { margin: 0; color: var(--text-2); font-size: var(--fs-sm); }
+  .prose { padding-top: 26px; font-size: 1.0625rem; line-height: 1.7; }
+  @media (min-width: 760px) { .prose { font-size: 1.125rem; } }
+  .prose p { margin: 0 0 1em; }
+  .prose h2 { display: flex; gap: 12px; align-items: baseline; font: 700 clamp(1.375rem, 1.2rem + .8vw, 1.75rem)/1.2 var(--f-head); margin: 1.7em 0 .5em; padding-top: 14px; border-top: 1px solid var(--rule); }
+  .prose h2 .n { font: 600 .875rem var(--f-mono); color: var(--gold-ink); min-width: 18px; }
+  .prose ul, .prose ol { margin: 0 0 1.1em; padding-left: 1.2em; }
+  .prose li { margin-bottom: .45em; padding-left: .2em; }
+  .prose li::marker { color: var(--gold-ink); }
+  .prose a { font-weight: 700; color: var(--gold-ink); text-decoration: underline; text-underline-offset: 3px; }
+  .prose a:hover { color: var(--plume); }
+
+  .others { margin-top: 32px; border-top: 3px solid var(--ink); }
+  .others .lbl { display: block; padding: 12px 0 4px; }
+  .others a { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+  .others a b { font: 600 1.25rem/1.2 var(--f-head); }
+  .others a small { display: block; font-size: .8125rem; color: var(--ink-2); }
+  .others a:hover b { color: var(--gold-ink); }
+  .others .icon { color: var(--ink-3); }
+
+  .band .wrap { display: grid; gap: 16px; padding-block: 36px; }
+  .band h2 { font: 700 clamp(1.625rem, 1.3rem + 1.2vw, 2.25rem)/1.1 var(--f-head); }
+  .band p { color: var(--on-sable-2); margin: 6px 0 0; }
+  @media (min-width: 960px) { .band .wrap { grid-template-columns: 1fr auto; align-items: center; padding-block: 48px; } }
 </style>
 </head>
 <body data-page="">
 <header data-site-header></header>
 
 <main>
-  <section class="hero area-hero legal-hero" aria-labelledby="legal-title">
-    <div class="wrap">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="support.html">Rules &amp; Support</a><span>/</span><span>Privacy</span></nav>
-      <span class="eyebrow">The keeper of records</span>
-      <h1 id="legal-title">Privacy policy</h1>
+  <div class="wrap">
+    <section class="pg-head" aria-labelledby="h1">
+      <div class="over">Policies</div>
+      <h1 class="h1" id="h1">Privacy policy</h1>
       <p class="lede">What we know about you, why we need it, and how to ask us to delete it.</p>
-      <p class="legal-meta"><svg class="icon"><use href="#i-clock"/></svg>Last updated <time datetime="2026-10-04">4 October 2026</time></p>
-      <nav class="tabs legal-tabs" aria-label="Policies">
-        <a class="tab" href="terms.html"><svg class="icon"><use href="#i-book"/></svg>Terms</a>
-        <a class="tab" href="privacy.html" aria-current="page"><svg class="icon"><use href="#i-lock"/></svg>Privacy</a>
-        <a class="tab" href="refunds.html"><svg class="icon"><use href="#i-refund"/></svg>Refunds</a>
-      </nav>
-    </div>
-  </section>
+      <span class="updated"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Last updated <time datetime="2026-10-04">4 October 2026</time></span>
+      <nav class="seg pol" aria-label="Policies"><a href="terms.html">Terms</a><a href="privacy.html" aria-current="page">Privacy</a><a href="refunds.html">Refunds</a></nav>
+    </section>
 
-  <section class="section">
-    <div class="wrap legal-layout">
-      <nav class="toc" aria-label="On this page">
-        <h6>On this page</h6>
-        <a href="#collect">1. What we collect</a>
-        <a href="#website">2. What this website stores</a>
-        <a href="#why">3. Why we use it</a>
-        <a href="#keep">4. How long we keep it</a>
-        <a href="#share">5. Who we share it with</a>
-        <a href="#children">6. Children</a>
-        <a href="#choices">7. Your choices</a>
-        <a href="#changes">8. Changes</a>
-        <a href="#contact">9. Contact us</a>
-      </nav>
+    <div class="legal">
+      <nav class="toc" aria-label="On this page"><a href="#collect"><span>1</span>What we collect</a><a href="#website"><span>2</span>What this website stores</a><a href="#why"><span>3</span>Why we use it</a><a href="#keep"><span>4</span>How long we keep it</a><a href="#share"><span>5</span>Who we share it with</a><a href="#children"><span>6</span>Children</a><a href="#choices"><span>7</span>Your choices</a><a href="#changes"><span>8</span>Changes</a><a href="#contact"><span>9</span>Contact us</a></nav>
 
-      <div class="legal-main">
-        <div class="notice" role="note"><svg class="icon"><use href="#i-alert"/></svg><div><strong>Draft policy</strong>We're finalising these policies before the server launches. If anything is unclear, open a ticket on <a href="community.html#discord">Discord</a>.</div></div>
+      <div class="main">
+        <p class="draft" role="note"><svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg><span><b>Draft policy.</b> We're finalising these policies before the server launches. If anything is unclear, open a ticket on <a href="community.html#discord">Discord</a>.</span></p>
 
-        <div class="card card-pad short">
-          <h2>The short version</h2>
-          <ul>
-            <li><svg class="icon"><use href="#i-check"/></svg><span>We only collect what we need to run the servers, stop cheaters and handle purchases.</span></li>
-            <li><svg class="icon"><use href="#i-check"/></svg><span>We never sell your information, and we don't show ads.</span></li>
-            <li><svg class="icon"><use href="#i-check"/></svg><span>This website has no tracking cookies. Your cart is saved only in your own browser.</span></li>
-            <li><svg class="icon"><use href="#i-check"/></svg><span>Logs are deleted after about 90 days.</span></li>
-            <li><svg class="icon"><use href="#i-check"/></svg><span>Want a copy of your data, or want it deleted? Open a ticket on our Discord.</span></li>
-          </ul>
-        </div>
+        <section class="panel short" aria-labelledby="short-t">
+          <h2 id="short-t">The short version</h2>
+          <ul><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>We only collect what we need to run the servers, stop cheaters and handle purchases.</span></li><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>We never sell your information, and we don't show ads.</span></li><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>This website has no tracking cookies. Your cart is saved only in your own browser.</span></li><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Logs are deleted after about 90 days.</span></li><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Want a copy of your data, or want it deleted? Open a ticket on our Discord.</span></li></ul>
+        </section>
 
         <div class="prose">
           <p>This page explains what information we collect when you play on our servers, talk to us or use this website, why we need it, and what you can ask us to do with it. We collect as little as we can.</p>
 
-          <h2 id="collect"><span class="n">1.</span><span>What we collect</span></h2>
+          <h2 id="collect"><span class="n">1</span>What we collect</h2>
           <ul>
             <li><strong>Your Minecraft username and UUID</strong> (the ID number Minecraft gives every account), so we can save your progress, ranks and items.</li>
             <li><strong>Your Discord username</strong> when you join our Discord or open a ticket, so we can reply to you.</li>
@@ -113,7 +108,7 @@
             <li><strong>Purchase records</strong> from our payment partner: what you bought, when, and the order number. We never see your full card or bank details. The payment partner handles those.</li>
           </ul>
 
-          <h2 id="website"><span class="n">2.</span><span>What this website stores</span></h2>
+          <h2 id="website"><span class="n">2</span>What this website stores</h2>
           <ul>
             <li><strong>Your cart</strong> is saved in your own browser (in its “local storage”). It stays on your device and isn't sent to us.</li>
             <li><strong>No ads and no tracking cookies.</strong> We don't use advertising or tracking tools on this site.</li>
@@ -121,7 +116,7 @@
             <li><strong>Fonts</strong> on this site are loaded from Google Fonts, so your browser also contacts Google's servers to download them.</li>
           </ul>
 
-          <h2 id="why"><span class="n">3.</span><span>Why we use it</span></h2>
+          <h2 id="why"><span class="n">3</span>Why we use it</h2>
           <ul>
             <li>To run the servers and keep your progress, ranks and items.</li>
             <li>To stop cheating, abuse and ban dodging, and to check player reports and appeals.</li>
@@ -130,41 +125,48 @@
           </ul>
           <p>We don't use your information for advertising.</p>
 
-          <h2 id="keep"><span class="n">4.</span><span>How long we keep it</span></h2>
+          <h2 id="keep"><span class="n">4</span>How long we keep it</h2>
           <ul>
             <li><strong>Server logs and chat logs:</strong> about 90 days, then they're deleted.</li>
             <li><strong>Ban records:</strong> until the ban ends. For a permanent ban, that means we keep the record.</li>
             <li><strong>Purchase records:</strong> as long as we need them for our accounts.</li>
           </ul>
 
-          <h2 id="share"><span class="n">5.</span><span>Who we share it with</span></h2>
+          <h2 id="share"><span class="n">5</span>Who we share it with</h2>
           <p>We share purchase details with our payment partner, because they handle the payment. We don't share your information with anyone else, and we <strong>never sell it</strong>.</p>
 
-          <h2 id="children"><span class="n">6.</span><span>Children</span></h2>
+          <h2 id="children"><span class="n">6</span>Children</h2>
           <p>Our servers and Discord are for players aged 13 and up. If you're a parent or guardian and want to know what we hold about your child, or want it deleted, open a <strong>Parents</strong> ticket on our Discord and we'll help.</p>
 
-          <h2 id="choices"><span class="n">7.</span><span>Your choices</span></h2>
+          <h2 id="choices"><span class="n">7</span>Your choices</h2>
           <p>You can ask us for a copy of the information we hold about you, or ask us to delete it. Open a <strong>General help</strong> ticket on our Discord and tell us your Minecraft username. We may need to check the account is yours first.</p>
           <p>Some things we may have to keep even if you ask, such as purchase records we need for our accounts, or the record of a ban that hasn't ended yet. If so, we'll tell you.</p>
           <p>To clear your cart from this website, empty it in the store or clear this site's data in your browser settings.</p>
 
-          <h2 id="changes"><span class="n">8.</span><span>Changes to this policy</span></h2>
+          <h2 id="changes"><span class="n">8</span>Changes to this policy</h2>
           <p>We may update this policy. When we do, we'll change the “Last updated” date at the top of this page, and we'll post about big changes on our Discord.</p>
 
-          <h2 id="contact"><span class="n">9.</span><span>Contact us</span></h2>
+          <h2 id="contact"><span class="n">9</span>Contact us</h2>
           <p>Questions about your data? Open a ticket in <strong>#tickets</strong> on our Discord. See <a href="support.html#contact">Contact staff</a> for the ticket types.</p>
         </div>
 
-        <div class="card legal-cta">
-          <div><h3>Still have a question?</h3><p>Open a ticket on our Discord and a staff member will help.</p></div>
-          <a class="btn btn-primary" href="community.html#discord"><svg class="icon"><use href="#i-chat"/></svg> Open the Discord</a>
-        </div>
+        <nav class="others" aria-label="Our other policies"><span class="over lbl">Our other policies</span><a href="terms.html"><span><b>Terms of Service</b><small>The deal when you play or buy</small></span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a><a href="refunds.html"><span><b>Refund policy</b><small>When you can get your money back</small></span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></nav>
       </div>
+    </div>
+  </div>
+
+  <section class="band" aria-labelledby="band-t">
+    <div class="wrap">
+      <div>
+        <h2 id="band-t">Still have a question?</h2>
+        <p>Open a ticket on our Discord and a staff member will help.</p>
+      </div>
+      <a class="btn btn-paper" href="community.html#discord">Open the Discord</a>
     </div>
   </section>
 </main>
 
 <footer data-site-footer></footer>
-<script src="assets/site.js"></script>
+<script src="assets/titans.js"></script>
 </body>
 </html>
