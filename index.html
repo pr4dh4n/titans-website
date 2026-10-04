@@ -14,32 +14,38 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@700&family=Grenze:wght@600;700&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@600&display=swap">
 <link rel="stylesheet" href="assets/titans.css">
 <style>
-  /* ---- Hero ---- */
-  .hero { display: grid; gap: 8px; padding: 22px 0 8px; }
-  .hero-copy { display: flex; flex-direction: column; gap: 16px; }
-  .hero h1 { font-size: clamp(2.875rem, 1.5rem + 5.2vw, 4.875rem); }
-  .hero .addr { max-width: none; }
-  .hero-cta { display: flex; gap: 10px; }
+  /* ---- Splash: the painting, with a parchment notice pinned over it ---- */
+  .splash { position: relative; isolation: isolate; }
+  .splash-art img { display: block; width: 100%; height: auto; aspect-ratio: 5 / 4; object-fit: cover; object-position: 30% 40%; }
+  .splash-in { position: relative; margin-top: -72px; padding-bottom: 8px; }
+  .notice { position: relative; padding: 38px 22px 40px; background: url(assets/img/paper-sheet.webp) center / 100% 100% no-repeat; filter: drop-shadow(0 18px 26px rgba(30,15,5,.45)); display: flex; flex-direction: column; gap: 14px; }
+  .notice h1 { font-size: clamp(2.25rem, 1.5rem + 3.2vw, 3.25rem); }
+  .notice .lede { font-size: 1rem; }
+  .notice .addr { max-width: none; }
+  @media (max-width: 400px) { .notice .addr code { font-size: .875rem; } .notice .addr .a-txt { padding: 0 10px; } .notice .addr button { min-width: 72px; padding: 0 12px; } }
+  .notice .count { border-color: rgba(120,90,50,.28); }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch; }
   .hero-cta .btn-play { flex: 1; min-height: 52px; font-size: 1rem; }
-  .hero-cta { flex-wrap: wrap; align-items: stretch; }
   .hero-cta .btn-crest { flex: 1 1 200px; min-height: 52px; }
   .hero-cta .btn-crest .bc-plate { justify-content: center; }
   .hero-cta .btn-crest .bc-label { flex: none; }
-  .citadel { position: relative; height: 300px; margin-top: 6px; }
-  .citadel img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 18px 18px rgba(60,40,15,.18)); }
-  .cap { text-align: center; font-size: .75rem; color: var(--ink-3); }
-  @media (min-width: 960px) {
-    .hero { grid-template-columns: minmax(0,5fr) minmax(0,7fr); gap: 24px; align-items: center; padding: 56px 0 24px; }
-    .hero-copy { gap: 22px; }
-    .hero .lede { font-size: 1.125rem; max-width: 440px; }
-    .count .digits span { font-size: 3.25rem; }
-    .hero .addr { min-height: 56px; }
-    .hero .addr code { font-size: 1rem; }
-    .hero-cta .btn-play { flex: none; padding: 0 34px; min-height: 56px; font-size: 1.0625rem; }
-    .hero-cta .btn-crest { flex: none; min-height: 56px; }
-    .citadel { height: 560px; margin: 0; }
-    .cap { display: none; }
+  @media (min-width: 760px) {
+    .splash { min-height: min(92svh, 900px); display: grid; align-items: center; background: #8A6A4A; }
+    .splash-art { position: absolute; inset: 0; z-index: -1; }
+    .splash-art img { height: 100%; aspect-ratio: auto; object-position: 50% 40%; }
+    .splash-in { margin: 0 auto; padding-block: 48px; display: flex; justify-content: center; }
+    .notice { width: 480px; padding: 48px 44px 50px; transform: translateX(4%); }
   }
+  @media (min-width: 1200px) { .notice { width: 500px; } }
+  .notice .count .digits span { font-size: 2.5rem; }
+  .notice .count { grid-template-columns: 1fr; gap: 6px; }
+
+  /* ---- Where you spawn ---- */
+  .spawn { display: grid; gap: 10px; padding: 34px 0 6px; align-items: center; }
+  .spawn .h2 { margin: 4px 0 8px; }
+  .citadel { position: relative; height: 300px; }
+  .citadel img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 18px 18px rgba(60,40,15,.18)); }
+  @media (min-width: 960px) { .spawn { grid-template-columns: 4fr 7fr; gap: 32px; padding-top: 64px; } .citadel { height: 480px; } }
 
   /* ---- The shield: the map of the clan ---- */
   .shield-wrap { padding: 26px 6px 8px; }
@@ -95,9 +101,14 @@
 <body data-page="home">
 <header data-site-header></header>
 
-<main class="wrap">
-  <section class="hero" aria-labelledby="h1">
-    <div class="hero-copy">
+<section class="splash" aria-labelledby="h1">
+  <picture class="splash-art">
+    <source media="(max-width: 759px)" srcset="assets/img/hero-phone.webp">
+    <source srcset="assets/img/hero-1400.webp 1400w, assets/img/hero-2400.webp 2400w" sizes="100vw">
+    <img src="assets/img/hero-1400.webp" alt="A knight in gold armour and a red cloak looks out from a castle wall over misty valleys toward a castle at sunrise" width="1400" height="674" fetchpriority="high">
+  </picture>
+  <div class="wrap splash-in">
+    <div class="notice">
       <div class="status" data-status="line"><i class="dot"></i><span class="s-txt">Checking server…</span><span class="sep">·</span><span>Java 1.21 – 26.3</span><span class="sep">·</span><span>Bedrock soon</span></div>
       <div>
         <h1 class="h1" id="h1">A medieval Minecraft realm.</h1>
@@ -118,18 +129,26 @@
         </ol>
         <div class="jb-foot">Bedrock (phone / console): coming soon. <a href="minecraft-join.html">Full guide →</a></div>
       </div>
+    
     </div>
+  </div>
+</section>
 
+<main class="wrap">
+  <section class="spawn" aria-labelledby="spawn-title">
     <div>
+      <span class="over">Where you spawn</span>
+      <h2 class="h2" id="spawn-title">The Titan Citadel</h2>
+      <p class="muted">Every journey starts here: the great hall, two golden knights and the compass plaza. This is the real build, exactly as you'll see it.</p>
+      <p style="margin-top:12px"><a class="link" href="minecraft-join.html">How to join</a> &nbsp; <a class="link" href="minecraft.html#modes">Game modes</a></p>
+    </div>
       <div class="citadel">
-        <img src="assets/img/citadel.webp" alt="The Titan Citadel: the great hall, two golden knight statues and the compass plaza on a floating island" width="1400" height="1362" fetchpriority="high">
+        <img src="assets/img/citadel.webp" alt="The Titan Citadel: the great hall, two golden knight statues and the compass plaza on a floating island" width="1400" height="1362" loading="lazy">
         <span class="pin dark" style="left:44%;top:58%">You spawn here<span class="only-d"> · compass plaza</span></span>
         <span class="pin" style="left:12%;top:22%">Great Hall</span>
         <span class="pin" style="right:6%;top:32%">Golden knights</span>
         <span class="pin only-d" style="left:20%;bottom:14%">Fountain &amp; gardens</span>
       </div>
-      <p class="cap">The Titan Citadel — our spawn, exactly as you'll see it.</p>
-    </div>
   </section>
 
   <section class="shield-wrap" aria-label="The clan">

@@ -332,3 +332,6 @@ button { cursor: pointer; }
 .btn-crest.bc-sm { min-height: 46px; --R: 9px; }
 .btn-crest.bc-sm .bc-icon { width: 24px; height: 24px; }
 .btn-crest.bc-sm .bc-label { font-size: .9375rem; }
+
+/* Paper texture behind every page (from "Tattered Background"), fixed so it never shows seams */
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: url(img/paper-texture.webp) center / cover no-repeat; opacity: .5; mix-blend-mode: multiply; }
