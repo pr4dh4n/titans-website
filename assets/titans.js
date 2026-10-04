@@ -126,6 +126,7 @@
   if (ftr) {
     ftr.className = "ftr";
     ftr.innerHTML = `<div class="ftr-crest">
+  <div class="fc-edge" aria-hidden="true"><span></span></div>
   <div class="fc-scene" aria-hidden="true"><img class="l" src="assets/img/citadel.webp" alt="" loading="lazy"><img class="r" src="assets/img/knight-palace.webp" alt="" loading="lazy"></div>
   <div class="fc-banner l" aria-hidden="true"><span class="rod"></span><div class="cloth"><img src="assets/ttc-icon.svg" alt=""></div></div>
   <div class="fc-banner r" aria-hidden="true"><span class="rod"></span><div class="cloth"><img src="assets/ttc-icon.svg" alt=""></div></div>
