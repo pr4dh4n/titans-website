@@ -14,65 +14,44 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Grenze+Gotisch:wght@700&family=Grenze:wght@600;700&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@600&display=swap">
 <link rel="stylesheet" href="assets/titans.css">
 <style>
-  /* ---- Sable header band ---- */
-  .st-band { background: var(--sable); color: var(--on-sable); padding-top: 22px; }
-  .st-top { display: grid; gap: 14px; }
-  .st-band h1 { color: var(--or-hi); font-size: clamp(2.625rem, 2rem + 2.4vw, 3.5rem); }
-  .st-band .sub { font-size: .875rem; color: var(--on-sable-2); margin-top: 6px; max-width: 52ch; }
-  .user { display: grid; gap: 5px; }
-  .user label { font: 700 .6875rem/1.2 var(--f-text); letter-spacing: 1px; text-transform: uppercase; color: var(--on-sable-2); }
-  .user input { height: 46px; width: 100%; border-radius: 5px; border: 1.5px solid #5A5047; background: var(--sable-2); color: var(--on-sable); padding: 0 12px; font: 600 .9375rem var(--f-mono); }
-  .user input::placeholder { color: var(--on-sable-3); }
-  .user input:focus { outline: none; border-color: var(--or-hi); }
-  .user .u-err { display: none; font-size: .75rem; font-weight: 700; color: #F0928A; }
-  .user.is-invalid input { border-color: #E0544B; }
+  /* ---- Hero: the castle from the painting, "STORE" in gold ---- */
+  .st-band { position: relative; isolation: isolate; overflow: hidden; text-align: center; padding: 46px 0 84px; }
+  .st-band .art { position: absolute; inset: 0; z-index: -2; }
+  .st-band .art img { width: 100%; height: 100%; object-fit: cover; object-position: 78% 40%; }
+  .st-band::after { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(60% 70% at 50% 45%, rgba(255,246,228,.86), rgba(255,246,228,.55) 60%, rgba(255,246,228,.25)); }
+  .st-band .edge { position: absolute; left: 0; right: 0; bottom: -1px; height: 60px; background: var(--parch) url(assets/img/paper-texture.webp) center / cover; -webkit-mask: var(--torn) center top / 100% 100% no-repeat; mask: var(--torn) center top / 100% 100% no-repeat; }
+  .st-band .sub { margin: 8px auto 0; max-width: 46ch; font-size: .9375rem; color: var(--ink-2); font-weight: 600; }
+  .st-tools { display: grid; gap: 14px; justify-items: center; margin-top: 22px; }
+  .user { display: grid; gap: 5px; width: min(100%, 360px); text-align: left; }
+  .user label { font: 700 .625rem/1.2 var(--f-caps); letter-spacing: .16em; text-transform: uppercase; color: var(--ink-2); }
+  .user input { height: 48px; width: 100%; border-radius: 4px; border: 1.5px solid #8A6A2E; background: rgba(251,247,238,.95); color: var(--ink); padding: 0 12px; font: 600 .9375rem var(--f-mono); }
+  .user input::placeholder { color: var(--ink-3); }
+  .user input:focus { outline: none; border-color: var(--plume); }
+  .user .u-err { display: none; font-size: .75rem; font-weight: 700; color: var(--plume); }
+  .user.is-invalid input { border-color: var(--plume); }
   .user.is-invalid .u-err { display: block; }
-  .tabs { display: flex; gap: 4px; margin-top: 18px; }
-  .tabs button { height: 42px; padding: 0 16px; border: 0; border-radius: 5px 5px 0 0; background: var(--sable-2); color: #E6DCCB; font: 700 .875rem var(--f-text); display: inline-flex; align-items: center; gap: 8px; }
-  .tabs button i { width: 9px; height: 9px; background: var(--sw); }
-  .tabs button[aria-pressed="true"] { background: var(--parch); color: var(--ink); }
-  @media (min-width: 760px) {
-    .st-band { padding-top: 30px; }
-    .st-top { grid-template-columns: minmax(0,1fr) 300px; align-items: end; gap: 24px; }
-    .tabs { margin-top: 22px; }
-    .tabs button { padding: 0 20px; }
-  }
+  .tabs { display: inline-flex; gap: 0; border: 1.5px solid #8A6A2E; border-radius: 4px; overflow: hidden; background: rgba(251,247,238,.9); }
+  .tabs button { height: 42px; padding: 0 18px; border: 0; background: transparent; color: var(--ink); font: 700 .75rem var(--f-caps); letter-spacing: .14em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px; }
+  .tabs button + button { border-left: 1px solid rgba(138,90,24,.4); }
+  .tabs button i { width: 8px; height: 8px; background: var(--sw); transform: rotate(45deg); }
+  .tabs button[aria-pressed="true"] { background: #8E1B18; color: #FBEFD9; }
+  @media (min-width: 760px) { .st-band { padding: 64px 0 96px; } .st-tools { grid-template-columns: auto auto; justify-content: center; align-items: end; gap: 20px; } }
 
-  /* ---- Main: ledger + cart ---- */
-  .st-main { display: grid; gap: 32px; padding-top: 26px; padding-bottom: 48px; align-items: start; }
-  @media (min-width: 1080px) { .st-main { grid-template-columns: minmax(0,1fr) 360px; padding-top: 30px; padding-bottom: 64px; } }
-  .st-col { display: grid; gap: 36px; min-width: 0; }
-  .st-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; padding-bottom: 10px; }
-  .st-head h2 { display: flex; align-items: center; gap: 10px; font: 700 clamp(1.375rem, 1.1rem + 1vw, 1.875rem)/1.1 var(--f-head); }
-  .st-head h2 i { width: 14px; height: 14px; background: var(--tinct); flex: none; }
-  .ledger { --tinct: var(--or); }
-  .item { border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: minmax(0,1fr) auto; grid-template-areas: "name btn" "price btn" "desc desc"; gap: 4px 12px; align-items: center; padding: 14px 0; }
-  .i-name { grid-area: name; font: 700 1.5rem/1.05 var(--f-head); }
-  .i-name.rank { font-family: var(--f-black); font-size: 1.75rem; }
-  .i-desc { grid-area: desc; font-size: .8125rem; line-height: 1.45; color: var(--ink-2); margin-top: 2px; }
-  .i-price { grid-area: price; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
-  .i-price b { font: 700 1.125rem/1 var(--f-head); }
-  .i-price small { font-size: .6875rem; color: var(--ink-3); width: 100%; }
-  .item .btn { grid-area: btn; min-width: 96px; min-height: 44px; font-size: .8125rem; font-weight: 800; padding: 0 14px; }
-  .item .btn .d { display: none; }
-  .item.soon { color: var(--ink-3); }
-  .item.soon .i-name { color: var(--ink-3); }
-  .item.soon .s-lbl { grid-area: btn; font-size: .8125rem; font-weight: 700; }
-  @media (min-width: 640px) {
-    .item { grid-template-columns: 150px minmax(0,1fr) 170px 140px; grid-template-areas: "name desc price btn"; gap: 20px; padding: 18px 0; }
-    .i-name { font-size: 1.5rem; }
-    .i-name.rank { font-size: 2rem; }
-    .i-desc { font-size: .875rem; margin: 0; }
-    .i-price { flex-direction: column; align-items: flex-start; gap: 6px; }
-    .i-price b { font-size: 1.625rem; }
-    .item .btn .d { display: inline; } .item .btn .p { display: none; }
-    .item.soon { grid-template-areas: "name desc desc btn"; }
-    .item.soon .s-lbl { text-align: right; }
-  }
-  .st-note { font-size: .8125rem; color: var(--ink-2); margin-top: 10px; }
-  .st-note a { font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  /* ---- Main: framed cards + cart ---- */
+  .st-main { display: grid; gap: 32px; padding-top: 10px; padding-bottom: 56px; align-items: start; }
+  @media (min-width: 1080px) { .st-main { grid-template-columns: minmax(0,1fr) 340px; padding-bottom: 72px; } }
+  .st-col { display: grid; gap: 10px; min-width: 0; }
+  .st-col > section { scroll-margin-top: calc(var(--head) + 20px); }
+  .plan-row { display: flex; justify-content: center; margin: -10px 0 24px; }
+  .plan-row .seg { border-color: #8A6A2E; background: rgba(251,247,238,.9); }
+  .plan-row .seg button { font-family: var(--f-caps); letter-spacing: .1em; text-transform: uppercase; font-size: .6875rem; padding: 10px 16px; }
+  .plan-row .seg button[aria-pressed="true"] { background: #8E1B18; color: #FBEFD9; }
+  .tc .bill { margin-top: -2px; }
+  .tc .ps { font-size: .6875rem; color: var(--ink-3); margin-top: -4px; }
+  .st-note { text-align: center; font-size: .8125rem; color: var(--ink-2); margin-top: 18px; }
+  .st-note a { font-weight: 700; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
   .st-note a:hover { color: var(--plume); }
-  .parents-m { font-size: .8125rem; line-height: 1.5; color: var(--ink-2); padding-top: 4px; }
+  .parents-m { font-size: .8125rem; line-height: 1.5; color: var(--ink-2); padding-top: 4px; text-align: center; }
   .parents-m b { color: var(--ink); }
   .parents-m a { text-decoration: underline; text-underline-offset: 2px; }
   @media (min-width: 1080px) { .parents-m { display: none; } }
@@ -110,6 +89,14 @@
   .c-links { padding: 12px 20px; display: flex; gap: 14px; font-size: .75rem; font-weight: 600; }
   .c-links a { text-decoration: underline; text-underline-offset: 2px; }
   .c-links a:hover { color: var(--plume); }
+
+  /* cart panel in the framed style */
+  .cart-side .cart { border: 1px solid rgba(138,90,24,.55); border-radius: 0; background-color: rgba(251,247,238,.95); box-shadow: 0 14px 30px -20px rgba(60,40,15,.6), inset 0 0 0 4px rgba(251,247,238,1), inset 0 0 0 5px rgba(184,146,74,.6); }
+  .c-head h2 { font: 700 1.25rem/1 var(--f-caps); letter-spacing: .08em; text-transform: uppercase; }
+  .c-tot .btn-crest { width: 100%; min-height: 52px; margin-top: 8px; }
+  .c-tot .btn-crest .bc-plate { justify-content: center; }
+  .c-tot .btn-crest .bc-label { flex: none; font: 700 .8125rem/1 var(--f-caps); letter-spacing: .1em; }
+  .c-par { background: rgba(232,220,198,.7); }
 
   /* ---- Phone cart bar ---- */
   .cartbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 35; background: var(--sable); color: var(--on-sable); padding: 10px 14px calc(10px + env(safe-area-inset-bottom)) 18px; display: flex; align-items: center; gap: 12px; }
@@ -151,49 +138,53 @@
 
 <main>
   <section class="st-band" aria-labelledby="h1">
+    <div class="art" aria-hidden="true"><img src="assets/img/hero-1400.webp" alt="" width="1400" height="674" fetchpriority="high"></div>
     <div class="wrap">
-      <div class="st-top">
-        <div>
-          <h1 class="h1" id="h1">Store</h1>
-          <p class="sub">Minecraft and CS2 in one cart. Prices in ₹. Pay with UPI, cards or wallets.</p>
-        </div>
+      <p class="creed-line"><span>Ranks</span><i>✦</i><span>Passes</span><i>✦</i><span>Delivered in-game</span></p>
+      <h1 class="gold-title" id="h1" style="margin-top:12px">Store</h1>
+      <div class="orn" aria-hidden="true"></div>
+      <p class="sub">Minecraft and CS2 in one cart. Prices in ₹. Pay with UPI, cards or wallets.</p>
+      <div class="st-tools">
         <div class="user" id="user-f">
           <label for="mc-user">Minecraft username</label>
           <input id="mc-user" placeholder="e.g. Steve_IN" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="16">
           <span class="u-err" id="u-err">Type your Minecraft username so we know who gets the rank.</span>
         </div>
-      </div>
-      <div class="tabs" role="group" aria-label="Show">
-        <button type="button" data-tab="all" aria-pressed="true" style="--sw:var(--on-sable-2)"><i></i>All</button>
-        <button type="button" data-tab="mc" aria-pressed="false" style="--sw:var(--or)"><i></i>Minecraft</button>
-        <button type="button" data-tab="cs" aria-pressed="false" style="--sw:var(--argent-2)"><i></i>CS2</button>
+        <div class="tabs" role="group" aria-label="Show">
+          <button type="button" data-tab="all" aria-pressed="true" style="--sw:#C9A55A"><i></i>All</button>
+          <button type="button" data-tab="mc" aria-pressed="false" style="--sw:var(--or)"><i></i>Minecraft</button>
+          <button type="button" data-tab="cs" aria-pressed="false" style="--sw:var(--argent-2)"><i></i>CS2</button>
+        </div>
       </div>
     </div>
+    <div class="edge" aria-hidden="true"></div>
   </section>
 
   <div class="wrap st-main">
     <div class="st-col">
       <section id="sec-mc" aria-labelledby="mc-title">
-        <div class="st-head" style="--tinct:var(--or)">
-          <h2 id="mc-title"><i></i>Minecraft · Ranks</h2>
-          <div class="seg" role="group" aria-label="Billing">
-            <button type="button" data-plan="month" aria-pressed="true">Monthly</button>
-            <button type="button" data-plan="season" aria-pressed="false">Season pass</button>
-          </div>
-        </div>
-        <div class="ledger" id="list-mc" style="--tinct:var(--or)"></div>
-        <p class="st-note">Delivered in-game within a minute of payment. Ranks are cosmetic and comfort perks. <a href="minecraft-ranks.html">Compare all perks</a></p>
+        <div class="sec-title"><h2 id="mc-title">Minecraft ranks</h2><p>Cosmetics and comfort for the realm</p></div>
+        <div class="plan-row"><div class="seg" role="group" aria-label="Billing">
+          <button type="button" data-plan="month" aria-pressed="true">Monthly<small>renews</small></button>
+          <button type="button" data-plan="season" aria-pressed="false">Season pass<small>one-time · ~3 months</small></button>
+        </div></div>
+        <div class="tc-grid" id="list-mc"></div>
+        <p class="st-note">Delivered in-game within a minute of payment. <a href="minecraft-ranks.html">Compare every perk</a></p>
       </section>
 
+      <div class="torn-div" aria-hidden="true"></div>
+
       <section id="sec-cs" aria-labelledby="cs-title">
-        <div class="st-head" style="--tinct:var(--argent)"><h2 id="cs-title"><i></i>CS2</h2></div>
-        <div class="ledger" style="--tinct:var(--argent)">
+        <div class="sec-title"><h2 id="cs-title">CS2</h2><p>Server perks and tournament passes</p></div>
+        <div class="tc-grid">
           <div id="list-cs" style="display:contents"></div>
-          <div class="item soon">
-            <div class="i-name">Merch</div>
-            <div class="i-desc">Jersey · Hoodie · Stickers</div>
-            <span class="s-lbl">Coming soon</span>
-          </div>
+          <article class="tc dark wide">
+            <span class="tc-pennant" aria-hidden="true"><svg class="icon"><use href="#i-shirt"/></svg></span>
+            <div class="tc-body">
+              <div><h3>Merch</h3><p class="kw"><span>Jersey</span><i>✦</i><span>Hoodie</span><i>✦</i><span>Stickers</span></p><p style="margin:0;font-size:.8125rem;color:#C9BBA3">Official Titans gear for players and fans.</p></div>
+              <div class="tc-act"><span class="tc-soon">Coming soon</span></div>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -288,29 +279,45 @@
   let steam = store.get("tt-steam");
 
   /* ---------- Rows ---------- */
+  const crest = label => `<span class="bc-plate"><i class="bc-rim" aria-hidden="true"></i><span class="bc-label">${label}</span><i class="bc-arrow"></i></span>`;
   function btn(id, rank) {
-    if (has(id)) return `<button class="btn btn-line" type="button" data-add="${id}" aria-pressed="true"><span class="d">In cart ✓</span><span class="p">Added ✓</span></button>`;
+    if (has(id)) return `<button class="tc-in" type="button" data-add="${id}" aria-pressed="true">In cart ✓ <span style="font-weight:600;opacity:.75">· remove</span></button>`;
     const other = rank && cart.find(x => P[x.id].rank === rank);
-    if (other) return `<button class="btn btn-line" type="button" data-add="${id}"><span class="d">Switch to ${plan === "month" ? "monthly" : "season"}</span><span class="p">Switch</span></button>`;
-    return `<button class="btn btn-ink" type="button" data-add="${id}"><span class="d">Add to cart</span><span class="p">Add</span></button>`;
+    if (other) return `<button class="btn-crest" type="button" data-add="${id}">${crest("Switch to " + (plan === "month" ? "monthly" : "season"))}</button>`;
+    return `<button class="btn-crest" type="button" data-add="${id}">${crest("Add to cart")}</button>`;
   }
+  const RICON = { squire: "shield", knight: "sword", titan: "crown" };
+  const cap = x => x.charAt(0).toUpperCase() + x.slice(1);
+  const perks = d => d.replace(/\.$/, "").split(/,\s*/).map(x => `<li>${cap(x)}</li>`).join("");
   function renderRows() {
     const mo = plan === "month";
     document.getElementById("list-mc").innerHTML = RANKS.map(r => {
       const id = r.key + "@" + plan;
-      return `<div class="item">
-        <div class="i-name rank" style="color:${r.color}">${r.name}</div>
-        <div class="i-desc">${r.desc}</div>
-        <div class="i-price"><b>${mo ? fmt(r.month) + "/mo" : fmt(r.season)}</b><span class="bill ${mo ? "bill-month" : "bill-once"}">${mo ? "Monthly · renews" : "Season · one-time"}</span>${mo ? "" : "<small>About 3 months, one payment</small>"}</div>
-        ${btn(id, r.key)}
-      </div>`;
+      return `<article class="tc${has(id) ? " is-picked" : ""}">
+        <span class="tc-pennant" style="--pc:${r.color}" aria-hidden="true"><svg class="icon"><use href="#i-${RICON[r.key]}"/></svg></span>
+        <div class="tc-body">
+          <h3 style="color:${r.color}">${r.name}</h3>
+          <p class="kw"><span>Minecraft</span><i>✦</i><span>Rank</span></p>
+          <div class="tc-price"><b>${mo ? fmt(r.month) : fmt(r.season)}</b><small>${mo ? "/ month" : "/ season"}</small></div>
+          <span class="bill ${mo ? "bill-month" : "bill-once"}">${mo ? "Monthly · renews" : "Season · one-time"}</span>
+          ${mo ? "" : '<span class="ps">About 3 months, one payment</span>'}
+          <ul class="tc-perks">${perks(r.desc)}</ul>
+          <div class="tc-act">${btn(id, r.key)}</div>
+        </div>
+      </article>`;
     }).join("");
-    document.getElementById("list-cs").innerHTML = CS.map(c => `<div class="item">
-        <div class="i-name">${c.name}</div>
-        <div class="i-desc">${c.desc}</div>
-        <div class="i-price"><b>${fmt(c.price)}</b><span class="bill bill-once">One-time</span></div>
-        ${btn(c.id)}
-      </div>`).join("");
+    const CICON = { "cs-vip1": "star", "cs-vip3": "star", "cs-cuppass": "trophy" };
+    document.getElementById("list-cs").innerHTML = CS.map(c => `<article class="tc${has(c.id) ? " is-picked" : ""}">
+        <span class="tc-pennant" style="--pc:#47505A" aria-hidden="true"><svg class="icon"><use href="#i-${CICON[c.id]}"/></svg></span>
+        <div class="tc-body">
+          <h3>${c.name}</h3>
+          <p class="kw"><span>CS2</span><i>✦</i><span>${c.id === "cs-cuppass" ? "Tournament" : "Server perk"}</span></p>
+          <div class="tc-price"><b>${fmt(c.price)}</b></div>
+          <span class="bill bill-once">One-time</span>
+          <ul class="tc-perks"><li>${c.desc.replace(/\.\s*/g, "</li><li>").replace(/<li>$/, "")}</ul>
+          <div class="tc-act">${btn(c.id)}</div>
+        </div>
+      </article>`).join("");
     document.querySelectorAll("[data-plan]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.plan === plan)));
   }
 
@@ -339,7 +346,7 @@
       `<div class="c-tot">
         <div class="due"><span>Due today</span><span class="tnum">${fmt(t.due)}</span></div>
         ${t.rec ? `<div class="rec"><span>Then every month, until cancelled</span><span class="tnum">${fmt(t.rec)}/mo</span></div>` : ""}
-        <button class="btn btn-play btn-block" type="button" data-checkout>Checkout · UPI / card</button>
+        <button class="btn-crest" type="button" data-checkout><span class="bc-plate"><i class="bc-rim" aria-hidden="true"></i><span class="bc-label">Checkout · UPI / card</span><i class="bc-arrow"></i></span></button>
         <div class="partner">Secure checkout by our store partner</div>
       </div>`;
     document.querySelectorAll("[data-cart-body]").forEach((el, i) => { el.innerHTML = body.replace(/\{K\}/g, i ? "s" : "d"); });
