@@ -14,31 +14,37 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@700&family=Grenze:wght@600;700&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@600&display=swap">
 <link rel="stylesheet" href="assets/titans.css">
 <style>
-  /* ---- Splash: the painting, with a parchment notice pinned over it ---- */
-  .splash { position: relative; isolation: isolate; }
-  .splash-art img { display: block; width: 100%; height: auto; aspect-ratio: 5 / 4; object-fit: cover; object-position: 30% 40%; }
-  .splash-in { position: relative; margin-top: -72px; padding-bottom: 8px; }
-  .notice { position: relative; padding: 38px 22px 40px; background: url(assets/img/paper-sheet.webp) center / 100% 100% no-repeat; filter: drop-shadow(0 18px 26px rgba(30,15,5,.45)); display: flex; flex-direction: column; gap: 14px; }
-  .notice h1 { font-size: clamp(2.25rem, 1.5rem + 3.2vw, 3.25rem); }
-  .notice .lede { font-size: 1rem; }
-  .notice .addr { max-width: none; }
-  @media (max-width: 400px) { .notice .addr code { font-size: .875rem; } .notice .addr .a-txt { padding: 0 10px; } .notice .addr button { min-width: 72px; padding: 0 12px; } }
-  .notice .count { border-color: rgba(120,90,50,.28); }
+  /* ---- Main section: tattered parchment as the ground, the painting on it, words on top ---- */
+  .splash { position: relative; isolation: isolate; padding: 22px 12px 26px; background: url(assets/img/paper-sheet.webp) center / 100% 100% no-repeat; }
+  .splash-frame { position: relative; max-width: 1500px; margin: 0 auto; }
+  .splash-art img { display: block; width: 100%; height: auto; aspect-ratio: 5 / 4; object-fit: cover; object-position: 30% 40%;
+    -webkit-mask: url(assets/img/paper-sheet.webp) center / 100% 100% no-repeat; mask: url(assets/img/paper-sheet.webp) center / 100% 100% no-repeat; }
+  .hero-over { position: relative; display: flex; flex-direction: column; gap: 14px; padding: 18px 20px 10px; }
+  .hero-over h1 { font-size: clamp(2.4rem, 1.5rem + 3.6vw, 3.6rem); }
+  .hero-over .addr { max-width: 460px; width: 100%; }
+  .hero-over .count { border-color: rgba(120,90,50,.3); grid-template-columns: 1fr; gap: 6px; }
+  .hero-over .count .digits span { font-size: 2.5rem; }
   .hero-cta { display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch; }
   .hero-cta .btn-play { flex: 1; min-height: 52px; font-size: 1rem; }
   .hero-cta .btn-crest { flex: 1 1 200px; min-height: 52px; }
   .hero-cta .btn-crest .bc-plate { justify-content: center; }
   .hero-cta .btn-crest .bc-label { flex: none; }
-  @media (min-width: 760px) {
-    .splash { min-height: min(92svh, 900px); display: grid; align-items: center; background: #8A6A4A; }
-    .splash-art { position: absolute; inset: 0; z-index: -1; }
-    .splash-art img { height: 100%; aspect-ratio: auto; object-position: 50% 40%; }
-    .splash-in { margin: 0 auto; padding-block: 48px; display: flex; justify-content: center; }
-    .notice { width: 480px; padding: 48px 44px 50px; transform: translateX(4%); }
+  @media (max-width: 400px) { .hero-over .addr code { font-size: .875rem; } .hero-over .addr .a-txt { padding: 0 10px; } .hero-over .addr button { min-width: 72px; padding: 0 12px; } }
+  @media (min-width: 900px) {
+    .splash { padding: 34px 30px 40px; }
+    .splash-art img { aspect-ratio: 2400 / 1155; min-height: 600px; object-position: 50% 40%; }
+    /* words sit right on the painting, in the bright sky between the knight and the castle */
+    .hero-over { position: absolute; left: 50%; top: 5%; transform: translateX(-46%); width: min(560px, 44%); padding: 0; align-items: center; text-align: center; gap: 12px; }
+    .hero-over::before { content: ""; position: absolute; inset: -14% -22%; z-index: -1; background: radial-gradient(closest-side, rgba(253,244,226,.82), rgba(253,244,226,.55) 55%, rgba(253,244,226,0)); }
+    .hero-over .status, .hero-over .lede { justify-content: center; text-shadow: 0 0 10px rgba(255,248,232,.9); }
+    .hero-over .lede { color: var(--ink); margin-inline: auto; }
+    .hero-over .count { width: 100%; justify-items: center; }
+    .hero-over .hero-cta { justify-content: center; width: 100%; }
+    .hero-over .hero-cta .btn-play { flex: none; padding: 0 30px; }
+    .hero-over .hero-cta .btn-crest { flex: none; }
+    .hero-over .joinbox { text-align: left; width: 100%; }
   }
-  @media (min-width: 1200px) { .notice { width: 500px; } }
-  .notice .count .digits span { font-size: 2.5rem; }
-  .notice .count { grid-template-columns: 1fr; gap: 6px; }
+  @media (min-width: 1300px) { .hero-over { top: 7%; } }
 
   /* ---- Where you spawn ---- */
   .spawn { display: grid; gap: 10px; padding: 34px 0 6px; align-items: center; }
@@ -102,13 +108,13 @@
 <header data-site-header></header>
 
 <section class="splash" aria-labelledby="h1">
+  <div class="splash-frame">
   <picture class="splash-art">
     <source media="(max-width: 759px)" srcset="assets/img/hero-phone.webp">
     <source srcset="assets/img/hero-1400.webp 1400w, assets/img/hero-2400.webp 2400w" sizes="100vw">
     <img src="assets/img/hero-1400.webp" alt="A knight in gold armour and a red cloak looks out from a castle wall over misty valleys toward a castle at sunrise" width="1400" height="674" fetchpriority="high">
   </picture>
-  <div class="wrap splash-in">
-    <div class="notice">
+    <div class="hero-over">
       <div class="status" data-status="line"><i class="dot"></i><span class="s-txt">Checking server…</span><span class="sep">·</span><span>Java 1.21 – 26.3</span><span class="sep">·</span><span>Bedrock soon</span></div>
       <div>
         <h1 class="h1" id="h1">A medieval Minecraft realm.</h1>
@@ -129,7 +135,6 @@
         </ol>
         <div class="jb-foot">Bedrock (phone / console): coming soon. <a href="minecraft-join.html">Full guide →</a></div>
       </div>
-    
     </div>
   </div>
 </section>
