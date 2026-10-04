@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" type="image/svg+xml" href="assets/ttc-icon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Refund policy · TheTitansClan</title>
+<meta name="description" content="When you can get a refund for a TheTitansClan store purchase, when purchases are final, and how to ask through a Discord Payments ticket.">
+<meta name="theme-color" content="#F1E7D0">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600&family=UnifrakturMaguntia&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  /* Shared legal layout: terms.html, privacy.html, refunds.html */
+  main [id] { scroll-margin-top: calc(var(--header-h) + 24px); }
+  .legal-hero { padding-bottom: 0; }
+  .legal-meta { display: inline-flex; align-items: center; gap: 6px; margin-top: var(--s3); font-size: var(--fs-sm); color: var(--text-3); }
+  .legal-meta .icon { width: 16px; height: 16px; }
+  .legal-tabs { margin-top: var(--s6); border-bottom: 0; gap: var(--s5); }
+  .legal-tabs .tab { display: inline-flex; align-items: center; gap: 8px; padding-block: var(--s4); }
+  .legal-tabs .tab .icon { width: 16px; height: 16px; }
+  .legal-tabs .tab[aria-current="page"] { color: var(--text); }
+  .legal-tabs .tab[aria-current="page"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--crimson); }
+
+  .legal-layout { display: grid; gap: var(--s6); }
+  @media (min-width: 1100px) { .legal-layout { grid-template-columns: 220px minmax(0, 1fr); gap: var(--s7); } }
+  .legal-main { min-width: 0; max-width: 760px; }
+  .toc { display: none; }
+  @media (min-width: 1100px) {
+    .toc { display: block; position: sticky; top: calc(var(--header-h) + 24px); align-self: start; font-size: var(--fs-sm); }
+    .toc h6 { margin: 0 0 var(--s3); font: 700 11px/1 var(--font-display); letter-spacing: .16em; color: var(--text-3); text-transform: uppercase; }
+    .toc a { display: block; padding: 6px 0 6px 12px; color: var(--text-2); border-left: 2px solid var(--line); }
+    .toc a:hover { color: var(--text); border-color: var(--crimson); }
+  }
+
+  .notice { display: flex; gap: var(--s3); align-items: flex-start; padding: var(--s4) var(--s5); background: rgba(142,27,36,.07); border: 1px solid rgba(142,27,36,.3); border-left: 4px solid var(--crimson); border-radius: var(--r); font-size: var(--fs-sm); color: var(--text-2); }
+  .notice .icon { color: var(--crimson); margin-top: 2px; }
+  .notice strong { display: block; color: var(--crimson); font-family: var(--font-display); font-size: 1rem; letter-spacing: .02em; margin-bottom: 2px; }
+  .notice a { color: var(--crimson); text-decoration: underline; text-underline-offset: 2px; }
+
+  .short { margin: var(--s5) 0 var(--s6); }
+  .short h2 { font-size: 1.5rem; margin-bottom: var(--s4); }
+  .short ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s3); }
+  .short li { display: flex; gap: var(--s3); color: var(--text); }
+  .short li .icon { color: var(--gold); flex: none; margin-top: 3px; width: 18px; height: 18px; }
+
+  .prose h2 { display: flex; gap: .45em; align-items: baseline; }
+  .prose h2 .n { color: var(--crimson); flex: none; }
+  .prose h2:first-of-type { margin-top: var(--s5); }
+  .legal-cta { display: grid; gap: var(--s4); padding: var(--s5); margin-top: var(--s7); }
+  @media (min-width: 700px) { .legal-cta { grid-template-columns: 1fr auto; align-items: center; } }
+  .legal-cta h3 { margin: 0 0 4px; }
+  .legal-cta p { margin: 0; color: var(--text-2); font-size: var(--fs-sm); }
+</style>
+</head>
+<body data-page="">
+<header data-site-header></header>
+
+<main>
+  <section class="hero area-hero legal-hero" aria-labelledby="legal-title">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="support.html">Rules &amp; Support</a><span>/</span><span>Refunds</span></nav>
+      <span class="eyebrow">The treasury</span>
+      <h1 id="legal-title">Refund policy</h1>
+      <p class="lede">When you can get your money back, and how to ask.</p>
+      <p class="legal-meta"><svg class="icon"><use href="#i-clock"/></svg>Last updated <time datetime="2026-10-04">4 October 2026</time></p>
+      <nav class="tabs legal-tabs" aria-label="Policies">
+        <a class="tab" href="terms.html"><svg class="icon"><use href="#i-book"/></svg>Terms</a>
+        <a class="tab" href="privacy.html"><svg class="icon"><use href="#i-lock"/></svg>Privacy</a>
+        <a class="tab" href="refunds.html" aria-current="page"><svg class="icon"><use href="#i-refund"/></svg>Refunds</a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap legal-layout">
+      <nav class="toc" aria-label="On this page">
+        <h6>On this page</h6>
+        <a href="#delivery">1. How delivery works</a>
+        <a href="#full">2. Full refunds</a>
+        <a href="#final">3. When it's final</a>
+        <a href="#time">4. Ranks and season passes</a>
+        <a href="#bans">5. Bans</a>
+        <a href="#chargebacks">6. Chargebacks</a>
+        <a href="#ask">7. How to ask</a>
+        <a href="#merch">8. Physical merch</a>
+        <a href="#changes">9. Changes</a>
+      </nav>
+
+      <div class="legal-main">
+        <div class="notice" role="note"><svg class="icon"><use href="#i-alert"/></svg><div><strong>Draft policy</strong>We're finalising these policies before the server launches. If anything is unclear, open a ticket on <a href="community.html#discord">Discord</a>.</div></div>
+
+        <div class="card card-pad short">
+          <h2>The short version</h2>
+          <ul>
+            <li><svg class="icon"><use href="#i-check"/></svg><span>Ranks and items are added to your account right after you pay.</span></li>
+            <li><svg class="icon"><use href="#i-check"/></svg><span>Full refund if your item never arrived and we can't fix it, you were charged twice, or a child bought it without a parent's permission (parent tells us within 14 days).</span></li>
+            <li><svg class="icon"><use href="#i-check"/></svg><span>Otherwise, once your item is delivered and used, the sale is final.</span></li>
+            <li><svg class="icon"><use href="#i-check"/></svg><span>No refunds for unused time on a rank, or for ranks lost to a ban.</span></li>
+            <li><svg class="icon"><use href="#i-check"/></svg><span>Always ask us first. A chargeback gets the rank removed and may get your account banned.</span></li>
+          </ul>
+        </div>
+
+        <div class="prose">
+          <p>This page explains when you can get your money back for something you bought in our store, and how to ask. The store isn't taking payments yet. These rules will apply once it opens.</p>
+
+          <h2 id="delivery"><span class="n">1.</span><span>How delivery works</span></h2>
+          <p>Ranks and in-game items are digital. They're added to your account right after your payment goes through. If yours doesn't show up, rejoin the server first.</p>
+
+          <h2 id="full"><span class="n">2.</span><span>When you get a full refund</span></h2>
+          <p>You can get all your money back if:</p>
+          <ul>
+            <li><strong>Your item never arrived.</strong> It still isn't on your account 24 hours after you paid, and our support team can't fix it.</li>
+            <li><strong>You were charged twice</strong> for the same order.</li>
+            <li><strong>A child bought it without permission.</strong> A parent or guardian must contact us within 14 days of the purchase. The item is removed from the account when the refund is made.</li>
+          </ul>
+
+          <h2 id="final"><span class="n">3.</span><span>When a purchase is final</span></h2>
+          <p>In other cases, once your item has been delivered and you've started using it, the purchase is final and we can't refund it.</p>
+
+          <h2 id="time"><span class="n">4.</span><span>Ranks and season passes</span></h2>
+          <p>A monthly rank lasts 1 month, and a season pass lasts until the season ends (about 3 months). If you stop playing part-way through, we don't refund the time left over.</p>
+
+          <h2 id="bans"><span class="n">5.</span><span>Bans for breaking the rules</span></h2>
+          <p>If you're banned or muted for breaking the <a href="support.html#rules">server rules</a>, you don't get a refund for ranks or items you can't use while you're punished.</p>
+
+          <h2 id="chargebacks"><span class="n">6.</span><span>Chargebacks</span></h2>
+          <p>A chargeback is when you ask your bank or card company to take a payment back, instead of asking us. Please always talk to us first; most problems are quick to fix. If you make a chargeback without asking us, the rank or item is removed and your account may be banned.</p>
+
+          <h2 id="ask"><span class="n">7.</span><span>How to ask for a refund</span></h2>
+          <ol>
+            <li>Join our Discord and open a ticket in <strong>#tickets</strong>. Pick <strong>Payments</strong> (parents can pick <strong>Parents</strong>).</li>
+            <li>Include your <strong>receipt or order number</strong> and the <strong>Minecraft or Steam username</strong> the purchase was for.</li>
+            <li>Tell us what went wrong.</li>
+          </ol>
+          <p>We answer within a few days. If we agree to a refund, it goes back through our payment partner.</p>
+
+          <h2 id="merch"><span class="n">8.</span><span>Physical merch</span></h2>
+          <p>If we sell physical merch, like shirts, you can return it unused within 14 days of it arriving. Open a <strong>Payments</strong> ticket first and we'll tell you how to send it back.</p>
+
+          <h2 id="changes"><span class="n">9.</span><span>Changes to this policy</span></h2>
+          <p>We may update this policy. When we do, we'll change the “Last updated” date at the top of this page. The version that applies to your purchase is the one shown here on the day you paid.</p>
+        </div>
+
+        <div class="card legal-cta">
+          <div><h3>Still have a question?</h3><p>Open a ticket on our Discord and a staff member will help.</p></div>
+          <a class="btn btn-primary" href="community.html#discord"><svg class="icon"><use href="#i-chat"/></svg> Open the Discord</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer data-site-footer></footer>
+<script src="assets/site.js"></script>
+</body>
+</html>

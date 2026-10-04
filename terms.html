@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" type="image/svg+xml" href="assets/ttc-icon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Terms of Service · TheTitansClan</title>
+<meta name="description" content="The plain-English terms for playing on TheTitansClan Minecraft network and CS2 servers, and for buying ranks in our store.">
+<meta name="theme-color" content="#F1E7D0">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600&family=UnifrakturMaguntia&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  /* Shared legal layout: terms.html, privacy.html, refunds.html */
+  main [id] { scroll-margin-top: calc(var(--header-h) + 24px); }
+  .legal-hero { padding-bottom: 0; }
+  .legal-meta { display: inline-flex; align-items: center; gap: 6px; margin-top: var(--s3); font-size: var(--fs-sm); color: var(--text-3); }
+  .legal-meta .icon { width: 16px; height: 16px; }
+  .legal-tabs { margin-top: var(--s6); border-bottom: 0; gap: var(--s5); }
+  .legal-tabs .tab { display: inline-flex; align-items: center; gap: 8px; padding-block: var(--s4); }
+  .legal-tabs .tab .icon { width: 16px; height: 16px; }
+  .legal-tabs .tab[aria-current="page"] { color: var(--text); }
+  .legal-tabs .tab[aria-current="page"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--crimson); }
+
+  .legal-layout { display: grid; gap: var(--s6); }
+  @media (min-width: 1100px) { .legal-layout { grid-template-columns: 220px minmax(0, 1fr); gap: var(--s7); } }
+  .legal-main { min-width: 0; max-width: 760px; }
+  .toc { display: none; }
+  @media (min-width: 1100px) {
+    .toc { display: block; position: sticky; top: calc(var(--header-h) + 24px); align-self: start; font-size: var(--fs-sm); }
+    .toc h6 { margin: 0 0 var(--s3); font: 700 11px/1 var(--font-display); letter-spacing: .16em; color: var(--text-3); text-transform: uppercase; }
+    .toc a { display: block; padding: 6px 0 6px 12px; color: var(--text-2); border-left: 2px solid var(--line); }
+    .toc a:hover { color: var(--text); border-color: var(--crimson); }
+  }
+
+  .notice { display: flex; gap: var(--s3); align-items: flex-start; padding: var(--s4) var(--s5); background: rgba(142,27,36,.07); border: 1px solid rgba(142,27,36,.3); border-left: 4px solid var(--crimson); border-radius: var(--r); font-size: var(--fs-sm); color: var(--text-2); }
+  .notice .icon { color: var(--crimson); margin-top: 2px; }
+  .notice strong { display: block; color: var(--crimson); font-family: var(--font-display); font-size: 1rem; letter-spacing: .02em; margin-bottom: 2px; }
+  .notice a { color: var(--crimson); text-decoration: underline; text-underline-offset: 2px; }
+
+  .short { margin: var(--s5) 0 var(--s6); }
+  .short h2 { font-size: 1.5rem; margin-bottom: var(--s4); }
+  .short ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s3); }
+  .short li { display: flex; gap: var(--s3); color: var(--text); }
+  .short li .icon { color: var(--gold); flex: none; margin-top: 3px; width: 18px; height: 18px; }
+
+  .prose h2 { display: flex; gap: .45em; align-items: baseline; }
+  .prose h2 .n { color: var(--crimson); flex: none; }
+  .prose h2:first-of-type { margin-top: var(--s5); }
+  .legal-cta { display: grid; gap: var(--s4); padding: var(--s5); margin-top: var(--s7); }
+  @media (min-width: 700px) { .legal-cta { grid-template-columns: 1fr auto; align-items: center; } }
+  .legal-cta h3 { margin: 0 0 4px; }
+  .legal-cta p { margin: 0; color: var(--text-2); font-size: var(--fs-sm); }
+</style>
+</head>
+<body data-page="">
+<header data-site-header></header>
+
+<main>
+  <section class="hero area-hero legal-hero" aria-labelledby="legal-title">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="support.html">Rules &amp; Support</a><span>/</span><span>Terms</span></nav>
+      <span class="eyebrow">The charter</span>
+      <h1 id="legal-title">Terms of Service</h1>
+      <p class="lede">The deal between you and TheTitansClan when you play on our servers or buy from our store.</p>
+      <p class="legal-meta"><svg class="icon"><use href="#i-clock"/></svg>Last updated <time datetime="2026-10-04">4 October 2026</time></p>
+      <nav class="tabs legal-tabs" aria-label="Policies">
+        <a class="tab" href="terms.html" aria-current="page"><svg class="icon"><use href="#i-book"/></svg>Terms</a>
+        <a class="tab" href="privacy.html"><svg class="icon"><use href="#i-lock"/></svg>Privacy</a>
+        <a class="tab" href="refunds.html"><svg class="icon"><use href="#i-refund"/></svg>Refunds</a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap legal-layout">
+      <nav class="toc" aria-label="On this page">
+        <h6>On this page</h6>
+        <a href="#who">1. Who we are</a>
+        <a href="#age">2. Accounts and age</a>
+        <a href="#fair">3. Playing fair</a>
+        <a href="#store">4. Store purchases</a>
+        <a href="#punish">5. Punishments</a>
+        <a href="#chargebacks">6. Chargebacks</a>
+        <a href="#asis">7. No guarantees</a>
+        <a href="#changes">8. Changes</a>
+        <a href="#contact">9. Contact us</a>
+      </nav>
+
+      <div class="legal-main">
+        <div class="notice" role="note"><svg class="icon"><use href="#i-alert"/></svg><div><strong>Draft policy</strong>We're finalising these policies before the server launches. If anything is unclear, open a ticket on <a href="community.html#discord">Discord</a>.</div></div>
+
+        <div class="card card-pad short">
+          <h2>The short version</h2>
+          <ul>
+            <li><svg class="icon"><use href="#i-check"/></svg><span>We're a community-run network, not Mojang, Microsoft or Valve.</span></li>
+            <li><svg class="icon"><use href="#i-check"/></svg><span>You must be 13 or older. Under 18? Ask a parent before you buy anything.</span></li>
+            <li><svg class="icon"><use href="#i-check"/></svg><span>Follow the rules. If you break them you can lose access, including paid ranks, with no refund.</span></li>
+            <li><svg class="icon"><use href="#i-check"/></svg><span>Ranks let you use perks on our servers. You don't own them, and perks can change between seasons.</span></li>
+            <li><svg class="icon"><use href="#i-check"/></svg><span>We do our best to keep the servers up, but we can't promise they'll never go offline.</span></li>
+          </ul>
+        </div>
+
+        <div class="prose">
+          <p>These terms apply when you join our Minecraft network, play on our CS2 servers, use our Discord, visit this website or buy something from our store. By doing any of those, you agree to them. We've kept them short and in plain English. If something here doesn't make sense, ask us.</p>
+
+          <h2 id="who"><span class="n">1.</span><span>Who we are</span></h2>
+          <p>TheTitansClan is a community-run Minecraft network and CS2 clan. When these terms say “we” or “us”, they mean the team that runs TheTitansClan. When they say “you”, they mean you, the player.</p>
+          <p>We are not affiliated with, or endorsed by, Mojang Studios, Microsoft or Valve. Minecraft and Counter-Strike are their trademarks. When you play Minecraft on our servers, Minecraft's own EULA and usage guidelines still apply too, and the same goes for Valve's terms when you play CS2.</p>
+
+          <h2 id="age"><span class="n">2.</span><span>Accounts and age</span></h2>
+          <ul>
+            <li>You must be <strong>13 or older</strong> to play on our servers or join our Discord.</li>
+            <li>If you're under 18, you need a parent or guardian's permission before you buy anything.</li>
+            <li>You're responsible for your own account. Don't share it, and don't let other people play on it. Anything done on your account counts as done by you.</li>
+            <li>Making a new account to get around a ban counts as breaking the rules.</li>
+          </ul>
+
+          <h2 id="fair"><span class="n">3.</span><span>Playing fair</span></h2>
+          <p>Our <a href="support.html#rules">server rules</a> are part of these terms. They cover Minecraft, PvP, CS2 and Discord. Staff may warn, mute, kick or ban players who break them. The <a href="support.html#punishments">punishment guide</a> shows what usually happens, and you can <a href="support.html#appeal">appeal</a> if you think staff got it wrong.</p>
+
+          <h2 id="store"><span class="n">4.</span><span>Store purchases</span></h2>
+          <p>The store isn't taking payments yet. When it opens, these rules apply:</p>
+          <ul>
+            <li><strong>A licence, not ownership.</strong> When you buy a rank or an item, you're paying for the right to use it on our servers. It isn't property you own, and it has no value outside our servers.</li>
+            <li><strong>How long ranks last.</strong> A monthly rank lasts 1 month. A season pass lasts until the end of the season, which is about 3 months.</li>
+            <li><strong>Prices</strong> are shown in Indian rupees (₹). Payments are handled by our payment partner, not by us directly.</li>
+            <li><strong>Perks can change.</strong> We may change what a rank includes between seasons to keep the game fair and fun. We'll announce changes before a new season starts.</li>
+            <li><strong>Refunds</strong> follow our <a href="refunds.html">Refund policy</a>.</li>
+          </ul>
+
+          <h2 id="punish"><span class="n">5.</span><span>Punishments</span></h2>
+          <p>If you break the rules, staff can remove your access to some or all of our servers, for a while or for good. If that happens, you don't get a refund for ranks or items you can no longer use.</p>
+
+          <h2 id="chargebacks"><span class="n">6.</span><span>Chargebacks</span></h2>
+          <p>A chargeback is when you ask your bank or card company to take a payment back, instead of asking us. If there's a problem with a purchase, please open a ticket first. We'd much rather fix it. If you make a chargeback without talking to us, the rank or item is removed and your account may be banned.</p>
+
+          <h2 id="asis"><span class="n">7.</span><span>No guarantees</span></h2>
+          <p>We run our servers “as is”. We work hard to keep them online and fair, but servers can crash, go down for updates, lose progress or close. Game modes, worlds and features can change. We can't promise the service will always be available or free of bugs.</p>
+
+          <h2 id="changes"><span class="n">8.</span><span>Changes to these terms</span></h2>
+          <p>We may update these terms. When we do, we'll change the “Last updated” date at the top of this page, and we'll post about big changes on our Discord. If you keep playing after a change, you're agreeing to the new terms.</p>
+
+          <h2 id="contact"><span class="n">9.</span><span>Contact us</span></h2>
+          <p>The way to reach us is a ticket on our Discord. Open one in <strong>#tickets</strong> and pick the type that fits. Parents can choose the <strong>Parents</strong> ticket. See <a href="support.html#contact">Contact staff</a> for more.</p>
+        </div>
+
+        <div class="card legal-cta">
+          <div><h3>Still have a question?</h3><p>Open a ticket on our Discord and a staff member will help.</p></div>
+          <a class="btn btn-primary" href="community.html#discord"><svg class="icon"><use href="#i-chat"/></svg> Open the Discord</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer data-site-footer></footer>
+<script src="assets/site.js"></script>
+</body>
+</html>

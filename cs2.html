@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" type="image/svg+xml" href="assets/ttc-icon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CS2 — Titans team &amp; community servers · TheTitansClan</title>
+<meta name="description" content="Titans CS2: roster, matches and results, community servers, tournaments, clips and tryouts.">
+<meta name="theme-color" content="#F1E7D0">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600&family=UnifrakturMaguntia&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .cs-hero-grid { display: grid; gap: var(--s6); align-items: start; }
+  @media (min-width: 900px) { .cs-hero-grid { grid-template-columns: 1fr 440px; gap: var(--s7); } }
+  .area-cs .stats { margin-top: var(--s5); }
+  .area-cs .stats b.w { color: var(--live); }
+  .next-match { margin-top: var(--s4); display: flex; align-items: center; gap: var(--s3); padding: var(--s3) var(--s4); border-radius: var(--r); background: var(--cs-wash); border: 1px solid rgba(114,169,255,.25); font-size: var(--fs-sm); }
+  .next-match .icon { color: var(--cs); }
+  .next-match b { color: var(--text); }
+  .cs-server .status-card { border-color: rgba(45,91,163,.45); }
+
+  .roster { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s3); }
+  @media (min-width: 600px) { .roster { grid-template-columns: repeat(3, 1fr); gap: var(--s4); } }
+  @media (min-width: 1100px) { .roster { grid-template-columns: repeat(6, 1fr); } }
+  .player-card.is-coach .pl-photo { background: radial-gradient(80% 60% at 50% 35%, rgba(45,91,163,.16), transparent 70%), linear-gradient(180deg, #E4DDCB, #CEC4AA); }
+
+  .matches { display: grid; gap: var(--s6); }
+  @media (min-width: 900px) { .matches { grid-template-columns: 1fr 1.3fr; } }
+  .matches h3 { font-size: 1.125rem; letter-spacing: .1em; color: var(--text-2); margin-bottom: var(--s3); }
+  .match-list { display: grid; gap: var(--s3); }
+
+  .srv { display: grid; grid-template-columns: 1fr auto; gap: var(--s2) var(--s4); padding: var(--s4); align-items: center; }
+  .srv-name { font: 700 1.0625rem/1.15 var(--font-display); }
+  .srv-meta { font-size: var(--fs-xs); color: var(--text-3); display: flex; gap: var(--s3); flex-wrap: wrap; grid-column: 1 / -1; }
+  .srv .copy-row { grid-column: 1 / -1; }
+  @media (min-width: 900px) { .srv { grid-template-columns: 1.2fr auto 1.4fr; } .srv-meta { grid-column: auto; } .srv .copy-row { grid-column: auto; } .srv > .status { order: 3; } }
+  .srv.is-off { opacity: .7; }
+
+  .tourney { display: grid; gap: 0; overflow: hidden; }
+  .tourney .ph { aspect-ratio: 16/9; }
+  .tourney .t-body { padding: var(--s5); display: grid; gap: var(--s4); }
+  @media (min-width: 900px) { .tourney { grid-template-columns: 1fr 1fr; } .tourney .ph { aspect-ratio: auto; height: 100%; min-height: 320px; } .tourney .t-body { padding: var(--s6); } }
+  .facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s3); }
+  .facts div { padding: var(--s3); background: var(--surface-2); border-radius: var(--r); }
+  .facts span { display: block; font-size: var(--fs-xs); color: var(--text-3); letter-spacing: .06em; text-transform: uppercase; font-weight: 600; }
+  .facts b { font: 700 1rem/1.25 var(--font-display); }
+  .meter { height: 6px; border-radius: 6px; background: var(--surface-3); overflow: hidden; }
+  .meter i { display: block; height: 100%; background: var(--grad-gold); }
+
+  .clips { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s3); }
+  @media (min-width: 900px) { .clips { grid-template-columns: repeat(3, 1fr); gap: var(--s4); } }
+  .clip { all: unset; cursor: pointer; display: grid; gap: var(--s2); }
+  .clip .ph { border-radius: var(--r); border: 1px solid var(--line); aspect-ratio: 16/9; }
+  .clip .play { width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,.55); display: grid; place-items: center; color: var(--text); border: 1px solid rgba(255,255,255,.2); }
+  .clip .play .icon { width: 18px; height: 18px; opacity: 1; fill: currentColor; }
+  .clip .dur { position: absolute; right: 8px; bottom: 8px; font: 600 11px/1 var(--font-mono); background: rgba(0,0,0,.7); padding: 4px 6px; border-radius: 4px; color: var(--text); }
+  .clip b { font-size: var(--fs-sm); font-weight: 600; line-height: 1.3; }
+  .clip small { font-size: var(--fs-xs); color: var(--text-3); }
+  .clip:hover b { color: var(--gold-hi); }
+  .clip:focus-visible .ph { outline: 2px solid var(--gold-hi); outline-offset: 2px; }
+
+  .tryout { display: grid; gap: var(--s6); }
+  @media (min-width: 900px) { .tryout { grid-template-columns: .8fr 1.2fr; gap: var(--s7); } }
+  .tryout-aside ul { padding: 0; list-style: none; margin: var(--s4) 0 0; display: grid; gap: var(--s3); }
+  .tryout-aside li { display: flex; gap: var(--s3); color: var(--text-2); font-size: var(--fs-sm); }
+  .tryout-aside li .icon { color: var(--gold); flex: none; }
+</style>
+</head>
+<body data-page="cs">
+<header data-site-header></header>
+
+<main>
+  <!-- AREA HERO -->
+  <section class="hero area-hero area-cs" aria-labelledby="cs-title">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>CS2</span></nav>
+      <div class="cs-hero-grid">
+        <div>
+          <div class="area-tag"><i></i>CS2</div>
+          <h1 id="cs-title">Titans CS2</h1>
+          <p class="lede">Our CS2 side is forming now: a competitive five, a community that plays together, and servers on the way. Try out for the team or join the Discord to play with us.</p>
+        </div>
+        <aside class="cs-server" aria-label="Community server">
+          <div class="card status-card" data-live="cs"></div>
+          <div class="row mt-3">
+            <a class="btn btn-primary" href="#tryout"><svg class="icon"><use href="#i-users"/></svg> Try out for the team</a>
+            <a class="btn btn-ghost" href="#servers">Our servers</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <nav class="subnav" aria-label="On this page">
+    <div class="wrap"><a href="#roster">Roster</a><a href="#matches">Matches</a><a href="#servers">Servers</a><a href="#tournaments">Tournaments</a><a href="#clips">Clips</a><a href="#tryout">Try out</a></div>
+  </nav>
+
+  <!-- ROSTER -->
+  <section class="section" id="roster" aria-labelledby="roster-title">
+    <div class="wrap">
+      <div class="section-head"><div><span class="eyebrow">The five</span><h2 id="roster-title">Roster</h2></div></div>
+      <div class="empty"><svg class="icon"><use href="#i-users"/></svg><h4>Our first five is picked from tryouts</h4><p>The roster goes up here once the team is set. Want a spot? Tryouts are open now.</p><a class="btn btn-primary btn-sm mt-4" href="#tryout">Try out for the team</a></div>
+    </div>
+  </section>
+
+  <!-- MATCHES -->
+  <section class="section" id="matches" aria-labelledby="matches-title">
+    <div class="wrap">
+      <div class="section-head"><div><span class="eyebrow">Fixtures &amp; results</span><h2 id="matches-title">Matches</h2></div></div>
+      <div class="empty"><svg class="icon"><use href="#i-calendar"/></svg><h4>No matches yet</h4><p>Fixtures and results appear here once the team starts playing. Discord hears about every match first.</p></div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY SERVERS -->
+  <section class="section" id="servers" aria-labelledby="srv-title">
+    <div class="wrap">
+      <div class="section-head"><div><span class="eyebrow">Open to everyone</span><h2 id="srv-title">Community servers</h2></div></div>
+      <div class="card card-feature card-pad" style="display:grid;gap:var(--s4);justify-items:start">
+        <span class="chip chip-cs">Coming soon</span>
+        <h3>Community servers open soon</h3>
+        <p class="muted mb-0" style="max-width:60ch">We're setting up 5v5, retakes and deathmatch servers for everyone. The connect addresses go here the day they open, and Discord hears it first.</p>
+        <a class="btn btn-primary" href="community.html#discord"><svg class="icon"><use href="#i-chat"/></svg> Join the Discord</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOURNAMENTS -->
+  <section class="section" id="tournaments" aria-labelledby="tour-title">
+    <div class="wrap">
+      <div class="section-head"><div><span class="eyebrow">Compete</span><h2 id="tour-title">Tournaments</h2></div><a class="link-arrow" href="events.html">All tournaments <svg class="icon"><use href="#i-arrow"/></svg></a></div>
+      <article class="card card-feature tourney">
+        <div class="ph ph-cs"><svg class="icon"><use href="#i-trophy"/></svg><span class="ph-label">tournament key art</span></div>
+        <div class="t-body">
+          <div class="row"><span class="chip chip-cs">CS2</span><span class="chip chip-clan">Signups open</span></div>
+          <h3 style="font-size:clamp(1.75rem,1.4rem + 1.4vw,2.5rem)">Titans Community Cup #4</h3>
+          <p class="muted mb-0">Open to any 5-stack. Single elimination, Bo1 until the final (Bo3). Match servers are announced on Discord before the cup.</p>
+          <div class="facts">
+            <div><span>Date</span><b>Sat 17 Oct</b></div>
+            <div><span>Start</span><b>18:00 UTC</b></div>
+            <div><span>Format</span><b>5v5 · Single elim</b></div>
+            <div><span>Prize</span><b>Trophy + Discord role</b></div>
+          </div>
+          <p class="faint mb-0" style="font-size:var(--fs-sm)">Signups close Thu 15 Oct. The draw is on 16 Oct.</p>
+          <div class="row"><a class="btn btn-primary" href="event.html#signup">Sign up your team</a><a class="btn btn-ghost" href="event.html#bracket">Rules &amp; bracket</a></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- CLIPS -->
+  <section class="section" id="clips" aria-labelledby="clips-title">
+    <div class="wrap">
+      <div class="section-head"><div><span class="eyebrow">Highlights</span><h2 id="clips-title">Clips</h2></div><a class="link-arrow" href="media.html">All media <svg class="icon"><use href="#i-arrow"/></svg></a></div>
+      <div class="empty"><svg class="icon"><use href="#i-film"/></svg><h4>Clips coming after our first matches</h4><p>Got a great play on our servers? Post it in #media on Discord and it could end up here.</p></div>
+    </div>
+  </section>
+
+  <!-- TRY OUT -->
+  <section class="section" id="tryout" aria-labelledby="try-title">
+    <div class="wrap">
+      <div class="tryout">
+        <div class="tryout-aside">
+          <span class="eyebrow">Recruiting</span>
+          <h2 id="try-title">Try out for the team</h2>
+          <p class="muted mt-3">We're looking for a <b style="color:var(--text)">support player</b> and subs for the academy squad. Fill this in, then post it in #tryouts on our Discord.</p>
+          <ul>
+            <li><svg class="icon"><use href="#i-check"/></svg>Premier 15,000+ or FACEIT level 7+</li>
+            <li><svg class="icon"><use href="#i-check"/></svg>3 evenings a week for practice</li>
+            <li><svg class="icon"><use href="#i-check"/></svg>Working mic, good attitude, on Discord</li>
+            <li><svg class="icon"><use href="#i-shield"/></svg>Under 16? A parent or guardian must know you're applying.</li>
+          </ul>
+        </div>
+        <form class="card card-pad form form-2" data-validate data-title="CS2 tryout application" aria-labelledby="try-title">
+          <div class="field"><label class="label" for="t-handle">In-game name</label><input class="input" id="t-handle" required autocomplete="nickname"><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Tell us your in-game name.</span></div>
+          <div class="field"><label class="label" for="t-discord">Discord username</label><input class="input" id="t-discord" required placeholder="name"><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>We reply on Discord, so we need this.</span></div>
+          <div class="field span-2"><label class="label" for="t-steam">Steam profile link</label><input class="input" id="t-steam" type="url" required placeholder="https://steamcommunity.com/id/…"><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Paste the link to your Steam profile.</span></div>
+          <div class="field"><label class="label" for="t-age">Age</label><select class="select" id="t-age" required><option value="">Choose…</option><option>13–15</option><option>16–17</option><option>18+</option></select><span class="field-error"><svg class="icon"><use href="#i-alert"/></svg>Pick an age range.</span></div>
+          <div class="field"><label class="label" for="t-rank">Premier rating or FACEIT level <span class="opt">optional</span></label><input class="input" id="t-rank" placeholder="e.g. 16,200 or Level 8"></div>
+          <fieldset class="field span-2" style="border:0;padding:0;margin:0"><legend class="label" style="margin-bottom:6px">Roles you play</legend>
+            <div class="choice-group">
+              <label class="choice"><input type="checkbox" name="role" value="igl"><span>IGL</span></label>
+              <label class="choice"><input type="checkbox" name="role" value="awp"><span>AWP</span></label>
+              <label class="choice"><input type="checkbox" name="role" value="entry"><span>Entry</span></label>
+              <label class="choice"><input type="checkbox" name="role" value="support" checked><span>Support</span></label>
+              <label class="choice"><input type="checkbox" name="role" value="lurk"><span>Lurker</span></label>
+            </div>
+          </fieldset>
+          <div class="field span-2"><label class="label" for="t-why">Why should we pick you? <span class="opt">optional</span></label><textarea class="textarea" id="t-why" placeholder="Teams you've played for, best results, a clip link…"></textarea></div>
+          <label class="check span-2"><input type="checkbox" required><span>I've read the <a href="privacy.html">Privacy policy</a>. If I'm under 16, a parent or guardian knows I'm applying.</span></label>
+          <div class="span-2"><button class="btn btn-primary btn-block" type="submit">Copy my application</button></div>
+          <div class="form-success span-2">
+            <div class="alert alert-ok"><svg class="icon"><use href="#i-check"/></svg><div><strong>Your answers are copied</strong>Paste them into the #tryouts channel on our Discord so a coach sees them. Online applications open at launch.</div></div>
+            <a class="btn btn-primary mt-4" href="community.html#discord"><svg class="icon"><use href="#i-chat"/></svg> Open the Discord</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer data-site-footer></footer>
+<script src="assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" type="image/svg+xml" href="assets/ttc-icon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Custom Enchantments 2.0: coming to Survival · TheTitansClan</title>
+<meta name="description" content="Souls, armour sets, the Tinkerer and the Alchemist: everything new in Custom Enchantments 2.0.">
+<meta name="theme-color" content="#F1E7D0">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600&family=UnifrakturMaguntia&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .post-head { padding-block: var(--s6) var(--s5); }
+  .post-head .inner { max-width: 820px; }
+  .post-head h1 { font-size: clamp(2.25rem, 1.5rem + 3.4vw, 4rem); margin: var(--s4) 0; }
+  .post-head .dek { color: var(--text-2); font-size: 1.1875rem; max-width: 60ch; }
+  .byline { display: flex; align-items: center; gap: var(--s3); margin-top: var(--s5); font-size: var(--fs-sm); color: var(--text-3); flex-wrap: wrap; }
+  .byline b { color: var(--text); font-weight: 600; display: block; }
+  .cover { max-width: 1100px; margin: var(--s6) auto 0; }
+  .cover .ph { border-radius: var(--r-lg); aspect-ratio: 21/9; border: 1px solid var(--line); }
+  .post-layout { display: grid; gap: var(--s6); margin-top: var(--s6); }
+  @media (min-width: 1100px) { .post-layout { grid-template-columns: 200px 1fr; gap: var(--s7); } }
+  .toc { display: none; }
+  @media (min-width: 1100px) {
+    .toc { display: block; position: sticky; top: calc(var(--header-h) + 24px); align-self: start; font-size: var(--fs-sm); }
+    .toc h6 { margin: 0 0 var(--s3); font: 700 11px/1 var(--font-body); letter-spacing: .16em; color: var(--text-3); text-transform: uppercase; }
+    .toc a { display: block; padding: 6px 0 6px 12px; color: var(--text-2); border-left: 2px solid var(--line); }
+    .toc a:hover { color: var(--text); border-color: var(--gold); }
+  }
+  .changelog { display: grid; gap: var(--s3); margin: var(--s5) 0; font-size: 1rem; }
+  .cl-group { border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; background: var(--surface); }
+  .cl-group h4 { padding: 10px var(--s4); font-size: .9375rem; letter-spacing: .14em; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--line); margin: 0; }
+  .cl-group h4::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: currentColor; }
+  .cl-group ul { list-style: none; margin: 0; padding: var(--s3) var(--s4); display: grid; gap: 8px; }
+  .cl-group li { padding-left: 0; margin: 0; color: var(--text); font-size: .9375rem; line-height: 1.5; }
+  .cl-add h4 { color: var(--live); } .cl-change h4 { color: var(--gold); } .cl-fix h4 { color: var(--cs); } .cl-remove h4 { color: var(--danger); }
+  .share { display: flex; gap: var(--s3); align-items: center; flex-wrap: wrap; padding-top: var(--s5); margin-top: var(--s6); border-top: 1px solid var(--line); }
+  .cta-card { display: grid; gap: var(--s4); padding: var(--s5); margin-top: var(--s6); }
+  @media (min-width: 700px) { .cta-card { grid-template-columns: 1fr auto; align-items: center; } }
+</style>
+</head>
+<body data-page="news">
+<header data-site-header></header>
+
+<main>
+  <article>
+    <header class="hero post-head">
+      <div class="wrap">
+        <div class="inner">
+          <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="news.html">News</a><span>/</span><span>Patch notes</span></nav>
+          <div class="row"><span class="chip chip-patch">Patch notes</span><span class="chip chip-mc">Minecraft</span></div>
+          <h1>Custom Enchantments 2.0: coming to Survival</h1>
+          <p class="dek">Souls, armour sets, the Tinkerer and the Alchemist. Here's the gear system waiting for you when Season 1 opens.</p>
+          <div class="byline">
+            <span class="avatar">TS</span>
+            <div><b>Titans Staff</b>Dev team</div>
+            <span>·</span><time datetime="2026-10-01">Oct 1, 2026</time><span>·</span><span>6 min read</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="wrap">
+      <figure class="cover"><div class="ph ph-mc"><svg class="icon"><use href="#i-sparkle"/></svg><span class="ph-label">cover image 21:9</span></div></figure>
+
+      <div class="post-layout">
+        <nav class="toc" aria-label="In this post">
+          <h6>In this post</h6>
+          <a href="#souls">The souls system</a>
+          <a href="#items">New items</a>
+          <a href="#npcs">Tinkerer &amp; Alchemist</a>
+          <a href="#sets">Armour sets</a>
+          <a href="#changelog">Full changelog</a>
+        </nav>
+
+        <div class="prose">
+          <p>Season 1 starts on <strong>Friday, October 9</strong>, and it starts with new gear. Custom Enchantments 2.0 is our own enchantment engine, built in-house, and it powers every enchant on the network.</p>
+
+          <h2 id="souls">The souls system</h2>
+          <p>Attach a <strong>Soul Tracker</strong> to your weapon and it starts collecting souls with every kill, from players and mobs. Some of the strongest enchantment levels now need souls to wake up. Use them, and they're spent.</p>
+          <blockquote>Your blade remembers every fight.</blockquote>
+          <p>Soul Gems let you store souls and move them between weapons, so a lucky night of PvP is never wasted.</p>
+
+          <h2 id="items">New items</h2>
+          <ul>
+            <li><strong>White Scroll</strong> protects an item if an enchant book fails.</li>
+            <li><strong>Holy White Scroll</strong> keeps the item on death.</li>
+            <li><strong>Black Scroll</strong> pulls a random enchant off an item into a book.</li>
+            <li><strong>Secret and Magic Dust</strong> raise a book's success rate.</li>
+            <li><strong>Transmog Scroll</strong> tidies the order of enchants on your item.</li>
+          </ul>
+          <figure><div class="ph ph-mc" style="border-radius:var(--r);aspect-ratio:16/9"><svg class="icon"><use href="#i-image"/></svg><span class="ph-label">inline image</span></div><figcaption>Scrolls and dusts in the new Enchanter menu.</figcaption></figure>
+
+          <h2 id="npcs">Tinkerer &amp; Alchemist</h2>
+          <p>Two new menus in the Citadel. The <strong>Tinkerer</strong> trades enchanted gear and spare books for XP. The <strong>Alchemist</strong> combines two identical books into a higher level, or two dusts into a stronger one, for an XP cost. Open them with <code>/ce tinkerer</code> and <code>/ce alchemist</code>.</p>
+
+          <h2 id="sets">Armour sets</h2>
+          <p>Wear all four pieces of a set to unlock its bonus. Two sets are ready for launch, <strong>Lava</strong> and <strong>Frost</strong>, with more to come during the season.</p>
+
+          <h2 id="changelog">Full changelog</h2>
+          <div class="changelog">
+            <div class="cl-group cl-add"><h4>Added</h4><ul>
+              <li>Souls system with Soul Tracker and Soul Gem</li>
+              <li>Tinkerer and Alchemist menus</li>
+              <li>Lava and Frost armour sets</li>
+              <li>Mobs killed by players can drop enchant books</li>
+              <li>Around 20 new enchant triggers, including fall damage, fishing and elytra flight</li>
+            </ul></div>
+            <div class="cl-group cl-change"><h4>Changed</h4><ul>
+              <li>Some enchant levels now cost souls to activate</li>
+              <li>Enchants can now require, or block, other enchants on the same item</li>
+            </ul></div>
+            <div class="cl-group cl-fix"><h4>Fixed</h4><ul>
+              <li>Damage from the Swordsman enchant now counts as the player's attack</li>
+            </ul></div>
+          </div>
+
+          <div class="share">
+            <span class="faint" style="font-size:var(--fs-sm)">Share this post</span>
+            <button class="btn btn-secondary btn-sm" data-copy="https://thetitansclan.com/news/patch-26-3"><svg class="icon icon-sm"><use href="#i-link"/></svg> Copy link</button>
+            <a class="btn btn-ghost btn-sm" href="community.html"><svg class="icon icon-sm"><use href="#i-chat"/></svg> Discuss on Discord</a>
+          </div>
+
+          <div class="card card-feature cta-card" style="max-width:none">
+            <div><h3 style="margin:0">Be there at launch</h3><p class="muted mb-0" style="font-size:1rem">All of this is waiting on Survival when Season 1 opens.</p></div>
+            <div class="copy-row" style="min-width:260px"><code>mc.thetitansclan.com</code><button type="button" class="copy-btn" data-copy="mc.thetitansclan.com"><svg class="icon icon-sm"><use href="#i-copy"/></svg> Copy</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <section class="section" aria-labelledby="rel-title">
+    <div class="wrap">
+      <div class="section-head"><div><span class="eyebrow">Keep reading</span><h2 id="rel-title">More news</h2></div><a class="link-arrow" href="news.html">All news <svg class="icon"><use href="#i-arrow"/></svg></a></div>
+      <div class="grid grid-3">
+        <a class="card card-link news-card" href="events.html"><div class="ph"><svg class="icon"><use href="#i-castle"/></svg><span class="ph-label">cover</span></div><div class="nc-body"><div class="nc-meta"><span class="chip chip-mc">Minecraft</span><span>Sep 26</span></div><h3>Season 1 Survival starts Friday, Oct 9</h3><p>A fresh world, the Citadel spawn and a launch-week event with prizes.</p></div></a>
+
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer data-site-footer></footer>
+<script src="assets/site.js"></script>
+</body>
+</html>

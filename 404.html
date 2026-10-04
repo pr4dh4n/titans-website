@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" type="image/svg+xml" href="assets/ttc-icon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Page not found · TheTitansClan</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F1E7D0">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600&family=UnifrakturMaguntia&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .lost { min-height: calc(100vh - var(--header-h)); display: grid; place-items: center; text-align: center; padding-block: var(--s8) 160px; }
+  .lost .code { font: 400 clamp(6rem, 4rem + 12vw, 12rem)/.9 var(--font-black); background: linear-gradient(180deg, #B4862A 0%, #7E5813 58%, #5A3C08 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lost h1 { font-size: clamp(1.75rem, 1.4rem + 2vw, 2.75rem); margin: var(--s4) 0 var(--s3); }
+  .lost p { color: var(--text-2); max-width: 44ch; margin: 0 auto var(--s6); }
+  .lost .quick { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s2); max-width: 520px; margin: var(--s5) auto 0; }
+  @media (min-width: 600px) { .lost .quick { grid-template-columns: repeat(4, 1fr); } }
+  .lost .quick a { padding: var(--s3); border: 1px solid var(--line-2); border-radius: var(--r); font-weight: 600; font-size: var(--fs-sm); background: var(--surface); }
+  .lost .quick a:hover { border-color: var(--gold-line); }
+  .site-footer { margin-top: 0; }
+</style>
+</head>
+<body data-page="">
+<header data-site-header></header>
+<main class="hero lost" aria-labelledby="t">
+  <svg class="skyline" aria-hidden="true"></svg>
+  <div class="wrap">
+    <div class="code" aria-hidden="true">404</div>
+    <h1 id="t">Lost outside the walls</h1>
+    <p>This page doesn't exist, or it moved. The link may be old. Head back inside the citadel.</p>
+    <div class="row" style="justify-content:center"><a class="btn btn-primary" href="index.html"><svg class="icon"><use href="#i-home"/></svg> Back to Home</a><a class="btn btn-secondary" href="support.html">Get help</a></div>
+    <nav class="quick" aria-label="Popular pages"><a href="minecraft.html">Minecraft</a><a href="cs2.html">CS2</a><a href="store.html">Store</a><a href="news.html">News</a></nav>
+  </div>
+</main>
+<footer data-site-footer></footer>
+<script src="assets/site.js"></script>
+</body>
+</html>
