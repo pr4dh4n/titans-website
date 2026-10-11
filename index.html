@@ -12,7 +12,7 @@
 <meta property="og:image" content="assets/img/hero-1400.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Grenze+Gotisch:wght@700&family=Grenze:wght@600;700&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@600&display=swap">
-<link rel="stylesheet" href="assets/titans.css?v=202610112020">
+<link rel="stylesheet" href="assets/titans.css?v=202610112026">
 <style>
   /* ================= Hero: the painting, the creed, WE ARE TITANS ================= */
   .hero { position: relative; isolation: isolate; overflow: hidden; }
@@ -105,8 +105,8 @@
   .soon-list li { display: flex; align-items: center; gap: 12px; font: 600 .6875rem/1.3 var(--f-caps); letter-spacing: .12em; text-transform: uppercase; color: #E6DCCB; padding-bottom: 8px; border-bottom: 1px solid #3F352A; }
   .soon-list .icon { width: 18px; height: 18px; color: #E6DCCB; }
   .btn-soon { width: 100%; margin-top: auto; min-height: 50px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #8F826F; background: rgba(0,0,0,.25); color: #E6DCCB; font: 700 .8125rem/1 var(--f-caps); letter-spacing: .14em; text-transform: uppercase; cursor: default; }
-  .addr.is-soon code { font: 600 .8125rem/1.3 var(--f-text); color: var(--ink-3); }
-  .addr.is-soon button { background: #6F6352; border-color: #6F6352; cursor: default; }
+  .skins-link { margin-top: -4px; font-size: .75rem; font-weight: 700; color: var(--gold-ink); text-decoration: underline; text-underline-offset: 3px; }
+  .skins-link:hover { color: var(--plume); }
 </style>
 </head>
 <body data-page="home">
@@ -148,10 +148,11 @@
           <div class="stats">
             <div class="stat"><svg class="icon"><use href="#i-users"/></svg><div><b>Open</b><small>Tryouts</small></div></div>
             <span class="sep"></span>
-            <div class="stat"><svg class="icon"><use href="#i-server"/></svg><div><b>Soon</b><small>Servers</small></div></div>
+            <div class="stat"><svg class="icon"><use href="#i-server"/></svg><div><b>Live</b><small>DM · Retake · 5v5</small></div></div>
           </div>
-          <div class="addr is-soon"><div class="a-txt"><span class="a-lbl">CS2 server address</span><code>Announced when servers open</code></div><button type="button" disabled>Soon</button></div>
-          <a class="btn-crest" href="cs2.html"><span class="bc-plate"><i class="bc-rim" aria-hidden="true"></i><span class="bc-label">Join the CS2 team</span><i class="bc-arrow"></i></span></a>
+          <div class="addr"><div class="a-txt"><span class="a-lbl">CS2 server · console</span><code>play.thetitansclan.com</code></div><button type="button" data-copy="connect play.thetitansclan.com">Copy</button></div>
+          <a class="skins-link" href="https://skins.thetitansclan.com" target="_blank" rel="noopener">Choose your skins at skins.thetitansclan.com ↗</a>
+          <a class="btn-crest" href="cs2.html#servers"><span class="bc-plate"><i class="bc-rim" aria-hidden="true"></i><span class="bc-label">Join CS2 server</span><i class="bc-arrow"></i></span></a>
         </div>
       </article>
 
@@ -192,7 +193,7 @@
 </main>
 
 <footer data-site-footer></footer>
-<script src="assets/titans.js?v=202610112020"></script>
+<script src="assets/titans.js?v=202610112026"></script>
 <script>
   // Hero note: count down to Season I, then show it's live
   (function () {

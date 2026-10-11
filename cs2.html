@@ -12,7 +12,7 @@
 <meta property="og:image" content="assets/img/citadel.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Grenze+Gotisch:wght@700&family=Grenze:wght@600;700&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@600&display=swap">
-<link rel="stylesheet" href="assets/titans.css?v=202610112020">
+<link rel="stylesheet" href="assets/titans.css?v=202610112026">
 <style>
   /* ---- Hero: steel band on phones, parchment on desktop ---- */
   .cs-hero { background: var(--argent); color: #fff; padding: 26px 0 24px; }
@@ -119,6 +119,17 @@
       linear-gradient(90deg, rgba(245,234,214,.97) 0%, rgba(245,234,214,.9) 38%, rgba(245,234,214,.35) 62%, rgba(245,234,214,0) 80%),
       url(assets/img/cs2-hero.webp) 70% 35% / cover no-repeat; }
   @media (max-width: 899px) { .cs-hero { background: linear-gradient(180deg, rgba(245,234,214,.55) 0%, rgba(245,234,214,.92) 45%, rgba(245,234,214,.97) 100%), url(assets/img/cs2-hero.webp) 30% 20% / cover no-repeat; } }
+  .srv-live { display: grid; gap: 22px; align-items: center; }
+  @media (min-width: 900px) { .srv-live { grid-template-columns: 1fr 440px; gap: 48px; } }
+  .modes { list-style: none; margin: 16px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .modes li { padding: 6px 12px; border: 1.5px solid var(--argent); border-radius: 999px; font-size: .8125rem; font-weight: 700; color: var(--argent-dark); }
+  .srv-card { padding: 18px; display: grid; gap: 14px; }
+  .srv-steps { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; font-size: .875rem; color: var(--ink-2); }
+  .srv-steps code { font: 600 .8125rem var(--f-mono); background: var(--parch-2); padding: 1px 5px; border-radius: 3px; color: var(--ink); }
+  .srv-card .btn-crest { width: 100%; min-height: 50px; }
+  .srv-card .btn-crest .bc-plate { justify-content: center; }
+  .srv-card .btn-crest .bc-label { flex: none; font: 700 .8125rem/1 var(--f-caps); letter-spacing: .1em; }
+  .srv-card .hint { margin: -6px 0 0; text-align: center; font-size: .75rem; color: var(--ink-3); }
 </style>
 </head>
 <body data-page="cs" data-realm="cs">
@@ -131,7 +142,7 @@
     <a href="#tryouts">Tryouts</a>
     <a href="#cup">Community Cup</a>
     <a href="store.html?tab=cs">Shop</a>
-    <a href="#servers" style="opacity:.8">Servers · soon</a>
+    <a href="#servers">Servers</a>
   </div>
 </nav>
 
@@ -224,14 +235,31 @@
     </div>
   </section>
 
-  <section class="wrap" id="servers" aria-label="Community servers">
-    <div class="srv"><span><b>Community servers</b> <span class="muted">— retakes, DM and 10-mans</span></span><span class="soon">Coming soon</span></div>
+  <section class="sec" id="servers" aria-labelledby="srv-title">
+    <div class="wrap srv-live">
+      <div>
+        <div class="over">Community servers · live</div>
+        <h2 class="h2" id="srv-title">Play on our servers</h2>
+        <p class="lede" style="margin-top:8px">Deathmatch, retakes and 5v5 on one address. Prime accounts only. Pick your skins before you play.</p>
+        <ul class="modes"><li>Deathmatch</li><li>Retakes</li><li>5v5</li><li>Prime only</li><li>Skins</li></ul>
+      </div>
+      <div class="panel srv-card">
+        <div class="addr" style="max-width:none"><div class="a-txt"><span class="a-lbl">Server address</span><code>play.thetitansclan.com</code></div><button type="button" data-copy="connect play.thetitansclan.com">Copy</button></div>
+        <ol class="srv-steps">
+          <li>In CS2, turn on <b>Settings › Game › Enable Developer Console</b>.</li>
+          <li>Press <b>~</b> to open the console.</li>
+          <li>Paste <code>connect play.thetitansclan.com</code> and press Enter.</li>
+        </ol>
+        <a class="btn-crest" href="https://skins.thetitansclan.com" target="_blank" rel="noopener"><span class="bc-plate"><i class="bc-rim" aria-hidden="true"></i><span class="bc-label">Choose your skins</span><i class="bc-arrow"></i></span></a>
+        <p class="hint">Opens skins.thetitansclan.com in a new tab.</p>
+      </div>
+    </div>
   </section>
 </main>
 
 <footer data-site-footer></footer>
 <style>.only-d { display: none; } @media (min-width: 960px) { .only-d { display: inline; } .only-p { display: none; } }</style>
-<script src="assets/titans.js?v=202610112020"></script>
+<script src="assets/titans.js?v=202610112026"></script>
 <script>
 (function () {
   "use strict";
