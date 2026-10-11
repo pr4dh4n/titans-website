@@ -196,14 +196,14 @@ button { cursor: pointer; }
 
 /* ---------- Footer: dusk battlefield, hanging banners, the clan's creed, then quiet links ---------- */
 .ftr { background: var(--sable); color: var(--on-sable-2); font-size: .8125rem; }
-.ftr-crest { position: relative; overflow: hidden; isolation: isolate; text-align: center; padding: 112px 0 40px;
-  background: radial-gradient(70% 90% at 50% 100%, #4A3420 0%, #2A1D12 45%, #16100A 100%); }
-.ftr-crest::before { content: ""; position: absolute; left: 50%; top: 70px; width: 12px; height: 12px; background: #C9A55A; transform: translateX(-50%) rotate(45deg); box-shadow: 0 0 0 3px #2A1D12, 0 0 14px 2px rgba(231,196,110,.35); z-index: 4; }
-/* The page's parchment tears off into the dusk: torn edge, gold rim along the tear, soft shadow below */
-.fc-edge { position: absolute; left: 0; right: 0; top: -1px; height: 88px; z-index: 3; pointer-events: none;
-  filter: drop-shadow(0 2px 0 #B8924A) drop-shadow(0 3px 0 rgba(90,60,20,.6)) drop-shadow(0 14px 14px rgba(0,0,0,.55)); }
-.fc-edge span { display: block; height: 100%; background: var(--edge-foot); -webkit-mask: var(--torn-up) center bottom / 100% 100% no-repeat; mask: var(--torn-up) center bottom / 100% 100% no-repeat; }
-  -webkit-mask: var(--torn) center top / 100% 100% no-repeat; mask: var(--torn) center top / 100% 100% no-repeat; }
+.ftr-crest { position: relative; overflow-x: clip; overflow-y: visible; isolation: isolate; text-align: center; padding: 46px 0 34px;
+  background: radial-gradient(70% 90% at 50% 100%, #4A3420 0%, #2A1D12 50%, #1C140D 100%); }
+/* The dark footer rises into the page with a torn top edge and a thin gold rim; the page's own paper shows above it */
+.fc-edge { position: absolute; left: 0; right: 0; top: -30px; height: 31px; z-index: 3; pointer-events: none;
+  filter: drop-shadow(0 -1.5px 0 #B8924A) drop-shadow(0 -6px 10px rgba(60,40,15,.18)); }
+.fc-edge span { display: block; height: 100%; background: #1C140D; -webkit-mask: var(--torn) center top / 100% 100% no-repeat; mask: var(--torn) center top / 100% 100% no-repeat; }
+.ftr-crest::before { content: ""; position: absolute; left: 50%; top: -34px; width: 11px; height: 11px; background: #C9A55A; transform: translateX(-50%) rotate(45deg); box-shadow: 0 0 0 3px #1C140D, 0 0 12px 2px rgba(231,196,110,.3); z-index: 4; }
+.ftr { margin-top: 40px; }
 .ftr-crest { background-blend-mode: normal; }
 .fc-scene { position: absolute; inset: auto 0 0 0; height: 70%; z-index: -1; pointer-events: none; }
 .fc-scene img { position: absolute; bottom: -6%; height: 100%; width: auto; filter: brightness(0) ; opacity: .5; }
@@ -222,10 +222,10 @@ button { cursor: pointer; }
 .fc-social svg { width: 20px; height: 20px; fill: currentColor; }
 .fc-social a:hover { color: #fff; }
 /* Hanging banners at the sides (desktop) */
-.fc-banner { display: none; position: absolute; top: 18px; width: 86px; z-index: 5; filter: drop-shadow(0 8px 10px rgba(0,0,0,.45)); }
+.fc-banner { display: none; position: absolute; top: -26px; width: 72px; z-index: 5; filter: drop-shadow(0 8px 10px rgba(0,0,0,.45)); }
 .fc-banner.l { left: 3%; } .fc-banner.r { right: 3%; }
 .fc-banner .rod { position: absolute; top: 6px; left: -14px; right: -14px; height: 7px; border-radius: 4px; background: linear-gradient(180deg, #E7C46E, #8A6417); }
-.fc-banner .cloth { margin-top: 10px; height: 210px; display: grid; justify-items: center; align-content: start; padding-top: 34px;
+.fc-banner .cloth { margin-top: 10px; height: 170px; display: grid; justify-items: center; align-content: start; padding-top: 34px;
   background: linear-gradient(90deg, rgba(0,0,0,.25), rgba(255,255,255,.06) 40%, rgba(0,0,0,.2)), #8E1B18;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 86%, 0 100%); box-shadow: inset 0 0 0 3px #C9A55A, inset 0 0 0 5px #6A1210; }
 .fc-banner img { width: 46px; height: auto; filter: drop-shadow(0 2px 2px rgba(0,0,0,.4)); }
