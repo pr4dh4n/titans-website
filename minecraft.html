@@ -5,14 +5,14 @@
 <link rel="icon" type="image/svg+xml" href="assets/ttc-icon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Minecraft — Survival, Bedwars and the Titan Citadel · TheTitansClan</title>
-<meta name="description" content="Survival with our own custom enchantments in six rarities, souls, Lava and Frost armour sets and clans. Bedwars and the Titan Citadel. Season I opens Fri 9 Oct. IP: mc.thetitansclan.com">
+<meta name="description" content="Survival with our own custom enchantments in six rarities, souls, Lava and Frost armour sets and clans. Bedwars and the Titan Citadel. Season I is open. IP: mc.thetitansclan.com">
 <meta name="theme-color" content="#16120E">
-<meta property="og:title" content="Minecraft · Season I opens Fri 9 Oct">
+<meta property="og:title" content="Minecraft · Season I is open">
 <meta property="og:description" content="Survival, forged our way. IP: mc.thetitansclan.com">
 <meta property="og:image" content="assets/img/knight-palace.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Grenze+Gotisch:wght@700&family=Grenze:wght@600;700&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@600&display=swap">
-<link rel="stylesheet" href="assets/titans.css?v=202610050018">
+<link rel="stylesheet" href="assets/titans.css?v=202610111928">
 <style>
   /* ---- Hero ---- */
   .mc-hero { display: grid; gap: 18px; padding: 26px 0 30px; border-bottom: 1px solid var(--rule); }
@@ -136,6 +136,7 @@
   .quiet { border-top: 1px solid var(--rule); padding: 18px 0 30px; display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: .8125rem; font-weight: 600; color: var(--ink-2); }
   .quiet a:hover { color: var(--plume); }
   .quiet .faint { font-weight: 500; }
+  #modes img[src*="mc-depths"] { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: 35% 62%; }
 </style>
 </head>
 <body data-page="mc" data-realm="mc">
@@ -157,7 +158,7 @@
   <div class="wrap">
     <section class="mc-hero" aria-labelledby="h1">
       <div class="copy">
-        <p class="over" id="season-line">Season I · opens Fri 9 Oct, 19:00 UTC<span id="togo"></span></p>
+        <p class="over" id="season-line">Season I · open now<span id="togo"></span></p>
         <div>
           <h1 class="h1" id="h1">Survival, forged our way.</h1>
           <p class="lede">Custom enchantments in six rarities, a souls system that powers the strongest of them, armour sets and clans. Every season brings a new chapter of the story.</p>
@@ -169,11 +170,7 @@
         <div class="status" data-status="line"><i class="dot"></i><span class="s-txt">Checking server…</span><span class="sep">·</span><span>Bedrock (phone/console): coming soon</span></div>
       </div>
       <div>
-        <div class="palace">
-          <img src="assets/img/knight-palace.webp" alt="The Knight Palace: a white and teal cathedral with a great shield over its doors" width="700" height="818" fetchpriority="high">
-          <span class="pin dark" style="left:4%;top:8%">Knight Palace · sky island</span>
-        </div>
-        <p class="cap">The Knight Palace, our sky-island cathedral — a real render of the build.</p>
+        <div class="tc mc-art" style="padding:8px"><img src="assets/img/mc-hero.webp" alt="A blocky knight in a red cape looks over a valley of rivers, waterfalls and a castle at sunset" width="1400" height="1400" fetchpriority="high" style="display:block;width:100%;height:auto"></div>
       </div>
     </section>
 
@@ -182,9 +179,8 @@
       <div class="modes">
         <article class="panel mode-feat">
           <div class="shot">
-            <img src="assets/img/courtyard.webp" alt="The Citadel courtyard: a stone plaza with a gold compass star, trees and a fountain" width="800" height="660" loading="lazy">
-            <span class="bill bill-soon">Opens 9 Oct</span>
-            <small>Pictured: the Citadel courtyard, where you start</small>
+            <img src="assets/img/mc-depths.webp" alt="A blocky knight with a sword stands in a torch-lit fortress over rivers of lava" width="1400" height="1400" loading="lazy" style="object-fit:cover">
+            <span class="bill bill-soon">Season I</span>
           </div>
           <div class="body">
             <div>
@@ -303,7 +299,7 @@
 </main>
 
 <footer data-site-footer></footer>
-<script src="assets/titans.js?v=202610050018"></script>
+<script src="assets/titans.js?v=202610111928"></script>
 <script>
   // Season line: "5d 5h to go" before launch, "open now" after.
   (function () {

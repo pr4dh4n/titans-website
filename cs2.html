@@ -12,7 +12,7 @@
 <meta property="og:image" content="assets/img/citadel.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Grenze+Gotisch:wght@700&family=Grenze:wght@600;700&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@600&display=swap">
-<link rel="stylesheet" href="assets/titans.css?v=202610050018">
+<link rel="stylesheet" href="assets/titans.css?v=202610111928">
 <style>
   /* ---- Hero: steel band on phones, parchment on desktop ---- */
   .cs-hero { background: var(--argent); color: #fff; padding: 26px 0 24px; }
@@ -115,6 +115,10 @@
   .srv .muted { font-weight: 400; }
   .srv .soon { font-weight: 700; color: var(--ink-3); }
   @media (min-width: 960px) { .srv { padding: 24px 0; } }
+  .cs-hero { position: relative; isolation: isolate; background:
+      linear-gradient(90deg, rgba(245,234,214,.97) 0%, rgba(245,234,214,.9) 38%, rgba(245,234,214,.35) 62%, rgba(245,234,214,0) 80%),
+      url(assets/img/cs2-hero.webp) 70% 35% / cover no-repeat; }
+  @media (max-width: 899px) { .cs-hero { background: linear-gradient(180deg, rgba(245,234,214,.55) 0%, rgba(245,234,214,.92) 45%, rgba(245,234,214,.97) 100%), url(assets/img/cs2-hero.webp) 30% 20% / cover no-repeat; } }
 </style>
 </head>
 <body data-page="cs" data-realm="cs">
@@ -227,7 +231,7 @@
 
 <footer data-site-footer></footer>
 <style>.only-d { display: none; } @media (min-width: 960px) { .only-d { display: inline; } .only-p { display: none; } }</style>
-<script src="assets/titans.js?v=202610050018"></script>
+<script src="assets/titans.js?v=202610111928"></script>
 <script>
 (function () {
   "use strict";
