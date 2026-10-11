@@ -107,7 +107,7 @@
         <div class="dd-col"><a class="dd-art" href="${L.mc}" role="menuitem"><img src="assets/img/card-minecraft-2.webp" alt="" loading="lazy"><b>Minecraft</b></a>
           <a href="${L.join}" role="menuitem">How to join</a><a href="${L.ranks}" role="menuitem">Ranks</a><a href="${L.mc}#vote" role="menuitem">Vote</a>
           <button type="button" class="dd-ip" data-copy="${MC_ADDR}">${MC_ADDR}<span>Copy</span></button></div>
-        <div class="dd-col soon"><span class="dd-art"><img src="assets/img/card-more.webp" alt="" loading="lazy"><b>More games</b></span>
+        <div class="dd-col soon"><span class="dd-art"><img src="assets/img/card-more-gray.webp" alt="" loading="lazy"><b>More games</b></span>
           <span class="dd-note">Expanding our realm soon.</span></div>
       </div></div></div><a href="${L.store}"${navCur("store")}>Store</a><a href="${L.community}"${navCur("about")}>About</a><a href="${L.support}#contact"${navCur("contact")}>Contact</a>
   </nav>
