@@ -101,12 +101,12 @@
   <nav class="nav" aria-label="Main">
     <a href="${L.home}"${navCur("home")}>Home</a><div class="nav-dd"><a href="${L.home}#servers"${navCur("servers")} aria-haspopup="true">Our servers<svg class="dd-chev" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
       <div class="dd" role="menu" aria-label="Our servers"><div class="dd-in">
-        <div class="dd-col"><a class="dd-art" href="${L.mc}" role="menuitem"><img src="assets/img/card-minecraft.webp" alt="" loading="lazy"><b>Minecraft</b></a>
-          <a href="${L.join}" role="menuitem">How to join</a><a href="${L.ranks}" role="menuitem">Ranks</a><a href="${L.mc}#vote" role="menuitem">Vote</a>
-          <button type="button" class="dd-ip" data-copy="${MC_ADDR}">${MC_ADDR}<span>Copy</span></button></div>
         <div class="dd-col"><a class="dd-art" href="${L.cs}" role="menuitem"><img src="assets/img/card-cs2.webp" alt="" loading="lazy"><b>Counter-Strike 2</b></a>
           <a href="${L.cs}#tryouts" role="menuitem">Tryouts</a><a href="${L.cs}#cup" role="menuitem">Community Cup #4</a><a href="${L.cs}#servers" role="menuitem">Our servers</a><a href="https://skins.thetitansclan.com" target="_blank" rel="noopener" role="menuitem">Skins ↗</a>
           <button type="button" class="dd-ip" data-copy="connect play.thetitansclan.com">play.thetitansclan.com<span>Copy</span></button></div>
+        <div class="dd-col"><a class="dd-art" href="${L.mc}" role="menuitem"><img src="assets/img/card-minecraft-2.webp" alt="" loading="lazy"><b>Minecraft</b></a>
+          <a href="${L.join}" role="menuitem">How to join</a><a href="${L.ranks}" role="menuitem">Ranks</a><a href="${L.mc}#vote" role="menuitem">Vote</a>
+          <button type="button" class="dd-ip" data-copy="${MC_ADDR}">${MC_ADDR}<span>Copy</span></button></div>
         <div class="dd-col soon"><span class="dd-art"><img src="assets/img/card-more.webp" alt="" loading="lazy"><b>More games</b></span>
           <span class="dd-note">Expanding our realm soon.</span></div>
       </div></div></div><a href="${L.store}"${navCur("store")}>Store</a><a href="${L.community}"${navCur("about")}>About</a><a href="${L.support}#contact"${navCur("contact")}>Contact</a>
