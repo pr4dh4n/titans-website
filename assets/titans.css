@@ -19,8 +19,8 @@
   --live: #2F7D3A;    --off: #B3261E;
   --r-simple: #9A958C; --r-unique: #5E9E4F; --r-elite: #4F80C2; --r-ultimate: #D4A934; --r-legendary: #DC7A2E; --r-fabled: #C8352E;
 
-  --f-black: "Grenze Gotisch", Georgia, serif;   /* page titles & realm names only, 30px+ */
-  --f-head:  "Grenze", Georgia, serif;           /* section heads, prices, countdown digits */
+  --f-black: "Cinzel", "Trajan Pro", Georgia, serif;   /* page titles & realm names (same as the main section) */
+  --f-head:  "Cinzel", "Trajan Pro", Georgia, serif;   /* section heads, prices, countdown digits */
   --f-text:  "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-mono:  "IBM Plex Mono", ui-monospace, Menlo, monospace;
   --f-caps:  "Cinzel", "Trajan Pro", Georgia, serif;     /* engraved capitals: header, hero, section titles */
@@ -54,8 +54,8 @@ button { cursor: pointer; }
 .wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gut); }
 
 /* ---------- Type ---------- */
-.t-black { font-family: var(--f-black); font-weight: 700; line-height: .98; letter-spacing: -.3px; }
-.h1 { font-family: var(--f-black); font-weight: 700; font-size: clamp(2.6rem, 1.6rem + 4.4vw, 4.9rem); line-height: .96; letter-spacing: -.5px; }
+.t-black { font-family: var(--f-black); font-weight: 700; line-height: 1.02; letter-spacing: .02em; }
+.h1 { font-family: var(--f-black); font-weight: 700; font-size: clamp(2.1rem, 1.4rem + 3.4vw, 4rem); line-height: 1.02; letter-spacing: .02em; }
 .h2 { font-family: var(--f-head); font-weight: 700; font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.25rem); line-height: 1.1; }
 .h3 { font-family: var(--f-head); font-weight: 600; font-size: 1.375rem; line-height: 1.15; }
 .lede { font-size: clamp(1rem, .95rem + .3vw, 1.125rem); line-height: 1.5; color: var(--ink-2); max-width: 46ch; }
